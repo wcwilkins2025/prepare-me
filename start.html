@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Assessment</title>
+<meta name="description" content="Plain questions about your town, home and family. Take it again any time; your history is kept.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav class="nav" id="nav" aria-label="Pages"></nav>
+    <h1>Where you stand</h1>
+    <p class="lede">Plain questions about your town, your home and your family. About five minutes. Take it again any time; every score is kept.</p>
+  </div>
+</header>
+
+<main class="wrap" id="main">
+  <form id="form" novalidate>
+    <fieldset>
+      <legend>1. Your town</legend>
+      <div class="field">
+        <label for="town">Your town, or your ZIP code</label>
+        <input id="town" type="search" autocomplete="off" placeholder="Moore, OK or 73160" aria-describedby="townHint" aria-controls="townHits">
+        <span class="hint" id="townHint">Used only to look up the disasters FEMA counts in your county. It stays in your account. Type a few letters, then pick your town.</span>
+      </div>
+      <ul class="townhits" id="townHits" aria-live="polite"></ul>
+      <div class="picked" id="picked" hidden></div>
+      <p class="flash" id="townFlash" aria-live="polite"></p>
+    </fieldset>
+
+    <fieldset>
+      <legend>2. Your household</legend>
+      <div class="fields" id="household"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>3. Your home</legend>
+      <div class="fields" id="home"></div>
+    </fieldset>
+
+    <div id="haveWrap">
+      <h2>4. What you already have</h2>
+      <p class="sub">Check what is true today. Be honest; nobody sees this but you. Anything not checked becomes a step in your plan.</p>
+      <div id="have"></div>
+    </div>
+
+    <div class="stick">
+      <button class="btn" type="submit" id="saveBtn">See my score</button>
+      <span class="flash" id="flash" aria-live="polite"></span>
+    </div>
+  </form>
+</main>
+
+<footer><div class="wrap" id="foot"></div></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
+<script src="config.js"></script>
+<script src="data/links.js"></script>
+<script src="data/tasks.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/store.js"></script>
+<script src="js/site.js"></script>
+<script>
+(function () {
+  'use strict';
+  var UI = RD.ui, E = RD.engine, el = UI.el, $ = UI.$;
+  var places = null, hazards = null, app = null;
+  var answers = {};
+
+  var dataReady = Promise.all([
+    fetch('data/places.json').then(function (r) { return r.json(); }),
+    fetch('data/hazards.json').then(function (r) { return r.json(); })
+  ]).then(function (r) { places = r[0]; hazards = r[1]; }).catch(function () { UI.flash('townFlash', 'Could not load the town list. You can still save without a town.'); });
+
+  UI.boot({ auth: true }).then(function (a) {
+    if (!a) return;
+    app = a;
+    answers = Object.assign({}, app.answers || {});
+    RD.QUESTIONS.forEach(function (q) { if (answers[q.id] === undefined && q.id !== 'town') answers[q.id] = q.def; });
+    drawQuestions();
+    if (answers.county) showPicked();
+    if (answers.town_label) $('town').value = answers.town_label;
+    drawHave(app.latest ? E.doneSet(app.ctx, app.state) : {});
+  });
+
+  /* ---------- 1. town ---------- */
+  var timer;
+  $('town').addEventListener('input', function () {
+    clearTimeout(timer);
+    timer = setTimeout(function () { dataReady.then(search); }, 120);
+  });
+  function search() {
+    var q = $('town').value, ul = UI.clear($('townHits'));
+    if (!places || q.trim().length < 2) return;
+    var hits = E.findTown(places, q, 6);
+    if (!hits.length) { ul.appendChild(el('li', { class: 'muted' }, /^\d{5}$/.test(q.trim()) ? 'That ZIP is not in the list. Try your town name.' : 'No town by that name yet. Try fewer letters, or your ZIP.')); return; }
+    hits.forEach(function (h) {
+      var c = hazards.counties[h.fips];
+      ul.appendChild(el('li', null, el('button', { type: 'button', onclick: function () { pick(h); } }, h.label + (c ? ' (' + c[0] + ')' : ''))));
+    });
+  }
+  function pick(h) {
+    var county = E.countyFrom(hazards, h.fips);
+    if (!county) return;
+    var changed = !answers.county || answers.county.fips !== county.fips;
+    answers.county = county;
+    answers.town_label = h.zip ? county.name + ', ' + county.st + ' (ZIP ' + h.zip + ')' : h.label;
+    if (changed) { answers.hz_add = []; answers.hz_drop = []; }
+    $('town').value = answers.town_label;
+    UI.clear($('townHits'));
+    showPicked();
+    redrawHave();
+  }
+  function showPicked() {
+    var c = answers.county, box = UI.clear($('picked'));
+    box.hidden = false;
+    var list = E.countyHazards(c);
+    var likely = list.filter(function (h) { return h.tier === 'likely'; }).map(function (h) { return h.name; });
+    var less = list.filter(function (h) { return h.tier === 'less'; }).map(function (h) { return h.name; });
+    box.appendChild(el('p', { style: 'margin:0 0 4px' }, [el('b', null, c.name + ', ' + c.st)]));
+    box.appendChild(el('p', { style: 'margin:0 0 4px' }, [el('b', null, 'More likely here: '), likely.length ? likely.join(', ') : 'none of FEMA\'s hazards rate high.']));
+    box.appendChild(el('p', { class: 'muted', style: 'margin:0;font-size:14.5px' }, 'Less likely: ' + (less.length ? less.join(', ') : 'none') + '. Your plan covers the more likely ones, the ones every home faces, and attacks. You can add or take off any of them on the home page.'));
+  }
+
+  /* ---------- 2 and 3. household and home ---------- */
+  function drawQuestions() {
+    var hh = UI.clear($('household')), hm = UI.clear($('home'));
+    var nums = el('div', { class: 'two' });
+    RD.QUESTIONS.forEach(function (q) {
+      if (q.type === 'town') return;
+      var id = 'q-' + q.id;
+      if (q.type === 'number') {
+        nums.appendChild(el('div', { class: 'field' }, [
+          el('label', { for: id }, q.label),
+          el('input', { id: id, type: 'number', inputmode: 'numeric', min: q.min, max: q.max, value: answers[q.id], oninput: function (ev) { answers[q.id] = Math.max(0, Math.min(q.max, Math.floor(+ev.target.value || 0))); redrawHave(); } }),
+          q.hint ? el('span', { class: 'hint' }, q.hint) : null
+        ]));
+        return;
+      }
+      var opts = q.type === 'yesno' ? [['yes', 'Yes'], ['no', 'No']] : q.options;
+      var grp = el('div', { class: 'choice' + (q.type === 'yesno' ? ' row' : ''), role: 'radiogroup', 'aria-labelledby': id });
+      opts.forEach(function (o) {
+        grp.appendChild(el('label', null, [el('input', { type: 'radio', name: id, value: o[0], checked: String(answers[q.id]) === o[0], onchange: function () { answers[q.id] = o[0]; redrawHave(); } }), o[1]]));
+      });
+      var box = el('div', { class: 'field' }, [el('span', { id: id, style: 'font-size:15px;font-weight:500' }, q.label), grp]);
+      (['home', 'own', 'water', 'vehicle'].indexOf(q.id) >= 0 ? hm : hh).appendChild(box);
+    });
+    hh.insertBefore(nums, hh.firstChild);
+  }
+
+  /* ---------- 4. what you already have: the steps that apply to this household, by area ---------- */
+  function checked() {
+    var out = {};
+    document.querySelectorAll('#have input[type=checkbox]').forEach(function (c) { if (c.checked) out[c.value] = true; });
+    return out;
+  }
+  function redrawHave() { drawHave(checked()); }
+  function drawHave(on) {
+    var ctx = E.context(answers), wrap = UI.clear($('have'));
+    RD.AREAS.forEach(function (a) {
+      var tasks = E.tasksFor(ctx).filter(function (t) { return t.area === a.id; });
+      if (!tasks.length) return;
+      var fs = el('fieldset', null, [el('legend', null, a.name)]);
+      var grid = el('div', { class: 'checks' });
+      tasks.forEach(function (t) {
+        grid.appendChild(el('label', { class: 'check' }, [el('input', { type: 'checkbox', value: t.id, checked: !!on[t.id] }), E.fill(t.have, ctx)]));
+      });
+      fs.appendChild(grid);
+      wrap.appendChild(fs);
+    });
+  }
+
+  /* ---------- save ---------- */
+  $('form').addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    if (!app) return;
+    if (!answers.county && !confirm('Save without a town? Your plan will cover the disasters every home faces, but not the ones for your county.')) return;
+    var ctx = E.context(answers);
+    var on = checked();
+    var have = E.tasksFor(ctx).filter(function (t) { return on[t.id]; }).map(function (t) { return t.id; });
+    var now = new Date().toISOString();
+    var sc = E.scores(ctx, { have: have, taken_at: now, progress: app.state.progress });
+    var areas = {}; RD.AREAS.forEach(function (a) { areas[a.id] = sc.areas[a.id].score; });
+    var row = { answers: answers, have: have, overall: sc.overall, areas: areas, hazards: sc.hazards, taken_at: now };
+    $('saveBtn').disabled = true;
+    UI.flash('flash', 'Saving...');
+    app.store.saveAssessment(app.session.id, row).then(function () { location.href = 'index.html'; },
+      function (e) { $('saveBtn').disabled = false; UI.flash('flash', 'Could not save: ' + (e.message || e)); });
+  });
+})();
+</script>
+</body>
+</html>

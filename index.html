@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Prepare Me</title>
+<meta name="description" content="A free, plain check of where your household stands for any disaster, and the next thing to fix. Free steps first.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav class="nav" id="nav" aria-label="Pages"></nav>
+    <h1 id="title">Prepare Me</h1>
+    <p class="lede" id="lede">A plain check of where your household stands for the disasters that can reach your town. Then the next thing to fix, one step at a time. Free steps first.</p>
+  </div>
+</header>
+
+<main class="wrap" id="main">
+  <!-- signed out -->
+  <div id="out" hidden>
+    <section class="grid2">
+      <div class="card lead-card">
+        <h2>How it works</h2>
+        <ol class="steps" style="margin-top:12px">
+          <li><span class="k">1</span><span>Enter your town and answer a few plain questions about your home and family. About five minutes.</span></li>
+          <li><span class="k">2</span><span>Prepare Me looks up the disasters FEMA counts in your county: the more likely ones and the less likely ones.</span></li>
+          <li><span class="k">3</span><span>You get a score for water, food, power and heat, medical, communications, a family plan, home, skills and money.</span></li>
+          <li><span class="k">4</span><span>Then one next step at a time. Who does it, what to do, when, why, and what done looks like. Steps that cost nothing come first.</span></li>
+          <li><span class="k">5</span><span>A short check-in each week shows how far you have come.</span></li>
+        </ol>
+        <p class="muted" style="margin:14px 0 0;font-size:15px">No fear and no shopping list. No store names. Just where you stand.</p>
+      </div>
+      <div class="card">
+        <h2>Sign in</h2>
+        <p class="sub">No password. Enter your email and we send a link. Click it on this device and you are in. New here? The same link makes your account.</p>
+        <form id="signinForm" class="fields" autocomplete="on">
+          <div class="field"><label for="email">Your email</label><input id="email" type="email" required autocomplete="email" inputmode="email" placeholder="you@example.com"></div>
+          <div class="actions" style="margin-top:0"><button class="btn" type="submit" id="sendBtn">Send me the link</button></div>
+        </form>
+        <p class="flash" id="flash" aria-live="polite"></p>
+        <p class="muted" style="font-size:14px;margin:8px 0 0">Your email is used to sign in. Nothing else. Your answers are yours alone. <a href="privacy.html">Privacy, in plain words.</a></p>
+      </div>
+    </section>
+  </div>
+
+  <!-- signed in -->
+  <div id="in" hidden>
+    <section class="card" id="scoreCard" aria-labelledby="scoreHead">
+      <h2 id="scoreHead" class="sr" style="position:absolute;left:-9999px">Your readiness score</h2>
+      <div class="score" id="score"></div>
+    </section>
+
+    <section aria-labelledby="nextHead">
+      <h2 id="nextHead">Next to fix</h2>
+      <p class="sub" id="nextSub">Free steps first. Then by cost.</p>
+      <div class="nexts" id="nexts"></div>
+    </section>
+
+    <section id="checkinNudge" hidden>
+      <div class="card lead-card">
+        <h3>This week's check-in is ready</h3>
+        <p style="margin:0">Three quick questions and your score for the week. Two minutes.</p>
+        <div class="actions"><a class="btn" href="checkin.html">Do the check-in</a></div>
+      </div>
+    </section>
+
+    <section aria-labelledby="areasHead">
+      <h2 id="areasHead">Where you stand</h2>
+      <p class="sub">Each area is the share of its steps you have done.</p>
+      <div class="card"><ul class="areas" id="areas"></ul></div>
+    </section>
+
+    <section aria-labelledby="hzHead">
+      <h2 id="hzHead">What can reach your home</h2>
+      <p class="sub" id="hzSub"></p>
+      <div class="grid2">
+        <div class="card">
+          <h3>More likely here</h3>
+          <ul class="hz" id="hzLikely"></ul>
+        </div>
+        <div class="card">
+          <h3>Every home</h3>
+          <ul class="hz" id="hzAlways"></ul>
+        </div>
+      </div>
+      <div class="card" style="margin-top:16px">
+        <h3>Attacks</h3>
+        <p class="sub">These can reach any town, so every plan starts with them. The steps are the ones Ready.gov and the CDC give, and most cost nothing.</p>
+        <ul class="hz" id="hzAttack"></ul>
+      </div>
+      <div class="card" style="margin-top:16px">
+        <details class="fold">
+          <summary id="hzLessHead">Less likely here</summary>
+          <p class="sub">FEMA counts these in your county, but they come less often or rate lower than the ones above. Add any you want ready for.</p>
+          <ul class="hz" id="hzLess"></ul>
+        </details>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer><div class="wrap" id="foot"></div></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
+<script src="config.js"></script>
+<script src="data/links.js"></script>
+<script src="data/tasks.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/store.js"></script>
+<script src="js/site.js"></script>
+<script>
+(function () {
+  'use strict';
+  var UI = RD.ui, E = RD.engine, el = UI.el, $ = UI.$;
+
+  UI.boot({}).then(function (app) {
+    if (!app) return;
+    if (!app.session) return signedOut(app);
+    if (!app.latest) { location.replace('start.html'); return; }
+    render(app);
+  });
+
+  function signedOut(app) {
+    $('out').hidden = false;
+    $('signinForm').addEventListener('submit', function (ev) {
+      ev.preventDefault();
+      var email = $('email').value.trim();
+      if (!email) return;
+      $('sendBtn').disabled = true;
+      var back = location.origin + location.pathname.replace(/[^\/]*$/, '') + 'index.html';
+      app.store.signIn(email, back).then(function (r) {
+        if (r.signedIn) { location.replace('index.html'); return; }
+        UI.flash('flash', 'Sent. Open the email on this device and click the link. Check the junk folder if it is not there in a few minutes.');
+      }).catch(function (e) {
+        var m = String(e.message || e);
+        UI.flash('flash', /security purposes|after \d+ seconds|rate limit/i.test(m) ? 'A link already went out a moment ago. Check your inbox and the junk folder.' : 'Could not send: ' + m);
+      }).then(function () { $('sendBtn').disabled = false; });
+    });
+  }
+
+  function render(app) {
+    $('in').hidden = false;
+    var sc = app.scores, ctx = app.ctx, band = E.band(sc.overall);
+    var town = app.answers && app.answers.town_label;
+    $('title').textContent = 'Your readiness';
+    $('lede').textContent = town ? 'Your household in ' + town + '. Where you stand today, and the next thing to fix.' : 'Where you stand today, and the next thing to fix.';
+
+    /* the score */
+    var s = UI.clear($('score'));
+    s.appendChild(UI.ring(sc.overall, 'Readiness score'));
+    s.appendChild(el('div', null, [
+      el('p', { class: 'word' }, band.word),
+      el('p', { class: 'line' }, band.line),
+      el('p', { class: 'meta' }, sc.done + ' of ' + sc.total + ' steps done for your household. Last assessment ' + UI.date(app.latest.taken_at) + '.'),
+      el('div', { class: 'actions' }, [el('a', { class: 'btn', href: 'coach.html' }, 'Open the coach'), el('a', { class: 'btn ghost', href: 'start.html' }, 'Retake the assessment')])
+    ]));
+
+    /* next one or two */
+    var next = E.nextSteps(ctx, app.state, 2);
+    var nx = UI.clear($('nexts'));
+    if (!next.length) { $('nextSub').textContent = 'Every step for your household is done. Keep it fresh: swap the water, test the alarms, walk the plan.'; }
+    next.forEach(function (t, i) {
+      nx.appendChild(el('div', { class: 'next' }, [
+        el('span', { class: 'tag' }, (i === 0 ? 'First: ' : 'Then: ') + UI.areaName(t.area)),
+        el('h3', null, UI.fill(t.title, app)),
+        el('div', null, [UI.costChip(t), el('span', { class: 'chip' }, t.when)]),
+        el('p', null, UI.fill(t.why, app)),
+        el('div', null, el('a', { class: i === 0 ? 'btn' : 'btn ghost', href: 'coach.html?task=' + t.id }, i === 0 ? 'Start this step' : 'See this step'))
+      ]));
+    });
+
+    $('checkinNudge').hidden = !E.checkinDue(app.data.checkins, app.first && app.first.taken_at);
+
+    /* the nine areas */
+    var ar = UI.clear($('areas'));
+    RD.AREAS.forEach(function (a) {
+      var x = sc.areas[a.id];
+      ar.appendChild(el('li', null, [
+        el('span', { class: 'nm' }, a.name), el('span', { class: 'pc' }, x.score),
+        el('span', { class: 'bar', role: 'presentation' }, el('i', { style: 'width:' + x.score + '%' })),
+        el('span', { class: 'ct' }, x.done + ' of ' + x.total + ' steps')
+      ]));
+    });
+
+    /* the disasters */
+    var county = app.answers && app.answers.county;
+    $('hzSub').textContent = county ? county.name + ', ' + county.st + '. From the FEMA National Risk Index. The number is how ready you are for each one.'
+      : 'Add your town in the assessment to see the disasters FEMA counts where you live.';
+    var list = county ? E.countyHazards(county) : [];
+    var added = (app.answers.hz_add || []), dropped = (app.answers.hz_drop || []);
+    function row(h, extra) {
+      var on = !!ctx.hazards[h.id];
+      var why = h.attack ? 'Can reach any town.' : h.always ? 'Every household faces this one.' :
+        'Happens more often here than in ' + Math.min(h.rank, 99) + '% of US counties. FEMA risk: ' + E.ratingWord(h.rating) + '.';
+      return el('li', null, [
+        el('span', { class: 'nm' }, h.name),
+        el('span', { class: 'why' }, why),
+        extra || null,
+        el('span', { class: 'rd' }, on ? [app.scores.hazards[h.id] + '%', el('small', null, 'ready')] : el('small', null, 'not in plan'))
+      ]);
+    }
+    function toggle(id, add) {
+      var a = Object.assign({}, app.answers);
+      a.hz_add = (a.hz_add || []).filter(function (x) { return x !== id; });
+      a.hz_drop = (a.hz_drop || []).filter(function (x) { return x !== id; });
+      /* on by default: his county's likely ones and the attacks. Others are off until he adds them. */
+      var onByDefault = list.some(function (h) { return h.id === id && h.tier === 'likely'; }) ||
+        RD.HAZARDS.some(function (h) { return h.id === id && h.attack; });
+      if (add && !onByDefault) a.hz_add.push(id);
+      if (!add && onByDefault) a.hz_drop.push(id);
+      app.store.saveAnswers(app.session.id, a).then(function () { return app.reload(); }).then(function () { render(app); });
+    }
+    var L = UI.clear($('hzLikely')), A = UI.clear($('hzAlways')), S = UI.clear($('hzLess'));
+    list.filter(function (h) { return h.tier === 'likely'; }).forEach(function (h) {
+      var off = dropped.indexOf(h.id) >= 0;
+      L.appendChild(row(h, el('button', { class: 'linkbtn', type: 'button', onclick: function () { toggle(h.id, off); } }, off ? 'Put back in my plan' : 'Take off my plan')));
+    });
+    if (!L.children.length) L.appendChild(el('li', null, el('span', { class: 'why' }, county ? 'None of FEMA\'s hazards rate high here. The every-home list still applies.' : 'Add your town to see these.')));
+    RD.HAZARDS.filter(function (h) { return h.always && !h.attack; }).forEach(function (h) { A.appendChild(row(h)); });
+    var T = UI.clear($('hzAttack'));
+    RD.HAZARDS.filter(function (h) { return h.attack; }).forEach(function (h) {
+      var off = dropped.indexOf(h.id) >= 0;
+      T.appendChild(row(h, el('button', { class: 'linkbtn', type: 'button', onclick: function () { toggle(h.id, off); } }, off ? 'Put back in my plan' : 'Take off my plan')));
+    });
+    var less = list.filter(function (h) { return h.tier === 'less'; });
+    less.forEach(function (h) {
+      var on = added.indexOf(h.id) >= 0;
+      S.appendChild(row(h, el('button', { class: 'linkbtn', type: 'button', onclick: function () { toggle(h.id, !on); } }, on ? 'Take off my plan' : 'Add to my plan')));
+    });
+    $('hzLessHead').textContent = 'Less likely here (' + less.length + ')';
+    if (!less.length) S.appendChild(el('li', null, el('span', { class: 'why' }, 'None.')));
+  }
+})();
+</script>
+</body>
+</html>

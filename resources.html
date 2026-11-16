@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Resources</title>
+<meta name="description" content="Every free source behind Prepare Me: Ready.gov, the American Red Cross, FEMA, the CDC, the USDA, ARRL and more.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav class="nav" id="nav" aria-label="Pages"></nav>
+    <h1>Resources</h1>
+    <p class="lede">Every source behind the steps. Free, public and from people who do this for a living. No stores.</p>
+  </div>
+</header>
+<main class="wrap" id="main">
+  <section>
+    <h2>Brotherhood tools</h2>
+    <div class="card"><ul class="links" id="tools" style="padding-left:20px;margin:0"></ul></div>
+  </section>
+  <section>
+    <h2>By area</h2>
+    <div class="grid2" id="byArea"></div>
+  </section>
+  <section>
+    <h2>By disaster</h2>
+    <div class="card"><ul id="byHz" style="padding-left:20px;margin:0"></ul></div>
+  </section>
+  <section>
+    <h2>Where the county disasters come from</h2>
+    <div class="card">
+      <p>The FEMA National Risk Index, county layer, December 2025 release. For each hazard FEMA gives a yearly frequency and a risk rating from very low to very high.</p>
+      <p>Prepare Me ranks each hazard's frequency against every other US county. A hazard is <b>more likely</b> when it happens more often than in at least half of US counties and FEMA rates it moderate or higher. Anything else FEMA counts in the county is <b>less likely</b>. Towns and ZIP codes are placed in their county from Census maps.</p>
+      <p style="margin:0">FEMA's ratings are relative: they compare counties with each other, and a big county can rate higher because more people and homes are in harm's way. Your own memory of what has hit your area counts too. Add or take off any disaster on the home page.</p>
+    </div>
+  </section>
+</main>
+<footer><div class="wrap" id="foot"></div></footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
+<script src="config.js"></script>
+<script src="data/links.js"></script>
+<script src="data/tasks.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/store.js"></script>
+<script src="js/site.js"></script>
+<script>
+(function () {
+  'use strict';
+  var UI = RD.ui, el = UI.el, $ = UI.$;
+  UI.chrome();
+  RD.store() && RD.store().session().then(function (s) { var a = $('acctLink'); if (a) a.textContent = s ? 'Account' : 'Sign in'; });
+  ['radioelmer', 'landfinder', 'groundwork'].forEach(function (k) { $('tools').appendChild(UI.link(k)); });
+  RD.AREAS.forEach(function (a) {
+    var keys = [];
+    RD.TASKS.forEach(function (t) { if (t.area === a.id) t.links.forEach(function (k) { if (keys.indexOf(k) < 0 && RD.LINKS[k].by !== 'Brotherhood tool') keys.push(k); }); });
+    $('byArea').appendChild(el('div', { class: 'card' }, [el('h3', null, a.name), el('ul', { style: 'padding-left:20px;margin:0' }, keys.map(UI.link))]));
+  });
+  RD.HAZARDS.forEach(function (h) {
+    var l = RD.LINKS[h.link];
+    $('byHz').appendChild(el('li', null, [h.name + ': ', el('a', { href: l.url, target: '_blank', rel: 'noopener' }, l.title), ' ', el('small', { class: 'muted' }, l.by)]));
+  });
+  $('byHz').appendChild(el('li', null, ['Weather safety for every hazard: ', el('a', { href: RD.LINKS['nws-safety'].url, target: '_blank', rel: 'noopener' }, RD.LINKS['nws-safety'].title), ' ', el('small', { class: 'muted' }, 'National Weather Service')]));
+})();
+</script>
+</body>
+</html>

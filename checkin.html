@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Weekly check-in</title>
+<meta name="description" content="Three quick questions a week, your score for the week, and how far you have come.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav class="nav" id="nav" aria-label="Pages"></nav>
+    <h1>Weekly check-in</h1>
+    <p class="lede">Three quick questions. Your score for the week. How far you have come.</p>
+  </div>
+</header>
+
+<main class="wrap" id="main">
+  <section class="grid2">
+    <div class="card lead-card" id="since"></div>
+    <div class="card" id="nowCard"></div>
+  </section>
+
+  <section>
+    <form class="card" id="form">
+      <h2 id="formHead">This week</h2>
+      <div class="fields" style="margin-top:10px">
+        <div class="field"><span id="q1" style="font-weight:500">How did this week go?</span>
+          <div class="choice" role="radiogroup" aria-labelledby="q1" id="how"></div></div>
+        <div class="field"><span id="q2" style="font-weight:500">What got in the way, if anything?</span>
+          <div class="choice" role="radiogroup" aria-labelledby="q2" id="block"></div></div>
+        <div class="field"><span id="q3" style="font-weight:500">Pick your step for next week</span>
+          <div class="choice" role="radiogroup" aria-labelledby="q3" id="focus"></div></div>
+      </div>
+      <div class="actions"><button class="btn" type="submit" id="saveBtn">Save the check-in</button></div>
+      <p class="flash" id="flash" aria-live="polite"></p>
+    </form>
+    <div class="card lead-card" id="reply" hidden style="margin-top:16px"></div>
+  </section>
+
+  <section aria-labelledby="histHead">
+    <h2 id="histHead">How far you have come</h2>
+    <p class="sub">Every assessment and check-in, oldest first.</p>
+    <div class="card">
+      <div id="chart"></div>
+      <div class="tablewrap" style="margin-top:12px">
+        <table><thead><tr><th>Date</th><th>What</th><th class="n">Score</th><th class="n">Steps done</th></tr></thead><tbody id="rows"></tbody></table>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap" id="foot"></div></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
+<script src="config.js"></script>
+<script src="data/links.js"></script>
+<script src="data/tasks.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/store.js"></script>
+<script src="js/site.js"></script>
+<script>
+(function () {
+  'use strict';
+  var UI = RD.ui, E = RD.engine, el = UI.el, $ = UI.$;
+  var app;
+  var HOW = [['done', 'I finished a step'], ['some', 'I worked on one'], ['none', 'Not this week']];
+  var BLOCK = [['nothing', 'Nothing'], ['time', 'Time'], ['money', 'Money'], ['how', 'Not sure how'], ['life', 'Family or work came first']];
+
+  UI.boot({ auth: true, assessment: true }).then(function (a) { if (!a) return; app = a; draw(); });
+
+  function radios(box, name, opts, val) {
+    UI.clear(box);
+    opts.forEach(function (o) { box.appendChild(el('label', null, [el('input', { type: 'radio', name: name, value: o[0], checked: val === o[0] }), o[1]])); });
+  }
+  function val(name) { var r = document.querySelector('input[name=' + name + ']:checked'); return r ? r.value : null; }
+
+  function lastCheck() {
+    var list = app.data.checkins || [], wk = E.weekOf();
+    var prev = list.filter(function (c) { return c.week_of !== wk; });
+    return prev.length ? prev[prev.length - 1] : null;
+  }
+
+  function draw() {
+    var wk = E.weekOf(), mine = (app.data.checkins || []).filter(function (c) { return c.week_of === wk; })[0];
+    var prev = lastCheck();
+    var fromAt = prev ? prev.created_at : app.first.taken_at;
+    var fromScore = prev ? prev.overall : app.first.overall;
+    var doneIds = E.doneBetween(app.state, fromAt).filter(function (id) { var t = E.task(id); return t && E.isDone(t, app.state); });
+
+    /* since last time */
+    var s = UI.clear($('since'));
+    s.appendChild(el('h3', null, prev ? 'Since your last check-in' : 'Since you started'));
+    var diff = app.scores.overall - fromScore;
+    s.appendChild(el('p', { style: 'margin:0 0 8px' }, 'Score ' + fromScore + ' then, ' + app.scores.overall + ' now' + (diff > 0 ? ': up ' + diff + '.' : diff < 0 ? '.' : ': holding.')));
+    s.appendChild(el('p', { style: 'margin:0 0 6px' }, doneIds.length ? doneIds.length + (doneIds.length === 1 ? ' step done:' : ' steps done:') : 'No steps checked off yet. That is fine. Pick one below.'));
+    if (doneIds.length) s.appendChild(el('ul', { style: 'margin:0;padding-left:20px' }, doneIds.map(function (id) { return el('li', null, UI.fill(E.task(id).title, app)); })));
+
+    /* now */
+    var n = UI.clear($('nowCard'));
+    n.appendChild(el('div', { class: 'score' }, [UI.ring(app.scores.overall), el('div', null, [el('p', { class: 'word' }, E.band(app.scores.overall).word), el('p', { class: 'meta' }, app.scores.done + ' of ' + app.scores.total + ' steps done.')])]));
+
+    /* the form */
+    var ans = (mine && mine.answers) || {};
+    $('formHead').textContent = mine ? 'This week (saved ' + UI.date(mine.created_at) + ', you can change it)' : 'This week';
+    radios($('how'), 'how', HOW, ans.how || (doneIds.length ? 'done' : null));
+    radios($('block'), 'block', BLOCK, ans.block);
+    var next = E.nextSteps(app.ctx, app.state, 3);
+    var fo = next.map(function (t) { return [t.id, UI.fill(t.title, app) + ' (' + RD.COST[t.cost].label.toLowerCase() + ')']; });
+    if (!fo.length) fo = [['keep', 'Keep it fresh: swap water, test alarms, walk the plan']];
+    radios($('focus'), 'focus', fo, ans.focus || fo[0][0]);
+    $('saveBtn').textContent = mine ? 'Update the check-in' : 'Save the check-in';
+    if (mine) reply(ans);
+
+    drawHistory();
+  }
+
+  $('form').addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var ans = { how: val('how'), block: val('block'), focus: val('focus') };
+    if (!ans.how) { UI.flash('flash', 'Pick how the week went.'); return; }
+    var prev = lastCheck();
+    var count = E.doneBetween(app.state, prev ? prev.created_at : app.first.taken_at).length;
+    var areas = {}; RD.AREAS.forEach(function (a) { areas[a.id] = app.scores.areas[a.id].score; });
+    $('saveBtn').disabled = true;
+    app.store.saveCheckin(app.session.id, { week_of: E.weekOf(), overall: app.scores.overall, areas: areas, done_count: Math.min(count, 500), answers: ans })
+      .then(function () { return app.reload(); })
+      .then(function () { draw(); UI.flash('flash', 'Saved.'); }, function (e) { UI.flash('flash', 'Could not save: ' + (e.message || e)); })
+      .then(function () { $('saveBtn').disabled = false; });
+  });
+
+  /* a plain answer back, from what he said */
+  function reply(ans) {
+    var r = UI.clear($('reply')); r.hidden = false;
+    var focus = E.task(ans.focus);
+    r.appendChild(el('h3', null, ans.how === 'done' ? 'Good week.' : ans.how === 'some' ? 'Progress is progress.' : 'Next week is a fresh start.'));
+    var free = E.nextSteps(app.ctx, app.state).filter(function (t) { return t.cost === 0; });
+    var line = {
+      money: free.length ? 'You have ' + free.length + ' steps left that cost nothing. The coach gives those first. Paid steps can wait.' : 'Every free step is done. Paid steps are sorted cheapest first; take them one payday at a time.',
+      time: 'Pick the shortest step you can find. Many take ten or twenty minutes. One a week adds up to a ready house by summer.',
+      how: 'Each step has its parts spelled out and links to Ready.gov, the Red Cross and others. Ask in the Brotherhood group; a brother has done it.',
+      life: 'Family and work come first. That is what this is for. One small step when you can.',
+      nothing: 'Keep the pace. One step a week is how it gets done.'
+    }[ans.block || 'nothing'];
+    r.appendChild(el('p', null, line));
+    if (focus) r.appendChild(el('div', { class: 'actions' }, el('a', { class: 'btn', href: 'coach.html?task=' + focus.id }, 'Open: ' + UI.fill(focus.title, app))));
+  }
+
+  function drawHistory() {
+    var pts = E.history(app.data.assessments, app.data.checkins);
+    var body = UI.clear($('rows'));
+    pts.slice().reverse().forEach(function (p) {
+      var c = p.kind === 'checkin' ? app.data.checkins.filter(function (x) { return x.created_at === p.at; })[0] : null;
+      body.appendChild(el('tr', null, [el('td', null, UI.date(p.at)), el('td', null, p.kind === 'checkin' ? 'Check-in' : 'Assessment'),
+        el('td', { class: 'n' }, String(p.overall)), el('td', { class: 'n' }, c ? String(c.done_count) : '')]));
+    });
+    var box = UI.clear($('chart'));
+    if (pts.length < 2) { box.appendChild(el('p', { class: 'muted', style: 'margin:0' }, 'The line starts after your first check-in.')); return; }
+    var W = 640, H = 200, L = 34, R = 12, T = 12, B = 26, ns = 'http://www.w3.org/2000/svg';
+    var t0 = new Date(pts[0].at).getTime(), t1 = new Date(pts[pts.length - 1].at).getTime(), span = Math.max(t1 - t0, 1);
+    function x(p) { return L + (W - L - R) * (new Date(p.at).getTime() - t0) / span; }
+    function y(v) { return T + (H - T - B) * (1 - v / 100); }
+    var svg = document.createElementNS(ns, 'svg'); svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.setAttribute('class', 'chart');
+    svg.setAttribute('role', 'img'); svg.setAttribute('aria-label', 'Score over time, from ' + pts[0].overall + ' to ' + pts[pts.length - 1].overall);
+    function add(tag, at, text) { var e = document.createElementNS(ns, tag); Object.keys(at).forEach(function (k) { e.setAttribute(k, at[k]); }); if (text) e.textContent = text; svg.appendChild(e); return e; }
+    [0, 50, 100].forEach(function (v) { add('line', { x1: L, x2: W - R, y1: y(v), y2: y(v), class: 'ax' }); add('text', { x: L - 6, y: y(v) + 4, 'text-anchor': 'end' }, String(v)); });
+    add('path', { class: 'ln', d: pts.map(function (p, i) { return (i ? 'L' : 'M') + x(p).toFixed(1) + ' ' + y(p.overall).toFixed(1); }).join(' ') });
+    pts.forEach(function (p) { add('circle', { cx: x(p), cy: y(p.overall), r: 4.5, class: 'dt' + (p.kind === 'assessment' ? ' a' : '') }); });
+    add('text', { x: L, y: H - 6 }, UI.date(pts[0].at));
+    add('text', { x: W - R, y: H - 6, 'text-anchor': 'end' }, UI.date(pts[pts.length - 1].at));
+    box.appendChild(svg);
+    box.appendChild(el('p', { class: 'muted', style: 'margin:6px 0 0;font-size:13px' }, 'Orange dots are assessments. Green dots are check-ins.'));
+  }
+})();
+</script>
+</body>
+</html>

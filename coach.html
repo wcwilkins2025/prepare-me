@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Coach</title>
+<meta name="description" content="One next step at a time: who does it, what to do, when, why it matters and what done looks like.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav class="nav" id="nav" aria-label="Pages"></nav>
+    <h1>Your next step</h1>
+    <p class="lede">One thing at a time. Finish it, check it off, and the next one comes up. Free steps first.</p>
+  </div>
+</header>
+
+<main class="wrap" id="main">
+  <section id="taskWrap"></section>
+
+  <section aria-labelledby="planHead">
+    <h2 id="planHead">Your whole plan</h2>
+    <p class="sub" id="planSub"></p>
+    <div id="plan"></div>
+  </section>
+</main>
+
+<footer><div class="wrap" id="foot"></div></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
+<script src="config.js"></script>
+<script src="data/links.js"></script>
+<script src="data/tasks.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/store.js"></script>
+<script src="js/site.js"></script>
+<script>
+(function () {
+  'use strict';
+  var UI = RD.ui, E = RD.engine, el = UI.el, $ = UI.$;
+  var app, current = null, skipped = [];
+
+  UI.boot({ auth: true, assessment: true }).then(function (a) {
+    if (!a) return;
+    app = a;
+    var want = new URLSearchParams(location.search).get('task');
+    var t = want && E.task(want);
+    current = t && E.applies(t, app.ctx) ? t : null;
+    draw();
+  });
+
+  function pickNext() {
+    var list = E.nextSteps(app.ctx, app.state).filter(function (t) { return skipped.indexOf(t.id) < 0; });
+    if (!list.length && skipped.length) { skipped = []; list = E.nextSteps(app.ctx, app.state); }
+    return list[0] || null;
+  }
+
+  function draw() {
+    if (!current) current = pickNext();
+    drawTask();
+    drawPlan();
+  }
+
+  function go(t) {
+    current = t;
+    history.replaceState(null, '', t ? 'coach.html?task=' + t.id : 'coach.html');
+    draw();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function drawTask() {
+    var w = UI.clear($('taskWrap'));
+    var t = current;
+    if (!t) {
+      w.appendChild(el('div', { class: 'card lead-card' }, [
+        el('h2', null, 'Every step is done'),
+        el('p', null, 'Your household has every step in its plan. Keep it fresh: swap the water on its date, test the alarms monthly, walk the plan twice a year. Then help a neighbor get here.'),
+        el('div', { class: 'actions' }, [el('a', { class: 'btn', href: 'checkin.html' }, 'Weekly check-in'), el('a', { class: 'btn ghost', href: 'start.html' }, 'Retake the assessment')])
+      ]));
+      return;
+    }
+    var p = app.state.progress[t.id] || {};
+    var isDone = E.isDone(t, app.state);
+    var parts = (p.steps || []).slice();
+    var stepsText = t.steps.map(function (s) { return UI.fill(s, app); });
+    var pct = Math.round(100 * parts.filter(function (i) { return i < stepsText.length; }).length / stepsText.length);
+
+    var card = el('article', { class: 'card task lead-card', 'aria-labelledby': 'taskTitle' });
+    card.appendChild(el('p', { class: 'next', style: 'border:0;padding:0;background:none' }, el('span', { class: 'tag' }, UI.areaName(t.area) + (isDone ? ' · done' : ''))));
+    card.appendChild(el('h2', { id: 'taskTitle' }, UI.fill(t.title, app)));
+    card.appendChild(el('div', null, [UI.costChip(t), t.costNote ? el('span', { class: 'chip' }, t.costNote) : null]));
+
+    var dl = el('dl', { class: 'facts' });
+    [['Who', t.who], ['When', t.when], ['Why it matters', t.why], ['Done looks like', t.done]].forEach(function (f) {
+      dl.appendChild(el('dt', null, f[0])); dl.appendChild(el('dd', null, UI.fill(f[1], app)));
+    });
+    card.appendChild(dl);
+
+    card.appendChild(el('h3', null, 'What to do'));
+    var ol = el('ol', { class: 'parts' });
+    stepsText.forEach(function (s, i) {
+      var box = el('input', { type: 'checkbox', checked: isDone || parts.indexOf(i) >= 0, disabled: isDone, onchange: function (ev) {
+        var now = parts.filter(function (x) { return x !== i; });
+        if (ev.target.checked) now.push(i);
+        now.sort();
+        UI.setProgress(app, t.id, { status: p.status === 'later' ? 'open' : (p.status || 'open'), steps: now }).then(draw, fail);
+      } });
+      ol.appendChild(el('li', null, el('label', null, [box, el('span', null, s)])));
+    });
+    card.appendChild(ol);
+    if (!isDone) card.appendChild(el('div', { class: 'progress-line', 'aria-label': pct + '% of the parts checked' }, el('i', { style: 'width:' + pct + '%' })));
+
+    if (t.links && t.links.length) {
+      card.appendChild(el('h3', { style: 'margin-top:16px' }, 'Learn more'));
+      card.appendChild(el('ul', { class: 'links' }, t.links.map(UI.link)));
+    }
+
+    var acts = el('div', { class: 'actions' });
+    if (isDone) {
+      var when = p.done_at ? 'Done ' + UI.date(p.done_at) + '.' : 'You had this when you took the assessment.';
+      acts.appendChild(el('p', { style: 'margin:0;flex-basis:100%' }, when));
+      acts.appendChild(el('button', { class: 'btn', type: 'button', onclick: function () { go(pickNext()); } }, 'Go to my next step'));
+      if (p.status === 'done') acts.appendChild(el('button', { class: 'btn ghost', type: 'button', onclick: function () {
+        UI.setProgress(app, t.id, { status: 'open', done_at: null }).then(draw, fail);
+      } }, 'Mark not done'));
+    } else {
+      acts.appendChild(el('button', { class: 'btn', type: 'button', onclick: function () {
+        UI.setProgress(app, t.id, { status: 'done', done_at: new Date().toISOString(), steps: stepsText.map(function (s, i) { return i; }), later_until: null })
+          .then(function () { go(pickNext()); UI.flash('flash', 'Done. Your score is now ' + app.scores.overall + '.'); }, fail);
+      } }, 'Mark it done'));
+      acts.appendChild(el('button', { class: 'btn ghost', type: 'button', onclick: function () {
+        var until = new Date(Date.now() + 7 * 864e5).toISOString();
+        UI.setProgress(app, t.id, { status: 'later', later_until: until }).then(function () { go(pickNext()); UI.flash('flash', 'Put off for a week. It comes back after that.'); }, fail);
+      } }, 'Not this week'));
+      acts.appendChild(el('button', { class: 'btn ghost', type: 'button', onclick: function () { skipped.push(t.id); current = null; go(pickNext()); } }, 'Show me another'));
+    }
+    card.appendChild(acts);
+    card.appendChild(el('p', { class: 'flash', id: 'flash', 'aria-live': 'polite' }));
+    w.appendChild(card);
+  }
+
+  function fail(e) { UI.flash('flash', 'Could not save: ' + (e.message || e)); }
+
+  function drawPlan() {
+    var sc = app.scores, wrap = UI.clear($('plan'));
+    $('planSub').textContent = sc.done + ' of ' + sc.total + ' steps done. Score ' + sc.overall + '. Open steps are in the order the coach gives them.';
+    var order = E.nextSteps(app.ctx, app.state);
+    var later = E.later(app.ctx, app.state);
+    RD.AREAS.forEach(function (a) {
+      var tasks = E.tasksFor(app.ctx).filter(function (t) { return t.area === a.id; });
+      tasks.sort(function (x, y) {
+        function k(t) { var i = order.indexOf(t); return E.isDone(t, app.state) ? 9000 + RD.TASKS.indexOf(t) : i >= 0 ? i : 5000 + RD.TASKS.indexOf(t); }
+        return k(x) - k(y);
+      });
+      var x = sc.areas[a.id];
+      var det = el('details', { class: 'card plan-area fold', open: current && current.area === a.id ? true : null });
+      det.appendChild(el('summary', null, a.name + ' · ' + x.score + ' · ' + x.done + ' of ' + x.total));
+      var ul = el('ul', { class: 'plan-list' });
+      tasks.forEach(function (t) {
+        var d = E.isDone(t, app.state), l = later.indexOf(t) >= 0, locked = t.after && !E.isDone(E.task(t.after), app.state);
+        ul.appendChild(el('li', { class: d ? 'done' : l ? 'later' : '' }, [
+          el('span', { class: 'st', 'aria-hidden': 'true' }, d ? '✓' : ''),
+          el('a', { href: 'coach.html?task=' + t.id, onclick: function (ev) { ev.preventDefault(); go(t); } },
+            UI.fill(t.title, app) + (l ? ' (put off this week)' : locked ? ' (after: ' + UI.fill(E.task(t.after).title, app).toLowerCase() + ')' : '')),
+          el('span', { class: 'cost' }, RD.COST[t.cost].label)
+        ]));
+      });
+      det.appendChild(ul);
+      wrap.appendChild(det);
+    });
+  }
+})();
+</script>
+</body>
+</html>
