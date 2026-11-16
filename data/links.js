@@ -76,8 +76,8 @@
     'fcc-gmrs':       { by: 'FCC', title: 'General Mobile Radio Service (GMRS) license', url: 'https://www.fcc.gov/wireless/bureau-divisions/mobility-division/general-mobile-radio-service-gmrs' },
     'usgs-maps':      { by: 'USGS', title: 'Free topographic maps', url: 'https://www.usgs.gov/programs/national-geospatial-program/topographic-maps' },
     'fdic-moneysmart':{ by: 'FDIC', title: 'Money Smart: free money lessons', url: 'https://www.fdic.gov/consumer-resource-center/money-smart' },
-    'radioelmer':     { by: 'Brotherhood tool', title: 'Radio Elmer: learn ham radio and pass the Technician test', url: 'https://radioelmer.org' },
-    'landfinder':     { by: 'Brotherhood tool', title: 'Land Finder: look up your county, its hazards and its water', url: 'https://thelandfinder.org' },
-    'groundwork':     { by: 'Brotherhood tool', title: 'Groundwork: a homestead coach for growing food and steady income', url: 'https://groundworkpath.org' }
+    'radioelmer':     { by: 'Free tool', title: 'Radio Elmer: learn ham radio and pass the Technician test', url: 'https://radioelmer.org' },
+    'landfinder':     { by: 'Free tool', title: 'Land Finder: look up your county, its hazards and its water', url: 'https://thelandfinder.org' },
+    'groundwork':     { by: 'Free tool', title: 'Groundwork: a homestead coach for growing food and steady income', url: 'https://groundworkpath.org' }
   };
 })(typeof window !== 'undefined' ? window : globalThis);

@@ -1,6 +1,6 @@
 # Prepare Me
 
-A free prepping coach for the men of The Brotherhood. The folder and repo are `prepare-me`. The readiness score and the assessment keep their names inside the app. A man enters his town and answers plain questions about his home and family. Prepare Me looks up the disasters FEMA counts in his county, more likely and less likely. It scores where he stands in nine areas. Then it gives him the next thing to fix, one step at a time, with the free steps first.
+A free prepping coach. The folder and repo are `prepare-me`. The readiness score and the assessment keep their names inside the app. A man enters his town and answers plain questions about his home and family. Prepare Me looks up the disasters FEMA counts in his county, more likely and less likely. It scores where he stands in nine areas. Then it gives him the next thing to fix, one step at a time, with the free steps first.
 
 No fear, no scare talk, no store names. A plain check of where he stands.
 
@@ -78,7 +78,7 @@ Runs the real `schema.sql` (twice, to prove it is safe to re-run) on a throwaway
 
 To rebuild the county tables from the Land Finder's downloads:
 ```
-python scripts/build_hazards.py C:/Projects/brotherhood-land-finder
+python scripts/build_hazards.py <path to the Land Finder project folder>
 ```
 
 ## Going live (not done yet; each needs Wiley's yes)
@@ -92,9 +92,10 @@ python scripts/build_hazards.py C:/Projects/brotherhood-land-finder
 
 - Plain short sentences. Calm. No fear, no scare talk, no store or brand names, no shopping lists.
 - Never mention how the app was made.
-- Nothing that identifies a member goes public. The app keeps no name, address or phone number.
-- The app never posts to Skool.
+- Nothing that identifies a user goes public. The app keeps no name, address or phone number.
+- The app never posts anywhere.
+- No references to any group or community. It stands on its own.
 - Free steps first. Paid steps sorted by cost, with an honest "about" price.
-- Only authoritative free sources: Ready.gov, the American Red Cross, FEMA, the CDC, the USDA, the National Weather Service, ARRL, the FCC, the FDIC, the FTC, the FBI, Stop the Bleed. Brotherhood tools where they fit: Radio Elmer, Land Finder, Groundwork.
+- Only authoritative free sources: Ready.gov, the American Red Cross, FEMA, the CDC, the USDA, the National Weather Service, ARRL, the FCC, the FDIC, the FTC, the FBI, Stop the Bleed. Free tools where they fit: Radio Elmer, Land Finder, Groundwork.
 
 This is a plain checklist, not medical, legal or money advice. In an emergency, call 911.

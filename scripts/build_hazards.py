@@ -1,8 +1,8 @@
 """Build Prepare Me's place and hazard tables from public data. Standard library only.
 
-    python scripts/build_hazards.py [LAND_FINDER_DIR]
+    python scripts/build_hazards.py <LAND_FINDER_DIR>
 
-Inputs (already downloaded by the Land Finder, C:/Projects/brotherhood-land-finder):
+Inputs (already downloaded by the Land Finder project, whose folder is the argument):
   downloads/fema/nri_*.json   FEMA National Risk Index, county layer, December 2025 (official ArcGIS service)
   data/counties.json          county names, January low and yearly mean temperature (NOAA 1991-2020 normals)
   data/counties.geojson       Census county shapes (1:20m), to place each town and ZIP in its county
@@ -15,7 +15,9 @@ Outputs:
 """
 import glob, json, os, sys, datetime
 
-LF = sys.argv[1] if len(sys.argv) > 1 else 'C:/Projects/brotherhood-land-finder'
+if len(sys.argv) < 2:
+    sys.exit('usage: python scripts/build_hazards.py <path to the Land Finder project folder>')
+LF = sys.argv[1]
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'data')
 
 # FEMA's 18 hazards, the order kept in hazards.json

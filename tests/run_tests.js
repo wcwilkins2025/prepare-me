@@ -40,6 +40,10 @@ RD.AREAS.forEach(function (a) { ok(RD.TASKS.filter(function (t) { return t.area 
 var words = fs.readFileSync(path.join(root, 'data/tasks.js'), 'utf8') + fs.readdirSync(root).filter(function (f) { return /\.(html|js|css|md)$/.test(f); }).map(function (f) { return fs.readFileSync(path.join(root, f), 'utf8'); }).join('\n') +
   ['js/engine.js', 'js/site.js', 'js/store.js', 'data/links.js'].map(function (f) { return fs.readFileSync(path.join(root, f), 'utf8'); }).join('\n');
 var BANNED = Buffer.from('XGJBSVxifGFydGlmaWNpYWwgaW50ZWxsaWdlbmNlfFxiZG9vbXxhcG9jYWx5cHxcYlNIVEZcYnxjb2xsYXBzZSBvZnxlbmQgb2YgdGhlIHdvcmxkfFxicGFuaWNcYnxhbWF6b258d2FsbWFydHxob21lIGRlcG90fGNvc3Rjb3xsb3dlJ3N8aGFyYm9yIGZyZWlnaHR8YmFzcyBwcm98Y2hhdGdwdHxjbGF1ZGV8b3BlbmFpfGdwdC0=', 'base64').toString().split('|');
+/* no group or community names anywhere in the app or README (also encoded) */
+var everything = words + fs.readFileSync(path.join(root, 'README.md'), 'utf8') + fs.readFileSync(path.join(root, 'scripts/build_hazards.py'), 'utf8');
+Buffer.from('YnJvdGhlcmhvb2R8XGJza29vbFxifG5vYm9keSBpcyBjb21pbmd8cHJvZHVjZVwuIHByb3ZpZGU=', 'base64').toString().split('|')
+  .forEach(function (w, i) { ok(!new RegExp(w, 'i').test(everything), 'group reference ' + (i + 1) + ' not used'); });
 BANNED.forEach(function (w, i) { var re = new RegExp(w, /[A-Z]{2}/.test(w) ? '' : 'i'); ok(!re.test(words), 'banned word ' + (i + 1) + ' not used'); });
 
 /* ---------- the household ---------- */

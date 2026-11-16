@@ -309,7 +309,7 @@
       'Put up one batch of something this season.'
     ],
     when: 'This season.',
-    why: 'Food you grow or put up is food the store cannot run out of. "Produce. Provide. Protect." starts here.',
+    why: 'Food you grow or put up is food the store cannot run out of.',
     done: 'One crop grown or one batch put up, start to finish.',
     links: ['usda-preserve', 'usda-extension', 'groundwork'] });
 
@@ -496,7 +496,7 @@
       'Take its quizzes until you pass them.'
     ],
     when: 'This week. Ten minutes a night.',
-    why: 'In a disaster you may be the first help for a while. "Nobody is coming. You are it."',
+    why: 'In a disaster you may be the first help for a while. Help can take hours or days to arrive.',
     done: 'You passed the quizzes for bleeding, burns, choking and CPR.',
     links: ['redcross-apps'] });
 
@@ -1291,7 +1291,7 @@
       'Quiz them at dinner a week later.'
     ],
     when: 'This week. At dinner.',
-    why: 'You will not always be home. "Produce. Provide. Protect." means the family can protect itself too.',
+    why: 'You will not always be home. A family that knows these three things can look after itself.',
     done: 'Everyone passed the dinner quiz.',
     links: ['ready-kids'] });
 

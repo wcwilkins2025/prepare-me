@@ -18,7 +18,7 @@
 </header>
 <main class="wrap" id="main">
   <section>
-    <h2>Brotherhood tools</h2>
+    <h2>Free tools</h2>
     <div class="card"><ul class="links" id="tools" style="padding-left:20px;margin:0"></ul></div>
   </section>
   <section>
@@ -55,7 +55,7 @@
   ['radioelmer', 'landfinder', 'groundwork'].forEach(function (k) { $('tools').appendChild(UI.link(k)); });
   RD.AREAS.forEach(function (a) {
     var keys = [];
-    RD.TASKS.forEach(function (t) { if (t.area === a.id) t.links.forEach(function (k) { if (keys.indexOf(k) < 0 && RD.LINKS[k].by !== 'Brotherhood tool') keys.push(k); }); });
+    RD.TASKS.forEach(function (t) { if (t.area === a.id) t.links.forEach(function (k) { if (keys.indexOf(k) < 0 && RD.LINKS[k].by !== 'Free tool') keys.push(k); }); });
     $('byArea').appendChild(el('div', { class: 'card' }, [el('h3', null, a.name), el('ul', { style: 'padding-left:20px;margin:0' }, keys.map(UI.link))]));
   });
   RD.HAZARDS.forEach(function (h) {
