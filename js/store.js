@@ -13,7 +13,10 @@
 
   /* ======================= Supabase ======================= */
   function Online(cfg) {
-    this.c = root.supabase.createClient(cfg.supabaseUrl, cfg.supabaseKey, { auth: { persistSession: true, detectSessionInUrl: true, flowType: 'pkce' } });
+    /* 'implicit': the emailed link carries the sign-in in the address, so it works in whatever browser opens it.
+       ('pkce' ties the link to the browser that asked for it, which fails when a phone's mail or Facebook app
+       opens links in its own built-in browser.) supabase-js reads the address and then clears it. */
+    this.c = root.supabase.createClient(cfg.supabaseUrl, cfg.supabaseKey, { auth: { persistSession: true, detectSessionInUrl: true, flowType: 'implicit' } });
     this.kind = 'online';
   }
   Online.prototype.session = function () {

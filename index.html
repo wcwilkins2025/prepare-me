@@ -42,7 +42,7 @@
       </div>
       <div class="card">
         <h2>Sign in</h2>
-        <p class="sub">No password. Enter your email and we send a link. Click it on this device and you are in. New here? The same link makes your account.</p>
+        <p class="sub">No password. Enter your email and we send a link. Tap it on your phone or computer and you are in. New here? The same link makes your account.</p>
         <form id="signinForm" class="fields" autocomplete="on">
           <div class="field"><label for="email">Your email</label><input id="email" type="email" required autocomplete="email" inputmode="email" placeholder="you@example.com"></div>
           <div class="actions" style="margin-top:0"><button class="btn" type="submit" id="sendBtn">Send me the link</button></div>
@@ -123,6 +123,15 @@
   'use strict';
   var UI = RD.ui, E = RD.engine, el = UI.el, $ = UI.$;
 
+  /* A sign-in link that fails comes back with the reason in the address (#error=... or ?error=...).
+     Read it before anything else touches the address, so the man is told why instead of seeing the box again. */
+  var linkError = (function () {
+    var p = new URLSearchParams((location.hash || '').replace(/^#/, '') + '&' + (location.search || '').replace(/^\?/, ''));
+    if (!p.get('error') && !p.get('error_code')) return null;
+    return { code: p.get('error_code') || p.get('error'), text: p.get('error_description') || '' };
+  })();
+  if (linkError) { try { history.replaceState(null, '', location.pathname); } catch (e) {} }
+
   UI.boot({}).then(function (app) {
     if (!app) return;
     if (!app.session) return signedOut(app);
@@ -132,6 +141,11 @@
 
   function signedOut(app) {
     $('out').hidden = false;
+    if (linkError) {
+      UI.flash('flash', /expired|invalid|not found|otp/i.test(linkError.code + ' ' + linkError.text)
+        ? 'That sign-in link was already used, or a newer one was sent. Send a new link below and tap the link in the newest email.'
+        : 'That sign-in link did not work. Send a new link below and tap the link in the newest email.');
+    }
     $('signinForm').addEventListener('submit', function (ev) {
       ev.preventDefault();
       var email = $('email').value.trim();
@@ -140,7 +154,7 @@
       var back = location.origin + location.pathname.replace(/[^\/]*$/, '') + 'index.html';
       app.store.signIn(email, back).then(function (r) {
         if (r.signedIn) { location.replace('index.html'); return; }
-        UI.flash('flash', 'Sent. Open the email on this device and click the link. Check the junk folder if it is not there in a few minutes.');
+        UI.flash('flash', 'Sent. Open the email on this phone or computer and tap the link. It signs you in on whichever browser it opens in. Check the junk folder if it is not there in a few minutes.');
       }).catch(function (e) {
         var m = String(e.message || e);
         UI.flash('flash', /security purposes|after \d+ seconds|rate limit/i.test(m) ? 'A link already went out a moment ago. Check your inbox and the junk folder.' : 'Could not send: ' + m);
