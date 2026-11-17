@@ -141,6 +141,18 @@ ok(E.checkinDue([], '2026-11-01T00:00:00', '2026-11-16T12:00:00'), 'check-in due
 ok(!E.checkinDue([{ week_of: '2026-11-16' }], '2026-11-01T00:00:00', '2026-11-18T12:00:00'), 'one check-in a week');
 eq(E.doneBetween(st, t0).sort(), ['comm-contact'], 'done since a date');
 
+/* ---------- every page loads its own files with the same version tag, so browsers fetch new code after a change ---------- */
+var tags = {}, untagged = [];
+fs.readdirSync(root).filter(function (f) { return /\.html$/.test(f); }).forEach(function (f) {
+  var html = fs.readFileSync(path.join(root, f), 'utf8');
+  (html.match(/(?:src|href)="(?!https?:|#|mailto:)[^"]+\.(?:js|css)(?:\?[^"]*)?"/g) || []).forEach(function (ref) {
+    var m = ref.match(/\?v=([\w.-]+)"/);
+    if (m) tags[m[1]] = true; else untagged.push(f + ': ' + ref);
+  });
+});
+eq(untagged, [], 'every page file reference carries a version tag');
+eq(Object.keys(tags).length, 1, 'one version tag across all pages');
+
 /* ---------- the local store keeps two men apart ---------- */
 var mem = {};
 globalThis.localStorage = { getItem: function (k) { return mem[k] || null; }, setItem: function (k, v) { mem[k] = String(v); }, removeItem: function (k) { delete mem[k]; } };

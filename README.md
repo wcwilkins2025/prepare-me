@@ -41,6 +41,8 @@ A static site for GitHub Pages, the same pattern as Groundwork and Weight Target
 - `js/site.js`: the nav, footer, theme, sign-in gate and loading his state.
 - `supabase/schema.sql`: four tables (`profiles`, `assessments`, `progress`, `checkins`), row-level security on each, and `delete_me()`.
 
+Every page loads its CSS and scripts with a version tag (`site.css?v=20261117a`). After changing any of those files, change the tag to a new value in all seven pages (one find-and-replace), so browsers fetch the new code at once instead of using their saved copy for up to ten minutes. A test checks that every page uses the same tag.
+
 `config.js` holds the Supabase project URL and publishable key, which are made to be public. The row rules are what keep each man's rows his own. The secret key never goes in this repo.
 
 ### How "more likely" is decided
