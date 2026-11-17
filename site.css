@@ -1,26 +1,26 @@
-/* Prepare Me: shared look. Same range-country palette and type as Groundwork and the Land Finder. */
+/* Prepare Me: shared look. Colors are the Homestead Ready nature palette (master: homestead-ready/palette.css); type as Groundwork and the Land Finder. */
 :root {
-  --bg: #f3f1ec; --surface: #ffffff; --fg: #1f2328; --muted: #5c6369; --rule: #d6d2c8;
-  --accent: #8a4b1f; --accent-ink: #ffffff; --accent-hover: #6e3a16;
-  --band: #22302e; --band-fg: #f3f1ec; --step: #2f5d4a; --warn: #9a3b1f;
-  --bar: #3d7a62; --grid: #e6e2d9; --field: #faf9f6; --track: #e6e2d9;
+  --bg: #f5efe2; --surface: #fffaf0; --fg: #2b2a24; --muted: #5d5848; --rule: #e0d5bd;
+  --accent: #9a4f1f; --accent-ink: #ffffff; --accent-hover: #7d3f17;
+  --band: #2f4a32; --band-fg: #f5efe2; --step: #2f4a32; --warn: #9a3b1f;
+  --bar: #4f6a3a; --grid: #ebe3d0; --field: #fffdf7; --track: #ebe3d0;
   --font-display: "Barlow Condensed", "Arial Narrow", Impact, sans-serif;
   --font-body: "IBM Plex Sans", "Segoe UI", Helvetica, Arial, sans-serif;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #15191b; --surface: #1d2224; --fg: #e8e5de; --muted: #a09c93; --rule: #343b3e;
-    --accent: #d98a4f; --accent-ink: #15191b; --accent-hover: #e9a068;
-    --band: #0f1514; --band-fg: #e8e5de; --step: #7fc3a4; --warn: #e58a6a;
-    --bar: #7fb49b; --grid: #2a3134; --field: #15191b; --track: #2a3134;
+    --bg: #1a1d16; --surface: #252a1f; --fg: #ece5d4; --muted: #b5ad99; --rule: #3a3f31;
+    --accent: #d9884c; --accent-ink: #1a1d16; --accent-hover: #e9a068;
+    --band: #12150f; --band-fg: #ece5d4; --step: #9fbf5e; --warn: #e58a6a;
+    --bar: #9fbf5e; --grid: #2f3428; --field: #1a1d16; --track: #2f3428;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #15191b; --surface: #1d2224; --fg: #e8e5de; --muted: #a09c93; --rule: #343b3e;
-  --accent: #d98a4f; --accent-ink: #15191b; --accent-hover: #e9a068;
-  --band: #0f1514; --band-fg: #e8e5de; --step: #7fc3a4; --warn: #e58a6a;
-  --bar: #7fb49b; --grid: #2a3134; --field: #15191b; --track: #2a3134;
+  --bg: #1a1d16; --surface: #252a1f; --fg: #ece5d4; --muted: #b5ad99; --rule: #3a3f31;
+  --accent: #d9884c; --accent-ink: #1a1d16; --accent-hover: #e9a068;
+  --band: #12150f; --band-fg: #ece5d4; --step: #9fbf5e; --warn: #e58a6a;
+  --bar: #9fbf5e; --grid: #2f3428; --field: #1a1d16; --track: #2f3428;
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
@@ -173,7 +173,7 @@ details.fold[open] > summary::before { transform: rotate(90deg); }
 .plan-list { list-style: none; margin: 0; padding: 0; }
 .plan-list li { display: grid; grid-template-columns: 26px 1fr auto; gap: 10px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--rule); }
 .plan-list .st { width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--rule); display: grid; place-items: center; font-size: 13px; }
-.plan-list li.done .st { background: var(--step); border-color: var(--step); color: #fff; }
+.plan-list li.done .st { background: var(--step); border-color: var(--step); color: var(--accent-ink); }
 .plan-list li.done a { color: var(--muted); }
 .plan-list li.later .st { border-style: dashed; }
 .plan-list .cost { font-size: 12.5px; color: var(--muted); white-space: nowrap; }
@@ -206,6 +206,10 @@ legend { font-family: var(--font-display); font-weight: 700; font-size: 22px; te
 @media (max-width: 760px) { .grid2 { grid-template-columns: 1fr; } }
 .grid2 > .card + .card { margin-top: 0; }
 section + section, section + div, div + section { margin-top: 26px; }
+
+/* Homestead Ready family line: muted text, links in the palette's link color */
+footer .hr-family { color: var(--muted); }
+footer .hr-family a { color: var(--accent); }
 
 @media print {
   :root { --bg: #fff; --surface: #fff; --fg: #000; --muted: #333; --rule: #999; --field: #fff; }
