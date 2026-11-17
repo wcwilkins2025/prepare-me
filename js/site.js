@@ -64,7 +64,7 @@
       foot.appendChild(UI.el('p', null, 'This is a plain checklist, not medical, legal or money advice. In an emergency, call 911.'));
       /* the Homestead Ready family line: same words on every Homestead Ready tool */
       foot.appendChild(UI.el('p', { class: 'hr-family' }, ['Part of ', UI.el('a', { href: 'https://homesteadready.org/' }, 'Homestead Ready'),
-        ', free tools for land, homesteading, readiness and radio. ',
+        ', free tools for land, homesteading, health, readiness and radio. ',
         UI.el('a', { href: 'https://www.facebook.com/groups/homesteadready', rel: 'noopener' }, 'Join the Facebook group'), '.']));
     }
   };
