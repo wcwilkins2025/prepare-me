@@ -25,6 +25,14 @@
   Online.prototype.signIn = function (email, back) {
     return this.c.auth.signInWithOtp({ email: email, options: { emailRedirectTo: back } }).then(function (r) { if (r.error) throw err(r.error); return { sent: true }; });
   };
+  /* the 6-digit code from the sign-in email; type 'email' covers both a new account and a returning one */
+  Online.prototype.verifyCode = function (email, code) {
+    return this.c.auth.verifyOtp({ email: String(email).trim(), token: String(code).replace(/\D/g, ''), type: 'email' }).then(function (r) {
+      if (r.error) throw err(r.error);
+      if (!r.data || !r.data.session) throw new Error('no session');
+      return { id: r.data.session.user.id, email: r.data.session.user.email };
+    });
+  };
   Online.prototype.signOut = function () { return this.c.auth.signOut(); };
   Online.prototype.onAuth = function (cb) { this.c.auth.onAuthStateChange(function (ev, s) { cb(s ? { id: s.user.id, email: s.user.email } : null); }); };
   Online.prototype.deleteMe = function () {
@@ -77,6 +85,8 @@
     this.listeners.forEach(function (cb) { cb(s); });
     return Promise.resolve({ signedIn: true });
   };
+  /* the local preview signs in at once, so there is never a code to check; kept so pages can call it the same way */
+  Local.prototype.verifyCode = function (email) { return this.signIn(email).then(function () { return {}; }); };
   Local.prototype.signOut = function () { var db = this.read(); db.session = null; this.write(db); this.listeners.forEach(function (cb) { cb(null); }); return Promise.resolve(); };
   Local.prototype.onAuth = function (cb) { this.listeners.push(cb); };
   Local.prototype.deleteMe = function () { var db = this.read(); delete db.users[db.session]; db.session = null; this.write(db); return Promise.resolve(); };

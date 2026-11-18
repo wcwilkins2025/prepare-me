@@ -6,7 +6,7 @@ No fear, no scare talk, no store names. A plain check of where he stands.
 
 ## What it does
 
-- **Accounts.** Each man signs in by email link (no password). His answers, scores, progress and check-ins are saved in his own rows.
+- **Accounts.** Each man signs in with a 6-digit code sent to his email (no password, no link). The email has no link because work mail and some phones open every link to check it, which uses up the sign-in. His answers, scores, progress and check-ins are saved in his own rows.
 - **The score.** His home page opens with a bold score out of 100 and a score for each area: water, food, power and heat, medical and first aid, communications, family plan, security and home, skills, and money cushion. Under it are the next one or two things to fix.
 - **His disasters.** From his town or ZIP, Prepare Me finds his county in the FEMA National Risk Index and sorts 18 hazards into *more likely here* and *less likely here*. His plan covers the more likely ones plus five every home faces: long power outage, house fire, sickness, losing a paycheck, and leaving home fast. He can add a less likely one, or take one off, with one tap. Each disaster shows how ready he is for it.
 - **Attacks.** Four that can reach any town are in every plan: a chemical spill or chemical attack, a cyber attack on power, banks or phones, a nuclear or radiation emergency, and a biological attack or outbreak. Their steps follow Ready.gov and the CDC: get inside, stay inside, stay tuned; shelter in place and seal a room; clean off after an exposure; a shelter kit; masks and shots; locking down accounts and freezing credit; a no-phone family plan; and an unplugged backup. He can take any of the four off his plan. The every-home list stays.
@@ -41,7 +41,7 @@ A static site for GitHub Pages, the same pattern as Groundwork and Weight Target
 - `js/site.js`: the nav, footer, theme, sign-in gate and loading his state.
 - `supabase/schema.sql`: four tables (`profiles`, `assessments`, `progress`, `checkins`), row-level security on each, and `delete_me()`.
 
-Every page loads its CSS and scripts with a version tag (`site.css?v=20261117a`). After changing any of those files, change the tag to a new value in all seven pages (one find-and-replace), so browsers fetch the new code at once instead of using their saved copy for up to ten minutes. A test checks that every page uses the same tag.
+Every page loads its CSS and scripts with a version tag (`site.css?v=20261117b`). After changing any of those files, change the tag to a new value in all seven pages (one find-and-replace), so browsers fetch the new code at once instead of using their saved copy for up to ten minutes. A test checks that every page uses the same tag.
 
 `config.js` holds the Supabase project URL and publishable key, which are made to be public. The row rules are what keep each man's rows his own. The secret key never goes in this repo.
 
@@ -66,7 +66,7 @@ Open http://localhost:8799. With `config.js` empty it runs as the local preview:
 ```
 node tests/run_tests.js
 ```
-1,318 checks. They cover the step library (every step has who, what, when, why, done and links that exist), calm wording with no store names, the household math, the county disasters for known places, the attacks (on by default, each can come off, their steps follow), town and ZIP search, scoring, next-step order (free first), put-off steps, the week, and the local store keeping two men apart.
+1,324 checks. They cover the step library (every step has who, what, when, why, done and links that exist), calm wording with no store names, the household math, the county disasters for known places, the attacks (on by default, each can come off, their steps follow), town and ZIP search, scoring, next-step order (free first), put-off steps, the week, and the local store keeping two men apart.
 
 ```
 node scripts/check_links.js

@@ -14,7 +14,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="site.css?v=20261117a">
+<link rel="stylesheet" href="site.css?v=20261117b">
 </head>
 <body>
 <header>
@@ -42,10 +42,22 @@
       </div>
       <div class="card">
         <h2>Sign in</h2>
-        <p class="sub">No password. Enter your email and we send a link. Tap it on your phone or computer and you are in. New here? The same link makes your account.</p>
+        <p class="sub" id="signinSub">No password. Enter your email and we send you a 6-digit code. Type it here and you are in. New here? The same code makes your account.</p>
         <form id="signinForm" class="fields" autocomplete="on">
           <div class="field"><label for="email">Your email</label><input id="email" type="email" required autocomplete="email" inputmode="email" placeholder="you@example.com"></div>
-          <div class="actions" style="margin-top:0"><button class="btn" type="submit" id="sendBtn">Send me the link</button></div>
+          <div class="actions" style="margin-top:0"><button class="btn" type="submit" id="sendBtn">Email me a code</button></div>
+        </form>
+        <form id="codeForm" class="fields" autocomplete="off" hidden>
+          <div class="field">
+            <label for="code">The 6-digit code from the email</label>
+            <input id="code" type="text" required inputmode="numeric" autocomplete="one-time-code" pattern="[0-9 ]*" maxlength="12" placeholder="123456" style="font-size:24px;letter-spacing:.2em;font-variant-numeric:tabular-nums">
+            <span class="hint" id="codeHint"></span>
+          </div>
+          <div class="actions" style="margin-top:0">
+            <button class="btn" type="submit" id="codeBtn">Sign in</button>
+            <button class="btn ghost" type="button" id="resendBtn">Send a new code</button>
+            <button class="btn ghost" type="button" id="otherEmailBtn">Use a different email</button>
+          </div>
         </form>
         <p class="flash" id="flash" aria-live="polite"></p>
         <p class="muted" style="font-size:14px;margin:8px 0 0">Your email is used to sign in. Nothing else. Your answers are yours alone. <a href="privacy.html">Privacy, in plain words.</a></p>
@@ -112,12 +124,12 @@
 <footer><div class="wrap" id="foot"></div></footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
-<script src="config.js?v=20261117a"></script>
-<script src="data/links.js?v=20261117a"></script>
-<script src="data/tasks.js?v=20261117a"></script>
-<script src="js/engine.js?v=20261117a"></script>
-<script src="js/store.js?v=20261117a"></script>
-<script src="js/site.js?v=20261117a"></script>
+<script src="config.js?v=20261117b"></script>
+<script src="data/links.js?v=20261117b"></script>
+<script src="data/tasks.js?v=20261117b"></script>
+<script src="js/engine.js?v=20261117b"></script>
+<script src="js/store.js?v=20261117b"></script>
+<script src="js/site.js?v=20261117b"></script>
 <script>
 (function () {
   'use strict';
@@ -143,23 +155,80 @@
     $('out').hidden = false;
     if (linkError) {
       UI.flash('flash', /expired|invalid|not found|otp/i.test(linkError.code + ' ' + linkError.text)
-        ? 'That sign-in link was already used, or a newer one was sent. Send a new link below and tap the link in the newest email.'
-        : 'That sign-in link did not work. Send a new link below and tap the link in the newest email.');
+        ? 'That sign-in link was already used, or a newer one was sent. Send a new code below and type the code from the newest email.'
+        : 'That sign-in link did not work. Send a new code below and type the code from the newest email.');
     }
+    /* Sign in with a 6-digit code: works the same in any browser or mail app, because nothing has to be opened.
+       The email carries only the code, no link: work mail and some phones open every link to check it, and that
+       used up the sign-in before the man could type his code. (Old emails with a link still land here, so a failed
+       link is still explained above.) The email address waits in this browser for an hour,
+       so switching to the mail app and back (which can reload the page on a phone) keeps the code box up. */
+    var PENDING = 'rd-pending-signin';
+    function savePending(email) { try { localStorage.setItem(PENDING, JSON.stringify({ email: email, at: Date.now() })); } catch (e) {} }
+    function readPending() { try { var p = JSON.parse(localStorage.getItem(PENDING)); return p && Date.now() - p.at < 3600e3 ? p.email : null; } catch (e) { return null; } }
+    function clearPending() { try { localStorage.removeItem(PENDING); } catch (e) {} }
+    function showCode(email) {
+      $('signinForm').hidden = true;
+      $('codeForm').hidden = false;
+      $('signinSub').textContent = 'Check your email for a 6-digit code from Prepare Me, and type it below. Check the junk folder if it is not there in a minute.';
+      $('codeHint').textContent = 'Sent to ' + email + '. Use the code from the newest email.';
+      $('code').value = '';
+      $('code').focus();
+    }
+    function showEmail() {
+      clearPending();
+      $('codeForm').hidden = true;
+      $('signinForm').hidden = false;
+      $('signinSub').textContent = 'No password. Enter your email and we send you a 6-digit code. Type it here and you are in. New here? The same code makes your account.';
+    }
+    function send(email) {
+      var back = location.origin + location.pathname.replace(/[^\/]*$/, '') + 'index.html';
+      return app.store.signIn(email, back).then(function (r) {
+        if (r.signedIn) { location.replace('index.html'); return; }
+        savePending(email);
+        showCode(email);
+        UI.flash('flash', 'Sent. Check your email for the 6-digit code.');
+      }).catch(function (e) {
+        var m = String(e.message || e);
+        if (/security purposes|after \d+ seconds|rate limit/i.test(m)) {
+          savePending(email); showCode(email);
+          UI.flash('flash', 'A code already went out a moment ago. Use the code in that email, or wait a minute and send a new one.');
+        } else UI.flash('flash', 'Could not send: ' + m);
+      });
+    }
+
+    var waiting = readPending();
+    if (waiting && !linkError) { $('email').value = waiting; showCode(waiting); }
+
     $('signinForm').addEventListener('submit', function (ev) {
       ev.preventDefault();
       var email = $('email').value.trim();
       if (!email) return;
       $('sendBtn').disabled = true;
-      var back = location.origin + location.pathname.replace(/[^\/]*$/, '') + 'index.html';
-      app.store.signIn(email, back).then(function (r) {
-        if (r.signedIn) { location.replace('index.html'); return; }
-        UI.flash('flash', 'Sent. Open the email on this phone or computer and tap the link. It signs you in on whichever browser it opens in. Check the junk folder if it is not there in a few minutes.');
-      }).catch(function (e) {
-        var m = String(e.message || e);
-        UI.flash('flash', /security purposes|after \d+ seconds|rate limit/i.test(m) ? 'A link already went out a moment ago. Check your inbox and the junk folder.' : 'Could not send: ' + m);
-      }).then(function () { $('sendBtn').disabled = false; });
+      send(email).then(function () { $('sendBtn').disabled = false; });
     });
+    $('codeForm').addEventListener('submit', function (ev) {
+      ev.preventDefault();
+      var email = readPending() || $('email').value.trim();
+      var code = $('code').value.replace(/\D/g, '');
+      if (code.length < 6) { UI.flash('flash', 'Type all 6 digits of the code.'); return; }
+      $('codeBtn').disabled = true;
+      UI.flash('flash', 'Checking the code...');
+      app.store.verifyCode(email, code).then(function () {
+        clearPending();
+        location.replace('index.html');
+      }).catch(function () {
+        UI.flash('flash', 'That code did not work. Use the code from the newest email; older codes stop working when a new one is sent, and every code stops after an hour.');
+        $('codeBtn').disabled = false;
+      });
+    });
+    $('resendBtn').addEventListener('click', function () {
+      var email = readPending() || $('email').value.trim();
+      if (!email) { showEmail(); return; }
+      $('resendBtn').disabled = true;
+      send(email).then(function () { $('resendBtn').disabled = false; });
+    });
+    $('otherEmailBtn').addEventListener('click', function () { UI.flash('flash', ''); showEmail(); $('email').focus(); });
   }
 
   function render(app) {
