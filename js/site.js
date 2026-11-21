@@ -40,7 +40,7 @@
   (function () { var saved = null; try { saved = localStorage.getItem('theme'); } catch (e) {} if (saved) document.documentElement.setAttribute('data-theme', saved); })();
 
   /* ---------- nav and footer ---------- */
-  var PAGES = [['index.html', 'Home'], ['coach.html', 'Coach'], ['checkin.html', 'Check-in'], ['start.html', 'Assessment'], ['resources.html', 'Resources']];
+  var PAGES = [['index.html', 'Home'], ['coach.html', 'Coach'], ['checkin.html', 'Check-in'], ['start.html', 'Assessment'], ['forum.html', 'Forum'], ['resources.html', 'Resources']];
   UI.chrome = function () {
     var here = location.pathname.split('/').pop() || 'index.html';
     var nav = UI.$('nav');

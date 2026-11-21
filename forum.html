@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Forum</title>
+<meta name="description" content="Ask a question about getting ready at home, and answer one. Boards by area of the plan.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="site.css?v=20261117b">
+<style>
+  .field textarea { font: inherit; font-size: 17px; color: var(--fg); background: var(--field); border: 1px solid var(--rule); border-radius: 6px; padding: 10px 12px; width: 100%; min-height: 140px; resize: vertical; }
+  .field textarea:focus-visible { outline: 3px solid var(--step); outline-offset: 2px; }
+  .rules ol { margin: 0; padding-left: 22px; }
+  .rules li + li { margin-top: 4px; }
+  .boards { list-style: none; margin: 0; padding: 0; }
+  .boards li { border-top: 1px solid var(--rule); padding: 12px 0; display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; align-items: baseline; }
+  .boards li:first-child { border-top: 0; padding-top: 0; }
+  .boards a { font-weight: 600; font-size: 18px; }
+  .boards .ct { color: var(--muted); font-size: 14px; text-align: right; white-space: nowrap; }
+  .boards .about { grid-column: 1 / -1; color: var(--muted); font-size: 15px; margin: 0; }
+  .topics { list-style: none; margin: 0; padding: 0; }
+  .topics li { border-top: 1px solid var(--rule); padding: 12px 0; }
+  .topics li:first-child { border-top: 0; padding-top: 0; }
+  .topics a { font-weight: 600; font-size: 17px; overflow-wrap: anywhere; }
+  .meta { color: var(--muted); font-size: 14px; margin: 2px 0 0; overflow-wrap: anywhere; }
+  .post-body { white-space: pre-wrap; overflow-wrap: anywhere; margin: 10px 0 0; }
+  .post h2 { overflow-wrap: anywhere; }
+  .post.hidden-post { opacity: .75; border-style: dashed; }
+  .post .actions { margin-top: 10px; }
+  .linkbtn.small, .btn.small { font-size: 14px; }
+  .btn.small { min-height: 36px; padding: 6px 12px; }
+  .crumbs { margin: 0 0 12px; font-size: 15px; }
+  .who { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: baseline; }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav class="nav" id="nav" aria-label="Pages"></nav>
+    <h1>Forum</h1>
+    <p class="lede">Ask a question. Answer one. Each board follows one area of your plan.</p>
+  </div>
+</header>
+
+<main class="wrap" id="main">
+  <div class="card rules" id="rules" aria-labelledby="rulesHead">
+    <h3 id="rulesHead">House rules</h3>
+    <ol id="rulesList"></ol>
+  </div>
+  <section id="view" aria-live="polite"></section>
+</main>
+
+<footer><div class="wrap" id="foot"></div></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
+<script src="config.js?v=20261117b"></script>
+<script src="data/links.js?v=20261117b"></script>
+<script src="data/tasks.js?v=20261117b"></script>
+<script src="data/forum.js?v=20261117b"></script>
+<script src="js/engine.js?v=20261117b"></script>
+<script src="js/store.js?v=20261117b"></script>
+<script src="js/site.js?v=20261117b"></script>
+<script>
+(function () {
+  'use strict';
+  var UI = RD.ui, E = RD.engine, F = RD.FORUM, el = UI.el, $ = UI.$;
+  var app, me = { display_name: null, moderator: false };
+
+  RD.FORUM.rules.forEach(function (r) { $('rulesList').appendChild(el('li', null, r)); });
+
+  UI.boot({ auth: true }).then(function (a) {
+    if (!a) return;
+    app = a;
+    app.store.forumMe().then(function (m) { me = m; route(); }, function (e) { show(errCard('Could not open the forum: ' + (e.message || e) + '. Try again in a minute.')); });
+  });
+  window.addEventListener('popstate', function () { if (app) route(); });
+
+  /* ---------- small helpers ---------- */
+  function params() { return new URLSearchParams(location.search); }
+  function go(qs) { history.pushState(null, '', 'forum.html' + (qs ? '?' + qs : '')); route(); window.scrollTo({ top: 0 }); }
+  function link(text, qs) { return el('a', { href: 'forum.html' + (qs ? '?' + qs : ''), onclick: function (ev) { ev.preventDefault(); go(qs); } }, text); }
+  function show(node) { var v = UI.clear($('view')); (Array.isArray(node) ? node : [node]).forEach(function (n) { if (n) v.appendChild(n); }); }
+  function errCard(msg) { return el('div', { class: 'card' }, el('p', { style: 'margin:0' }, msg)); }
+  function msg(e) { return (e && e.message) || String(e); }
+  function when(d) { return UI.date(d); }
+  function boardName(id) { var b = F.board(id); return b ? b.name : id; }
+  function crumbs(parts) { return el('p', { class: 'crumbs' }, parts.reduce(function (acc, p, i) { if (i) acc.push(' · '); acc.push(p); return acc; }, [])); }
+  function byline(p) {
+    return [p.author_name, p.by_moderator ? ' (moderator)' : '', ' · ', when(p.created_at)];
+  }
+  function field(label, input, hint) {
+    var id = input.id;
+    return el('div', { class: 'field' }, [el('label', { for: id }, label), input, hint ? el('span', { class: 'hint' }, hint) : null]);
+  }
+
+  /* ---------- the man's name: shown at the top, picked the first time he posts ---------- */
+  function whoLine() {
+    var line = el('p', { class: 'who muted', style: 'margin:0 0 12px' });
+    if (me.display_name) line.appendChild(el('span', null, ['You post as ', el('b', null, me.display_name), '.']));
+    else line.appendChild(el('span', null, 'You pick a display name the first time you post.'));
+    if (me.display_name) line.appendChild(el('button', { class: 'linkbtn small', type: 'button', onclick: function () { nameCard(null, line); } }, 'Change it'));
+    if (me.moderator) line.appendChild(link('Reports', 'reports=1'));
+    return line;
+  }
+  /* then(): run after the name is saved. Puts the card in place of `where`, or in the view. */
+  function nameCard(then, where) {
+    var inp = el('input', { id: 'dispName', type: 'text', maxlength: F.limits.name[1], autocomplete: 'nickname', value: me.display_name || '' });
+    var flash = el('p', { class: 'flash', 'aria-live': 'polite' });
+    var card = el('form', { class: 'card', onsubmit: function (ev) {
+      ev.preventDefault();
+      var n = inp.value.trim();
+      if (!F.nameOk(n)) { flash.textContent = 'Use 2 to 30 letters or numbers. Spaces, dots, dashes and apostrophes are fine. No @.'; return; }
+      app.store.setDisplayName(app.session.id, n).then(function () {
+        me.display_name = n;
+        if (then) then(); else route();
+      }, function (e) { flash.textContent = msg(e); });
+    } }, [
+      el('h3', null, me.display_name ? 'Change your display name' : 'Pick a display name'),
+      el('p', null, 'Others see this name on your posts. They never see your email. A first name or a nickname is plenty.'),
+      el('div', { class: 'fields' }, field('Display name', inp, '2 to 30 letters or numbers. It shows on your old posts too.')),
+      el('div', { class: 'actions' }, [el('button', { class: 'btn', type: 'submit' }, 'Save name'),
+        el('button', { class: 'btn ghost', type: 'button', onclick: function () { route(); } }, 'Cancel')]),
+      flash
+    ]);
+    if (where && where.parentNode) where.parentNode.replaceChild(card, where); else show(card);
+    inp.focus();
+  }
+  function needName(then) { if (me.display_name) then(); else nameCard(then); }
+
+  /* ---------- pages ---------- */
+  function route() {
+    var p = params();
+    if (p.get('reports') && me.moderator) return reportsPage();
+    if (p.get('topic')) return topicPage(Number(p.get('topic')));
+    if (p.get('new')) return needName(function () { newPage(p.get('board'), p.get('task')); });
+    if (p.get('board') && F.board(p.get('board'))) return boardPage(p.get('board'));
+    return homePage();
+  }
+
+  function homePage() {
+    show(el('p', { class: 'muted' }, 'Loading the boards.'));
+    app.store.forumTopics(null).then(function (all) {
+      var count = {}, last = {};
+      all.forEach(function (t) { count[t.board] = (count[t.board] || 0) + 1; if (!last[t.board] || t.last_reply_at > last[t.board]) last[t.board] = t.last_reply_at; });
+      var ul = el('ul', { class: 'boards' });
+      F.boards.forEach(function (b) {
+        var n = count[b.id] || 0;
+        ul.appendChild(el('li', null, [link(b.name, 'board=' + b.id),
+          el('span', { class: 'ct' }, n ? n + ' topic' + (n === 1 ? '' : 's') + ' · ' + when(last[b.id]) : 'No topics yet'),
+          el('p', { class: 'about' }, b.about)]));
+      });
+      var recent = all.slice(0, 8);
+      show([whoLine(),
+        el('div', { class: 'actions', style: 'margin:0 0 14px' }, el('button', { class: 'btn', type: 'button', onclick: function () { go('new=1'); } }, 'Ask a question')),
+        el('div', { class: 'card' }, [el('h2', { style: 'margin-top:0' }, 'Boards'), ul]),
+        recent.length ? el('div', { class: 'card' }, [el('h2', { style: 'margin-top:0' }, 'Latest'), topicList(recent, true)]) : null]);
+    }, function (e) { show(errCard('Could not load the boards: ' + msg(e))); });
+  }
+
+  function topicList(list, withBoard) {
+    var ul = el('ul', { class: 'topics' });
+    list.forEach(function (t) {
+      ul.appendChild(el('li', null, [link(t.title, 'topic=' + t.id),
+        el('p', { class: 'meta' }, [t.hidden ? 'Hidden · ' : '', withBoard ? boardName(t.board) + ' · ' : '', t.author_name, t.by_moderator ? ' (moderator)' : '', ' · ',
+          t.reply_count + ' repl' + (t.reply_count === 1 ? 'y' : 'ies') + ' · last ' + when(t.last_reply_at)])]));
+    });
+    return ul;
+  }
+
+  function boardPage(id) {
+    var b = F.board(id);
+    show(el('p', { class: 'muted' }, 'Loading ' + b.name + '.'));
+    app.store.forumTopics(id).then(function (list) {
+      show([crumbs([link('All boards', ''), b.name]), whoLine(),
+        el('div', { class: 'card' }, [
+          el('h2', { style: 'margin-top:0' }, b.name),
+          el('p', { class: 'sub' }, b.about),
+          el('div', { class: 'actions', style: 'margin:0 0 12px' }, el('button', { class: 'btn', type: 'button', onclick: function () { go('new=1&board=' + id); } }, 'Ask a question here')),
+          list.length ? topicList(list, false) : el('p', { style: 'margin:0' }, 'No topics here yet. Ask the first question.')
+        ])]);
+    }, function (e) { show(errCard('Could not load the board: ' + msg(e))); });
+  }
+
+  function newPage(boardId, taskId) {
+    var t = taskId && E.task(taskId);
+    var board = t ? t.area : F.board(boardId) ? boardId : 'start';
+    var sel = el('select', { id: 'newBoard' }, F.boards.map(function (b) { return el('option', { value: b.id, selected: b.id === board ? true : null }, b.name); }));
+    var title = el('input', { id: 'newTitle', type: 'text', maxlength: F.limits.title[1], value: t ? UI.fill(t.title, app) : '' });
+    var body = el('textarea', { id: 'newBody', maxlength: F.limits.body, rows: 6 });
+    var flash = el('p', { class: 'flash', 'aria-live': 'polite' });
+    var form = el('form', { class: 'card', onsubmit: function (ev) {
+      ev.preventDefault();
+      var row = { board: sel.value, title: title.value.trim(), body: body.value.trim(), task_id: t ? t.id : null };
+      if (row.title.length < F.limits.title[0]) { flash.textContent = 'Give it a title of at least ' + F.limits.title[0] + ' letters.'; return; }
+      if (!row.body) { flash.textContent = 'Write your question.'; return; }
+      app.store.newTopic(app.session.id, row).then(function (topic) { go('topic=' + topic.id); }, function (e) { flash.textContent = msg(e); });
+    } }, [
+      el('h2', { style: 'margin-top:0' }, t ? 'Ask about this step' : 'Ask a question'),
+      t ? el('p', null, ['About the step ', el('a', { href: 'coach.html?task=' + t.id }, UI.fill(t.title, app)), '.']) : null,
+      el('div', { class: 'fields' }, [
+        field('Board', sel),
+        field('Title', title, 'A short question. ' + F.limits.title[0] + ' to ' + F.limits.title[1] + ' letters.'),
+        field('Your question', body, 'Up to ' + F.limits.body + ' letters. Leave out names, addresses and phone numbers.')
+      ]),
+      el('p', { class: 'muted' }, 'Your post shows at once to everyone signed in to Prepare Me, with your display name.'),
+      el('div', { class: 'actions' }, [el('button', { class: 'btn', type: 'submit' }, 'Post it'),
+        el('button', { class: 'btn ghost', type: 'button', onclick: function () { history.back(); } }, 'Cancel')]),
+      flash
+    ]);
+    show([crumbs([link('All boards', ''), link(boardName(board), 'board=' + board), 'New topic']), whoLine(), form]);
+    (t ? body : title).focus();
+  }
+
+  /* the Report button: opens a small form under the post */
+  function reportButton(kind, id, holder) {
+    return el('button', { class: 'linkbtn small', type: 'button', onclick: function (ev) {
+      var btn = ev.target;
+      var why = el('input', { id: 'why-' + kind + id, type: 'text', maxlength: F.limits.reason, placeholder: 'Selling, unkind, personal details…' });
+      var flash = el('p', { class: 'flash', 'aria-live': 'polite' });
+      var box = el('form', { class: 'fields', style: 'margin-top:10px', onsubmit: function (e2) {
+        e2.preventDefault();
+        app.store.report(app.session.id, kind, id, why.value.trim()).then(function () {
+          box.replaceWith(el('p', { class: 'muted' }, 'Thank you. The moderator will look at it.'));
+        }, function (e) { flash.textContent = msg(e); });
+      } }, [field('What is wrong with this post? (optional)', why),
+        el('div', { class: 'actions' }, [el('button', { class: 'btn small', type: 'submit' }, 'Send report'),
+          el('button', { class: 'btn ghost small', type: 'button', onclick: function () { box.remove(); btn.hidden = false; } }, 'Cancel')]), flash]);
+      btn.hidden = true;
+      holder.appendChild(box);
+      why.focus();
+    } }, 'Report');
+  }
+  function modButton(kind, p, after) {
+    return el('button', { class: 'btn ghost small', type: 'button', onclick: function () {
+      app.store.moderate(kind, p.id, !p.hidden).then(after, function (e) { alert(msg(e)); });
+    } }, p.hidden ? 'Restore' : 'Hide');
+  }
+
+  function postCard(kind, p, topicId) {
+    var mine = p.user_id === app.session.id;
+    var card = el('article', { class: 'card post' + (p.hidden ? ' hidden-post' : '') });
+    if (kind === 'topic') card.appendChild(el('h2', { style: 'margin-top:0' }, p.title));
+    card.appendChild(el('p', { class: 'meta' }, byline(p)));
+    if (p.hidden) card.appendChild(el('p', { class: 'meta' }, mine && !me.moderator ? 'The moderator hid this post. Only you can see it.' : 'Hidden. Only its author and the moderator see it.'));
+    card.appendChild(el('p', { class: 'post-body' }, p.body));
+    var step = kind === 'topic' && p.task_id && E.task(p.task_id);
+    if (step) card.appendChild(el('p', { class: 'meta' }, ['About the step ', el('a', { href: 'coach.html?task=' + step.id }, UI.fill(step.title, app))]));
+    var acts = el('div', { class: 'actions' });
+    if (!mine && !p.hidden) acts.appendChild(reportButton(kind, p.id, card));
+    if (me.moderator) acts.appendChild(modButton(kind, p, function () { topicPage(topicId); }));
+    if (acts.firstChild) card.appendChild(acts);
+    return card;
+  }
+
+  function topicPage(id) {
+    show(el('p', { class: 'muted' }, 'Loading the topic.'));
+    app.store.forumTopic(id).then(function (d) {
+      if (!d) { show([crumbs([link('All boards', '')]), errCard('This topic is not here. It may have been hidden.')]); return; }
+      var t = d.topic, nodes = [crumbs([link('All boards', ''), link(boardName(t.board), 'board=' + t.board)]), whoLine(), postCard('topic', t, t.id)];
+      nodes.push(el('h3', null, d.replies.length ? d.replies.length + ' repl' + (d.replies.length === 1 ? 'y' : 'ies') : 'No replies yet'));
+      d.replies.forEach(function (r) { nodes.push(postCard('reply', r, t.id)); });
+      if (!t.hidden) nodes.push(replyForm(t));
+      show(nodes);
+    }, function (e) { show(errCard('Could not load the topic: ' + msg(e))); });
+  }
+
+  function replyForm(t) {
+    var body = el('textarea', { id: 'replyBody', maxlength: F.limits.reply, rows: 4 });
+    var flash = el('p', { class: 'flash', 'aria-live': 'polite' });
+    return el('form', { class: 'card', onsubmit: function (ev) {
+      ev.preventDefault();
+      var text = body.value.trim();
+      if (!text) { flash.textContent = 'Write your reply.'; return; }
+      needName(function () {
+        app.store.newReply(app.session.id, t.id, text).then(function () { topicPage(t.id); }, function (e) {
+          if (!$('replyBody')) topicPage(t.id); else flash.textContent = msg(e);
+        });
+      });
+    } }, [
+      el('div', { class: 'fields' }, field('Your reply', body, 'Up to ' + F.limits.reply + ' letters. Calm and kind.')),
+      el('div', { class: 'actions' }, el('button', { class: 'btn', type: 'submit' }, 'Post reply')),
+      flash
+    ]);
+  }
+
+  function reportsPage() {
+    show(el('p', { class: 'muted' }, 'Loading the reports.'));
+    app.store.forumReports().then(function (list) {
+      var nodes = [crumbs([link('All boards', ''), 'Reports']), el('h2', null, list.length ? list.length + ' open report' + (list.length === 1 ? '' : 's') : 'No open reports')];
+      list.forEach(function (r) {
+        var post = { id: r.post_id, hidden: r.hidden };
+        nodes.push(el('article', { class: 'card post' + (r.hidden ? ' hidden-post' : '') }, [
+          el('p', { class: 'meta' }, [r.kind === 'topic' ? 'Topic' : 'Reply', ' by ', r.author_name || '(gone)', ' · reported ', when(r.created_at), r.hidden ? ' · hidden' : '']),
+          r.title ? el('h3', { style: 'margin:6px 0 0' }, r.title) : null,
+          el('p', { class: 'post-body' }, (r.body || '').slice(0, 600)),
+          el('p', { class: 'meta' }, 'Reason: ' + (r.reason || '(none given)')),
+          el('div', { class: 'actions' }, [
+            r.topic_id ? link('Open the topic', 'topic=' + r.topic_id) : null,
+            modButton(r.kind, post, reportsPage),
+            el('button', { class: 'btn ghost small', type: 'button', onclick: function () { app.store.clearReport(r.id).then(reportsPage, function (e) { alert(msg(e)); }); } }, 'Keep it, clear report')
+          ])
+        ]));
+      });
+      show(nodes);
+    }, function (e) { show(errCard('Could not load the reports: ' + msg(e))); });
+  }
+})();
+</script>
+</body>
+</html>

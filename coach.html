@@ -117,6 +117,7 @@
       card.appendChild(el('ul', { class: 'links' }, t.links.map(UI.link)));
     }
 
+    card.appendChild(el('p', null, el('a', { href: 'forum.html?new=1&task=' + t.id }, 'Ask about this step')));
     var acts = el('div', { class: 'actions' });
     if (isDone) {
       var when = p.done_at ? 'Done ' + UI.date(p.done_at) + '.' : 'You had this when you took the assessment.';
