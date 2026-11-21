@@ -211,8 +211,28 @@ section + section, section + div, div + section { margin-top: 26px; }
 footer .hr-family { color: var(--muted); }
 footer .hr-family a { color: var(--accent); }
 
+/* "How to do it": the full how-to under a step (js/howto-view.js) */
+.howto { margin-top: 6px; }
+.howto h3, .howto h4 { margin: 16px 0 6px; }
+.howto h4 { font-size: 16px; }
+.howto ul { margin: 0; padding-left: 20px; }
+.howto li { margin: 4px 0; }
+.howto-intro { margin: 4px 0 0; }
+.howto-scroll { overflow-x: auto; }
+.howto-table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.howto-table th, .howto-table td { border: 1px solid var(--rule); padding: 8px 10px; text-align: left; vertical-align: top; }
+.howto-table thead th { background: var(--field); font-weight: 600; }
+.howto-note { margin: 6px 0 0; font-weight: 600; }
+.howto-mistakes li::marker { color: var(--step); }
+.howto-src { margin: 14px 0 0; font-size: 14px; color: var(--muted); }
+.guide-list { list-style: none; margin: 0; padding: 0; }
+.guide-list li { margin: 6px 0; }
+.guide-list a { display: inline-flex; min-height: 44px; align-items: center; }
+
 @media print {
   :root { --bg: #fff; --surface: #fff; --fg: #000; --muted: #333; --rule: #999; --field: #fff; }
   header, .nav, .actions, .noprint, footer { display: none !important; }
   .card, .next, fieldset { break-inside: avoid; }
+  details.fold > summary::before { display: none; }
+  .howto-table th, .howto-table td { border-color: #666; }
 }

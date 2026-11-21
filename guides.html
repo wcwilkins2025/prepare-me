@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Guides</title>
+<meta name="description" content="How to get ready, step by step: storing water, making water safe, food in an outage, a go-bag, a fire extinguisher and more. From Ready.gov, the CDC, the USDA and FEMA.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="site.css?v=20261117b">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav class="nav" id="nav" aria-label="Pages"></nav>
+    <h1 id="pageHead">Guides</h1>
+    <p class="lede" id="pageLede">How to do each step, in full. Free to read, no account needed. Every fact comes from Ready.gov, the CDC, the USDA, FEMA and others like them.</p>
+  </div>
+</header>
+<main class="wrap" id="main">
+  <section id="list"></section>
+  <section id="one" hidden></section>
+</main>
+<footer><div class="wrap" id="foot"></div></footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
+<script src="config.js?v=20261117b"></script>
+<script src="data/links.js?v=20261117b"></script>
+<script src="data/tasks.js?v=20261117b"></script>
+<script src="js/engine.js?v=20261117b"></script>
+<script src="js/store.js?v=20261117b"></script>
+<script src="js/site.js?v=20261117b"></script>
+<script src="data/howto.js?v=20261117b"></script>
+<script src="js/howto-view.js?v=20261117b"></script>
+<script>
+(function () {
+  'use strict';
+  var UI = RD.ui, E = RD.engine, el = UI.el, $ = UI.$;
+  UI.chrome();
+  var signedIn = false;
+  RD.store() && RD.store().session().then(function (s) {
+    signedIn = !!s;
+    var a = $('acctLink'); if (a) a.textContent = s ? 'Account' : 'Sign in';
+    var c = $('coachLink'); if (c && s) { c.textContent = 'Open this step in your coach'; }
+  });
+
+  /* signed out there is no household, so the steps show numbers for a family of four */
+  var ctx = E.context({ adults: 2, kids: 2 });
+  function fill(s) { return E.fill(s, ctx); }
+
+  var id = new URLSearchParams(location.search).get('step');
+  var t = id && RD.howto(id) ? E.task(id) : null;
+  if (t) one(t); else list();
+
+  function list() {
+    var L = $('list');
+    RD.AREAS.forEach(function (a) {
+      var ts = RD.TASKS.filter(function (x) { return x.area === a.id && RD.howto(x.id); });
+      if (!ts.length) return;
+      L.appendChild(el('div', { class: 'card' }, [
+        el('h2', { style: 'margin-top:0' }, a.name),
+        el('ul', { class: 'guide-list' }, ts.map(function (x) { return el('li', null, el('a', { href: 'guides.html?step=' + x.id }, x.title)); }))
+      ]));
+    });
+  }
+
+  function one(t) {
+    document.title = t.title;
+    $('pageHead').textContent = t.title;
+    $('pageLede').textContent = UI.areaName(t.area) + '. ' + t.why;
+    $('list').hidden = true;
+    var w = $('one'); w.hidden = false;
+    var card = el('article', { class: 'card task' });
+    card.appendChild(el('div', null, [UI.costChip(t), t.costNote ? el('span', { class: 'chip' }, t.costNote) : null]));
+    var dl = el('dl', { class: 'facts' });
+    [['Who', t.who], ['When', t.when], ['Done looks like', t.done]].forEach(function (f) {
+      dl.appendChild(el('dt', null, f[0])); dl.appendChild(el('dd', null, fill(f[1])));
+    });
+    card.appendChild(dl);
+    card.appendChild(el('h2', null, 'The short version'));
+    card.appendChild(el('ol', null, t.steps.map(function (s) { return el('li', null, fill(s)); })));
+    if (/\{(people|gal3|gal14)\}/.test(t.steps.join(' ') + t.done)) card.appendChild(el('p', { class: 'muted' }, 'Numbers here are for a family of four. Signed in, the coach uses your household.'));
+    card.appendChild(el('h2', null, 'How to do it, in full'));
+    card.appendChild(UI.howto(t.id, { big: true }));
+    card.appendChild(el('h3', { style: 'margin-top:16px' }, 'Learn more'));
+    card.appendChild(el('ul', { class: 'links' }, t.links.map(UI.link)));
+    card.appendChild(el('div', { class: 'actions' }, [
+      el('button', { class: 'btn', type: 'button', onclick: function () { window.print(); } }, 'Print this page'),
+      el('a', { class: 'btn ghost', id: 'coachLink', href: 'coach.html?task=' + t.id }, 'Sign in to track this step'),
+      el('a', { class: 'btn ghost', href: 'guides.html' }, 'All guides')
+    ]));
+    w.appendChild(card);
+  }
+})();
+</script>
+</body>
+</html>

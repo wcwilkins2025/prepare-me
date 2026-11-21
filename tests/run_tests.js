@@ -5,6 +5,7 @@ var fs = require('fs'), path = require('path');
 var root = path.join(__dirname, '..');
 require(path.join(root, 'data/links.js'));
 require(path.join(root, 'data/tasks.js'));
+require(path.join(root, 'data/howto.js'));
 require(path.join(root, 'js/engine.js'));
 var RD = globalThis.RD, E = RD.engine;
 
@@ -36,9 +37,25 @@ RD.HAZARDS.forEach(function (h) {
 });
 RD.AREAS.forEach(function (a) { ok(RD.TASKS.filter(function (t) { return t.area === a.id && t.cost === 0; }).length >= 2, a.name + ' has free steps'); });
 
+/* how-to guides: each belongs to a real step, has parts, and cites links that exist */
+Object.keys(RD.HOWTO).forEach(function (id) {
+  var h = RD.HOWTO[id], t = E.task(id);
+  ok(!!t, 'guide ' + id + ' belongs to a step');
+  ok(typeof h.intro === 'string' && h.intro.length > 20, id + ' guide has an intro');
+  ok(Array.isArray(h.parts) && h.parts.length >= 2, id + ' guide has parts');
+  h.parts.forEach(function (p, i) {
+    ok(typeof p.head === 'string' && p.head.length > 2, id + ' part ' + i + ' has a head');
+    if (p.rows) ok(p.cols.length >= 2 && p.rows.every(function (r) { return r.length === p.cols.length; }), id + ' part ' + i + ' table rows fit the columns');
+    else ok(Array.isArray(p.items) && p.items.length >= 1, id + ' part ' + i + ' has items');
+  });
+  ok(h.sources.length >= 1 && h.sources.every(function (k) { return RD.LINKS[k]; }), id + ' guide sources exist');
+  ok(/^\d{4}-\d{2}-\d{2}$/.test(h.checked), id + ' guide has a checked date');
+  ok(!/\{\w+\}/.test(JSON.stringify(h)), id + ' guide has no household numbers (it is read signed out)');
+});
+
 /* calm words, no stores, nothing about how it was made. The word list is kept encoded so the words do not show up in the repo. */
 var words = fs.readFileSync(path.join(root, 'data/tasks.js'), 'utf8') + fs.readdirSync(root).filter(function (f) { return /\.(html|js|css|md)$/.test(f); }).map(function (f) { return fs.readFileSync(path.join(root, f), 'utf8'); }).join('\n') +
-  ['js/engine.js', 'js/site.js', 'js/store.js', 'data/links.js'].map(function (f) { return fs.readFileSync(path.join(root, f), 'utf8'); }).join('\n');
+  ['js/engine.js', 'js/site.js', 'js/store.js', 'js/howto-view.js', 'data/links.js', 'data/howto.js'].map(function (f) { return fs.readFileSync(path.join(root, f), 'utf8'); }).join('\n');
 var BANNED = Buffer.from('XGJBSVxifGFydGlmaWNpYWwgaW50ZWxsaWdlbmNlfFxiZG9vbXxhcG9jYWx5cHxcYlNIVEZcYnxjb2xsYXBzZSBvZnxlbmQgb2YgdGhlIHdvcmxkfFxicGFuaWNcYnxhbWF6b258d2FsbWFydHxob21lIGRlcG90fGNvc3Rjb3xsb3dlJ3N8aGFyYm9yIGZyZWlnaHR8YmFzcyBwcm98Y2hhdGdwdHxjbGF1ZGV8b3BlbmFpfGdwdC0=', 'base64').toString().split('|');
 /* no group or community names anywhere in the app or README (also encoded) */
 var everything = words + fs.readFileSync(path.join(root, 'README.md'), 'utf8') + fs.readFileSync(path.join(root, 'scripts/build_hazards.py'), 'utf8');

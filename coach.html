@@ -36,6 +36,8 @@
 <script src="js/engine.js?v=20261117b"></script>
 <script src="js/store.js?v=20261117b"></script>
 <script src="js/site.js?v=20261117b"></script>
+<script src="data/howto.js?v=20261117b"></script>
+<script src="js/howto-view.js?v=20261117b"></script>
 <script>
 (function () {
   'use strict';
@@ -111,6 +113,12 @@
     });
     card.appendChild(ol);
     if (!isDone) card.appendChild(el('div', { class: 'progress-line', 'aria-label': pct + '% of the parts checked' }, el('i', { style: 'width:' + pct + '%' })));
+
+    var how = UI.howto(t.id);
+    if (how) card.appendChild(el('details', { class: 'fold', open: true, style: 'margin-top:16px' }, [
+      el('summary', null, 'How to do it, in full'), how,
+      el('p', { class: 'noprint', style: 'margin:10px 0 0' }, el('a', { href: 'guides.html?step=' + t.id }, 'Open this as its own page, to print or share'))
+    ]));
 
     if (t.links && t.links.length) {
       card.appendChild(el('h3', { style: 'margin-top:16px' }, 'Learn more'));
