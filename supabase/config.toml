@@ -1,0 +1,4 @@
+# Only what the command line needs to deploy the phone-alert sender the same way as the dashboard.
+# The sender takes no sign-in: see supabase/functions/push/index.ts.
+[functions.push]
+verify_jwt = false

@@ -6,7 +6,10 @@
 <title>Your account</title>
 <meta name="description" content="Sign in, download everything you have saved, or delete your account.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="site.css?v=20261117b">
+<link rel="stylesheet" href="site.css?v=20261121-alerts">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#9a4f1f">
 </head>
 <body>
 <header>
@@ -33,25 +36,27 @@
       </div>
       <p class="flash" id="flash" aria-live="polite"></p>
     </div>
+    <div class="card" id="alerts"></div>
     <div class="card">
       <h3>What is kept</h3>
-      <p style="margin:0">Your email; your household answers (how many people, kinds of home and water, yes or no on medicine and medical devices); your town and its county; each assessment and its scores; which steps you checked off and when; and your check-in answers. No name, no street address, no phone number, no documents. No one but you can read your rows. Nothing is posted anywhere. <a href="privacy.html">The whole of it.</a></p>
+      <p style="margin:0">Your email; your household answers (how many people, kinds of home and water, yes or no on medicine and medical devices); your town and its county; each assessment and its scores; which steps you checked off and when; and your check-in answers. If you turn on phone alerts: the address your phone gives for alerts, your alert choices, your time zone, and the alerts sent to you for 60 days. No name, no street address, no phone number, no documents. No one but you can read your rows. Nothing is posted anywhere. <a href="privacy.html">The whole of it.</a></p>
     </div>
     <div class="card danger">
       <h3>Delete my account</h3>
-      <p>This removes your sign-in and every row: answers, assessments, progress and check-ins. Today, for good.</p>
+      <p>This removes your sign-in and every row: answers, assessments, progress, check-ins and alerts. Today, for good.</p>
       <div class="actions"><button class="btn warn" type="button" id="del">Delete my account</button></div>
     </div>
   </div>
 </main>
 <footer><div class="wrap" id="foot"></div></footer>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
-<script src="config.js?v=20261117b"></script>
-<script src="data/links.js?v=20261117b"></script>
-<script src="data/tasks.js?v=20261117b"></script>
-<script src="js/engine.js?v=20261117b"></script>
-<script src="js/store.js?v=20261117b"></script>
-<script src="js/site.js?v=20261117b"></script>
+<script src="config.js?v=20261121-alerts"></script>
+<script src="data/links.js?v=20261121-alerts"></script>
+<script src="data/tasks.js?v=20261121-alerts"></script>
+<script src="js/engine.js?v=20261121-alerts"></script>
+<script src="js/store.js?v=20261121-alerts"></script>
+<script src="js/site.js?v=20261121-alerts"></script>
+<script src="js/alerts.js?v=20261121-alerts"></script>
 <script>
 (function () {
   'use strict';
@@ -64,9 +69,18 @@
     var d = app.data;
     $('what').textContent = d.assessments.length + ' assessment' + (d.assessments.length === 1 ? '' : 's') + ', ' +
       d.progress.length + ' step record' + (d.progress.length === 1 ? '' : 's') + ', ' + d.checkins.length + ' check-in' + (d.checkins.length === 1 ? '' : 's') + '.';
+    RD.alerts.panel(app, $('alerts'));
     $('dl').addEventListener('click', function () {
-      var blob = new Blob([JSON.stringify({ email: app.session.email, downloaded: new Date().toISOString(), profile: d.profile, assessments: d.assessments, progress: d.progress, checkins: d.checkins }, null, 2)], { type: 'application/json' });
-      var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'prepare-me-my-data.json'; document.body.appendChild(a); a.click(); a.remove();
+      var c = app.store.kind === 'online' ? app.store.c : null;
+      var extra = c ? Promise.all([
+        c.from('alert_prefs').select('warnings, watches, checkin, forum, tz, updated_at').maybeSingle(),
+        c.from('push_subs').select('id, created_at, last_ok'),
+        c.from('push_events').select('id, kind, title, body, url, detail, created_at, sent_at').order('id')
+      ]).then(function (r) { return { alert_choices: r[0].data, phones_with_alerts: r[1].data || [], alerts: r[2].data || [] }; }, function () { return {}; }) : Promise.resolve({});
+      extra.then(function (x) {
+        var blob = new Blob([JSON.stringify(Object.assign({ email: app.session.email, downloaded: new Date().toISOString(), profile: d.profile, assessments: d.assessments, progress: d.progress, checkins: d.checkins }, x), null, 2)], { type: 'application/json' });
+        var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'prepare-me-my-data.json'; document.body.appendChild(a); a.click(); a.remove();
+      });
     });
     $('signOut').addEventListener('click', function () { app.store.signOut().then(function () { location.href = 'index.html'; }); });
     $('del').addEventListener('click', function () {

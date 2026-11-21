@@ -38,7 +38,7 @@ RD.AREAS.forEach(function (a) { ok(RD.TASKS.filter(function (t) { return t.area 
 
 /* calm words, no stores, nothing about how it was made. The word list is kept encoded so the words do not show up in the repo. */
 var words = fs.readFileSync(path.join(root, 'data/tasks.js'), 'utf8') + fs.readdirSync(root).filter(function (f) { return /\.(html|js|css|md)$/.test(f); }).map(function (f) { return fs.readFileSync(path.join(root, f), 'utf8'); }).join('\n') +
-  ['js/engine.js', 'js/site.js', 'js/store.js', 'data/links.js'].map(function (f) { return fs.readFileSync(path.join(root, f), 'utf8'); }).join('\n');
+  ['js/engine.js', 'js/site.js', 'js/store.js', 'js/alerts.js', 'data/links.js', 'data/nws.js', 'supabase/functions/push/index.ts', 'supabase/schema.sql'].map(function (f) { return fs.readFileSync(path.join(root, f), 'utf8'); }).join('\n');
 var BANNED = Buffer.from('XGJBSVxifGFydGlmaWNpYWwgaW50ZWxsaWdlbmNlfFxiZG9vbXxhcG9jYWx5cHxcYlNIVEZcYnxjb2xsYXBzZSBvZnxlbmQgb2YgdGhlIHdvcmxkfFxicGFuaWNcYnxhbWF6b258d2FsbWFydHxob21lIGRlcG90fGNvc3Rjb3xsb3dlJ3N8aGFyYm9yIGZyZWlnaHR8YmFzcyBwcm98Y2hhdGdwdHxjbGF1ZGV8b3BlbmFpfGdwdC0=', 'base64').toString().split('|');
 /* no group or community names anywhere in the app or README (also encoded) */
 var everything = words + fs.readFileSync(path.join(root, 'README.md'), 'utf8') + fs.readFileSync(path.join(root, 'scripts/build_hazards.py'), 'utf8');
@@ -141,6 +141,126 @@ ok(E.checkinDue([], '2026-11-01T00:00:00', '2026-11-16T12:00:00'), 'check-in due
 ok(!E.checkinDue([{ week_of: '2026-11-16' }], '2026-11-01T00:00:00', '2026-11-18T12:00:00'), 'one check-in a week');
 eq(E.doneBetween(st, t0).sort(), ['comm-contact'], 'done since a date');
 
+/* ---------- phone alerts: NWS warnings matched to his disasters ---------- */
+require(path.join(root, 'data/nws.js'));
+var NH = RD.NWS.hazards;
+eq(NH('Tornado Warning'), ['tornado'], 'tornado warning');
+eq(NH('Flash Flood Warning'), ['flood'], 'flash flood warning');
+ok(NH('Hurricane Warning').indexOf('hurricane') >= 0 && NH('Tropical Storm Watch').indexOf('hurricane') >= 0, 'hurricane and tropical storm');
+ok(NH('Storm Surge Warning').indexOf('flood') >= 0, 'storm surge brings the flood steps');
+eq(NH('Severe Thunderstorm Watch'), ['storm'], 'thunderstorm watch');
+eq(NH('High Wind Warning'), ['storm'], 'high wind');
+eq(NH('Wind Chill Warning'), ['winter'], 'wind chill is winter, not a storm');
+eq(NH('Extreme Cold Warning'), ['winter', 'outage'], 'extreme cold brings the outage steps');
+eq(NH('Winter Storm Warning'), ['winter'], 'winter storm');
+eq(NH('Ice Storm Warning'), ['winter', 'outage'], 'ice storm');
+eq(NH('Extreme Heat Warning'), ['heat'], 'extreme heat');
+eq(NH('Excessive Heat Watch'), ['heat'], 'the older heat name too');
+eq(NH('Red Flag Warning'), ['wildfire'], 'red flag');
+eq(NH('Fire Warning'), ['wildfire'], 'fire warning');
+ok(NH('Tsunami Warning').indexOf('tsunami') >= 0, 'tsunami');
+eq(NH('Avalanche Warning'), ['avalanche'], 'avalanche');
+eq(NH('Ashfall Warning'), ['volcano'], 'ashfall');
+eq(NH('Earthquake Warning'), ['earthquake'], 'earthquake');
+eq(NH('Hazardous Materials Warning'), ['chemical'], 'hazardous materials');
+eq(NH('Shelter In Place Warning'), ['chemical'], 'shelter in place');
+eq(NH('Radiological Hazard Warning'), ['nuclear'], 'radiological');
+eq(NH('Nuclear Power Plant Warning'), ['nuclear'], 'nuclear plant');
+eq(NH('Evacuation Immediate'), ['evacuate'], 'evacuation');
+eq(NH('Civil Emergency Message'), [], 'a general notice has no one disaster');
+['Tornado Warning', 'Hurricane Warning', 'Storm Surge Warning', 'Flood Warning', 'Blizzard Warning', 'Red Flag Warning', 'Tsunami Warning',
+  'Volcano Warning', 'Avalanche Warning', 'Debris Flow Warning', 'Hazardous Materials Warning', 'Radiological Hazard Warning', 'Evacuation Immediate']
+  .forEach(function (ev) { ok(NH(ev).length && NH(ev).every(function (h) { return hzIds.indexOf(h) >= 0; }), ev + ' maps to real disasters'); });
+/* every county disaster the Weather Service warns about has a match (drought has no warning) */
+var covered = {};
+['Tornado Warning', 'Hurricane Warning', 'Flood Warning', 'Severe Thunderstorm Warning', 'Winter Storm Warning', 'Extreme Heat Warning',
+  'Red Flag Warning', 'Earthquake Warning', 'Debris Flow Warning', 'Tsunami Warning', 'Volcano Warning', 'Avalanche Warning']
+  .forEach(function (ev) { NH(ev).forEach(function (h) { covered[h] = 1; }); });
+RD.HAZARDS.forEach(function (h) { if (!h.always && h.id !== 'drought') ok(covered[h.id], h.id + ' has a weather warning that opens its steps'); });
+var mooreState = { have: [], taken_at: null, progress: {} };
+var tsteps = RD.NWS.steps('Tornado Warning', mooreCtx, mooreState, 6);
+ok(tsteps.some(function (t) { return t.id === 'hz-tornado'; }), 'a tornado warning in Moore opens the tornado step');
+ok(tsteps.length <= 6 && tsteps.every(function (t) { return E.applies(t, mooreCtx) && t.hz.indexOf('tornado') >= 0; }), 'the steps are his and fit the warning');
+var doneOne = { have: [tsteps[0].id], taken_at: null, progress: {} };
+var t2 = RD.NWS.steps('Tornado Warning', mooreCtx, doneOne, 50);
+ok(!E.isDone(t2[0], doneOne) && E.isDone(t2[t2.length - 1], doneOne), 'steps not done come first');
+ok(RD.NWS.steps('Civil Emergency Message', mooreCtx, mooreState).every(function (t) { return t.area === 'plan'; }), 'a general notice opens the family plan');
+
+/* ---------- phone alerts: the sender's own logic (the pure part of supabase/functions/push/index.ts) ---------- */
+var fnSrc = fs.readFileSync(path.join(root, 'supabase/functions/push/index.ts'), 'utf8');
+var pure = fnSrc.slice(fnSrc.indexOf('// ---- pure: begin'), fnSrc.indexOf('// ---- pure: end'));
+ok(pure.length > 1000, 'the sender has a pure part to test');
+var F = new Function(pure + '\nreturn { allowedEndpoint: allowedEndpoint, nwsKind: nwsKind, countiesFrom: countiesFrom, nwsToAlerts: nwsToAlerts, vapidHeader: vapidHeader, importVapidKey: importVapidKey, NWS_URL: NWS_URL, NWS_HEADERS: NWS_HEADERS };')();
+['https://fcm.googleapis.com/fcm/send/abc', 'https://web.push.apple.com/QGx', 'https://updates.push.services.mozilla.com/wpush/v2/x',
+  'https://wns2-par02p.notify.windows.com/w/?token=x'].forEach(function (u) { ok(F.allowedEndpoint(u), 'push service allowed: ' + u.slice(8, 40)); });
+['http://fcm.googleapis.com/x', 'https://fcm.googleapis.com.evil.example/x', 'https://evil.example/fcm.googleapis.com', 'https://fcm.googleapis.com:8443/x', 'not a url']
+  .forEach(function (u) { ok(!F.allowedEndpoint(u), 'not a push service: ' + u); });
+eq([F.nwsKind('Tornado Warning'), F.nwsKind('Tornado Watch'), F.nwsKind('Wind Advisory'), F.nwsKind('Special Weather Statement'),
+  F.nwsKind('Evacuation Immediate'), F.nwsKind('Child Abduction Emergency'), F.nwsKind('')], ['warning', 'watch', null, null, 'warning', null, null], 'which NWS products become alerts');
+eq(F.countiesFrom(['048201', '148201', '040027', '57450', 'x', '057450', '077250', '072127']), ['48201', '40027', '72127'], 'SAME codes to county FIPS, marine areas left out');
+ok(/^https:\/\/api\.weather\.gov\/alerts\/active\?/.test(F.NWS_URL) && /status=actual/.test(F.NWS_URL), 'asks the Weather Service for real alerts only');
+ok(/preparemeapp\.org/.test(F.NWS_HEADERS['User-Agent']) && !/@/.test(F.NWS_HEADERS['User-Agent']), 'names the site to the Weather Service, no email');
+var NOW = Date.parse('2026-11-21T20:00:00Z');
+function feat(p) { return { id: p.id, properties: Object.assign({ status: 'Actual', messageType: 'Alert', geocode: { SAME: ['048201'] } }, p) }; }
+var geo = { features: [
+  feat({ id: 'urn:a1', event: 'Tornado Warning', headline: 'Tornado Warning issued November 21 at 1:55PM CST until 2:30PM CST by NWS Houston/Galveston TX', areaDesc: 'Harris, TX', expires: '2026-11-21T20:30:00Z', description: 'At 155 PM CST, a storm was located near Katy.', instruction: 'Go to a room on the lowest floor.', senderName: 'NWS Houston/Galveston TX' }),
+  feat({ id: 'urn:a2', event: 'Tornado Warning', messageType: 'Update', expires: '2026-11-21T20:45:00Z', references: [{ identifier: 'urn:a0', sent: '2026-11-21T19:00:00Z' }, { identifier: 'urn:a1', sent: '2026-11-21T19:55:00Z' }] }),
+  feat({ id: 'urn:a3', event: 'Flood Watch', ends: '2026-11-22T06:00:00Z', geocode: { SAME: ['040027', '048201'] } }),
+  feat({ id: 'urn:a4', event: 'Winter Storm Warning', expires: '2026-11-21T19:00:00Z' }),
+  feat({ id: 'urn:a5', event: 'Wind Advisory', expires: '2026-11-22T00:00:00Z' }),
+  feat({ id: 'urn:a6', event: 'Special Marine Warning', geocode: { SAME: ['077250'] }, expires: '2026-11-22T00:00:00Z' }),
+  feat({ id: 'urn:a7', event: 'Tornado Warning', status: 'Test' }),
+  feat({ id: 'urn:a8', event: 'Flood Warning', geocode: {}, expires: '2026-11-22T00:00:00Z' }),
+  feat({ id: 'urn:a9', event: 'Heat Warning', headline: 'x'.repeat(300), expires: '2026-11-22T00:00:00Z' })
+] };
+var al = F.nwsToAlerts(geo, NOW);
+eq(al.map(function (x) { return x.ref; }), ['Tornado Warning|urn:a1', 'Tornado Warning|urn:a0', 'Flood Watch|urn:a3', 'Heat Warning|urn:a9'], 'active warnings and watches, keyed by their first message');
+eq([al[0].kind, al[0].title, al[0].fips, al[2].kind, al[2].fips], ['warning', 'Tornado Warning', ['48201'], 'watch', ['40027', '48201']], 'kind, title and counties');
+ok(al[0].body.indexOf('Tornado Warning issued') === 0 && al[0].detail.instruction === 'Go to a room on the lowest floor.' && al[0].detail.sender === 'NWS Houston/Galveston TX', 'the Weather Service words are kept');
+ok(al[3].body.length <= 160 && al[3].detail.headline.length <= 300, 'long text is cut');
+ok(!F.nwsToAlerts({ features: [feat({ id: 'u', event: 'Tornado Warning', messageType: 'Cancel' })] }, NOW).length, 'a cancel sends nothing');
+eq(F.nwsToAlerts(null, NOW), [], 'no answer, no alerts');
+
+/* ---------- phone alerts: the pages, the service worker, the schema and the cron job agree ---------- */
+var swSrc = fs.readFileSync(path.join(root, 'sw.js'), 'utf8'), alSrc = fs.readFileSync(path.join(root, 'js/alerts.js'), 'utf8');
+var schema = fs.readFileSync(path.join(root, 'supabase/schema.sql'), 'utf8');
+ok(/indexedDB\.open\('prepare-me-push', 1\)/.test(swSrc) && /indexedDB\.open\('prepare-me-push', 1\)/.test(alSrc) && /get\('push'\)/.test(swSrc) && /put\(v, 'push'\)/.test(alSrc), 'the page and the service worker share the read key store');
+ok(/rpc\/push_latest/.test(swSrc) && /p_endpoint/.test(swSrc) && /p_read_key/.test(swSrc), 'the service worker reads alerts with its key');
+ok(/function public\.push_latest\(p_endpoint text, p_read_key text\)/.test(schema), 'push_latest takes the endpoint and key');
+ok(!/addEventListener\('fetch'/.test(swSrc), 'the service worker never stands between the pages and the network');
+ok(/importScripts\('config\.js'\)/.test(swSrc), 'the service worker reads the project from config.js');
+ok(/'\/functions\/v1\/push'/.test(alSrc) && fs.existsSync(path.join(root, 'supabase/functions/push/index.ts')), 'the page calls the push function that exists');
+ok(/\[functions\.push\]\s*\nverify_jwt = false/.test(fs.readFileSync(path.join(root, 'supabase/config.toml'), 'utf8')), 'the push function takes no sign-in');
+var cron = fs.readFileSync(path.join(root, 'supabase/cron.sql'), 'utf8');
+var cfgSrc = fs.readFileSync(path.join(root, 'config.js'), 'utf8');
+var projUrl = (cfgSrc.match(/supabaseUrl: '([^']+)'/) || [])[1];
+ok(projUrl && cron.indexOf("url := '" + projUrl + "/functions/v1/push'") >= 0, 'the cron job calls this project push function');
+ok(/'\* \* \* \* \*'/.test(cron) && /"action": "tick"/.test(cron), 'the cron job ticks each minute');
+ok(!/service_role|secret|eyJ/i.test(cron), 'the cron job carries no key');
+/* every table in schema.sql has row rules */
+(schema.match(/create table if not exists public\.(\w+)/g) || []).forEach(function (m) {
+  var t = m.split('.')[1];
+  ok(new RegExp('alter table public\\.' + t + ' enable row level security').test(schema) ||
+    schema.slice(schema.indexOf('foreach t in array'), schema.indexOf('end loop')).indexOf("'" + t + "'") >= 0, t + ' has row rules');
+});
+['push_subs', 'push_events', 'alert_prefs', 'push_state'].forEach(function (t) { ok(schema.indexOf('public.' + t) >= 0, 'schema has ' + t); });
+['queue_push(uuid, text, text, text, text, text, uuid)', 'push_queue_weather(jsonb)', 'push_queue_checkins(timestamptz)', 'push_claim()', 'push_nws_due()', 'push_result(bigint[], bigint[])']
+  .forEach(function (f) { ok(schema.indexOf("'public." + f + "'") >= 0, f + ' is for the server only'); });
+
+/* the app can go on a Home Screen: manifest, icons, and every page points to them */
+var man = JSON.parse(fs.readFileSync(path.join(root, 'manifest.webmanifest'), 'utf8'));
+eq([man.name, man.display, man.start_url], ['Prepare Me', 'standalone', 'index.html'], 'manifest');
+function pngSize(f) { var b = fs.readFileSync(path.join(root, f)); return [b.readUInt32BE(16), b.readUInt32BE(20)]; }
+man.icons.forEach(function (ic) { var n = +ic.sizes.split('x')[0]; eq(pngSize(ic.src), [n, n], ic.src + ' is ' + ic.sizes); });
+eq(pngSize('apple-touch-icon.png'), [180, 180], 'apple-touch-icon is 180');
+fs.readdirSync(root).filter(function (f) { return /\.html$/.test(f); }).forEach(function (f) {
+  var html = fs.readFileSync(path.join(root, f), 'utf8');
+  ok(/<link rel="manifest" href="manifest\.webmanifest">/.test(html) && /<link rel="apple-touch-icon" href="apple-touch-icon\.png">/.test(html), f + ' links the manifest and icon');
+});
+var acct = fs.readFileSync(path.join(root, 'account.html'), 'utf8');
+ok(/id="alerts"/.test(acct) && /js\/alerts\.js/.test(acct) && /RD\.alerts\.panel/.test(acct), 'the account page has the alerts section');
+ok(/Add to Home Screen/.test(alSrc) && /16\.4/.test(alSrc), 'iPhone steps say Add to Home Screen and iOS 16.4');
+
 /* ---------- every page loads its own files with the same version tag, so browsers fetch new code after a change ---------- */
 var tags = {}, untagged = [];
 fs.readdirSync(root).filter(function (f) { return /\.html$/.test(f); }).forEach(function (f) {
@@ -178,6 +298,17 @@ require(path.join(root, 'js/store.js'));
   ok(!(await L.session()), 'deleted and signed out');
   await L.signIn('a@example.com');
   eq((await L.loadAll()).assessments.length, 0, 'deleting removes his rows');
+
+  /* the VAPID signature the push services check */
+  var kp = await crypto.subtle.generateKey({ name: 'ECDSA', namedCurve: 'P-256' }, true, ['sign', 'verify']);
+  var jwk = await crypto.subtle.exportKey('jwk', kp.privateKey);
+  var pubRaw = Buffer.from(await crypto.subtle.exportKey('raw', kp.publicKey)).toString('base64url');
+  var hdr = await F.vapidHeader(await F.importVapidKey(JSON.stringify(jwk)), pubRaw, 'https://fcm.googleapis.com/fcm/send/abc', 1800000000);
+  var hm = hdr.match(/^vapid t=([\w-]+)\.([\w-]+)\.([\w-]+), k=([\w-]+)$/);
+  ok(!!hm && hm[4] === pubRaw, 'VAPID header shape');
+  var claims = JSON.parse(Buffer.from(hm[2], 'base64url').toString());
+  eq(claims, { aud: 'https://fcm.googleapis.com', exp: 1800000000 + 12 * 3600, sub: 'https://preparemeapp.org' }, 'VAPID claims');
+  ok(await crypto.subtle.verify({ name: 'ECDSA', hash: 'SHA-256' }, kp.publicKey, Buffer.from(hm[3], 'base64url'), new TextEncoder().encode(hm[1] + '.' + hm[2])), 'VAPID signature checks out with the public key');
 
   console.log(pass + ' checks pass' + (fail ? ', ' + fail + ' fail' : '') + '.');
   process.exit(fail ? 1 : 0);
