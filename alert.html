@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Your alerts</title>
+<meta name="description" content="A weather alert for your county, and the steps that fit it.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="site.css?v=20261117b">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#9a4f1f">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav class="nav" id="nav" aria-label="Pages"></nav>
+    <h1 id="h">Your alerts</h1>
+    <p class="lede" id="lede">Weather warnings for your county, check-in reminders and forum replies from the last 60 days.</p>
+  </div>
+</header>
+<main class="wrap" id="main">
+  <div id="one" hidden>
+    <div class="card alert-card">
+      <p class="muted" id="from"></p>
+      <h3 id="headline"></h3>
+      <p id="when"></p>
+      <p class="muted" id="area"></p>
+      <div id="instr" hidden><h4>What to do</h4><p class="pre" id="instruction"></p></div>
+      <details id="descBox"><summary>The full alert</summary><p class="pre" id="description"></p></details>
+      <p class="muted">Follow what local officials tell you. In an emergency, call 911.</p>
+      <p id="nws"></p>
+    </div>
+    <div class="card">
+      <h3>Your steps for this</h3>
+      <p class="muted" id="stepsLede"></p>
+      <ul class="plan-list" id="steps"></ul>
+    </div>
+  </div>
+  <div class="card" id="list" hidden>
+    <h3>Recent alerts</h3>
+    <ul class="alert-list" id="recent"></ul>
+    <p class="muted" id="none" hidden>No alerts yet. Turn them on for this phone on <a href="account.html#alerts">your account page</a>.</p>
+  </div>
+</main>
+<footer><div class="wrap" id="foot"></div></footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
+<script src="config.js?v=20261117b"></script>
+<script src="data/links.js?v=20261117b"></script>
+<script src="data/tasks.js?v=20261117b"></script>
+<script src="data/nws.js?v=20261117b"></script>
+<script src="js/engine.js?v=20261117b"></script>
+<script src="js/store.js?v=20261117b"></script>
+<script src="js/site.js?v=20261117b"></script>
+<script>
+(function () {
+  'use strict';
+  var UI = RD.ui, $ = UI.$, el = UI.el, E = RD.engine;
+  function when(d) { return new Date(d).toLocaleString(undefined, { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }); }
+  var KIND = { warning: 'Weather warning', watch: 'Weather watch', checkin: 'Check-in', forum: 'Forum', test: 'Test' };
+
+  UI.boot({ auth: true }).then(function (app) {
+    if (!app) return;
+    var c = app.store.kind === 'online' ? app.store.c : null;
+    var id = +(new URLSearchParams(location.search).get('id') || 0);
+
+    function recent() {
+      $('list').hidden = false;
+      if (!c) { $('none').hidden = false; return; }
+      c.from('push_events').select('id, kind, title, body, url, created_at').order('id', { ascending: false }).limit(50).then(function (r) {
+        var ul = UI.clear($('recent'));
+        var rows = r.data || [];
+        $('none').hidden = rows.length > 0;
+        rows.forEach(function (e) {
+          ul.appendChild(el('li', null, [el('a', { href: e.url }, e.title), ' ', el('small', null, KIND[e.kind] + ', ' + when(e.created_at)),
+            e.body ? el('div', { class: 'muted' }, e.body) : null]));
+        });
+      });
+    }
+
+    function one(e) {
+      var d = e.detail || {};
+      document.title = e.title;
+      $('h').textContent = e.title;
+      $('lede').textContent = d.headline || e.body || '';
+      $('one').hidden = false;
+      $('from').textContent = 'From the ' + (d.sender || 'National Weather Service') + '.';
+      var co = app.answers && app.answers.county;
+      $('headline').textContent = co ? 'For ' + co.name + ', ' + co.st : 'For your county';
+      $('when').textContent = (d.onset ? 'From ' + when(d.onset) : 'Sent ' + when(e.created_at)) + (d.ends ? ' until ' + when(d.ends) + '.' : '.');
+      $('area').textContent = d.area || '';
+      if (d.instruction) { $('instr').hidden = false; $('instruction').textContent = d.instruction; }
+      if (d.description) $('description').textContent = d.description; else $('descBox').hidden = true;
+      var l = RD.LINKS['nws-safety'];
+      UI.clear($('nws')).appendChild(el('a', { href: 'https://www.weather.gov/', target: '_blank', rel: 'noopener' }, 'Your local forecast at weather.gov'));
+      if (l) { $('nws').appendChild(document.createTextNode(' · ')); $('nws').appendChild(el('a', { href: l.url, target: '_blank', rel: 'noopener' }, l.title)); }
+
+      var steps = RD.NWS.steps(d.event || e.title, app.ctx, app.state, 6);
+      $('stepsLede').textContent = steps.length ? 'From your plan. The ones not done yet come first.' : 'Your family plan covers this.';
+      var ul = UI.clear($('steps'));
+      steps.forEach(function (t) {
+        var done = E.isDone(t, app.state);
+        ul.appendChild(el('li', { class: done ? 'done' : null }, [el('span', { class: 'st', 'aria-hidden': 'true' }, done ? '✓' : ''),
+          el('a', { href: 'coach.html?task=' + encodeURIComponent(t.id) }, UI.fill(t.title, app)), done ? el('small', null, ' Done') : null]));
+      });
+      recent();
+    }
+
+    if (!id || !c) { recent(); return; }
+    c.from('push_events').select('id, kind, title, body, url, detail, created_at').eq('id', id).maybeSingle().then(function (r) {
+      if (!r.data) { recent(); return; }
+      if (r.data.kind !== 'warning' && r.data.kind !== 'watch') { location.replace(r.data.url && r.data.url.indexOf('alert.html') !== 0 ? r.data.url : 'alert.html'); return; }
+      one(r.data);
+    });
+  });
+})();
+</script>
+</body>
+</html>
