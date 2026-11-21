@@ -6,6 +6,7 @@ var root = path.join(__dirname, '..');
 require(path.join(root, 'data/links.js'));
 require(path.join(root, 'data/tasks.js'));
 require(path.join(root, 'data/howto.js'));
+require(path.join(root, 'data/forum.js'));
 require(path.join(root, 'js/engine.js'));
 var RD = globalThis.RD, E = RD.engine;
 
@@ -55,7 +56,7 @@ Object.keys(RD.HOWTO).forEach(function (id) {
 
 /* calm words, no stores, nothing about how it was made. The word list is kept encoded so the words do not show up in the repo. */
 var words = fs.readFileSync(path.join(root, 'data/tasks.js'), 'utf8') + fs.readdirSync(root).filter(function (f) { return /\.(html|js|css|md)$/.test(f); }).map(function (f) { return fs.readFileSync(path.join(root, f), 'utf8'); }).join('\n') +
-  ['js/engine.js', 'js/site.js', 'js/store.js', 'js/howto-view.js', 'js/alerts.js', 'data/links.js', 'data/howto.js', 'data/nws.js', 'supabase/functions/push/index.ts', 'supabase/schema.sql'].map(function (f) { return fs.readFileSync(path.join(root, f), 'utf8'); }).join('\n');
+  ['js/engine.js', 'js/site.js', 'js/store.js', 'js/howto-view.js', 'js/alerts.js', 'data/links.js', 'data/howto.js', 'data/nws.js', 'data/forum.js', 'supabase/functions/push/index.ts', 'supabase/schema.sql'].map(function (f) { return fs.readFileSync(path.join(root, f), 'utf8'); }).join('\n');
 var BANNED = Buffer.from('XGJBSVxifGFydGlmaWNpYWwgaW50ZWxsaWdlbmNlfFxiZG9vbXxhcG9jYWx5cHxcYlNIVEZcYnxjb2xsYXBzZSBvZnxlbmQgb2YgdGhlIHdvcmxkfFxicGFuaWNcYnxhbWF6b258d2FsbWFydHxob21lIGRlcG90fGNvc3Rjb3xsb3dlJ3N8aGFyYm9yIGZyZWlnaHR8YmFzcyBwcm98Y2hhdGdwdHxjbGF1ZGV8b3BlbmFpfGdwdC0=', 'base64').toString().split('|');
 /* no group or community names anywhere in the app or README (also encoded) */
 var everything = words + fs.readFileSync(path.join(root, 'README.md'), 'utf8') + fs.readFileSync(path.join(root, 'scripts/build_hazards.py'), 'utf8');
@@ -258,7 +259,7 @@ ok(!/service_role|secret|eyJ/i.test(cron), 'the cron job carries no key');
 (schema.match(/create table if not exists public\.(\w+)/g) || []).forEach(function (m) {
   var t = m.split('.')[1];
   ok(new RegExp('alter table public\\.' + t + ' enable row level security').test(schema) ||
-    schema.slice(schema.indexOf('foreach t in array'), schema.indexOf('end loop')).indexOf("'" + t + "'") >= 0, t + ' has row rules');
+    (schema.match(/foreach t in array array\[[^\]]*\] loop[\s\S]*?end loop/g) || []).some(function (loop) { return /enable row level security/.test(loop) && loop.indexOf("'" + t + "'") >= 0; }), t + ' has row rules');
 });
 ['push_subs', 'push_events', 'alert_prefs', 'push_state'].forEach(function (t) { ok(schema.indexOf('public.' + t) >= 0, 'schema has ' + t); });
 ['queue_push(uuid, text, text, text, text, text, uuid)', 'push_queue_weather(jsonb)', 'push_queue_checkins(timestamptz)', 'push_claim()', 'push_nws_due()', 'push_result(bigint[], bigint[])', 'queue_alert(uuid, text, text, text, text)']
@@ -289,6 +290,34 @@ fs.readdirSync(root).filter(function (f) { return /\.html$/.test(f); }).forEach(
 });
 eq(untagged, [], 'every page file reference carries a version tag');
 eq(Object.keys(tags).length, 1, 'one version tag across all pages');
+
+
+/* ---------- the forum: boards, house rules, limits, and the links to it ---------- */
+var FB = RD.FORUM.boards.map(function (b) { return b.id; });
+eq(FB, ['start'].concat(areaIds, ['disasters']), 'boards: Start here, one per area, and disasters');
+RD.FORUM.boards.forEach(function (b) { ok(b.name && b.about && b.about.length > 10, 'board ' + b.id + ' has a name and a line about it'); });
+var schema = fs.readFileSync(path.join(root, 'supabase/schema.sql'), 'utf8');
+var sqlBoards = (schema.match(/board in \(([^)]*)\)/) || [])[1];
+eq((sqlBoards || '').split(',').map(function (x) { return x.trim().replace(/'/g, ''); }), FB, 'the server allows exactly the same boards');
+var L = RD.FORUM.limits;
+ok(schema.indexOf('char_length(btrim(title)) between ' + L.title[0] + ' and ' + L.title[1]) >= 0, 'title limit matches the server');
+ok(schema.indexOf('char_length(btrim(body)) between 1 and ' + L.body) >= 0, 'topic length matches the server');
+ok(schema.indexOf('char_length(btrim(body)) between 1 and ' + L.reply) >= 0, 'reply length matches the server');
+ok(schema.indexOf('char_length(reason) <= ' + L.reason) >= 0, 'report length matches the server');
+ok(schema.indexOf('recent >= ' + L.perMinute) >= 0 && schema.indexOf('today >= ' + L.perDay) >= 0, 'rate limits match the server');
+ok(schema.indexOf('char_length(display_name) between ' + L.name[0] + ' and ' + L.name[1]) >= 0, 'name length matches the server');
+var rules = RD.FORUM.rules.join(' ');
+eq(RD.FORUM.rules.length, 5, 'five house rules');
+ok(/calm and kind/i.test(rules) && /no selling/i.test(rules) && /personal details/i.test(rules) && /call 911/.test(rules), 'house rules: calm, kind, no selling, no personal details, call 911');
+ok(RD.FORUM.nameOk('Dan B') && RD.FORUM.nameOk("O'Neil") && RD.FORUM.nameOk('ham_radio.joe'), 'plain display names are fine');
+ok(!RD.FORUM.nameOk('d') && !RD.FORUM.nameOk('dan@example.com') && !RD.FORUM.nameOk('x'.repeat(31)) && !RD.FORUM.nameOk(' -dan') && !RD.FORUM.nameOk('Dan  B'), 'bad names and emails refused');
+var forumHtml = fs.readFileSync(path.join(root, 'forum.html'), 'utf8');
+ok(/'forum\.html', 'Forum'/.test(fs.readFileSync(path.join(root, 'js/site.js'), 'utf8')), 'the forum is in the nav');
+ok(/forum\.html\?new=1&task=' \+ t\.id/.test(fs.readFileSync(path.join(root, 'coach.html'), 'utf8')) && /Ask about this step/.test(fs.readFileSync(path.join(root, 'coach.html'), 'utf8')), 'every coach step links to Ask about this step');
+ok(!/\.email\b/.test(forumHtml), 'the forum page never touches an email');
+ok(!/innerHTML/.test(forumHtml), 'posts are shown as plain text, never as page code');
+ok(/House rules/.test(forumHtml) && /rulesList/.test(forumHtml), 'house rules are shown above the boards');
+ok(/Report/.test(forumHtml), 'every post has a Report button');
 
 /* ---------- the local store keeps two men apart ---------- */
 var mem = {};
@@ -326,6 +355,60 @@ require(path.join(root, 'js/store.js'));
   var claims = JSON.parse(Buffer.from(hm[2], 'base64url').toString());
   eq(claims, { aud: 'https://fcm.googleapis.com', exp: 1800000000 + 12 * 3600, sub: 'https://preparemeapp.org' }, 'VAPID claims');
   ok(await crypto.subtle.verify({ name: 'ECDSA', hash: 'SHA-256' }, kp.publicKey, Buffer.from(hm[3], 'base64url'), new TextEncoder().encode(hm[1] + '.' + hm[2])), 'VAPID signature checks out with the public key');
+
+  /* ---------- the forum in the local store: same rules as the server ---------- */
+  Object.keys(mem).forEach(function (k) { delete mem[k]; });
+  var FL = new RD.Local();
+  async function as(email) { await FL.signIn(email); return (await FL.session()).id; }
+  async function refused(p, re, msg) { try { await p; ok(false, msg); } catch (e) { ok(re.test(e.message), msg + ' (' + e.message + ')'); } }
+  var dan = await as('dan@example.com');
+  await refused(FL.newTopic(dan, { board: 'water', title: 'How much water?', body: 'For four.' }), /display name/, 'no post before a display name');
+  await refused(FL.setDisplayName(dan, 'dan@example.com'), /limits/, 'an email cannot be a name');
+  await FL.setDisplayName(dan, 'Dan B');
+  eq((await FL.forumMe()), { display_name: 'Dan B', moderator: false }, 'his name is kept, and he is not a moderator');
+  await refused(FL.newTopic(dan, { board: 'guns', title: 'Not a board', body: 'x' }), /limits/, 'unknown board refused');
+  await refused(FL.newTopic(dan, { board: 'water', title: 'Hi', body: 'x' }), /limits/, 'short title refused');
+  var t1 = await FL.newTopic(dan, { board: 'water', title: 'How much water for four?', body: 'We are four.', task_id: 'water-3day' });
+  eq([t1.author_name, t1.board, t1.task_id, t1.hidden], ['Dan B', 'water', 'water-3day', false], 'a topic carries his name, board and step');
+  var al = await as('al@example.com');
+  await refused(FL.setDisplayName(al, 'DAN b'), /taken/, 'names are unique, any case');
+  await FL.setDisplayName(al, 'Al');
+  eq((await FL.forumTopics('water')).length, 1, 'another man reads the topic');
+  eq((await FL.forumTopics('food')).length, 0, 'boards are kept apart');
+  await FL.newReply(al, t1.id, 'One gallon a person a day.');
+  eq((await FL.forumTopic(t1.id)).topic.reply_count, 1, 'the reply is counted');
+  await FL.report(al, 'topic', t1.id, 'selling');
+  await refused(FL.report(al, 'topic', t1.id, 'again'), /already/, 'one report per man per post');
+  eq(await FL.forumReports(), [], 'a member reads no reports');
+  await refused(FL.moderate('topic', t1.id, true), /Moderators only/, 'a member cannot hide a post');
+  var mod = await as('moderator@example.com');
+  await FL.setDisplayName(mod, 'Sam');
+  ok((await FL.forumMe()).moderator, 'the local moderator is a moderator');
+  var reps = await FL.forumReports();
+  eq([reps.length, reps[0].kind, reps[0].reason, reps[0].author_name], [1, 'topic', 'selling', 'Dan B'], 'the moderator reads the report');
+  await FL.moderate('topic', t1.id, true);
+  eq((await FL.forumReports()).length, 0, 'hiding clears its reports');
+  await as('al@example.com');
+  eq([(await FL.forumTopics(null)).length, await FL.forumTopic(t1.id)], [0, null], 'a hidden topic is gone for other men');
+  await refused(FL.newReply(al, t1.id, 'Hello?'), /closed/, 'no replies to a hidden topic');
+  await as('dan@example.com');
+  eq((await FL.forumTopics(null)).length, 1, 'the author still sees his hidden topic');
+  await as('moderator@example.com');
+  await FL.moderate('topic', t1.id, false);
+  var rid = (await FL.forumTopic(t1.id)).replies[0].id;
+  await FL.moderate('reply', rid, true);
+  await as('dan@example.com');
+  var seen = await FL.forumTopic(t1.id);
+  eq([seen.replies.length, seen.topic.reply_count], [0, 0], 'a hidden reply is gone and not counted');
+  await FL.newTopic(dan, { board: 'food', title: 'Rice or beans first?', body: 'Which keeps?' });
+  await FL.newTopic(dan, { board: 'food', title: 'Canned or dried?', body: 'Which keeps?' });
+  await refused(FL.newTopic(dan, { board: 'food', title: 'One more question', body: 'Fast.' }), /Slow down/, '3 posts a minute, then wait');
+  await FL.setDisplayName(dan, 'Dan Baker');
+  ok((await FL.forumTopics(null)).every(function (t) { return t.author_name === 'Dan Baker'; }), 'a new name shows on his posts');
+  ok(JSON.stringify(await FL.forumTopics(null)).indexOf('@') < 0, 'no email in what the forum returns');
+  await FL.deleteMe();
+  await as('al@example.com');
+  eq((await FL.forumTopics(null)).length, 0, 'deleting an account removes his posts');
 
   console.log(pass + ' checks pass' + (fail ? ', ' + fail + ' fail' : '') + '.');
   process.exit(fail ? 1 : 0);

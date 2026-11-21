@@ -67,6 +67,75 @@
     return this.c.from('checkins').upsert(Object.assign({ user_id: userId }, row), { onConflict: 'user_id,week_of' }).select().single().then(function (r) { if (r.error) throw err(r.error); return r.data; });
   };
 
+
+  /* ---------- the forum (Supabase). The row rules decide who reads what; the triggers set names and counts. ---------- */
+  var TOPIC_COLS = 'id, user_id, board, title, task_id, author_name, by_moderator, hidden, reply_count, created_at, last_reply_at';
+  /* plain words for the server's refusals */
+  function forumErr(e, taken) {
+    var m = e && e.message ? e.message : String(e);
+    if (e && e.code === '23505') return new Error(taken || 'That is already done.');
+    if (e && e.code === '23514') return new Error('That does not fit the limits. Check the length.');
+    if (/^forum: /.test(m)) return new Error(m.replace(/^forum: /, '').replace(/^./, function (c) { return c.toUpperCase(); }) + '.');
+    return err(e);
+  }
+  function fq(p, taken) { return p.then(function (r) { if (r.error) throw forumErr(r.error, taken); return r.data; }); }
+  Online.prototype.forumMe = function () {
+    var c = this.c;
+    return Promise.all([fq(c.from('profiles').select('display_name').maybeSingle()), fq(c.rpc('forum_is_moderator'))])
+      .then(function (r) { return { display_name: (r[0] && r[0].display_name) || null, moderator: !!r[1] }; });
+  };
+  Online.prototype.setDisplayName = function (userId, name) {
+    return fq(this.c.from('profiles').upsert({ user_id: userId, display_name: String(name).trim() }, { onConflict: 'user_id' }), 'That name is taken. Try another.');
+  };
+  Online.prototype.forumTopics = function (board) {
+    var x = this.c.from('forum_topics').select(TOPIC_COLS).order('last_reply_at', { ascending: false }).limit(board ? 200 : 1000);
+    if (board) x = x.eq('board', board);
+    return fq(x).then(function (d) { return d || []; });
+  };
+  Online.prototype.forumTopic = function (id) {
+    var c = this.c;
+    return Promise.all([
+      fq(c.from('forum_topics').select(TOPIC_COLS + ', body').eq('id', id).maybeSingle()),
+      fq(c.from('forum_replies').select('id, topic_id, user_id, body, author_name, by_moderator, hidden, created_at').eq('topic_id', id).order('created_at', { ascending: true }))
+    ]).then(function (r) { return r[0] ? { topic: r[0], replies: r[1] || [] } : null; });
+  };
+  Online.prototype.newTopic = function (userId, row) {
+    return fq(this.c.from('forum_topics').insert({ user_id: userId, board: row.board, title: row.title, body: row.body, task_id: row.task_id || null }).select(TOPIC_COLS).single());
+  };
+  Online.prototype.newReply = function (userId, topicId, body) {
+    return fq(this.c.from('forum_replies').insert({ user_id: userId, topic_id: topicId, body: body }).select('id').single());
+  };
+  Online.prototype.report = function (userId, kind, id, reason) {
+    var row = { user_id: userId, reason: reason || '' };
+    row[kind === 'topic' ? 'topic_id' : 'reply_id'] = id;
+    return fq(this.c.from('forum_reports').insert(row), 'You already reported this post. Thank you.');
+  };
+  /* moderators only (the row rules return nothing to anyone else) */
+  Online.prototype.forumReports = function () {
+    var c = this.c;
+    return fq(c.from('forum_reports').select('id, topic_id, reply_id, reason, created_at').is('resolved_at', null).order('created_at', { ascending: true }).limit(200)).then(function (reps) {
+      reps = reps || [];
+      var tids = reps.filter(function (r) { return r.topic_id; }).map(function (r) { return r.topic_id; });
+      var rids = reps.filter(function (r) { return r.reply_id; }).map(function (r) { return r.reply_id; });
+      return Promise.all([
+        tids.length ? fq(c.from('forum_topics').select('id, title, body, author_name, hidden').in('id', tids)) : [],
+        rids.length ? fq(c.from('forum_replies').select('id, topic_id, body, author_name, hidden').in('id', rids)) : []
+      ]).then(function (r) { return joinReports(reps, r[0] || [], r[1] || []); });
+    });
+  };
+  Online.prototype.moderate = function (kind, id, hide) { return fq(this.c.rpc('forum_moderate', { p_kind: kind, p_id: id, p_hide: !!hide })); };
+  Online.prototype.clearReport = function (id) { return fq(this.c.rpc('forum_clear_report', { p_id: id })); };
+
+  function joinReports(reps, topics, replies) {
+    function by(list) { var m = {}; list.forEach(function (x) { m[x.id] = x; }); return m; }
+    var T = by(topics), R = by(replies);
+    return reps.map(function (r) {
+      var p = r.topic_id ? T[r.topic_id] : R[r.reply_id];
+      return { id: r.id, kind: r.topic_id ? 'topic' : 'reply', post_id: r.topic_id || r.reply_id, topic_id: r.topic_id || (p && p.topic_id),
+        reason: r.reason, created_at: r.created_at, title: (p && p.title) || null, body: p ? p.body : '', author_name: p ? p.author_name : '', hidden: p ? p.hidden : false };
+    });
+  }
+
   /* ======================= this browser only (local preview) ======================= */
   var KEY = 'prepare-me-local-v1';
   function Local() { this.kind = 'local'; this.listeners = []; }
@@ -89,7 +158,18 @@
   Local.prototype.verifyCode = function (email) { return this.signIn(email).then(function () { return {}; }); };
   Local.prototype.signOut = function () { var db = this.read(); db.session = null; this.write(db); this.listeners.forEach(function (cb) { cb(null); }); return Promise.resolve(); };
   Local.prototype.onAuth = function (cb) { this.listeners.push(cb); };
-  Local.prototype.deleteMe = function () { var db = this.read(); delete db.users[db.session]; db.session = null; this.write(db); return Promise.resolve(); };
+  /* deleting a local account takes his forum posts with him, as on the server */
+  Local.prototype.deleteMe = function () {
+    var db = this.read(), u = this.me(db);
+    if (u && db.forum) {
+      var f = db.forum, gone = f.topics.filter(function (t) { return t.user_id === u.id; }).map(function (t) { return t.id; });
+      f.topics = f.topics.filter(function (t) { return t.user_id !== u.id; });
+      f.replies = f.replies.filter(function (r) { return r.user_id !== u.id && gone.indexOf(r.topic_id) < 0; });
+      f.reports = f.reports.filter(function (r) { return r.user_id !== u.id; });
+      f.topics.forEach(function (t) { recount(f, t.id); });
+    }
+    delete db.users[db.session]; db.session = null; this.write(db); return Promise.resolve();
+  };
   Local.prototype.loadAll = function () {
     var u = this.me(this.read());
     if (!u) return Promise.reject(new Error('not signed in'));
@@ -126,6 +206,120 @@
       if (c) Object.assign(c, row); else { c = Object.assign({ id: u.next++, created_at: iso() }, row); u.checkins.push(c); }
       return c;
     });
+  };
+
+
+  /* ---------- the forum, in this browser: one forum shared by every local man. The email moderator@example.com
+     is the moderator here, so the moderator tools can be checked. The same rules as the server's row rules. ---------- */
+  var LOCAL_MOD = 'moderator@example.com';
+  function copy(x) { return JSON.parse(JSON.stringify(x)); }
+  function seesPost(p, w) { return !p.hidden || p.user_id === w.id || w.mod; }
+  Local.prototype.forumRun = function (fn, write) {
+    try {
+      var db = this.read(), u = this.me(db);
+      if (!u) throw new Error('not signed in');
+      var w = { id: u.id, name: u.display_name || null, mod: db.session === LOCAL_MOD, u: u };
+      var f = db.forum = db.forum || { topics: [], replies: [], reports: [], next: 1 };
+      var out = fn(f, w, db);
+      if (write) this.write(db);
+      return Promise.resolve(out === undefined ? null : copy(out));
+    } catch (e) { return Promise.reject(e); }
+  };
+  Local.prototype.forumMe = function () { return this.forumRun(function (f, w) { return { display_name: w.name, moderator: w.mod }; }); };
+  Local.prototype.setDisplayName = function (userId, name) {
+    return this.forumRun(function (f, w, db) {
+      name = String(name).trim();
+      if (!RD.FORUM.nameOk(name)) throw new Error('That does not fit the limits. Check the length.');
+      Object.keys(db.users).forEach(function (k) {
+        var o = db.users[k];
+        if (o.id !== w.id && o.display_name && o.display_name.toLowerCase() === name.toLowerCase()) throw new Error('That name is taken. Try another.');
+      });
+      w.u.display_name = name;
+      f.topics.concat(f.replies).forEach(function (p) { if (p.user_id === w.id) p.author_name = name; });
+    }, true);
+  };
+  function recount(f, topicId) {
+    var t = f.topics.filter(function (x) { return x.id === topicId; })[0];
+    if (!t) return;
+    var shown = f.replies.filter(function (r) { return r.topic_id === topicId && !r.hidden; });
+    t.reply_count = shown.length;
+    t.last_reply_at = shown.length ? shown[shown.length - 1].created_at : t.created_at;
+  }
+  function gate(f, w) {
+    if (!w.name) throw new Error('Pick a display name first.');
+    var now = Date.now(), mine = f.topics.concat(f.replies).filter(function (p) { return p.user_id === w.id; });
+    if (mine.filter(function (p) { return now - Date.parse(p.created_at) < 60e3; }).length >= RD.FORUM.limits.perMinute) throw new Error('Slow down, try again in a minute.');
+    if (mine.filter(function (p) { return now - Date.parse(p.created_at) < 864e5; }).length >= RD.FORUM.limits.perDay) throw new Error('That is the most posts for one day.');
+  }
+  Local.prototype.forumTopics = function (board) {
+    return this.forumRun(function (f, w) {
+      return f.topics.filter(function (t) { return (!board || t.board === board) && seesPost(t, w); })
+        .sort(function (a, b) { return a.last_reply_at < b.last_reply_at ? 1 : a.last_reply_at > b.last_reply_at ? -1 : b.id - a.id; })
+        .map(function (t) { var o = copy(t); delete o.body; return o; });
+    });
+  };
+  Local.prototype.forumTopic = function (id) {
+    return this.forumRun(function (f, w) {
+      var t = f.topics.filter(function (x) { return x.id === Number(id); })[0];
+      if (!t || !seesPost(t, w)) return null;
+      return { topic: t, replies: f.replies.filter(function (r) { return r.topic_id === t.id && seesPost(r, w); }) };
+    });
+  };
+  Local.prototype.newTopic = function (userId, row) {
+    return this.forumRun(function (f, w) {
+      gate(f, w);
+      var L = RD.FORUM.limits, title = String(row.title || '').trim(), body = String(row.body || '').trim();
+      if (!RD.FORUM.board(row.board) || title.length < L.title[0] || title.length > L.title[1] || !body || body.length > L.body) throw new Error('That does not fit the limits. Check the length.');
+      var t = { id: f.next++, user_id: w.id, board: row.board, title: title, body: body, task_id: row.task_id || null, author_name: w.name, by_moderator: w.mod,
+        hidden: false, reply_count: 0, created_at: iso(), last_reply_at: iso() };
+      f.topics.push(t);
+      var o = copy(t); delete o.body; return o;
+    }, true);
+  };
+  Local.prototype.newReply = function (userId, topicId, body) {
+    return this.forumRun(function (f, w) {
+      gate(f, w);
+      var t = f.topics.filter(function (x) { return x.id === Number(topicId); })[0];
+      if (!t || t.hidden) throw new Error('This topic is closed.');
+      body = String(body || '').trim();
+      if (!body || body.length > RD.FORUM.limits.reply) throw new Error('That does not fit the limits. Check the length.');
+      var r = { id: f.next++, topic_id: t.id, user_id: w.id, body: body, author_name: w.name, by_moderator: w.mod, hidden: false, created_at: iso() };
+      f.replies.push(r);
+      recount(f, t.id);
+      return { id: r.id };
+    }, true);
+  };
+  Local.prototype.report = function (userId, kind, id, reason) {
+    return this.forumRun(function (f, w) {
+      var key = kind === 'topic' ? 'topic_id' : 'reply_id';
+      if (f.reports.some(function (r) { return r.user_id === w.id && r[key] === id; })) throw new Error('You already reported this post. Thank you.');
+      var rep = { id: f.next++, user_id: w.id, topic_id: null, reply_id: null, reason: String(reason || '').slice(0, RD.FORUM.limits.reason), created_at: iso(), resolved_at: null };
+      rep[key] = id;
+      f.reports.push(rep);
+    }, true);
+  };
+  Local.prototype.forumReports = function () {
+    return this.forumRun(function (f, w) {
+      if (!w.mod) return [];
+      return joinReports(f.reports.filter(function (r) { return !r.resolved_at; }), f.topics, f.replies);
+    });
+  };
+  Local.prototype.moderate = function (kind, id, hide) {
+    return this.forumRun(function (f, w) {
+      if (!w.mod) throw new Error('Moderators only.');
+      var key = kind === 'topic' ? 'topic_id' : 'reply_id';
+      var p = (kind === 'topic' ? f.topics : f.replies).filter(function (x) { return x.id === id; })[0];
+      if (!p) throw new Error('No such post.');
+      p.hidden = !!hide; p.hidden_at = hide ? iso() : null;
+      if (hide) f.reports.forEach(function (r) { if (r[key] === id && !r.resolved_at) r.resolved_at = iso(); });
+      if (kind === 'reply') recount(f, p.topic_id);
+    }, true);
+  };
+  Local.prototype.clearReport = function (id) {
+    return this.forumRun(function (f, w) {
+      if (!w.mod) throw new Error('Moderators only.');
+      f.reports.forEach(function (r) { if (r.id === id && !r.resolved_at) r.resolved_at = iso(); });
+    }, true);
   };
 
   /* ======================= pick one ======================= */
