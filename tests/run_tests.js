@@ -244,7 +244,7 @@ ok(!/service_role|secret|eyJ/i.test(cron), 'the cron job carries no key');
     schema.slice(schema.indexOf('foreach t in array'), schema.indexOf('end loop')).indexOf("'" + t + "'") >= 0, t + ' has row rules');
 });
 ['push_subs', 'push_events', 'alert_prefs', 'push_state'].forEach(function (t) { ok(schema.indexOf('public.' + t) >= 0, 'schema has ' + t); });
-['queue_push(uuid, text, text, text, text, text, uuid)', 'push_queue_weather(jsonb)', 'push_queue_checkins(timestamptz)', 'push_claim()', 'push_nws_due()', 'push_result(bigint[], bigint[])']
+['queue_push(uuid, text, text, text, text, text, uuid)', 'push_queue_weather(jsonb)', 'push_queue_checkins(timestamptz)', 'push_claim()', 'push_nws_due()', 'push_result(bigint[], bigint[])', 'queue_alert(uuid, text, text, text, text)']
   .forEach(function (f) { ok(schema.indexOf("'public." + f + "'") >= 0, f + ' is for the server only'); });
 
 /* the app can go on a Home Screen: manifest, icons, and every page points to them */

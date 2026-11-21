@@ -83,6 +83,11 @@ do $$ begin
   exception when insufficient_privilege then raise notice 'ok   a man cannot queue an alert for anyone';
   end;
   begin
+    perform public.queue_alert('bbbbbbbb-0000-0000-0000-000000000002', 'forum_reply', 'x', 'x', 'forum.html');
+    raise exception 'FAIL: A used the forum hook';
+  exception when insufficient_privilege then raise notice 'ok   a man cannot use the forum hook';
+  end;
+  begin
     perform public.push_claim();
     raise exception 'FAIL: A ran the sender';
   exception when insufficient_privilege then raise notice 'ok   a man cannot run the sender';
@@ -142,6 +147,8 @@ select pg_temp.check(not public.queue_push('aaaaaaaa-0000-0000-0000-000000000001
 select pg_temp.check(not public.queue_push('aaaaaaaa-0000-0000-0000-000000000001', 'forum', 'reply:2', 'New reply', 'Mine.', 'forum.html', 'aaaaaaaa-0000-0000-0000-000000000001'), 'no alert for his own reply');
 select pg_temp.check(public.queue_push('aaaaaaaa-0000-0000-0000-000000000001', 'forum', 'reply:3', 'New reply', 'x', 'https://evil.example/', null)
   and (select url from public.push_events where ref = 'reply:3') = 'index.html', 'an outside link in an alert becomes the home page');
+select public.queue_alert('aaaaaaaa-0000-0000-0000-000000000001', 'forum_reply', 'New reply', 'Sam replied to "Water"', 'forum.html?topic=7');
+select pg_temp.check((select count(*) from public.push_events where kind = 'forum' and url = 'forum.html?topic=7') = 1, 'the forum trigger hook queues a reply alert');
 select pg_temp.check(not public.queue_push('aaaaaaaa-0000-0000-0000-000000000001', 'test', 'reply:4', 'x', 'x', 'index.html', null), 'the server cannot queue a made-up kind');
 select pg_temp.check(public.push_queue_checkins('2026-11-25 17:00+00') = 1, 'a check-in reminder when one is due (Wednesday, 11 a.m. his time)');
 select pg_temp.check(public.push_queue_checkins('2026-11-25 18:00+00') = 0, 'one reminder a week');

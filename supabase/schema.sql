@@ -352,6 +352,16 @@ begin
   return n > 0;
 end $$;
 
+-- The forum's hook (agreed with the forum branch): its AFTER INSERT trigger on forum_replies calls this for the topic's
+-- author. 'forum_reply' is a forum alert (his "Replies to me in the forum" choice). Each call is one reply, so each is queued.
+create or replace function public.queue_alert(p_user uuid, p_kind text, p_title text, p_body text, p_url text) returns void
+language plpgsql security definer set search_path = public as $$
+begin
+  perform public.queue_push(p_user, case when p_kind in ('forum_reply', 'forum') then 'forum' else p_kind end,
+    left(coalesce(p_kind, '') || ':' || coalesce(p_url, '') || ':' || (extract(epoch from clock_timestamp()) * 1000000)::bigint, 300),
+    p_title, p_body, p_url, null);
+end $$;
+
 -- After sending: phones the push service took (last_ok), and phones it says are gone (removed).
 create or replace function public.push_result(p_ok bigint[], p_gone bigint[]) returns void
 language sql security definer set search_path = public as $$
@@ -373,7 +383,8 @@ declare f text;
 begin
   foreach f in array array['public.queue_push(uuid, text, text, text, text, text, uuid)', 'public.push_queue_weather(jsonb)',
                            'public.push_queue_checkins(timestamptz)', 'public.push_claim()', 'public.push_nws_due()',
-                           'public.push_result(bigint[], bigint[])'] loop
+                           'public.push_result(bigint[], bigint[])',
+                           'public.queue_alert(uuid, text, text, text, text)'] loop
     execute format('revoke all on function %s from public, anon, authenticated', f);
     execute format('grant execute on function %s to service_role', f);
   end loop;
