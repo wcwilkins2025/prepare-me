@@ -85,7 +85,7 @@
     who: 'You. Have a kid help fill and label; then two people know where it is.',
     steps: [
       'Count heads: {people}. You need one gallon a person a day, so {gal3} gallons for three days{petsLine}.',
-      'Gather clean jugs with tight caps: soda bottles, juice jugs, water jugs. Not milk jugs, and nothing that held bleach or chemicals.',
+      'Gather clean bottles with tight caps: plastic soda bottles or water jugs. Not milk or juice jugs, and nothing that held bleach or chemicals.',
       'Wash each with dish soap and rinse. To sanitize, swish 1 teaspoon of plain bleach in 1 quart of water, pour it out and let it air-dry.',
       'Fill from the tap. If your water is not from a city system, add 8 drops of plain unscented bleach per gallon.',
       'Cap tight. Write "drinking water" and today\'s date on each one.',
@@ -265,7 +265,7 @@
       'Mark the box with the soonest date in it.'
     ],
     when: 'Over the next two or three shopping trips.',
-    why: 'Ready.gov sets three days of food as the starting point. Food you already eat gets rotated and does not go to waste.',
+    why: 'Ready.gov says to keep at least several days of food, and three days is the place to start. Food you already eat gets rotated and does not go to waste.',
     done: 'A box or shelf with three days of food for {people}, kept apart from everyday food.',
     links: ['ready-food', 'redcross-kit'] });
 
@@ -385,7 +385,7 @@
     steps: [
       'Find the main breaker. Label it.',
       'Find the main water shutoff. Turn it off and back on once so you know it moves.',
-      'If you have gas, find the meter or tank valve. Learn which way is off. Keep a wrench there if it needs one.',
+      'If you have gas, find the meter or tank valve. Call your gas company to learn the steps for your meter. Do not turn the gas off just to practice.',
       'Shut gas off only if you smell gas, hear a leak, or are told to. Once off, the gas company must turn it back on.',
       'Show the other adult. Write the spots on your plan.'
     ],
@@ -395,18 +395,18 @@
     links: ['ready-skills'] });
 
   add({ id: 'power-co', area: 'power', rank: 4, cost: 2, costNote: 'About $25 to $40 each', weight: 2, hz: ['outage', 'winter', 'fire'],
-    title: 'Put a carbon monoxide alarm on each sleeping floor',
-    have: 'A working carbon monoxide alarm on each sleeping floor',
+    title: 'Put a carbon monoxide alarm on every level of your home',
+    have: 'A working carbon monoxide alarm on every level of the home',
     who: 'You.',
     steps: [
       'Check if you have any. Test them.',
-      'If not, put one on each floor where people sleep, near the bedrooms.',
+      'If not, put one on every level of the home, and one outside each sleeping area.',
       'Use one with a battery backup so it works in an outage.',
       'Test it when you test the smoke alarms.'
     ],
     when: 'This month.',
     why: 'Carbon monoxide has no smell. It is the hidden risk when people run generators, grills or heaters in an outage.',
-    done: 'An alarm on every sleeping floor, tested.',
+    done: 'An alarm on every level and outside each sleeping area, tested.',
     links: ['cdc-co'] });
 
   add({ id: 'power-batteries', area: 'power', rank: 4, cost: 1, costNote: 'About $15 to $25', weight: 1, hz: ['outage', 'tornado', 'hurricane', 'winter', 'earthquake'],
@@ -650,7 +650,7 @@
     done: 'You went to one meeting.',
     links: ['arrl-club', 'arrl-ares'] });
 
-  add({ id: 'comm-radio', area: 'comms', rank: 4, cost: 2, costNote: 'About $30 to $60', weight: 2, hz: ['all'],
+  add({ id: 'comm-radio', area: 'comms', rank: 4, cost: 2, costNote: 'About $20 to $100', weight: 2, hz: ['all'],
     title: 'Get a battery or crank weather radio',
     have: 'A battery or hand-crank radio with NOAA Weather Radio',
     who: 'You.',
@@ -871,7 +871,7 @@
     steps: [
       'Look up your address on the FEMA flood map.',
       'Know your way to high ground that does not cross low water.',
-      'Never drive or walk into flood water. Six inches can knock a man down; a foot can float a truck. Turn around.',
+      'Never drive or walk into flood water. Six inches of moving water can knock you down. A foot can carry away most cars, and two feet can carry away trucks. Turn around.',
       'Know what you would move up first: papers, medicine, electronics.',
       'Check if your insurance covers flood. Most home and renter policies do not.'
     ],
@@ -886,7 +886,7 @@
     who: 'You and the family.',
     steps: [
       'Clear leaves, pine needles and anything that burns from the gutters, roof and the first 5 feet around the house.',
-      'Move firewood and propane at least 30 feet from the house.',
+      'Keep the first 30 feet around the house clear of things that burn. Move firewood piles away from the walls.',
       'Pick two ways out of the area. Wildfire can close a road.',
       'Leave as soon as you are told, or sooner if it feels wrong. Keep the go-bag ready.',
       'In smoke, stay inside with windows shut.'
@@ -1134,7 +1134,7 @@
     who: 'You and the family.',
     steps: [
       'Look up your county\'s tsunami zone map on the county or state emergency site.',
-      'Find high ground or go inland: 100 feet up or 2 miles in.',
+      'Find high ground or go inland: 100 feet above sea level, or at least 1 mile inland.',
       'Plan to walk it. Roads jam.',
       'Rule: if you feel a strong quake near the coast, or see the sea pull back, go to high ground now. Do not wait for a warning.'
     ],
@@ -1428,4 +1428,248 @@
     why: 'Three months is real freedom. You can wait out most hard seasons.',
     done: 'Three months saved.',
     links: ['fdic-moneysmart'] });
+
+  /* ---------- survival skills, added 2026-11-21 ---------- */
+  add({ id: 'med-cpr-video', area: 'medical', rank: 2, cost: 0, weight: 2, hz: ['all'],
+    title: 'Learn Hands-Only CPR from a short free video',
+    have: 'I know Hands-Only CPR and have practiced the pace',
+    who: 'You. Then every teen and adult in the house.',
+    steps: [
+      'Watch the American Heart Association\'s free Hands-Only CPR video. It runs about a minute and a half.',
+      'Learn the two steps, in order: call 911, then push hard and fast in the center of the chest.',
+      'Learn the pace: 100 to 120 pushes a minute. Pick a song you know with that beat.',
+      'Know the limit: for babies, children, drowning and overdose, a full class with breaths is the next step.',
+      'Watch it again with the others in the house.'
+    ],
+    when: 'This week. Ten minutes.',
+    why: 'About 70 percent of cardiac arrests outside a hospital happen at home, so the person you save will likely be family. CPR right away can double or triple the chance they live.',
+    done: 'You watched the video, know the two steps and the pace, and showed one other person.',
+    links: ['aha-hocpr', 'aha-hocpr-facts'] });
+
+  add({ id: 'med-heat-cold', area: 'medical', rank: 2, cost: 0, weight: 2, hz: ['heat', 'winter', 'outage', 'all'],
+    title: 'Learn the signs of heat stroke and hypothermia, and what to do',
+    have: 'I know the signs of heat stroke, heat exhaustion, hypothermia and frostbite, and what to do',
+    who: 'You and the other adults.',
+    steps: [
+      'Heat stroke: confusion, slurred speech, passing out, hot dry skin or heavy sweating. Call 911 and cool the person fast with water and wet cloths.',
+      'Heat exhaustion: heavy sweating, headache, dizziness, weakness, nausea, thirst. Get them out of the heat, give sips of cool water, and get them checked.',
+      'Hypothermia: shivering, exhaustion, confusion, fumbling hands, slurred speech, drowsiness. Below 95°F is an emergency.',
+      'Frostbite: white or grayish-yellow skin that feels firm, waxy or numb. Warm it in warm, not hot, water. Never rub it.',
+      'Write all four on a card and keep it with the first aid kit.'
+    ],
+    when: 'This week. Twenty minutes.',
+    why: 'Heat and cold are the quiet dangers in an outage or a day outdoors. Both cloud a person\'s thinking, so someone else has to spot them.',
+    done: 'You can name the signs of all four and what to do, and the card is in the kit.',
+    links: ['cdc-heat-ill', 'cdc-hypo'] });
+
+  add({ id: 'med-wounds', area: 'medical', rank: 3, cost: 0, weight: 2, hz: ['all'],
+    title: 'Learn to treat a burn, a deep cut and a sprain',
+    have: 'I know first aid for a burn, a cut and a sprain',
+    who: 'You and the other adults.',
+    steps: [
+      'Burn: cool it in cool water, not ice, for at least 5 minutes. Cover it loosely with a clean, dry bandage.',
+      'A burn the size of your palm or bigger, or from chemicals or electricity: call 911.',
+      'Cut: wash your hands, wash the cut with mild soap and water, press on it to stop the bleeding, then cover it.',
+      'A cut that still bleeds after 10 minutes of pressure: call 911. A deep or gaping one may need stitches.',
+      'Sprain: ice wrapped in cloth, a firm but not tight wrap, raise it above the heart, and rest it.',
+      'Check the kit has gauze, non-stick bandages, a wrap and a cold pack.'
+    ],
+    when: 'This week. Thirty minutes.',
+    why: 'Clean-up and outdoor work bring burns, cuts and twisted ankles. Knowing the first ten minutes keeps a small injury small.',
+    done: 'You can walk through all three without looking, and the kit has what they need.',
+    links: ['nih-burns', 'nih-cuts', 'nih-sprains'] });
+
+  add({ id: 'med-hygiene', area: 'medical', rank: 3, cost: 1, costNote: 'Hand sanitizer and wipes, about $10', weight: 1, hz: ['all'],
+    title: 'Plan how to stay clean without running water',
+    have: 'A way to wash hands and stay clean when the water is off',
+    who: 'You and whoever runs the house.',
+    steps: [
+      'Set aside a large water jug with soap and a clean towel as a hand-washing station.',
+      'Keep hand sanitizer with at least 60% alcohol for when there is no water.',
+      'Wash before food, and after the toilet, diapers, garbage, or caring for someone sick.',
+      'Use only safe water to brush teeth. Keep cuts clean and covered.',
+      'Put soap, sanitizer and wipes in the kit.'
+    ],
+    when: 'This month. Twenty minutes.',
+    why: 'Clean hands matter most when safe water is hard to find. The CDC calls handwashing critical to stop sickness from spreading.',
+    done: 'A hand-washing jug set aside, sanitizer in the kit, and everyone knows when to wash.',
+    links: ['cdc-hygiene', 'cdc-sanitizer'] });
+
+  add({ id: 'home-toilet', area: 'home', rank: 3, cost: 1, costNote: 'A bucket with a lid, heavy bags and bleach, about $15 to $25 if you have none', weight: 2, hz: ['all'],
+    title: 'Make an emergency toilet',
+    have: 'An emergency toilet kit: a bucket with a lid, heavy bags, ties and bleach',
+    who: 'You.',
+    steps: [
+      'Gather a medium plastic bucket with a tight lid, heavy-duty trash bags and ties, toilet paper, and household bleach.',
+      'Pack it all inside the bucket, with soap or hand sanitizer.',
+      'If the pipes are fine but the water is off, flush with water poured from a bucket. Keep some water set aside for it.',
+      'After a flood, do not flush until you know the sewer lines are intact. Use the bucket, lined with a bag.',
+      'Show one other adult where it is and how it works.'
+    ],
+    when: 'This month. Twenty minutes.',
+    why: 'When the water or the sewer stops, waste becomes the next health problem. FEMA and Ready.gov both put sanitation supplies in the basic kit.',
+    done: 'The kit is packed in the bucket, and one other adult knows where it is.',
+    links: ['ready-kit', 'fema-supplies'] });
+
+  add({ id: 'food-can', area: 'food', rank: 7, cost: 2, costNote: 'About $40 to $80 for a canner, jars and lids, less if you have some', weight: 1, hz: ['all'],
+    title: 'Learn to can and preserve food safely',
+    have: 'I can food with tested recipes and the right canner',
+    who: 'You and anyone who helps in the kitchen.',
+    steps: [
+      'Use only tested recipes, from the National Center for Home Food Preservation or the USDA Complete Guide to Home Canning.',
+      'Know the rule: fruits, jams and pickles can go in a boiling-water canner. Vegetables, meat, poultry and fish need a pressure canner.',
+      'Find your elevation. At 1,000 feet or higher, the time or pressure goes up.',
+      'Start with one batch of fruit or jam in a boiling-water canner.',
+      'After 12 to 24 hours, check every seal. Label, date and store the jars cool and dark.'
+    ],
+    when: 'This season. One afternoon.',
+    why: 'Canning done wrong can cause botulism, which can kill. Done by the tested method, it puts a season of food on the shelf.',
+    done: 'One batch canned from a tested recipe, every seal checked, every jar labeled.',
+    links: ['usda-preserve', 'usda-extension'] });
+
+  add({ id: 'skill-fire', area: 'skills', rank: 4, cost: 0, weight: 1, hz: ['all'],
+    title: 'Learn to build and put out a fire safely',
+    have: 'I can build a small fire outdoors and put it dead out',
+    who: 'You. Bring a kid along.',
+    steps: [
+      'Check for fire bans first. No fire on dry or windy days.',
+      'Use a fire ring, or clear a circle 10 feet across down to bare dirt, away from branches, tents and dry grass.',
+      'Set a bucket of water and a shovel next to it before you light it.',
+      'Build small: tinder, then kindling, then bigger wood. Light it with a match, never with gas or lighter fluid.',
+      'Never leave it. Put it out by drowning, stirring and feeling until it is cold to the touch.'
+    ],
+    when: 'This month. One evening.',
+    why: 'Fire is heat, light, cooking and a signal for help. People start most wildfires, so putting it out matters as much as lighting it.',
+    done: 'You built a fire and put it out until it was cold to the touch.',
+    links: ['fs-campfire', 'smokey-campfire'] });
+
+  add({ id: 'skill-ten', area: 'skills', rank: 4, cost: 2, costNote: 'Mostly what you have; about $25 to $60 to fill gaps', weight: 1, hz: ['all'],
+    title: 'Pack the 10 essentials for the vehicle and the outdoors',
+    have: 'The 10 essentials packed, in the vehicle or a day pack',
+    who: 'You. One pack for each person who goes out.',
+    steps: [
+      'Navigation: a paper map and compass, plus a phone and a spare battery.',
+      'Light: a headlamp or flashlight, with spare batteries. Fire: waterproof matches or a lighter, and fire starters.',
+      'A first aid kit, a knife or multi-tool, and duct tape.',
+      'Extra clothes: rain shell, jacket, hat and gloves. Sun protection: sunglasses, sunscreen, a hat.',
+      'An extra day of food, water and a way to treat more.',
+      'Emergency shelter: a space blanket, tarp or bivy sack.'
+    ],
+    when: 'This month. One hour.',
+    why: 'A breakdown on a back road or a hike that runs late can turn into a night out. The National Park Service built this list for exactly that.',
+    done: 'All ten in one pack, in the vehicle or by the door.',
+    links: ['nps-10'] });
+
+  add({ id: 'skill-compass', area: 'skills', rank: 4, cost: 1, costNote: 'About $10 to $20 for a basic compass', weight: 1, hz: ['all'], after: 'skill-map',
+    title: 'Learn to use a compass and read the land on a topo map',
+    have: 'I can take a bearing with a compass and read contour lines',
+    who: 'You. Bring a kid along.',
+    steps: [
+      'Get a USGS topographic map of land near you and a basic baseplate compass.',
+      'Learn the contour lines: each line is one elevation, and lines close together mean steep ground.',
+      'Find the declination in the map\'s bottom margin. If the map is over 15 years old, look up a current figure.',
+      'At the table, draw a line between two points and take its bearing, adjusted for declination.',
+      'In a park you know, sight a landmark on the bearing, walk to it, and repeat.'
+    ],
+    when: 'This month. Two short sessions.',
+    why: 'Off the road there are no street signs, and GPS often gets no signal in deep valleys and thick woods. A compass and the shape of the land still work.',
+    done: 'You took a bearing off the map and walked it to a landmark.',
+    links: ['usgs-maps', 'usgs-bearing'] });
+
+  add({ id: 'skill-signal', area: 'skills', rank: 3, cost: 1, costNote: 'A whistle and a signal mirror, under $15', weight: 1, hz: ['all'],
+    title: 'Learn to signal for help',
+    have: 'A whistle and a signal mirror in each pack, and I know the signals',
+    who: 'You and every kid who goes outdoors.',
+    steps: [
+      'Put a whistle and a small signal mirror in every pack and the vehicle kit.',
+      'Learn the rule: three of anything is a call for help. Three whistle blasts, three flashes, three puffs of smoke.',
+      'Repeat it at regular intervals. Searchers answer with two.',
+      'Carry bright clothing you can lay out in a clearing to be seen from the air.',
+      'Give each child a whistle and one rule: if lost, stop and blow.'
+    ],
+    when: 'This week. Fifteen minutes.',
+    why: 'Searchers have to find you before they can help. A whistle, a mirror and bright cloth make you easy to find.',
+    done: 'Every pack has a whistle and a mirror, and every kid knows "stop and blow."',
+    links: ['fs-willamette-lost', 'nps-olym-safety'] });
+
+  add({ id: 'skill-lost', area: 'skills', rank: 2, cost: 0, weight: 2, hz: ['all'],
+    title: 'If you get lost outdoors, stay put and get found',
+    have: 'I leave a trip plan, and I know to stay put if lost',
+    who: 'You and everyone in the house who hunts, hikes or fishes.',
+    steps: [
+      'Before every trip, leave your route and return time with someone at home. Never on the windshield.',
+      'Tell them to call 911 if you are overdue. No one else is tracking you.',
+      'If lost: stop, stay calm, and try to fix your spot with the map, compass and landmarks.',
+      'If you still cannot find the trail, stay put. You will be found sooner.',
+      'Stay warm and dry, and signal: three whistle blasts, a mirror, bright clothing.'
+    ],
+    when: 'Before your next trip out. Ten minutes.',
+    why: 'Rangers do not keep track of overdue hikers. The person at home with your plan is your link to help, and staying put makes you easier to find.',
+    done: 'Everyone who goes out leaves a plan and knows to stay put.',
+    links: ['nps-yose-safety', 'nps-olym-safety'] });
+
+  add({ id: 'skill-night', area: 'skills', rank: 4, cost: 1, costNote: 'A space blanket and a small sit pad, under $25', weight: 1, hz: ['all'],
+    title: 'Learn to stay warm through a night outdoors',
+    have: 'I can get through a cold night outdoors: layers, shelter and dry clothes',
+    who: 'You and anyone who hunts, hikes or drives back roads in winter.',
+    steps: [
+      'Dress in layers: a thin layer that wicks sweat, wool or fleece over it, and a wind- and water-resistant shell. No cotton.',
+      'Pack a warm hat, extra socks and gloves, a space blanket or tarp, and a small pad to sit on.',
+      'Stay dry. Put rain gear on before you get wet, and add layers before you shiver.',
+      'Get out of the wind and make camp while you still have energy.',
+      'Eat and drink all day. Never ignore shivering.'
+    ],
+    when: 'Before cold weather.',
+    why: 'Most hypothermia cases happen between 30 and 50 degrees, when people do not think it is cold enough to matter. Wet and wind do the damage.',
+    done: 'Your pack has the layers, hat, shelter and sit pad, and you know the warning signs.',
+    links: ['fs-hypothermia', 'fs-backcountry'] });
+
+  add({ id: 'skill-knots', area: 'skills', rank: 4, cost: 0, weight: 1, hz: ['all'],
+    title: 'Learn to tie four useful knots',
+    have: 'I can tie a bowline, a clove hitch, a figure-eight and a sheet bend',
+    who: 'You. Teach a kid.',
+    steps: [
+      'Cut a few pieces of rope about 3 feet long, 1/4 to 1/2 inch thick.',
+      'Bowline: a loop at the end of a rope that will not slip. The free end must sit inside the loop.',
+      'Clove hitch: ties a line to a post or a rail.',
+      'Figure-eight: a stopper at the end of a rope, so it cannot pull through a ring.',
+      'Sheet bend: joins two ropes, even of different sizes. Make the loop in the thicker one.',
+      'Follow NOAA\'s pictures and tie each one until you can do it without looking.'
+    ],
+    when: 'This week. Twenty minutes a night.',
+    why: 'A tarp, a load in the truck, a line on a boat: each needs the right knot. A good knot holds under strain and still unties easily.',
+    done: 'You can tie all four from memory and teach one to someone else.',
+    links: ['noaa-knots'] });
+
+  add({ id: 'skill-hunted', area: 'skills', rank: 6, cost: 1, costNote: 'Some states run the class free in person; online versions may charge a fee', weight: 1, hz: ['all'],
+    title: 'Take a hunter education course',
+    have: 'I have passed hunter education',
+    who: 'You, and any kid old enough for your state\'s course.',
+    steps: [
+      'Find your state wildlife agency. The U.S. Fish and Wildlife Service lists them by state.',
+      'Look up its hunter education course: in person, online, or both.',
+      'Sign up and finish it.',
+      'Keep the card. Most states require it before you can buy a hunting license.'
+    ],
+    when: 'Before the next season. Check your state\'s class dates early.',
+    why: 'Hunter education teaches safety, ethics, game laws, outdoor survival and wilderness first aid. Most states require it, and it is the first step to putting meat on the table.',
+    done: 'You passed and have the card.',
+    links: ['fws-hunt-license', 'fws-hunter-ed'] });
+
+  add({ id: 'skill-fish', area: 'skills', rank: 6, cost: 2, costNote: 'A state license plus a basic rod and tackle, about $40 to $100', weight: 1, hz: ['all'],
+    title: 'Learn to fish and get your license',
+    have: 'I have a fishing license and can rig, cast and land a fish',
+    who: 'You and the kids.',
+    steps: [
+      'Buy your state fishing license, online, by phone or in person. Get a copy of the state fishing rules.',
+      'Start with a push-button spin-casting rod and reel. It is the easiest for beginners.',
+      'Rig it: tie on a hook, add a sinker 6 to 12 inches up the line, and clip on a bobber.',
+      'Practice casting in an open yard with a rubber casting plug in place of the hook.',
+      'Go fish. Keep only legal fish and release the rest quickly.'
+    ],
+    when: 'This season. One afternoon to start.',
+    why: 'Fishing turns nearby water into food, and the license money pays for the fish and the public access.',
+    done: 'A license in hand, and one trip where you rigged, cast and landed a fish.',
+    links: ['fws-fish-license', 'fws-fish-guide'] });
+
 })(typeof window !== 'undefined' ? window : globalThis);

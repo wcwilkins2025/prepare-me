@@ -13,9 +13,10 @@ No fear, no scare talk, no store names. A plain check of where he stands.
 - **The assessment.** Town, household, home, and "what you already have". He can retake it any time; every score is kept.
 - **The coach.** One step at a time. Every step says who does it, what to do (parts he can check off), when, why it matters, and what done looks like, with links to the source. He can mark a step done, put it off a week, or ask for another. Free steps come first, then paid steps sorted by cost. His whole plan is listed below by area.
 - **Weekly check-ins.** Score then and now, the steps done since last time, three quick questions, a plain reply, and a chart of every score over time.
+- **How to do it.** Every step has a full how-to: the method, the amounts, tables where numbers line up, mistakes to skip, and the date each fact was checked against its official source. It shows inside the step in the coach, and on `guides.html`, which anyone can read without an account and print.
 - **Account.** Download everything as a file, or delete the account and every row.
 
-There are 87 steps. The household and the county decide which ones apply. A man alone in a Miami apartment gets a different plan than a family of five on a well in Moore, Oklahoma.
+There are 102 steps, including survival skills: CPR, heat and cold illness, wounds, an emergency toilet, canning, fire, the 10 essentials, compass, signaling, getting found, a night outdoors, knots, hunter education and fishing. The household and the county decide which ones apply. A man alone in a Miami apartment gets a different plan than a family of five on a well in Moore, Oklahoma.
 
 ## Pages
 
@@ -25,6 +26,7 @@ There are 87 steps. The household and the county decide which ones apply. A man 
 | `start.html` | The assessment: town lookup with a live preview of his disasters, household, home, what he already has. |
 | `coach.html` | The next step, in full, and the whole plan by area. `coach.html?task=<id>` opens one step. |
 | `checkin.html` | The weekly check-in and the history chart. |
+| `guides.html` | Every how-to by area, free to read signed out. `guides.html?step=<id>` is one guide, ready to print. |
 | `resources.html` | Every source, by area and by disaster, and how the county ratings are read. |
 | `account.html` | Sign out, download my data, delete my account. |
 | `privacy.html` | What is kept and who can see it. |
@@ -34,6 +36,7 @@ There are 87 steps. The household and the county decide which ones apply. A man 
 A static site for GitHub Pages, the same pattern as Groundwork and Weight Target. No build step.
 
 - `data/tasks.js`: the areas, the disasters, the questions and every step. Edit steps here.
+- `data/howto.js`: the full how-to for each step, keyed by step id. Every fact comes from the step's sources; `checked` is the date it was checked. No household numbers, since guides are read signed out.
 - `data/links.js`: every outside link in one place.
 - `data/hazards.json` and `data/places.json`: the FEMA county table, and town and ZIP to county. Built by `scripts/build_hazards.py`.
 - `js/engine.js`: scores, the county disasters, the next step and the week. No page code, so the tests run it in Node.
@@ -66,7 +69,7 @@ Open http://localhost:8799. With `config.js` empty it runs as the local preview:
 ```
 node tests/run_tests.js
 ```
-1,324 checks. They cover the step library (every step has who, what, when, why, done and links that exist), calm wording with no store names, the household math, the county disasters for known places, the attacks (on by default, each can come off, their steps follow), town and ZIP search, scoring, next-step order (free first), put-off steps, the week, and the local store keeping two men apart.
+3,115 checks. They cover the step library, the how-to guides (each belongs to a step, has parts, and cites links that exist) (every step has who, what, when, why, done and links that exist), calm wording with no store names, the household math, the county disasters for known places, the attacks (on by default, each can come off, their steps follow), town and ZIP search, scoring, next-step order (free first), put-off steps, the week, and the local store keeping two men apart.
 
 ```
 node scripts/check_links.js
