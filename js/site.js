@@ -57,7 +57,7 @@
       UI.clear(foot);
       foot.appendChild(UI.el('p', { class: 'quote' }, 'Ready for what can reach your home.'));
       foot.appendChild(UI.el('p', null, 'Prepare Me is free. The steps follow Ready.gov, the American Red Cross, FEMA, the CDC and the USDA. Disasters by county come from the FEMA National Risk Index, December 2025.'));
-      foot.appendChild(UI.el('p', null, [UI.el('a', { href: 'privacy.html' }, 'Privacy'), ' · ', UI.el('a', { href: 'resources.html' }, 'Every source'), ' · ',
+      foot.appendChild(UI.el('p', null, [UI.el('a', { href: 'privacy.html' }, 'Privacy'), ' · ', UI.el('a', { href: 'resources.html' }, 'Every source'), ' · ', UI.el('a', { href: 'whats-new.html' }, "What's new"), ' · ',
         UI.el('a', { href: 'https://radioelmer.org', target: '_blank', rel: 'noopener' }, 'Radio Elmer'), ' · ',
         UI.el('a', { href: 'https://thelandfinder.org', target: '_blank', rel: 'noopener' }, 'Land Finder'), ' · ',
         UI.el('a', { href: 'https://groundworkpath.org', target: '_blank', rel: 'noopener' }, 'Groundwork')]));

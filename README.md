@@ -1,13 +1,13 @@
 # Prepare Me
 
-A free prepping coach. The folder and repo are `prepare-me`. The readiness score and the assessment keep their names inside the app. A man enters his town and answers plain questions about his home and family. Prepare Me looks up the disasters FEMA counts in his county, more likely and less likely. It scores where he stands in nine areas. Then it gives him the next thing to fix, one step at a time, with the free steps first.
+A free prepping coach. The folder and repo are `prepare-me`. The readiness score and the assessment keep their names inside the app. A man enters his town and answers plain questions about his home and family. Prepare Me looks up the disasters FEMA counts in his county, more likely and less likely. It scores where he stands in ten areas. Then it gives him the next thing to fix, one step at a time, with the free steps first.
 
 No fear, no scare talk, no store names. A plain check of where he stands.
 
 ## What it does
 
 - **Accounts.** Each man signs in with a 6-digit code sent to his email (no password, no link). The email has no link because work mail and some phones open every link to check it, which uses up the sign-in. His answers, scores, progress and check-ins are saved in his own rows.
-- **The score.** His home page opens with a bold score out of 100 and a score for each area: water, food, power and heat, medical and first aid, communications, family plan, security and home, skills, and money cushion. Under it are the next one or two things to fix.
+- **The score.** His home page opens with a bold score out of 100 and a score for each area: water, food, sanitation and hygiene, power and heat, medical and first aid, communications, family plan, security and home, skills, and money cushion. Under it are the next one or two things to fix. Only survival steps count. Comfort steps (`comfort: true` in `data/tasks.js`: canning, growing food, drying food, ham radio, backup power, the bigger money cushions and the like) are his own choice: the coach lists them as "Extras, your choice" and they never count in the score.
 - **His disasters.** From his town or ZIP, Prepare Me finds his county in the FEMA National Risk Index and sorts 18 hazards into *more likely here* and *less likely here*. His plan covers the more likely ones plus five every home faces: long power outage, house fire, sickness, losing a paycheck, and leaving home fast. He can add a less likely one, or take one off, with one tap. Each disaster shows how ready he is for it.
 - **Attacks.** Four that can reach any town are in every plan: a chemical spill or chemical attack, a cyber attack on power, banks or phones, a nuclear or radiation emergency, and a biological attack or outbreak. Their steps follow Ready.gov and the CDC: get inside, stay inside, stay tuned; shelter in place and seal a room; clean off after an exposure; a shelter kit; masks and shots; locking down accounts and freezing credit; a no-phone family plan; and an unplugged backup. He can take any of the four off his plan. The every-home list stays.
 - **The assessment.** Town, household, home, and "what you already have". He can retake it any time; every score is kept.
@@ -15,20 +15,21 @@ No fear, no scare talk, no store names. A plain check of where he stands.
 - **Weekly check-ins.** Score then and now, the steps done since last time, three quick questions, a plain reply, and a chart of every score over time.
 - **How to do it.** Every step has a full how-to: the method, the amounts, tables where numbers line up, mistakes to skip, and the date each fact was checked against its official source. It shows inside the step in the coach, and on `guides.html`, which anyone can read without an account and print.
 - **Phone alerts.** He can turn on alerts for his phone on the account page. He gets one when the National Weather Service puts out a warning for his county (watches too, if he picks them), when his weekly check-in is due, and when someone replies to him in the forum. Tapping a weather alert opens the Weather Service's own words and the steps in his plan that fit it, the ones not done first. On iPhone, alerts work once Prepare Me is on the Home Screen (iOS 16.4 or newer).
-- **Forum.** Men ask and answer questions. Boards: Start here, one for each of the nine areas, and Disasters. Topics and replies. Each man picks a display name the first time he posts; it is kept in his own row, and no email is ever shown. The house rules sit above the boards. Every post has a Report button. Posts show at once. The moderator hides or restores any post and reads the reports. Every step in the coach has an "Ask about this step" link that opens a new topic with the step's title. Only signed-in men read the forum. A new reply can queue a phone alert to the topic's author (see Reply alerts below).
+- **Forum.** Men ask and answer questions. Boards: Start here, one for each of the ten areas, and Disasters. Topics and replies. Each man picks a display name the first time he posts; it is kept in his own row, and no email is ever shown. The house rules sit above the boards. Every post has a Report button. Posts show at once. The moderator hides or restores any post and reads the reports. Every step in the coach has an "Ask about this step" link that opens a new topic with the step's title. Only signed-in men read the forum. A new reply can queue a phone alert to the topic's author (see Reply alerts below).
 - **Account.** Phone alerts, download everything as a file, or delete the account and every row.
 
-There are 102 steps, including survival skills: CPR, heat and cold illness, wounds, an emergency toilet, canning, fire, the 10 essentials, compass, signaling, getting found, a night outdoors, knots, hunter education and fishing. The household and the county decide which ones apply. A man alone in a Miami apartment gets a different plan than a family of five on a well in Moore, Oklahoma.
+There are 113 steps (17 of them comfort extras), including survival skills: CPR, heat and cold illness, wounds, an emergency toilet, canning, fire, the 10 essentials, compass, signaling, getting found, a night outdoors, knots, hunter education and fishing; and since 2026-11-26 sanitation (a latrine, trash, pests, cleaning with bleach), cooking over a wood fire, fuel storage, food after a flood, drying food, going back in after a flood or storm, mold, and stress after a disaster. The household and the county decide which ones apply. A man alone in a Miami apartment gets a different plan than a family of five on a well in Moore, Oklahoma.
 
 ## Pages
 
 | Page | What it does |
 |---|---|
-| `index.html` | Signed out: how it works and sign-in. Signed in: the score, next to fix, the nine areas, and his disasters. |
+| `index.html` | Signed out: how it works and sign-in. Signed in: the score, next to fix, the ten areas, and his disasters. |
 | `start.html` | The assessment: town lookup with a live preview of his disasters, household, home, what he already has. |
 | `coach.html` | The next step, in full, and the whole plan by area. `coach.html?task=<id>` opens one step. |
 | `checkin.html` | The weekly check-in and the history chart. |
-| `guides.html` | Every how-to by area, free to read signed out. `guides.html?step=<id>` is one guide, ready to print. |
+| `guides.html` | Survival basics first, then every how-to by area, free to read signed out. `guides.html?step=<id>` is one guide, ready to print. |
+| `whats-new.html` | Release notes from `data/releases.js`, newest first. Linked in every footer. |
 | `forum.html` | The boards, a board's topics, a topic and its replies, a new topic, and the moderator's reports. `forum.html?board=<id>`, `?topic=<id>`, `?new=1&task=<step id>`, `?reports=1`. |
 | `resources.html` | Every source, by area and by disaster, and how the county ratings are read. |
 | `account.html` | Phone alerts (on or off for this phone, a test, what to be alerted about, the iPhone steps), sign out, download my data, delete my account. |
@@ -40,6 +41,7 @@ There are 102 steps, including survival skills: CPR, heat and cold illness, woun
 A static site for GitHub Pages, the same pattern as Groundwork and Weight Target. No build step.
 
 - `data/tasks.js`: the areas, the disasters, the questions and every step. Edit steps here.
+- `data/releases.js`: the release notes. Add a release at the top each time a change goes live.
 - `data/howto.js`: the full how-to for each step, keyed by step id. Every fact comes from the step's sources; `checked` is the date it was checked. No household numbers, since guides are read signed out.
 - `data/links.js`: every outside link in one place.
 - `data/forum.js`: the forum's boards, house rules and limits. The board ids and limits match `supabase/schema.sql` (a test checks).
@@ -68,7 +70,7 @@ A static site for GitHub Pages, the same pattern as Groundwork and Weight Target
 
 When a man replies to someone else's topic, the server calls `public.queue_alert(user, kind, title, body, url)` for the topic's author, with kind `forum_reply`, the replier's display name, the topic title and `forum.html?topic=<id>`. That function belongs to the phone alerts. Until it exists, a reply queues nothing, so the forum works with or without alerts.
 
-Every page loads its CSS and scripts with a version tag (`site.css?v=20261121a`). After changing any of those files, change the tag to a new value in every page (one find-and-replace), so browsers fetch the new code at once instead of using their saved copy for up to ten minutes. A test checks that every page uses the same tag.
+Every page loads its CSS and scripts with a version tag (`site.css?v=20261126a`). After changing any of those files, change the tag to a new value in every page (one find-and-replace), so browsers fetch the new code at once instead of using their saved copy for up to ten minutes. A test checks that every page uses the same tag.
 
 ### How phone alerts work
 

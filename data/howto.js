@@ -382,13 +382,13 @@
     },
 
     'food-cook': {
-      intro: 'A grill or camp stove can cook in an outage, but only outdoors. Their fumes carry carbon monoxide, a gas you cannot see or smell.',
+      intro: 'A grill, camp stove or wood fire can cook in an outage, but only outdoors. Their fumes carry carbon monoxide, a gas you cannot see or smell.',
       parts: [
         { head: 'What you can use', items: [
           'Outdoors: a charcoal grill or a camp stove.',
+          'Outdoors with no power and no gas: a wood fire in a cleared pit. See the step on cooking over a wood fire.',
           'Indoors: a fireplace, if the chimney is checked or cleaned every year.',
-          'To keep food warm: candle warmers, chafing dishes or fondue pots.',
-          'No heat at all: canned food can be eaten cold, right from the can.'
+          'To keep food warm: candle warmers, chafing dishes or fondue pots.'
         ] },
         { head: 'Where to use it', items: [
           'Grills and camp stoves go outdoors, at least 20 feet from windows.',
@@ -403,14 +403,21 @@
           'People who are asleep can be overcome before they feel anything.',
           'If the alarm sounds or anyone has these signs, get everyone outside to fresh air and call 911.'
         ] },
+        { head: 'With no power and no gas', items: [
+          'Plan some meals that need no cooking at all. Canned food can be eaten cold, right from the can.',
+          'Dried fruit and stored root crops keep without a fridge. See the step on drying food and storing it cool.',
+          'For a hot meal, cook over a wood fire outdoors and check meat with a food thermometer.',
+          'Never partly cook meat and finish it later. Cook it all the way in one go.'
+        ] },
         { head: 'Heating food in the can', items: [
           'Take the label off.',
           'Wash the can, then wipe it with 1 part bleach to 10 parts water.',
           'Open the can before you heat it. Never heat a sealed can.'
         ] },
-        { head: 'Do a test meal', items: [
+        { head: 'Fuel and a test meal', items: [
           'Cook one full meal outside on what you have, start to finish.',
-          'Note how much fuel it used, so you know how many meals your fuel will cook.'
+          'Note how much fuel it used, so you know how many meals your fuel will cook.',
+          'Store propane, charcoal and firewood away from the house. See the step on storing cooking fuel.'
         ] }
       ],
       mistakes: [
@@ -418,8 +425,8 @@
         'Heating a can before opening it.',
         'Using the gas oven to warm the house.'
       ],
-      sources: ['cdc-co', 'ready-power', 'ready-food', 'fema-foodwater'],
-      checked: '2026-11-21'
+      sources: ['cdc-co', 'ready-power', 'ready-food', 'fema-foodwater', 'fsis-grilling', 'smokey-campfire'],
+      checked: '2026-11-26'
     },
 
     'food-opener': {
@@ -3709,45 +3716,63 @@
     },
 
     'home-toilet': {
-      intro: 'When the water is off or the sewer is broken, you still need a toilet. FEMA and Ready.gov list a few low-cost things that cover it.',
+      intro: 'When the water is off or the sewer is broken, you still need a toilet. FEMA and Ready.gov list a few low-cost things that cover it, and Extension shows how to run one for weeks.',
       parts: [
         { head: 'What to gather', items: [
-          'A medium-sized plastic bucket with a tight lid.',
-          'Heavy-duty plastic garbage bags and ties.',
-          'Toilet paper and moist towelettes.',
-          'A disinfectant and household chlorine bleach.',
-          'Soap and hand sanitizer.',
-          'FEMA also lists a small shovel, for when you must dig a latrine.'
+          'A medium-sized plastic bucket with a tight lid. For a long outage, Oregon State University Extension uses two 5-gallon buckets with lids, marked "pee" and "poo."',
+          'Heavy-duty plastic garbage bags and ties. Extension says 3 to 5 mil contractor bags, several boxes of them.',
+          'A dry cover material: wood shavings, sawdust, shredded paper, bark chips or peat moss.',
+          'Toilet paper, moist towelettes, and closable bags for used paper.',
+          'A disinfectant, household chlorine bleach, and disposable gloves.',
+          'Soap and hand sanitizer, plus a jug of water with a spigot for hand washing.',
+          'FEMA also lists a small shovel, for when you must dig a latrine. See the step on digging a latrine.'
         ] },
-        { head: 'If the pipes work but the water is off', items: [
-          'Store water in buckets or the bathtub to flush toilets. FEMA lists this for when pipes may freeze.',
-          'Flush with water poured from a bucket.',
-          'Ready.gov counts sanitation in its one gallon a person a day of stored water.'
-        ] },
-        { head: 'If the sewer may be broken', items: [
+        { head: 'Flush, or switch to the bucket', items: [
+          'If the pipes work but the water is off, flush with water poured from a bucket. FEMA says to store water in buckets or the tub for this when pipes may freeze.',
+          'Ready.gov counts sanitation in its one gallon a person a day of stored water.',
           'After a flood, do not flush until you know the sewage lines are intact.',
-          'Use the bucket instead. The CDC describes a bucket toilet as a container lined with a large plastic bag that gets replaced.',
+          'After a big earthquake, Extension says to avoid flushing even if your own pipes look fine. The pipes in the street may be broken.',
+          'On a septic system, the EPA says not to use it until the water in the drain field is lower than the water around the house.',
+          'Until then, use the bucket. The CDC describes a bucket toilet as a container lined with a plastic bag that gets replaced.'
+        ] },
+        { head: 'Use it day to day', items: [
+          'Line the poo bucket with a heavy bag. The pee bucket can stay unlined.',
+          'Try to keep pee out of the poo bucket. Extension says urine causes most of the smell.',
+          'After each use, sprinkle about half a cup of cover material over the waste until it is covered. This cuts odor and keeps flies off.',
+          'Put used toilet paper in the poo bag or a separate bag, not the pee bucket.',
+          'Close the lid between uses, but not airtight, so the waste can dry.',
           'Plan on about one bag a person a day.'
         ] },
-        { head: 'Use and empty it', items: [
-          'Line the bucket with a heavy bag. Keep the lid on between uses.',
-          'When a bag is full, tie it shut and replace it.',
-          'Get rid of full bags the way your local officials say.',
-          'If you must bury waste, pick a spot away from where people live and work, and mark it for later clean-up.',
-          'Clean the bucket with disinfectant when you are done with it.'
+        { head: 'Empty and store it', items: [
+          'Fill the poo bucket no more than half full. Put on gloves, tie the bag, and put it in a second bag. Seal it.',
+          'Store full bags in their own can with a lid, away from food, water and other garbage. Keep pets, flies and rats out.',
+          'Do not put them in the regular trash unless local officials say so. You may need to store them until the sewer is fixed.',
+          'When the pee bucket is about a quarter full, add a little water and pour it on the ground. Use a new spot each time.',
+          'If you must bury waste, pick a spot away from where people live and work, at least 100 feet from any water, and mark it.',
+          'Clean the buckets with disinfectant when you are done with them.'
+        ] },
+        { head: 'Kids, older adults and others', items: [
+          'A child who uses a potty chair can keep using it. Empty it into the family buckets.',
+          'Bag used diapers, for babies or adults, in heavy bags and store them with the poo bags. Keep extra diapers in the kit.',
+          'Bag pads and tampons the same way.',
+          'The CDC notes bucket toilets can be hard for older people and small children to use.',
+          'For anyone with balance trouble, put the buckets by a sturdy chair or rail. Raising them on scrap wood or bricks helps too.'
         ] },
         { head: 'Keep hands clean', items: [
           'The CDC says to put a hand-washing station at every toilet of any kind.',
-          'Wash with soap and water after every use, or use sanitizer with at least 60% alcohol.'
+          'A jug with a spigot, soap, a towel and a bucket underneath is enough. Extension suggests a second one by the kitchen.',
+          'Wash with soap and water after every use, or use sanitizer with at least 60% alcohol.',
+          'Wash after every diaper change, too.'
         ] }
       ],
       mistakes: [
-        'Flushing after a flood before you know the sewer lines are good.',
-        'Leaving a full bag untied.',
+        'Flushing after a flood or earthquake before you know the sewer lines are good.',
+        'Peeing in the poo bucket, or leaving waste uncovered.',
+        'Storing full bags with regular garbage, or near food and water.',
         'Forgetting a way to wash hands next to the toilet.'
       ],
-      sources: ['ready-kit', 'fema-supplies', 'fema-is909-handouts', 'cdc-sanitation', 'cdc-hygiene'],
-      checked: '2026-11-21'
+      sources: ['ready-kit', 'fema-supplies', 'fema-is909-handouts', 'cdc-sanitation', 'cdc-hygiene', 'osu-sanitation', 'epa-septic-flood', 'fema-cert-manual'],
+      checked: '2026-11-26'
     },
 
     'food-can': {
@@ -4171,6 +4196,580 @@
       ],
       sources: ['fws-fish-guide', 'fws-fish-license', 'fws-learn-fish'],
       checked: '2026-11-21'
+    },
+
+    'san-latrine': {
+      intro: 'A latrine is a pit for waste, for when the sewer is out for weeks and you have land to dig. Use the bucket toilet first; the latrine is the backup.',
+      parts: [
+        { head: 'When a latrine makes sense', items: [
+          'Oregon State University Extension says rural households can dig a latrine or hole and bury the solid waste when the sewer is out.',
+          'The CDC says pit and trench latrines do not work where the water table is high, and rain can flood them.',
+          'Where the ground is wet or floods, the CDC says a bagged bucket toilet works better.',
+          'Ask local officials how they want human waste handled. Local radio may carry this.',
+          'FEMA puts a small shovel for digging a latrine in its sanitation supplies.'
+        ] },
+        { head: 'Where to dig', cols: ['Keep it away from', 'At least', 'Source'], rows: [
+          ['Any water source: a well, spring, creek or pond', '100 feet', 'Oregon State University Extension'],
+          ['Water, campsites and trails, for a one-time hole in the woods', '200 feet', 'USDA Forest Service']
+        ], note: 'Extension also says not to bury waste where it can seep downhill into water. The EPA says sandy soil lets waste travel farther, so give more room there.' },
+        { head: 'Pick the spot', items: [
+          'Choose a spot away from where people live and work, as FEMA CERT training teaches.',
+          'Do not dig uphill of a well or creek, where waste could seep down to it.',
+          'Skip low spots where rain collects.',
+          'Pick a place with room for a simple screen or tarp for privacy.',
+          'Walk the yard now and pick the spot, so you are not guessing later.'
+        ] },
+        { head: 'Dig and use it', items: [
+          'The CDC describes a family pit about 1 foot wide, 1.6 feet long and 1.6 feet deep.',
+          'A trench is another choice: narrow, with soil thrown over the waste every day.',
+          'Dig a shallow ditch around it to steer rain away. The CDC lists this for trenches.',
+          'Cover the waste with a layer of soil each day, so flies stay off it. Flies carry germs to food and water.',
+          'For one use on the trail, the Forest Service says a hole 6 to 8 inches deep.'
+        ] },
+        { head: 'Wash hands, then close it', items: [
+          'The CDC says to put a hand-washing station at every toilet of any kind.',
+          'A jug of clean water with a spigot, soap, a towel and a bucket under it is enough.',
+          'When the pit is near full, fill it with soil. The CDC says full pits need to be capped.',
+          'Mark the spot so no one digs there later, and so it can be cleaned up.'
+        ] }
+      ],
+      mistakes: [
+        'Digging less than 100 feet from a well or creek, or uphill of one.',
+        'Digging in low, wet ground that floods.',
+        'Leaving waste uncovered, which draws flies.',
+        'No hand-washing station by the latrine.'
+      ],
+      sources: ['osu-sanitation', 'cdc-sanitation', 'usfs-human-waste', 'epa-septic-wells', 'fema-supplies', 'fema-cert-manual'],
+      checked: '2026-11-26'
+    },
+
+    'san-trash': {
+      intro: 'When trash pickup stops, garbage piles up fast and draws rats and flies. A covered can and a few rules keep it under control until trucks come back.',
+      parts: [
+        { head: 'Keep it covered', items: [
+          'The CDC says to throw out trash as soon as you can, in a covered can or dumpster.',
+          'Tie each bag shut before it goes in the can.',
+          'Clean up trash and debris outside the house as soon as you can. Piles give rats a place to hide.',
+          'Check the can and its lid once a week. If water collects in it, empty it, so mosquitoes cannot breed.'
+        ] },
+        { head: 'Spoiled food', items: [
+          'The CDC says to throw out meat, fish, eggs, milk, cut fruit and leftovers after 4 hours in a fridge with no power.',
+          'Throw out any food that touched floodwater.',
+          'Never taste food to find out if it is safe. When in doubt, throw it out.',
+          'Bag spoiled food right away and keep it in the covered can. Rotting food draws rats.'
+        ] },
+        { head: 'Sort it for pickup', items: [
+          'The EPA asks homeowners to sort into six piles: household garbage, building debris, yard waste, hazardous waste, large appliances and electronics.',
+          'Put household garbage at the curb the night before pickup.',
+          'The EPA example limits curb garbage to two 32-gallon cans or 8 bags.',
+          'Tape fridge and freezer doors shut before they go out.',
+          'Put piles between the sidewalk and the street, not against trees or poles. Crews cannot pick up from private property.',
+          'Pickup rules vary. Check with your local officials first.'
+        ] },
+        { head: 'What stays out of the trash', items: [
+          'Chemicals, paint, pesticides, oil and batteries. The CDC says to follow your local solid waste rules for them.',
+          'Never pour chemicals onto the ground, down drains or into water.',
+          'Leave damaged or unlabeled containers alone. Call local officials about them.',
+          'Bagged human waste. Extension says to store it in its own can, apart from other garbage, until officials say how to dispose of it.'
+        ] },
+        { head: 'Do not burn it', items: [
+          'The EPA says burning household trash is far more harmful than most people think.',
+          'The smoke can raise the risk of heart disease and make asthma worse.',
+          'It also makes dioxins, toxic chemicals that settle on crops and in water.',
+          'Many states and towns ban or limit trash burning.'
+        ] },
+        { head: 'Dead animals', items: [
+          'Wear gloves. Put your gloved hand inside a trash bag, pick up the animal, turn the bag over it and seal it.',
+          'Use a shovel for a larger animal, then rinse the shovel.',
+          'Call animal control or the health department about pickup.',
+          'Wash your hands when you are done.'
+        ] }
+      ],
+      mistakes: [
+        'Burning trash in a barrel or pile.',
+        'Leaving bags open or on the ground, where animals tear them.',
+        'Putting chemicals or batteries in the regular trash.',
+        'Mixing bagged toilet waste with household garbage.'
+      ],
+      sources: ['cdc-disaster-animals', 'cdc-food-after', 'epa-debris-sort', 'cdc-disaster-chemicals', 'epa-backyard-burning', 'cdc-dead-animals', 'osu-sanitation', 'cdc-mosquito-home'],
+      checked: '2026-11-26'
+    },
+
+    'san-pests': {
+      intro: 'After a storm or flood, rats, mosquitoes and snakes move into new places, often near people. Most of the fix is keeping food sealed and water from standing.',
+      parts: [
+        { head: 'Keep rats and mice out', items: [
+          'The CDC says rodents move to new areas after a disaster, looking for food, water and shelter.',
+          'Store food and water in thick plastic, glass or metal with a tight lid.',
+          'Close holes in the walls. Some rodents fit through a hole the size of a dime.',
+          'Wash dishes and pots as soon as you are done with them.',
+          'Do not eat or drink anything a rodent may have touched.',
+          'Trap rodents with spring-loaded snap traps. Wear gloves, seal a dead rodent in two plastic bags, and throw it out.'
+        ] },
+        { head: 'Clean up droppings safely', items: [
+          'Never sweep or vacuum droppings or urine. That puts germs in the air.',
+          'Spray them with a disinfectant or a bleach mix of 1 1/2 cups of bleach in 1 gallon of water until soaked.',
+          'Let it soak 5 minutes, then wipe it up with a paper towel.',
+          'Throw the towel out in a sealed can outside.',
+          'If a building sat empty a long time, the CDC says airing it out 2 to 3 days first may help.'
+        ] },
+        { head: 'Stop mosquitoes from breeding', items: [
+          'Right after a flood, most mosquitoes are nuisance kinds. The kinds that spread disease can increase 2 weeks to 2 months after a hurricane.',
+          'Once a week, empty and scrub, turn over, cover or throw out anything that holds water: tires, buckets, toys, pots and trash cans.',
+          'Cover stored water tightly. Use fine wire mesh on any container with no lid.',
+          'Fix cracks in a septic tank and cover open vent pipes.',
+          'Keep window and door screens in good repair, and do not prop doors open.'
+        ] },
+        { head: 'Prevent bites', items: [
+          'Use an insect repellent registered by the EPA. Look for an EPA registration number on the label.',
+          'Wear loose long sleeves and long pants.',
+          'Do not use oil of lemon eucalyptus or PMD on a child under 3.',
+          'Put repellent on your own hands, then on a child\'s face. Keep it off a child\'s hands, eyes, mouth and cuts.',
+          'If you use sunscreen, put it on first and repellent second.'
+        ] },
+        { head: 'Snakes and other animals', items: [
+          'Stay away from wild or stray animals. Call local authorities to handle them.',
+          'Snakes may be swimming to high ground, hiding under debris, or inside your home.',
+          'If you see a snake, back away slowly. Do not touch it or try to trap it.',
+          'If one is in your home, call your county animal control.'
+        ] },
+        { head: 'If a snake bites', items: [
+          'Call 911. Poison Control is 1-800-222-1222.',
+          'Keep the person still and calm, with the bite below the heart.',
+          'Try to remember the snake\'s color and shape.',
+          'Wash the bite with warm soapy water and cover it with a clean, dry dressing.',
+          'Do not use a tourniquet, cut the wound, suck it, put ice on it, or give alcohol or caffeine.'
+        ] }
+      ],
+      mistakes: [
+        'Sweeping or vacuuming rodent droppings.',
+        'Leaving buckets and tires full of rainwater.',
+        'Reaching under debris without looking for snakes.',
+        'Cutting or icing a snake bite instead of calling 911.'
+      ],
+      sources: ['cdc-disaster-animals', 'cdc-disaster-rodents', 'cdc-rodents-home', 'cdc-mosquito-home', 'cdc-mosquito-bites'],
+      checked: '2026-11-26'
+    },
+
+    'san-clean': {
+      intro: 'Bleach kills germs when you use the right kind, mixed the right way. After a flood or a long outage, it keeps dishes, counters and floors safe.',
+      parts: [
+        { head: 'The right bleach', items: [
+          'Use regular, unscented household bleach. The label should say 5% to 9% sodium hypochlorite.',
+          'Do not use it if the percent is missing or outside that range.',
+          'Some laundry bleach and splashless bleach will not disinfect. Skip scented bleach, too.',
+          'Follow the label first. Use the mixes below only if the bottle gives none.',
+          'If you have no bleach, soap and water still remove most germs.'
+        ] },
+        { head: 'Safety rules', items: [
+          'Never mix bleach with ammonia or any other cleaner. The mix gives off fumes that are dangerous to breathe.',
+          'Open windows and doors first. Never use bleach in a closed space.',
+          'Wear rubber gloves, boots and eye protection.',
+          'Get medical care right away for a bad headache, blurred vision or trouble breathing after using bleach. For trouble breathing, call 911.',
+          'Keep bleach and every mix out of reach of children and pets. Label any mix you make.'
+        ] },
+        { head: 'The mixes', cols: ['Job', 'Bleach', 'Water', 'Leave it on'], rows: [
+          ['Disinfect hard surfaces', '5 tablespoons (1/3 cup)', '1 gallon', 'At least 1 minute, kept wet'],
+          ['Same, a small batch', '4 teaspoons', '1 quart', 'At least 1 minute, kept wet'],
+          ['Dishes, pots, utensils, counters', '1 cup', '5 gallons', 'Soak 1 minute'],
+          ['Cans and pouches that sat in floodwater', '1 cup', '5 gallons', '15 minutes'],
+          ['Rodent droppings and urine', '1 1/2 cups', '1 gallon', 'Soak 5 minutes'],
+          ['A floor after sewage backs up', '1/2 cup', '1 gallon', 'Disinfect it thoroughly']
+        ], note: 'CDC mixes, except the sewage floor, which is the EPA\'s. Use room-temperature water. Mix fresh each day; it weakens after 24 hours.' },
+        { head: 'Dishes with no dishwasher', items: [
+          'Wash in hot, soapy water.',
+          'Rinse in clean, safe water.',
+          'Soak 1 minute in 1 cup of bleach to 5 gallons of water. The water must cover everything. Wipe counters with a cloth dipped in it.',
+          'Let everything air dry on a clean towel. Do not rub it dry with a dish towel.',
+          'Throw out wooden cutting boards, baby bottle nipples and pacifiers that touched floodwater. Bleach cannot make them safe.',
+          'Do not drink the water you used for sanitizing.'
+        ] },
+        { head: 'Laundry and washing up', items: [
+          'Wash clothes with detergent in the warmest water the label allows, and dry them all the way.',
+          'Wash clothes worn for flood cleanup in hot water and detergent, apart from other laundry.',
+          'Wash your hands after you handle dirty laundry.',
+          'Throw out soft things you cannot clean or dry fast, like mattresses, pillows and stuffed toys.',
+          'Under a boil-water advisory, wash up with water boiled 1 minute, or with 8 drops of bleach per gallon of clear water, left to stand 30 minutes.',
+          'On a septic system during a flood, the CDC says to cut back on laundry and dishwashing.'
+        ] }
+      ],
+      mistakes: [
+        'Mixing bleach with ammonia or another cleaner.',
+        'Using scented, splashless or unlabeled bleach.',
+        'Using a mix made yesterday.',
+        'Skipping the soap-and-water step before bleach.'
+      ],
+      sources: ['cdc-bleach', 'cdc-clean-home', 'cdc-food-after', 'cdc-disaster-cleanup', 'cdc-bleach-flyer', 'cdc-disaster-animals', 'epa-septic-flood', 'cdc-septic-flood'],
+      checked: '2026-11-26'
+    },
+
+    'food-fire': {
+      intro: 'A wood fire can cook a real meal when the power and the gas are both out. Pick the spot with care, cook to a safe temperature, and put the fire all the way out.',
+      parts: [
+        { head: 'Before you light it', items: [
+          'Check your local rules on burning. Some places allow fires only at certain hours, and some forbid them.',
+          'Do not build a fire on dry or windy days.',
+          'Have a bucket of water and a shovel by the fire before you light it.',
+          'A responsible adult stays with the fire the whole time. Keep children and pets back.'
+        ] },
+        { head: 'Pick and build the site', items: [
+          'Choose an open, level spot away from trees, overhanging branches, logs, stumps and dry grass.',
+          'Clear a circle at least 10 feet across, scraping away grass, leaves and needles down to bare soil.',
+          'Stay at least 15 feet from tents, plants and low branches, with open space above of at least 3 times the height of the flames.',
+          'Use an existing fire ring if there is one. If not, dig a pit about 1 foot deep and ring it with rocks or a metal ring.',
+          'Keep the fire small. A good bed of coals gives plenty of heat for cooking.',
+          'Light it with a match or lighter, never with a flammable liquid. Never burn trash, aerosol cans, batteries or glass.'
+        ] },
+        { head: 'The pot', items: [
+          'A camp Dutch oven is cast iron, with three legs and a lid shaped to hold coals, so you can put coals under it and on top.',
+          'Cast iron holds an even heat and stands up to the heat of a fire or charcoal.',
+          'Use a lid lifter to take off the lid and move the pot, and long tongs to move coals. The lid and pot get very hot.',
+          'Wash cast iron by hand with a little soap and hot water, dry it right away, and rub it with a little oil.'
+        ] },
+        { head: 'Cook to these temperatures', cols: ['Food', 'Safe inside temperature'], rows: [
+          ['Beef, pork, lamb and veal steaks, chops and roasts', '145°F, then rest 3 minutes'],
+          ['Ground meat', '160°F'],
+          ['All poultry, including ground poultry', '165°F'],
+          ['Eggs', '160°F'],
+          ['Fish and shellfish', '145°F'],
+          ['Leftovers and casseroles', '165°F']
+        ], note: 'Check with a food thermometer before you take food off the heat. Meat browns fast over a fire, so the outside does not tell you the inside is done. Temperatures are from the USDA.' },
+        { head: 'Keep the food safe', items: [
+          'Use one plate and set of tools for raw meat and a clean set for cooked food.',
+          'Never partly cook meat or poultry and finish it later.',
+          'Keep cooked food at 140°F or hotter, at the side of the fire, until you eat.',
+          'Throw out food left out more than 2 hours, or 1 hour if it is above 90°F outside.'
+        ] },
+        { head: 'Put it all the way out', items: [
+          'Drown the fire with water. It takes more than most people think.',
+          'Stir the ashes and embers with the shovel, mix in dirt, and turn every stick and coal to wet all sides.',
+          'Move the rocks. Embers can hide under them.',
+          'Feel everything with the back of your hand, rocks included. If it is too hot to touch, it is too hot to leave.',
+          'No water? Mix in dirt or sand and keep stirring until it is all cool.',
+          'If the fire spreads beyond the pit or embers land in dry plants, call 911 right away.'
+        ] }
+      ],
+      mistakes: [
+        'Starting or reviving the fire with a flammable liquid.',
+        'Judging meat by its color instead of with a thermometer.',
+        'Sprinkling a little water on the coals and walking away. Drown them, stir, and soak again.',
+        'Leaving the fire alone, even for a few minutes.'
+      ],
+      sources: ['smokey-campfire', 'fs-campfire', 'fs-inyo-campfire', 'fs-fire-safety', 'fsis-temps', 'fsis-grilling', 'il-dutchoven'],
+      checked: '2026-11-26'
+    },
+
+    'food-fuel': {
+      intro: 'Fuel is what turns stored food into a hot meal. Store it where it cannot hurt the house, and learn how far it goes before you need it.',
+      parts: [
+        { head: 'Propane cylinders', items: [
+          'Propane is highly flammable. Always keep cylinders upright.',
+          'Never store a spare cylinder under or near the grill, or indoors.',
+          'Keep propane, gasoline and other fuels in a shed away from the house, not in the garage.',
+          'Never leave a filled cylinder in a hot car or trunk. Heat raises the pressure and can open the relief valve and let gas out.',
+          'Never store or use gasoline or other flammable liquids near the grill.',
+          'After a storm, watch for damaged propane cylinders and leaking gas lines.'
+        ] },
+        { head: 'Check a gas grill or stove before you cook', items: [
+          'Look over the hoses for cracks, brittle spots, holes and leaks. There should be no sharp bends.',
+          'Test for leaks: open the gas valve fully and brush soapy water on the connection. Bubbles mean a leak.',
+          'Try tightening the connection. If it still bubbles, close the valve and have it repaired before you use it.',
+          'Keep the hoses away from hot surfaces and dripping grease.'
+        ] },
+        { head: 'Charcoal', items: [
+          'Use charcoal grills outside only.',
+          'Never burn charcoal inside a home, garage, tent, camper or vehicle, even with a window open.',
+          'Charcoal gives off carbon monoxide until it is completely out. Do not bring the grill indoors with freshly used coals.',
+          'To put out used coals, soak them with plenty of water, stir, and soak again, until they are cold.'
+        ] },
+        { head: 'Firewood', items: [
+          'Store only the wood you need for the season, at least 30 feet from the house and other buildings.',
+          'Do not stack firewood against a building. It gives a fire a path to the house.',
+          'Clear leaves, needles and dry plants from around the woodpile.',
+          'If you live where wildfires happen, keep the first 30 feet around the house free of leaves, debris and anything that burns.'
+        ] },
+        { head: 'Count your meals', items: [
+          'Cook one full meal on each fuel you have, start to finish.',
+          'Note how much it used: the cylinder level, the charcoal or the wood.',
+          'Divide what you have stored by that amount. That is roughly how many meals your fuel will cook.',
+          'Write the number on your plan, next to the days of food you counted.'
+        ] }
+      ],
+      mistakes: [
+        'Keeping the spare propane cylinder in the garage or the house.',
+        'Moving a charcoal grill into the garage to keep it dry or to finish cooking.',
+        'Leaving a full cylinder in the car trunk on a hot day.',
+        'Stacking the woodpile against the house.'
+      ],
+      sources: ['cpsc-grills', 'cpsc-grillcheck', 'cpsc-charcoal', 'usfa-garage', 'usfa-severe', 'fs-fire-safety', 'mndnr-firewood', 'ready-wildfires'],
+      checked: '2026-11-26'
+    },
+
+    'food-flood': {
+      intro: 'Floodwater carries germs and chemicals. Most food it touches has to go, but undamaged all-metal cans and pouches can be cleaned and saved.',
+      parts: [
+        { head: 'Before a flood, and right after', items: [
+          'If you can, raise the fridge and freezer off the floor, with cement blocks under the corners.',
+          'Move canned goods and other food from the basement and low cabinets to a higher place.',
+          'After a flood, drink only bottled water that floodwater has not touched.'
+        ] },
+        { head: 'Throw out this food', items: [
+          'Any food that may have touched floodwater or stormwater.',
+          'Food in packages that are not waterproof, and anything in cardboard, including juice, milk and baby formula boxes.',
+          'Food in containers with screw caps, snap lids, crimped caps, twist caps, flip tops or pull tops.',
+          'Home-canned food that floodwater touched. It cannot be cleaned well enough.',
+          'Cans that are swollen, leaking, punctured, deeply rusted, or crushed so badly they will not stack or open with a hand opener.',
+          'Fridge food that went more than 4 hours without power or ice, and anything with an odd smell, color or texture.'
+        ] },
+        { head: 'Throw out these kitchen items too', items: [
+          'Wooden cutting boards, plastic utensils, baby bottle nipples and pacifiers that floodwater touched. There is no way to clean them safely.',
+          'A fridge or freezer that sat in floodwater, even partly. It is not safe to use.'
+        ] },
+        { head: 'Save all-metal cans and pouches', items: [
+          'Take the labels off if you can, and note the date first.',
+          'Brush or wipe away dirt and silt, wash with hot, soapy water, and rinse with clean, safe water.',
+          'Sanitize them one of two ways: boil them in water for 2 minutes, or soak them 15 minutes in 1 cup of unscented household bleach mixed into 5 gallons of water.',
+          'Let them air-dry at least 1 hour before you open or store them.',
+          'Relabel each one with a marker, with the date, and use them soon.',
+          'Concentrated baby formula from a cleaned can must be mixed with clean drinking water.'
+        ] },
+        { head: 'Clean pans, dishes and counters', items: [
+          'Wash metal pans, dishes and utensils, can openers included, with hot, soapy water. Rinse with clean, safe water.',
+          'Sanitize them by boiling in clean water, or by soaking 1 minute in 1 cup of unscented bleach to 5 gallons of water. The mix should cover them.',
+          'For counters and fridge drawers, wipe the same bleach mix on with a cloth.',
+          'Let everything air-dry.'
+        ] }
+      ],
+      mistakes: [
+        'Keeping a jar or bottle because it looks fine. Floodwater gets under screw caps and lids, and unsafe food can look and smell normal.',
+        'Tasting food to check it. When in doubt, throw it out.',
+        'Opening a cleaned can before it has dried.',
+        'Keeping a fridge that sat in floodwater.'
+      ],
+      sources: ['usda-food', 'cdc-food-after'],
+      checked: '2026-11-26'
+    },
+
+    'food-dry': {
+      intro: 'Drying and cool storage are old ways to keep food with no fridge. Both work best when you follow tested Extension steps.',
+      parts: [
+        { head: 'What can dry outdoors', items: [
+          'Fruit can dry outdoors when the weather is right. Its sugar and acid make it safe to dry that way.',
+          'Vegetables and meat should not be dried outdoors, except beans dried on the vine. Dry them indoors in an oven or dehydrator.',
+          'You need hot, dry, breezy days: at least 85°F, hotter is better, and humidity below 60 percent.',
+          'Outdoor drying takes several days, and rain can ruin a batch.'
+        ] },
+        { head: 'Get the fruit ready', items: [
+          'Start with clean counters and tools, and wash your hands.',
+          'Wash the fruit under cold running water. Cut pieces the same size and thickness so they dry evenly.',
+          'Apples, pears, peaches and apricots dry better pretreated. Soak them 10 minutes in equal parts bottled lemon juice and water.',
+          'Lay the pieces one layer deep, not touching.'
+        ] },
+        { head: 'Drying in the sun', items: [
+          'Set the racks or screens on blocks so air moves under them, over a concrete driveway or a sheet of metal.',
+          'Use screens of stainless steel, coated fiberglass or plastic. Not galvanized hardware cloth, copper or aluminum.',
+          'Cover the food with a second screen or cheesecloth to keep birds and insects off.',
+          'Cover the food or bring it under shelter at night. Night air puts moisture back in.',
+          'When the fruit is about two-thirds dry, you can finish it in the shade where air moves well.'
+        ] },
+        { head: 'When it is done', items: [
+          'Fruit is dry when it bends and no beads of moisture form when you press it. Vegetables are tough, brittle or crunchy.',
+          'Pack dried fruit loosely in an airtight container for several days. If moisture forms inside, dry it more.',
+          'Kill insect eggs on unpeeled or uncovered fruit: heat it at 160°F for 30 minutes, or freeze it at 0°F for 48 hours.',
+          'Store dried food in airtight containers in a dark place.'
+        ] },
+        { head: 'Storing root crops cool', items: [
+          'Potatoes, beets, turnips, rutabagas, carrots and parsnips can keep three to four months or longer in the right conditions.',
+          'Store only sound produce, with no cuts, cracks or bruises. One damaged one can spoil the rest.',
+          'Cure potatoes, sweet potatoes, winter squash, onions and garlic before storing so the skins toughen.',
+          'Find a spot that stays between 32°F and 60°F without big swings: an unheated cellar, a shed, a breezeway, or a garage with no car or chemicals in it.',
+          'Root crops like damp air. Squash and pumpkins like it drier. Keep fruit away from vegetables, since fruit speeds their ripening.',
+          'Use food-grade containers only, never ones that held garbage or chemicals.',
+          'Check every week. Look for signs of rodents, and throw out anything rotten or moldy.'
+        ] }
+      ],
+      mistakes: [
+        'Drying vegetables or meat in the sun.',
+        'Using galvanized hardware cloth as a drying screen. It can leave harmful metal on the food.',
+        'Storing bruised or cut produce with the good ones.',
+        'Leaving drying fruit out overnight.'
+      ],
+      sources: ['nchfp-sundry', 'usu-drymethods', 'psu-dry', 'purdue-storage', 'uconn-coldstore'],
+      checked: '2026-11-26'
+    },
+
+    'home-return': {
+      intro: 'Going back in after a flood or storm is its own job. Do it in order: wait for the all-clear, check the outside, handle gas and power, then document before you clean.',
+      parts: [
+        { head: 'Before you go back', items: [
+          'Wait until local officials say it is safe to return. Even then, go slowly.',
+          'Go in daylight so you do not need lights. Bring flashlights, not candles or gas lanterns.',
+          'Bring a battery radio for updates from local officials.',
+          'Expect no power, water, sewer or trash pickup for a while.',
+          'Call or text 211 to find local disaster help and services.'
+        ] },
+        { head: 'Check the outside first', items: [
+          'Walk all the way around. Look for loose power lines, gas leaks and damage to the walls and foundation.',
+          'Do not go in if you smell gas, if floodwater is still around the house, or if you see downed lines, downed trees, or cracks in the walls or foundation.',
+          'If you have any doubt, have a building inspector or structural engineer check it before you enter.',
+          'Never touch a fallen power line. Call the power company to report it.',
+          'Watch for animals, snakes most of all. Use a stick to poke through debris.'
+        ] },
+        { head: 'Gas and power', items: [
+          'If you smell gas or think there is a leak: turn off the main gas valve, open the windows, and leave right away.',
+          'Call the gas company, the police or the fire department. Do not turn on lights or do anything that could make a spark. Stay out until you are told it is safe.',
+          'If there is standing water and you can reach the main power switch from a dry spot, turn it off. If you would have to step into water to reach it, call an electrician.',
+          'Never turn power on or off, or use an electric tool, while you are standing in water.',
+          'Have an electrician check the system before the power goes back on. Appliances must be completely dry before you use them.',
+          'If you see sparks or frayed wires, or smell burning, after the power comes back, shut it off at the main breaker.'
+        ] },
+        { head: 'Air, water and food', items: [
+          'If the house was closed up for days, go in briefly, open doors and windows, and let it air out at least 30 minutes before you stay.',
+          'If it flooded and stayed closed for several days, assume there is mold. It may also have sewage in it.',
+          'Follow local word on whether tap water is safe. If you have a well and the area flooded, have the water tested before you use it.',
+          'Until then, use bottled, boiled or treated water for drinking, cooking, dishes, brushing teeth, ice and baby formula.',
+          'Throw out food that touched flood water, and cold food that sat without power. When in doubt, throw it out.'
+        ] },
+        { head: 'Photos and insurance', items: [
+          'Call your insurance company and start a claim as soon as you can.',
+          'Before you clean up, take photos and video of the damage and your belongings. Make a list.',
+          'Write down or photograph the make, model and serial number of appliances and electronics.',
+          'For a flood claim, keep samples of damaged carpet, flooring and curtains.',
+          'Save every receipt for repairs and cleanup.',
+          'Ask to see ID from anyone who comes to the house. A flood adjuster carries a Flood Control Number card. Scammers often pose as adjusters or officials.',
+          'Flood insurance does not cover mold, so start drying out as soon as you have documented.'
+        ] },
+        { head: 'While you clean up', items: [
+          'Run generators, pressure washers and pumps outside only, at least 20 feet from windows, doors and vents.',
+          'Use a battery carbon monoxide alarm any time something that burns fuel is running.',
+          'Lift heavy things in teams of two. No more than 50 pounds per person.',
+          'Rest when you need to, drink water, and do the most important jobs first.',
+          'If someone is hurt or has had an electric shock, call 911.'
+        ] }
+      ],
+      mistakes: [
+        'Going in as soon as the water drops, before officials say it is safe.',
+        'Flipping the breaker while standing in water.',
+        'Cleaning up before taking photos, then having no proof for the claim.',
+        'Running the generator in the garage with the door open.'
+      ],
+      sources: ['cdc-return-home', 'cdc-flood-reenter', 'cdc-elec-hazards', 'ready-recovering', 'cdc-disaster-cleanup', 'fs-claim'],
+      checked: '2026-11-26'
+    },
+
+    'home-mold': {
+      intro: 'After water gets in, mold can start within a day or two. Dry fast, protect your lungs, and throw out what cannot be cleaned.',
+      parts: [
+        { head: 'Dry it out fast', items: [
+          'Dry the house and everything in it within 24 to 48 hours if you can.',
+          'If you could not dry it in that time, you probably have mold, even where you cannot see it: behind cabinets, under carpet, inside walls.',
+          'Open doors and windows. Set fans in a window or door so they blow air out, not in.',
+          'If the heating and cooling system flooded, have a pro with mold experience check and clean it before you turn it on.',
+          'Fix leaks in the roof, walls or pipes as soon as you can. Mold comes back if the water does.'
+        ] },
+        { head: 'The size rule', items: [
+          'Under about 10 square feet (a 3 by 3 foot patch): most of the time you can clean it yourself.',
+          'More than 10 square feet, or a lot of water damage: follow the EPA guide for larger jobs, or hire a contractor with mold experience and check references.',
+          'If sewage or other dirty water caused it, call a professional who cleans buildings hit by contaminated water.',
+          'If it smells moldy but you cannot find it, think about a pro. Pulling off wallpaper or paneling can release a lot of spores.',
+          'You do not need a mold test. Whatever the kind, remove it.'
+        ] },
+        { head: 'Protect yourself', items: [
+          'Wear at least an N95 respirator approved by NIOSH. Fit it by the package directions. It seals best on a clean-shaven face.',
+          'For more than 4 hours of tearing out moldy drywall, a reusable half-face or full-face respirator is better.',
+          'Wear goggles with no vent holes, long gloves to the middle of the forearm, boots, long sleeves and long pants.',
+          'With bleach, use gloves made of natural rubber, neoprene, nitrile, polyurethane or PVC.',
+          'Take a break about every hour, away from the mold, and drink water.',
+          'Throw the N95 away when it is damaged, dirty or harder to breathe through.'
+        ] },
+        { head: 'Who stays out', items: [
+          'Children do not help with cleanup. Respirators are not made for children.',
+          'Anyone with asthma, COPD or a weak immune system stays away from moldy rooms.',
+          'If you have health concerns, talk to a health professional before you start.'
+        ] },
+        { head: 'What to throw out', items: [
+          'Photograph it first, for insurance. Keep samples of carpet and flooring for a flood claim.',
+          'Throw out what you cannot clean and dry quickly: mattresses, carpet and padding, rugs, upholstered furniture, pillows, foam items, books, paper, stuffed animals and baby toys.',
+          'Tear out drywall and insulation that got wet with flood water or sewage.',
+          'Moldy ceiling tiles and other soft, porous things may not come clean. Mold fills the tiny spaces.',
+          'Wash hard toys in 1 cup of bleach to 5 gallons of water and let them air-dry.'
+        ] },
+        { head: 'Clean hard surfaces', items: [
+          'Scrub mold off hard surfaces with hot water and detergent, then dry them completely.',
+          'If you use bleach, use no more than 1 cup of household bleach in 1 gallon of water. Open doors and windows first.',
+          'Never mix bleach with ammonia or any other cleaner. It makes a toxic gas.',
+          'Use a wet mop or a vacuum with a HEPA filter. Do not dry-sweep.',
+          'Do not paint or caulk over mold. Clean and dry it first.',
+          'It is done when the water problem is fixed, no mold or musty smell is left, and it stays that way when you check back.'
+        ] }
+      ],
+      mistakes: [
+        'Painting over mold. The paint peels and the mold stays.',
+        'Keeping a soaked mattress or carpet because it looks dry.',
+        'Mixing bleach with another cleaner.',
+        'Letting the kids help with the cleanup.'
+      ],
+      sources: ['epa-mold-brief', 'cdc-mold-about', 'cdc-disaster-cleanup', 'cdc-mold-lungs', 'cdc-return-home'],
+      checked: '2026-11-26'
+    },
+
+    'med-stress': {
+      intro: 'Feeling upset after a disaster is normal, and there is no right way to feel. A few simple habits help adults and kids get through it.',
+      parts: [
+        { head: 'Help by phone or text', items: [
+          'Disaster Distress Helpline: call or text 1-800-985-5990. It is toll-free, open 24 hours a day, all year, anywhere in the U.S. and its territories.',
+          'Trained crisis counselors listen without judgment, share ways to cope, and can connect you to local help.',
+          'You do not have to give your name. You can call for yourself or for someone else.',
+          'Counselors can bring in an interpreter in over 100 languages. Deaf and hard of hearing callers can text or call the same number.',
+          'If you are struggling or having thoughts of hurting yourself, call or text 988, or chat at 988lifeline.org.',
+          'If someone is in danger right now, call 911. For shelter, food and local services, call 211.'
+        ] },
+        { head: 'What is normal', items: [
+          'Worry about your family, sadness, grief and anger are normal reactions to an abnormal event.',
+          'You may have strong, mixed feelings, or feel numb.',
+          'Recovery takes time. Be patient with yourself.',
+          'Even seeing a disaster on the news over and over can affect people.'
+        ] },
+        { head: 'Take care of yourself', items: [
+          'Eat well, get some exercise, even a walk or slow deep breaths, and get enough sleep.',
+          'Stay away from alcohol, drugs, and medicines that were not prescribed to you.',
+          'Keep as much routine as you can: the same wake time, regular meals, the dog walk.',
+          'Limit the news. Constant coverage can raise anxiety.',
+          'Talk with someone you trust about how you feel.',
+          'Put off big life decisions, like a job change, until things settle.',
+          'Pace the cleanup. Take breaks and drink water.'
+        ] },
+        { head: 'Signs an adult needs more help', items: [
+          'Trouble concentrating or thinking clearly, or confusion.',
+          'Drinking or using drugs more than before.',
+          'Headaches or stomach problems.',
+          'Mood swings, easy crying, hopelessness, or heavy guilt.',
+          'Not wanting to leave home, or fear of crowds or being alone.',
+          'If you see these, call the helpline or a counselor.'
+        ] },
+        { head: 'What you may see in kids', cols: ['Age', 'What you may see'], rows: [
+          ['Under 2', 'Crankier, cries more, wants to be held more'],
+          ['3 to 6', 'Bed-wetting or toilet accidents, fear of being apart from you, tantrums, trouble sleeping'],
+          ['7 to 10', 'Sad or mad, afraid it will happen again, worried about school, talks about it all the time or not at all'],
+          ['Preteens and teens', 'Acting out, more arguing, pulling away from friends, sleeping too much or too little']
+        ], note: 'From the CDC. For most kids these fade with time. They can come back with reminders, like a storm or a siren.' },
+        { head: 'Helping kids', items: [
+          'Hug them and spend extra time with them, like at bedtime.',
+          'Ask how they feel. Answer their questions truthfully, at their level. Show your own feelings so they know feelings are normal.',
+          'If talking is hard for a child, let them draw a picture or tell a story about what happened.',
+          'Tell them calmly what you are doing to keep them safe.',
+          'Get back to meals, school, play and bedtime. Give them small chores so they feel they are helping.',
+          'Keep them away from news coverage, and let their teacher know how they are doing.',
+          'If a child is still anxious, fearful, sad or angry after two to four weeks, or is getting worse, talk to their doctor or school counselor.'
+        ] }
+      ],
+      mistakes: [
+        'Leaving the news on all day where the kids can hear it.',
+        'Making a big life decision in the first weeks.',
+        'Waiting it out alone when a free call or text could help.'
+      ],
+      sources: ['samhsa-ddh', 'samhsa-coping', 'ready-coping', 'cdc-kids-cope', 'cdc-return-home'],
+      checked: '2026-11-26'
     }
   };
 })(typeof window !== 'undefined' ? window : globalThis);

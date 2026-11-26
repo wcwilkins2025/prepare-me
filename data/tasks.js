@@ -3,6 +3,7 @@
    cost: 0 nothing, 1 under $25, 2 $25 to $100, 3 $100 to $300, 4 over $300. Free steps come first.
    rank: 1 is the most basic. need: the household facts that make the step apply (all must hold).
    hz: the disasters the step gets him ready for ('all' means every one).
+   comfort: true marks a comfort step: his own choice, shown as an extra, never scored. Survival steps make the score.
    Text may carry {people}, {gal3}, {gal14}, {petsLine}, filled in from his answers. */
 (function (root) {
   'use strict';
@@ -11,6 +12,7 @@
   RD.AREAS = [
     { id: 'water',    name: 'Water',               short: 'Water' },
     { id: 'food',     name: 'Food',                short: 'Food' },
+    { id: 'sanitation', name: 'Sanitation and hygiene', short: 'Sanitation' },
     { id: 'power',    name: 'Power and heat',      short: 'Power' },
     { id: 'medical',  name: 'Medical and first aid', short: 'Medical' },
     { id: 'comms',    name: 'Communications',      short: 'Comms' },
@@ -298,7 +300,7 @@
     done: 'Two weeks of food for {people}, rotated as you eat it.',
     links: ['ready-food', 'usda-food'] });
 
-  add({ id: 'food-grow', area: 'food', rank: 7, cost: 1, costNote: 'Seeds and a few jars, under $25 to start', weight: 1, hz: ['income', 'all'],
+  add({ id: 'food-grow', comfort: true, area: 'food', rank: 7, cost: 1, costNote: 'Seeds and a few jars, under $25 to start', weight: 1, hz: ['income', 'all'],
     title: 'Grow or put up some of your own food',
     have: 'I grow or preserve some of our food',
     who: 'You and the family.',
@@ -438,7 +440,7 @@
     done: 'A charged battery pack, or a car charger in the vehicle.',
     links: ['ready-power'] });
 
-  add({ id: 'power-backup', area: 'power', rank: 9, cost: 4, costNote: 'Usually $500 or more', weight: 1, hz: ['outage', 'winter', 'hurricane', 'heat'],
+  add({ id: 'power-backup', comfort: true, area: 'power', rank: 9, cost: 4, costNote: 'Usually $500 or more', weight: 1, hz: ['outage', 'winter', 'hurricane', 'heat'],
     title: 'Plan backup power for the things that matter',
     have: 'Backup power for the essentials, and I know how to run it safely',
     who: 'You. Use a licensed electrician for any hookup to the house.',
@@ -621,7 +623,7 @@
     done: 'Alerts on for every phone, and county texts signed up.',
     links: ['ready-alerts', 'fema-app'] });
 
-  add({ id: 'comm-ham-learn', area: 'comms', rank: 3, cost: 0, weight: 2, hz: ['all'],
+  add({ id: 'comm-ham-learn', comfort: true, area: 'comms', rank: 3, cost: 0, weight: 2, hz: ['all'],
     title: 'Start learning for the ham radio Technician license',
     have: 'I am studying for, or already hold, a ham radio license',
     who: 'You. Older kids can study with you.',
@@ -636,7 +638,7 @@
     done: 'You pass the practice test three times in a row.',
     links: ['radioelmer', 'arrl-license'] });
 
-  add({ id: 'comm-club', area: 'comms', rank: 5, cost: 0, weight: 1, hz: ['all'], after: 'comm-ham-learn',
+  add({ id: 'comm-club', comfort: true, area: 'comms', rank: 5, cost: 0, weight: 1, hz: ['all'], after: 'comm-ham-learn',
     title: 'Find a local radio club',
     have: 'I know my local radio club or emergency radio group',
     who: 'You.',
@@ -665,7 +667,7 @@
     done: 'The radio is set to your station and sits with the lights.',
     links: ['nws-nwr'] });
 
-  add({ id: 'comm-ham-test', area: 'comms', rank: 6, cost: 2, costNote: 'About $35 FCC fee, plus up to $15 for the test', weight: 2, hz: ['all'], after: 'comm-ham-learn',
+  add({ id: 'comm-ham-test', comfort: true, area: 'comms', rank: 6, cost: 2, costNote: 'About $35 FCC fee, plus up to $15 for the test', weight: 2, hz: ['all'], after: 'comm-ham-learn',
     title: 'Take the Technician exam',
     have: 'I hold a ham radio license',
     who: 'You.',
@@ -680,7 +682,7 @@
     done: 'You have a call sign.',
     links: ['arrl-exam', 'radioelmer'] });
 
-  add({ id: 'comm-family-radio', area: 'comms', rank: 7, cost: 3, costNote: 'About $100 to $200 for a few radios, plus a $35 FCC license', weight: 1, hz: ['all'],
+  add({ id: 'comm-family-radio', comfort: true, area: 'comms', rank: 7, cost: 3, costNote: 'About $100 to $200 for a few radios, plus a $35 FCC license', weight: 1, hz: ['all'],
     title: 'Get handheld radios for the family',
     have: 'Handheld radios the family has practiced with',
     who: 'You and the family.',
@@ -1050,7 +1052,7 @@
     done: 'The family knows the noon and 6 p.m. rule, and the paper copies are in the go-bag.',
     links: ['ready-cyber', 'ready-plan'] });
 
-  add({ id: 'att-cyber-backup', area: 'home', rank: 4, cost: 1, costNote: 'About $15 for a USB drive', weight: 1, hz: ['cyber', 'fire', 'flood'], need: ['hz:cyber'],
+  add({ id: 'att-cyber-backup', comfort: true, area: 'home', rank: 4, cost: 1, costNote: 'About $15 for a USB drive', weight: 1, hz: ['cyber', 'fire', 'flood'], need: ['hz:cyber'],
     title: 'Back up your photos and papers where no one can reach them',
     have: 'Photos and key papers backed up on a drive kept apart from the computer',
     who: 'You.',
@@ -1295,7 +1297,7 @@
     done: 'Everyone passed the dinner quiz.',
     links: ['ready-kids'] });
 
-  add({ id: 'skill-fix', area: 'skills', rank: 3, cost: 0, weight: 1, hz: ['all'],
+  add({ id: 'skill-fix', comfort: true, area: 'skills', rank: 3, cost: 0, weight: 1, hz: ['all'],
     title: 'Learn three repairs you would need with no repairman',
     have: 'I can do basic repairs: reset a breaker, stop a leak, clear a drain',
     who: 'You. Bring a kid along.',
@@ -1310,7 +1312,7 @@
     done: 'You did each repair once, or know how.',
     links: ['ready-skills', 'usda-extension'] });
 
-  add({ id: 'skill-fema', area: 'skills', rank: 3, cost: 0, weight: 1, hz: ['all'],
+  add({ id: 'skill-fema', comfort: true, area: 'skills', rank: 3, cost: 0, weight: 1, hz: ['all'],
     title: 'Take a free FEMA online course',
     have: 'I have taken a free FEMA preparedness course',
     who: 'You.',
@@ -1325,7 +1327,7 @@
     done: 'One certificate.',
     links: ['fema-is'] });
 
-  add({ id: 'skill-cert', area: 'skills', rank: 5, cost: 0, weight: 2, hz: ['all'],
+  add({ id: 'skill-cert', comfort: true, area: 'skills', rank: 5, cost: 0, weight: 2, hz: ['all'],
     title: 'Join your local CERT training',
     have: 'I have taken CERT (Community Emergency Response Team) training',
     who: 'You. Another adult can come.',
@@ -1401,7 +1403,7 @@
     done: '$500 to $1,000 in savings.',
     links: ['fdic-moneysmart', 'ready-money'] });
 
-  add({ id: 'money-month', area: 'money', rank: 6, cost: 4, costNote: 'Saved, not spent. One month of living costs', weight: 2, hz: ['income'], after: 'money-starter',
+  add({ id: 'money-month', comfort: true, area: 'money', rank: 6, cost: 4, costNote: 'Saved, not spent. One month of living costs', weight: 2, hz: ['income'], after: 'money-starter',
     title: 'Build the cushion to one month of expenses',
     have: 'One month of living costs saved',
     who: 'You and the other adult who handles money.',
@@ -1415,7 +1417,7 @@
     done: 'One month of living costs saved.',
     links: ['fdic-moneysmart', 'groundwork'] });
 
-  add({ id: 'money-three', area: 'money', rank: 8, cost: 4, costNote: 'Saved, not spent. Three months of living costs', weight: 1, hz: ['income'], after: 'money-month',
+  add({ id: 'money-three', comfort: true, area: 'money', rank: 8, cost: 4, costNote: 'Saved, not spent. Three months of living costs', weight: 1, hz: ['income'], after: 'money-month',
     title: 'Grow the cushion to three months',
     have: 'Three months of living costs saved',
     who: 'You and the other adult who handles money.',
@@ -1479,7 +1481,7 @@
     done: 'You can walk through all three without looking, and the kit has what they need.',
     links: ['nih-burns', 'nih-cuts', 'nih-sprains'] });
 
-  add({ id: 'med-hygiene', area: 'medical', rank: 3, cost: 1, costNote: 'Hand sanitizer and wipes, about $10', weight: 1, hz: ['all'],
+  add({ id: 'med-hygiene', area: 'sanitation', rank: 3, cost: 1, costNote: 'Hand sanitizer and wipes, about $10', weight: 1, hz: ['all'],
     title: 'Plan how to stay clean without running water',
     have: 'A way to wash hands and stay clean when the water is off',
     who: 'You and whoever runs the house.',
@@ -1495,7 +1497,7 @@
     done: 'A hand-washing jug set aside, sanitizer in the kit, and everyone knows when to wash.',
     links: ['cdc-hygiene', 'cdc-sanitizer'] });
 
-  add({ id: 'home-toilet', area: 'home', rank: 3, cost: 1, costNote: 'A bucket with a lid, heavy bags and bleach, about $15 to $25 if you have none', weight: 2, hz: ['all'],
+  add({ id: 'home-toilet', area: 'sanitation', rank: 3, cost: 1, costNote: 'A bucket with a lid, heavy bags and bleach, about $15 to $25 if you have none', weight: 2, hz: ['all'],
     title: 'Make an emergency toilet',
     have: 'An emergency toilet kit: a bucket with a lid, heavy bags, ties and bleach',
     who: 'You.',
@@ -1511,7 +1513,7 @@
     done: 'The kit is packed in the bucket, and one other adult knows where it is.',
     links: ['ready-kit', 'fema-supplies'] });
 
-  add({ id: 'food-can', area: 'food', rank: 7, cost: 2, costNote: 'About $40 to $80 for a canner, jars and lids, less if you have some', weight: 1, hz: ['all'],
+  add({ id: 'food-can', comfort: true, area: 'food', rank: 7, cost: 2, costNote: 'About $40 to $80 for a canner, jars and lids, less if you have some', weight: 1, hz: ['all'],
     title: 'Learn to can and preserve food safely',
     have: 'I can food with tested recipes and the right canner',
     who: 'You and anyone who helps in the kitchen.',
@@ -1624,7 +1626,7 @@
     done: 'Your pack has the layers, hat, shelter and sit pad, and you know the warning signs.',
     links: ['fs-hypothermia', 'fs-backcountry'] });
 
-  add({ id: 'skill-knots', area: 'skills', rank: 4, cost: 0, weight: 1, hz: ['all'],
+  add({ id: 'skill-knots', comfort: true, area: 'skills', rank: 4, cost: 0, weight: 1, hz: ['all'],
     title: 'Learn to tie four useful knots',
     have: 'I can tie a bowline, a clove hitch, a figure-eight and a sheet bend',
     who: 'You. Teach a kid.',
@@ -1641,7 +1643,7 @@
     done: 'You can tie all four from memory and teach one to someone else.',
     links: ['noaa-knots'] });
 
-  add({ id: 'skill-hunted', area: 'skills', rank: 6, cost: 1, costNote: 'Some states run the class free in person; online versions may charge a fee', weight: 1, hz: ['all'],
+  add({ id: 'skill-hunted', comfort: true, area: 'skills', rank: 6, cost: 1, costNote: 'Some states run the class free in person; online versions may charge a fee', weight: 1, hz: ['all'],
     title: 'Take a hunter education course',
     have: 'I have passed hunter education',
     who: 'You, and any kid old enough for your state\'s course.',
@@ -1656,7 +1658,7 @@
     done: 'You passed and have the card.',
     links: ['fws-hunt-license', 'fws-hunter-ed'] });
 
-  add({ id: 'skill-fish', area: 'skills', rank: 6, cost: 2, costNote: 'A state license plus a basic rod and tackle, about $40 to $100', weight: 1, hz: ['all'],
+  add({ id: 'skill-fish', comfort: true, area: 'skills', rank: 6, cost: 2, costNote: 'A state license plus a basic rod and tackle, about $40 to $100', weight: 1, hz: ['all'],
     title: 'Learn to fish and get your license',
     have: 'I have a fishing license and can rig, cast and land a fish',
     who: 'You and the kids.',
@@ -1671,5 +1673,182 @@
     why: 'Fishing turns nearby water into food, and the license money pays for the fish and the public access.',
     done: 'A license in hand, and one trip where you rigged, cast and landed a fish.',
     links: ['fws-fish-license', 'fws-fish-guide'] });
+
+
+  /* ---------- sanitation, cooking and recovery, added 2026-11-26 ---------- */
+  add({ id: 'san-latrine', area: 'sanitation', rank: 6, cost: 0, weight: 1, hz: ['earthquake', 'hurricane', 'tornado', 'outage'], need: ['notApartment'],
+    title: 'Know how to dig a latrine if the sewer is out for weeks',
+    have: 'I know where on my land a latrine could go, and how to dig and close one',
+    who: 'You, and one other adult who can dig.',
+    steps: [
+      'Use the bucket toilet first. A latrine is for when the sewer is out for weeks.',
+      'Pick the spot now: at least 100 feet from any well, spring, creek or pond, and not uphill of one.',
+      'Skip low, wet ground. A pit fails where the water table is high or the ground floods.',
+      'Keep a small shovel with the toilet kit. Know the plan: a narrow pit, soil over the waste each day, a hand-washing station beside it.',
+      'When it is near full, fill it with soil and mark the spot.'
+    ],
+    when: 'This season. Half an hour to walk the yard and pick the spot.',
+    why: 'Oregon State University Extension says rural households can bury waste when the sewer is out, but never within 100 feet of a water source. The CDC lists pit and trench latrines as short-term options.',
+    done: 'You picked a spot that meets the distance rule, and the shovel is with the kit.',
+    links: ['osu-sanitation', 'cdc-sanitation', 'fema-supplies'] });
+
+  add({ id: 'san-trash', area: 'sanitation', rank: 3, cost: 0, weight: 1, hz: ['outage', 'hurricane', 'flood', 'tornado', 'earthquake', 'winter', 'storm'],
+    title: 'Plan how to handle trash when pickup stops',
+    have: 'A covered trash can and a plan for spoiled food and debris',
+    who: 'You.',
+    steps: [
+      'Keep trash in tied bags inside a can with a tight lid, outside the house.',
+      'Bag spoiled food as soon as you throw it out, and keep it in the covered can.',
+      'Never burn household trash.',
+      'Keep paint, batteries, chemicals and bagged toilet waste out of the regular trash.',
+      'When pickup comes back, sort debris the way your local officials ask.'
+    ],
+    when: 'This month. Fifteen minutes.',
+    why: 'The CDC says to put trash in a covered can and clean up debris fast after a disaster, because it draws rats. The EPA warns that burning trash is a health hazard.',
+    done: 'You have a can with a tight lid and you know what stays out of it.',
+    links: ['cdc-disaster-animals', 'epa-debris-sort', 'epa-backyard-burning'] });
+
+  add({ id: 'san-pests', area: 'sanitation', rank: 4, cost: 1, costNote: 'Insect repellent and a few snap traps, if you have none', weight: 1, hz: ['hurricane', 'flood', 'storm', 'tornado', 'earthquake'],
+    title: 'Keep rats, mosquitoes and snakes away after a disaster',
+    have: 'I know how to keep rodents and mosquitoes down and what to do about snakes',
+    who: 'You and everyone in the house.',
+    steps: [
+      'Store food and water in thick plastic, glass or metal with tight lids.',
+      'Once a week, empty, cover or throw out anything outside that holds water.',
+      'Keep an insect repellent the EPA has registered, and wear long sleeves and long pants.',
+      'Close any hole in the walls. Mice can get through a hole the size of a dime.',
+      'If you see a snake, back away slowly and call animal control. For a snake bite, call 911.'
+    ],
+    when: 'This month. Twenty minutes.',
+    why: 'The CDC says rodents, mosquitoes and snakes all move toward people after a storm or flood. A few habits keep them out.',
+    done: 'Food is sealed, the yard has no standing water, and repellent is in the kit.',
+    links: ['cdc-disaster-animals', 'cdc-mosquito-home', 'cdc-rodents-home'] });
+
+  add({ id: 'san-clean', area: 'sanitation', rank: 3, cost: 1, costNote: 'Plain bleach, gloves and goggles, under $25', weight: 2, hz: ['all'],
+    title: 'Learn to clean and disinfect with bleach the safe way',
+    have: 'Plain bleach and gloves on hand, and I know the safe mixes',
+    who: 'You and any adult who cleans.',
+    steps: [
+      'Keep a jug of plain, unscented bleach that says 5% to 9% sodium hypochlorite, plus gloves and eye protection.',
+      'Clean with soap and water first. Use bleach only after.',
+      'To disinfect, mix 5 tablespoons (1/3 cup) of bleach in a gallon of water. Mix it fresh each day.',
+      'Never mix bleach with ammonia or any other cleaner. Open windows while you work.',
+      'Learn the four steps for dishes: wash, rinse, soak in weak bleach water, air dry.'
+    ],
+    when: 'This month. Fifteen minutes to read the label and write the mixes on the jug.',
+    why: 'After a flood or a long outage, germs spread on dishes and surfaces. The CDC gives exact bleach mixes and one hard rule: never mix bleach with other cleaners.',
+    done: 'The bleach, gloves and goggles are together, and the mixes are written on the jug.',
+    links: ['cdc-bleach', 'cdc-food-after', 'cdc-disaster-cleanup'] });
+
+  add({ id: 'food-fire', area: 'food', rank: 4, cost: 1, costNote: 'A food thermometer, under $25 if you have none', weight: 1, hz: ['outage', 'winter', 'hurricane', 'tornado', 'earthquake'],
+    title: 'Learn to cook a meal safely over a wood fire',
+    have: 'I can cook over a wood fire and put it out cold',
+    who: 'You and one other adult.',
+    steps: [
+      'Check your local burn rules first, and skip the fire on dry, windy days.',
+      'Pick an open spot, clear a 10-foot circle down to bare dirt, and ring the fire with rocks.',
+      'Keep a bucket of water and a shovel by the fire, and an adult with it the whole time.',
+      'Cook in a cast iron pot or Dutch oven, and check meat with a food thermometer.',
+      'Drown, stir and feel the ashes until they are cold to the touch.'
+    ],
+    when: 'This season. One evening.',
+    why: 'The Forest Service says to drown, stir and feel every fire until it is cold. The USDA says a food thermometer, not the color of the meat, tells you it is done.',
+    done: 'You cooked one meal over a wood fire, checked it with a thermometer and left the ashes cold.',
+    links: ['smokey-campfire', 'fsis-temps', 'fs-inyo-campfire'] });
+
+  add({ id: 'food-fuel', area: 'food', rank: 3, cost: 0, weight: 1, hz: ['outage', 'winter', 'hurricane', 'tornado', 'earthquake'],
+    title: 'Store cooking fuel safely and know how many meals it covers',
+    have: 'My cooking fuel is stored safely, and I know how many meals it will cook',
+    who: 'You.',
+    steps: [
+      'Keep propane cylinders upright and out of the house, the garage and the space under the grill.',
+      'Check gas hoses, and test the connection with soapy water before you cook.',
+      'Use charcoal grills outside only, and soak used coals until they are cold.',
+      'Stack firewood at least 30 feet from the house, not against any building.',
+      'Cook one meal on each fuel you have, note what it used, and write the meal count on your plan.'
+    ],
+    when: 'This month. Thirty minutes.',
+    why: 'The CPSC says propane is highly flammable and burning charcoal gives off carbon monoxide until it is fully out. Stored right, fuel is what turns stored food into hot meals.',
+    done: 'Fuel is stored away from the house, and your plan shows how many meals it will cook.',
+    links: ['cpsc-grills', 'cpsc-charcoal', 'usfa-garage'] });
+
+  add({ id: 'food-flood', area: 'food', rank: 2, cost: 0, weight: 2, hz: ['flood', 'hurricane'],
+    title: 'Know which food to keep and which to throw out after a flood',
+    have: 'I know which food is safe to keep after a flood',
+    who: 'You and the other adults.',
+    steps: [
+      'Move canned and boxed food out of the basement and low cabinets to a high shelf.',
+      'After a flood, throw out any food floodwater may have touched, unless it is in an undamaged all-metal can or pouch.',
+      'Throw out cardboard boxes, jars with screw caps or snap lids, home-canned food and damaged cans.',
+      'Save good cans and pouches: wash, rinse, sanitize, air-dry and relabel them.',
+      'When in doubt, throw it out. Never taste food to check it.'
+    ],
+    when: 'This week. Ten minutes to move the food up.',
+    why: 'The USDA and the CDC say floodwater makes most food unsafe, even food that looks and smells normal. Knowing the rules saves the cans that can be saved.',
+    done: 'Your food is off the low shelves, and you know what goes and what can be saved.',
+    links: ['usda-food', 'cdc-food-after'] });
+
+  add({ id: 'food-dry', comfort: true, area: 'food', rank: 7, cost: 1, costNote: 'Food-safe screens or racks, under $25 if you have none', weight: 1, hz: ['outage', 'income'],
+    title: 'Keep food without a fridge by drying it and storing it cool',
+    have: 'I can dry fruit and store root crops without a fridge',
+    who: 'You and anyone who helps in the kitchen.',
+    steps: [
+      'Dry fruit outdoors only on hot, dry, breezy days. Dry vegetables and meat indoors.',
+      'Lay the fruit one layer deep on food-safe screens, cover it against insects, and bring it in at night.',
+      'Store dried food in airtight containers in a dark place.',
+      'Keep potatoes, carrots and other root crops in a cool spot that does not freeze, and check them every week.'
+    ],
+    when: 'This season. One batch.',
+    why: 'The National Center for Home Food Preservation and university Extension services publish tested ways to dry food and store root crops. Neither needs power.',
+    done: 'One batch of fruit dried and stored, and a cool spot picked for root crops.',
+    links: ['nchfp-sundry', 'psu-dry', 'uconn-coldstore'] });
+
+  add({ id: 'home-return', area: 'home', rank: 3, cost: 0, weight: 2, hz: ['flood', 'hurricane', 'tornado', 'storm', 'earthquake', 'wildfire'],
+    title: 'Learn how to go back in safely after a flood or storm',
+    have: 'I know my gas, power and water shutoffs, and how to go back in safely',
+    who: 'You and one other adult.',
+    steps: [
+      'Find your main gas valve, main breaker and water shutoff. Learn how to turn each one off.',
+      'Pack a return bag: flashlights, a battery radio, work gloves, boots, N95 masks and a charged phone.',
+      'Rule: go back only when officials say it is safe, in daylight, and walk the outside first.',
+      'If you smell gas, do not go in. Leave and call the gas company from outside.',
+      'Before you clean anything, take photos and video of the damage and call your insurance.'
+    ],
+    when: 'This month. Thirty minutes.',
+    why: 'Gas leaks, wet wiring and weak walls are still there after the storm passes. The CDC and Ready.gov say wait for the all-clear, check the outside first, and photograph damage before cleanup.',
+    done: 'Two adults know the three shutoffs, and the return bag is packed.',
+    links: ['cdc-return-home', 'cdc-flood-reenter', 'fs-claim'] });
+
+  add({ id: 'home-mold', area: 'home', rank: 4, cost: 1, costNote: 'N95 masks, goggles and long rubber gloves, about $20 to $25 if you have none', weight: 1, hz: ['flood', 'hurricane', 'storm'],
+    title: 'Learn how to clean up mold after water damage',
+    have: 'I know how to clean up mold safely, and have masks, goggles and gloves',
+    who: 'You.',
+    steps: [
+      'Set aside a few N95 masks, goggles with no vent holes and long rubber gloves.',
+      'Know the size rule: a patch under about 10 square feet you can clean yourself. Bigger, or from sewage, calls for a pro.',
+      'After a flood, dry the house within 24 to 48 hours, or plan on mold.',
+      'Throw out soaked things you cannot clean and dry, like mattresses, carpet and pillows.',
+      'Keep kids, and anyone with asthma or lung trouble, out of moldy rooms.'
+    ],
+    when: 'This month. Fifteen minutes.',
+    why: 'Mold grows fast on wet drywall, carpet and wood. The EPA and the CDC say dry within 24 to 48 hours, protect your lungs, and throw out what cannot be cleaned.',
+    done: 'Masks, goggles and gloves set aside, and you know the 10-square-foot rule.',
+    links: ['epa-mold-brief', 'cdc-mold-about', 'cdc-disaster-cleanup'] });
+
+  add({ id: 'med-stress', area: 'medical', rank: 2, cost: 0, weight: 2, hz: ['all'],
+    title: 'Plan how to handle stress after a disaster, for you and the kids',
+    have: 'I know the signs of disaster stress and where to call or text for help',
+    who: 'You and the other adults.',
+    steps: [
+      'Save the Disaster Distress Helpline in every phone: call or text 1-800-985-5990, any time.',
+      'After a disaster, keep the routine: same wake time, meals together, enough sleep.',
+      'Limit the news, for you and the kids.',
+      'Talk with the kids. Answer plainly and tell them what you are doing to keep them safe.',
+      'If a child is still anxious, sad or angry two to four weeks later, talk to their doctor or school counselor.'
+    ],
+    when: 'Today. Five minutes to save the number.',
+    why: 'Strong feelings after a disaster are normal, and kids feel them too. SAMHSA runs a toll-free helpline for disaster stress, and the CDC lists what helps kids.',
+    done: 'The helpline is saved in every phone, and you know what helps the kids.',
+    links: ['samhsa-ddh', 'samhsa-coping', 'cdc-kids-cope'] });
 
 })(typeof window !== 'undefined' ? window : globalThis);

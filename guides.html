@@ -9,7 +9,7 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#9a4f1f">
-<link rel="stylesheet" href="site.css?v=20261121a">
+<link rel="stylesheet" href="site.css?v=20261126a">
 </head>
 <body>
 <header>
@@ -25,14 +25,14 @@
 </main>
 <footer><div class="wrap" id="foot"></div></footer>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
-<script src="config.js?v=20261121a"></script>
-<script src="data/links.js?v=20261121a"></script>
-<script src="data/tasks.js?v=20261121a"></script>
-<script src="js/engine.js?v=20261121a"></script>
-<script src="js/store.js?v=20261121a"></script>
-<script src="js/site.js?v=20261121a"></script>
-<script src="data/howto.js?v=20261121a"></script>
-<script src="js/howto-view.js?v=20261121a"></script>
+<script src="config.js?v=20261126a"></script>
+<script src="data/links.js?v=20261126a"></script>
+<script src="data/tasks.js?v=20261126a"></script>
+<script src="js/engine.js?v=20261126a"></script>
+<script src="js/store.js?v=20261126a"></script>
+<script src="js/site.js?v=20261126a"></script>
+<script src="data/howto.js?v=20261126a"></script>
+<script src="js/howto-view.js?v=20261126a"></script>
 <script>
 (function () {
   'use strict';
@@ -49,12 +49,21 @@
   var ctx = E.context({ adults: 2, kids: 2 });
   function fill(s) { return E.fill(s, ctx); }
 
+  /* the survival basics, one tap away: water, waste, food, warmth, first aid, getting out */
+  var BASICS = ['water-3day', 'water-treat', 'home-toilet', 'med-hygiene', 'food-3day', 'food-cook', 'food-fire', 'power-heat', 'power-co', 'med-kit', 'med-cpr-video', 'plan-gobag', 'comm-radio'];
+
   var id = new URLSearchParams(location.search).get('step');
   var t = id && RD.howto(id) ? E.task(id) : null;
   if (t) one(t); else list();
 
   function list() {
     var L = $('list');
+    var b = BASICS.map(E.task).filter(function (x) { return x && RD.howto(x.id); });
+    if (b.length) L.appendChild(el('div', { class: 'card' }, [
+      el('h2', { style: 'margin-top:0' }, 'Survival basics'),
+      el('p', { class: 'muted' }, 'Start here: water, a toilet, food, heat, first aid and getting out.'),
+      el('ul', { class: 'guide-list' }, b.map(function (x) { return el('li', null, el('a', { href: 'guides.html?step=' + x.id }, x.title)); }))
+    ]));
     RD.AREAS.forEach(function (a) {
       var ts = RD.TASKS.filter(function (x) { return x.area === a.id && RD.howto(x.id); });
       if (!ts.length) return;
@@ -72,7 +81,7 @@
     $('list').hidden = true;
     var w = $('one'); w.hidden = false;
     var card = el('article', { class: 'card task' });
-    card.appendChild(el('div', null, [UI.costChip(t), t.costNote ? el('span', { class: 'chip' }, t.costNote) : null]));
+    card.appendChild(el('div', null, [UI.costChip(t), t.costNote ? el('span', { class: 'chip' }, t.costNote) : null, t.comfort ? el('span', { class: 'chip' }, 'Extra: your choice, not scored') : null]));
     var dl = el('dl', { class: 'facts' });
     [['Who', t.who], ['When', t.when], ['Done looks like', t.done]].forEach(function (f) {
       dl.appendChild(el('dt', null, f[0])); dl.appendChild(el('dd', null, fill(f[1])));

@@ -429,7 +429,7 @@ create table if not exists public.moderators (
 create table if not exists public.forum_topics (
   id            bigint generated always as identity primary key,
   user_id       uuid not null default auth.uid() references auth.users (id) on delete cascade,
-  board         text not null check (board in ('start', 'water', 'food', 'power', 'medical', 'comms', 'plan', 'home', 'skills', 'money', 'disasters')),
+  board         text not null check (board in ('start', 'water', 'food', 'sanitation', 'power', 'medical', 'comms', 'plan', 'home', 'skills', 'money', 'disasters')),
   title         text not null check (char_length(btrim(title)) between 5 and 120),
   body          text not null check (char_length(btrim(body)) between 1 and 4000),
   task_id       text check (task_id is null or task_id ~ '^[a-z0-9-]{1,40}$'),
@@ -441,6 +441,10 @@ create table if not exists public.forum_topics (
   created_at    timestamptz not null default now(),
   last_reply_at timestamptz not null default now()
 );
+-- the board list again, so a run on a live project picks up a new board (the check above only applies when the table is new)
+alter table public.forum_topics drop constraint if exists forum_topics_board_check;
+alter table public.forum_topics add constraint forum_topics_board_check
+  check (board in ('start', 'water', 'food', 'sanitation', 'power', 'medical', 'comms', 'plan', 'home', 'skills', 'money', 'disasters'));
 create index if not exists forum_topics_board on public.forum_topics (board, last_reply_at desc);
 create index if not exists forum_topics_user on public.forum_topics (user_id, created_at);
 

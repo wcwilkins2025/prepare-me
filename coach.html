@@ -6,7 +6,7 @@
 <title>Coach</title>
 <meta name="description" content="One next step at a time: who does it, what to do, when, why it matters and what done looks like.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="site.css?v=20261121a">
+<link rel="stylesheet" href="site.css?v=20261126a">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#9a4f1f">
@@ -33,14 +33,14 @@
 <footer><div class="wrap" id="foot"></div></footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
-<script src="config.js?v=20261121a"></script>
-<script src="data/links.js?v=20261121a"></script>
-<script src="data/tasks.js?v=20261121a"></script>
-<script src="js/engine.js?v=20261121a"></script>
-<script src="js/store.js?v=20261121a"></script>
-<script src="js/site.js?v=20261121a"></script>
-<script src="data/howto.js?v=20261121a"></script>
-<script src="js/howto-view.js?v=20261121a"></script>
+<script src="config.js?v=20261126a"></script>
+<script src="data/links.js?v=20261126a"></script>
+<script src="data/tasks.js?v=20261126a"></script>
+<script src="js/engine.js?v=20261126a"></script>
+<script src="js/store.js?v=20261126a"></script>
+<script src="js/site.js?v=20261126a"></script>
+<script src="data/howto.js?v=20261126a"></script>
+<script src="js/howto-view.js?v=20261126a"></script>
 <script>
 (function () {
   'use strict';
@@ -95,7 +95,7 @@
     var card = el('article', { class: 'card task lead-card', 'aria-labelledby': 'taskTitle' });
     card.appendChild(el('p', { class: 'next', style: 'border:0;padding:0;background:none' }, el('span', { class: 'tag' }, UI.areaName(t.area) + (isDone ? ' · done' : ''))));
     card.appendChild(el('h2', { id: 'taskTitle' }, UI.fill(t.title, app)));
-    card.appendChild(el('div', null, [UI.costChip(t), t.costNote ? el('span', { class: 'chip' }, t.costNote) : null]));
+    card.appendChild(el('div', null, [UI.costChip(t), t.costNote ? el('span', { class: 'chip' }, t.costNote) : null, t.comfort ? el('span', { class: 'chip' }, 'Extra: your choice, not scored') : null]));
 
     var dl = el('dl', { class: 'facts' });
     [['Who', t.who], ['When', t.when], ['Why it matters', t.why], ['Done looks like', t.done]].forEach(function (f) {
@@ -161,7 +161,7 @@
     var order = E.nextSteps(app.ctx, app.state);
     var later = E.later(app.ctx, app.state);
     RD.AREAS.forEach(function (a) {
-      var tasks = E.tasksFor(app.ctx).filter(function (t) { return t.area === a.id; });
+      var tasks = E.survivalFor(app.ctx).filter(function (t) { return t.area === a.id; });
       tasks.sort(function (x, y) {
         function k(t) { var i = order.indexOf(t); return E.isDone(t, app.state) ? 9000 + RD.TASKS.indexOf(t) : i >= 0 ? i : 5000 + RD.TASKS.indexOf(t); }
         return k(x) - k(y);
@@ -182,6 +182,24 @@
       det.appendChild(ul);
       wrap.appendChild(det);
     });
+    /* comfort steps: his own choice, never scored */
+    var extra = E.tasksFor(app.ctx).filter(E.isComfort);
+    if (!extra.length) return;
+    var ex = el('details', { class: 'card plan-area fold', open: current && current.comfort ? true : null });
+    var exDone = extra.filter(function (t) { return E.isDone(t, app.state); }).length;
+    ex.appendChild(el('summary', null, 'Extras, your choice · ' + exDone + ' of ' + extra.length));
+    ex.appendChild(el('p', { class: 'muted' }, 'These make life easier or build a skill. They are up to you and do not count in your score.'));
+    var eul = el('ul', { class: 'plan-list' });
+    extra.forEach(function (t) {
+      var d = E.isDone(t, app.state);
+      eul.appendChild(el('li', { class: d ? 'done' : '' }, [
+        el('span', { class: 'st', 'aria-hidden': 'true' }, d ? '✓' : ''),
+        el('a', { href: 'coach.html?task=' + t.id, onclick: function (ev) { ev.preventDefault(); go(t); } }, UI.fill(t.title, app) + ' (' + UI.areaName(t.area).toLowerCase() + ')'),
+        el('span', { class: 'cost' }, RD.COST[t.cost].label)
+      ]));
+    });
+    ex.appendChild(eul);
+    wrap.appendChild(ex);
   }
 })();
 </script>

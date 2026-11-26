@@ -6,6 +6,7 @@
   var ABOUT = {
     water: 'Storing, treating and finding water.',
     food: 'Pantry, rotation, cooking without power.',
+    sanitation: 'Toilets with no water, trash, keeping clean and well.',
     power: 'Outages, backup power, staying warm or cool.',
     medical: 'First aid, medicine, care at home.',
     comms: 'Radios, phones, staying in touch.',

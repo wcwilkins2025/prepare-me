@@ -110,8 +110,13 @@
   };
 
   /* ---------- scores: each area is the share of its weighted steps done; overall is the average of the areas ---------- */
+  /* Survival steps keep you alive and well through a disaster, and they make the score. Comfort steps
+     (comfort: true in data/tasks.js) are his own choice: shown as extras, never counted. */
+  E.isComfort = function (t) { return !!t.comfort; };
+  E.survivalFor = function (ctx) { return E.tasksFor(ctx).filter(function (t) { return !t.comfort; }); };
+
   E.scores = function (ctx, state) {
-    var tasks = E.tasksFor(ctx);
+    var tasks = E.survivalFor(ctx);
     var areas = {}, sum = 0;
     RD.AREAS.forEach(function (ar) { areas[ar.id] = { got: 0, of: 0, done: 0, total: 0 }; });
     tasks.forEach(function (t) {
@@ -149,7 +154,7 @@
     now = now ? new Date(now) : new Date();
     var sc = E.scores(ctx, state);
     var done = E.doneSet(ctx, state);
-    var open = E.tasksFor(ctx).filter(function (t) {
+    var open = E.survivalFor(ctx).filter(function (t) {
       if (done[t.id]) return false;
       if (t.after && !done[t.after]) return false;
       var p = state && state.progress && state.progress[t.id];
@@ -161,6 +166,13 @@
         (RD.TASKS.indexOf(a) - RD.TASKS.indexOf(b));
     });
     return count ? open.slice(0, count) : open;
+  };
+
+  /* the comfort extras he has not done yet, most basic first */
+  E.extras = function (ctx, state) {
+    var done = E.doneSet(ctx, state);
+    return E.tasksFor(ctx).filter(function (t) { return t.comfort && !done[t.id] && (!t.after || done[t.after]); })
+      .sort(function (a, b) { return (a.cost - b.cost) || (a.rank - b.rank) || (RD.TASKS.indexOf(a) - RD.TASKS.indexOf(b)); });
   };
 
   /* steps put off with "not now", soonest back first */

@@ -6,6 +6,7 @@ var root = path.join(__dirname, '..');
 require(path.join(root, 'data/links.js'));
 require(path.join(root, 'data/tasks.js'));
 require(path.join(root, 'data/howto.js'));
+require(path.join(root, 'data/releases.js'));
 require(path.join(root, 'data/forum.js'));
 require(path.join(root, 'js/engine.js'));
 var RD = globalThis.RD, E = RD.engine;
@@ -56,7 +57,7 @@ Object.keys(RD.HOWTO).forEach(function (id) {
 
 /* calm words, no stores, nothing about how it was made. The word list is kept encoded so the words do not show up in the repo. */
 var words = fs.readFileSync(path.join(root, 'data/tasks.js'), 'utf8') + fs.readdirSync(root).filter(function (f) { return /\.(html|js|css|md)$/.test(f); }).map(function (f) { return fs.readFileSync(path.join(root, f), 'utf8'); }).join('\n') +
-  ['js/engine.js', 'js/site.js', 'js/store.js', 'js/howto-view.js', 'js/alerts.js', 'data/links.js', 'data/howto.js', 'data/nws.js', 'data/forum.js', 'supabase/functions/push/index.ts', 'supabase/schema.sql'].map(function (f) { return fs.readFileSync(path.join(root, f), 'utf8'); }).join('\n');
+  ['js/engine.js', 'js/site.js', 'js/store.js', 'js/howto-view.js', 'js/alerts.js', 'data/links.js', 'data/howto.js', 'data/nws.js', 'data/forum.js', 'data/releases.js', 'supabase/functions/push/index.ts', 'supabase/schema.sql'].map(function (f) { return fs.readFileSync(path.join(root, f), 'utf8'); }).join('\n');
 var BANNED = Buffer.from('XGJBSVxifGFydGlmaWNpYWwgaW50ZWxsaWdlbmNlfFxiZG9vbXxhcG9jYWx5cHxcYlNIVEZcYnxjb2xsYXBzZSBvZnxlbmQgb2YgdGhlIHdvcmxkfFxicGFuaWNcYnxhbWF6b258d2FsbWFydHxob21lIGRlcG90fGNvc3Rjb3xsb3dlJ3N8aGFyYm9yIGZyZWlnaHR8YmFzcyBwcm98Y2hhdGdwdHxjbGF1ZGV8b3BlbmFpfGdwdC0=', 'base64').toString().split('|');
 /* no group or community names anywhere in the app or README (also encoded) */
 var everything = words + fs.readFileSync(path.join(root, 'README.md'), 'utf8') + fs.readFileSync(path.join(root, 'scripts/build_hazards.py'), 'utf8');
@@ -146,10 +147,44 @@ eq(next[0].cost, 0, 'first step is free');
 ok(next.every(function (t) { return t.id !== 'home-smoke'; }), 'put-off step hidden this week');
 ok(E.nextSteps(c1, st, null, '2026-11-21T00:00:00Z').some(function (t) { return t.id === 'home-smoke'; }), 'put-off step back after its week');
 ok(next.every(function (t) { return t.id !== 'comm-ham-test'; }), 'ham test waits until studying is done');
-ok(next.some(function (t) { return t.id === 'comm-ham-learn'; }), 'ham study offered');
+ok(E.extras(c1, st).some(function (t) { return t.id === 'comm-ham-learn'; }), 'ham study offered as an extra');
+ok(E.extras(c1, st).every(function (t) { return t.id !== 'comm-ham-test'; }), 'ham test extra waits until studying is done');
 var firstFew = next.slice(0, 5).map(function (t) { return t.area; });
 ok(new Set(firstFew).size >= 3, 'first steps spread across areas: ' + firstFew.join(','));
 eq(E.band(0).word, 'Starting out', 'band 0'); eq(E.band(90).word, 'Ready', 'band 90');
+
+/* ---------- the Survival basics list on the Guides page: real steps with guides, set before the page draws ---------- */
+var guidesHtml = fs.readFileSync(path.join(root, 'guides.html'), 'utf8');
+var basics = JSON.parse(((guidesHtml.match(/var BASICS = (\[[^\]]*\])/) || [])[1] || '[]').replace(/'/g, '"'));
+ok(basics.length >= 8, 'the Guides page has a Survival basics list');
+basics.forEach(function (id) { ok(E.task(id) && RD.HOWTO[id] && !E.task(id).comfort, 'survival basic ' + id + ' is a survival step with a guide'); });
+ok(guidesHtml.indexOf('var BASICS') < guidesHtml.indexOf('if (t) one(t); else list();'), 'the basics list is set before the page draws');
+
+/* ---------- release notes: newest first, real dates, plain lines, linked from every page ---------- */
+ok(RD.RELEASES.length >= 1, 'there are release notes');
+RD.RELEASES.forEach(function (r, i) {
+  ok(/^\d{4}-\d{2}-\d{2}$/.test(r.date) && !isNaN(new Date(r.date)), 'release ' + r.date + ' has a real date');
+  ok(!i || RD.RELEASES[i - 1].date > r.date, 'release ' + r.date + ' is in date order, newest first');
+  ok(r.title && r.items.length >= 1, 'release ' + r.date + ' has a title and changes');
+  r.items.forEach(function (x) { ok(typeof x === 'string' && x.length > 10 && !/__|\{/.test(x), 'release ' + r.date + ' line is finished: ' + x.slice(0, 30)); });
+});
+ok(/whats-new\.html/.test(fs.readFileSync(path.join(root, 'js/site.js'), 'utf8')), "every page footer links to What's new");
+ok(/whats-new\.html/.test(fs.readFileSync(path.join(root, 'sitemap.xml'), 'utf8')), "What's new is in the sitemap");
+
+/* ---------- survival is scored; comfort steps are his choice and never counted ---------- */
+RD.TASKS.forEach(function (t) { ok(t.comfort === undefined || t.comfort === true, t.id + ': comfort is true or left out'); });
+RD.AREAS.forEach(function (a) { ok(RD.TASKS.some(function (t) { return t.area === a.id && !t.comfort; }), a.name + ' has survival steps to score'); });
+(function () {
+  var t = E.task('water-3day'), was = t.comfort, before = E.scores(c1, { have: [], progress: {} }).total;
+  t.comfort = true;
+  var sc = E.scores(c1, { have: ['water-3day'], progress: {} });
+  eq(sc.overall, 0, 'a comfort step done does not raise the score');
+  eq(sc.total, before - 1, 'comfort steps are left out of the step count');
+  ok(E.nextSteps(c1, { have: [], progress: {} }).every(function (x) { return x.id !== 'water-3day'; }), 'comfort steps are not in the coach order');
+  ok(E.extras(c1, { have: [], progress: {} }).some(function (x) { return x.id === 'water-3day'; }), 'comfort steps are listed as extras');
+  ok(E.extras(c1, { have: ['water-3day'], progress: {} }).every(function (x) { return x.id !== 'water-3day'; }), 'a done extra leaves the list');
+  if (was === undefined) delete t.comfort; else t.comfort = was;
+})();
 
 /* ---------- the week ---------- */
 eq(E.weekOf('2026-11-16T15:00:00'), '2026-11-16', 'Monday is its own week');
@@ -299,6 +334,8 @@ RD.FORUM.boards.forEach(function (b) { ok(b.name && b.about && b.about.length > 
 var schema = fs.readFileSync(path.join(root, 'supabase/schema.sql'), 'utf8');
 var sqlBoards = (schema.match(/board in \(([^)]*)\)/) || [])[1];
 eq((sqlBoards || '').split(',').map(function (x) { return x.trim().replace(/'/g, ''); }), FB, 'the server allows exactly the same boards');
+var allBoardLists = schema.match(/board in \(([^)]*)\)/g) || [];
+ok(allBoardLists.length === 2 && allBoardLists[0] === allBoardLists[1], 'the new-table check and the live-project check list the same boards');
 var L = RD.FORUM.limits;
 ok(schema.indexOf('char_length(btrim(title)) between ' + L.title[0] + ' and ' + L.title[1]) >= 0, 'title limit matches the server');
 ok(schema.indexOf('char_length(btrim(body)) between 1 and ' + L.body) >= 0, 'topic length matches the server');
