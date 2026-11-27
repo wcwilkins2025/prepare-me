@@ -67,7 +67,7 @@
       household: people > 1, kids: kids + babies > 0, babies: babies > 0, pets: pets > 0, babiesOrPets: babies + pets > 0,
       seniors: seniors > 0, meds: a.meds === 'yes', device: a.device === 'yes', well: a.water === 'well',
       notRv: a.home !== 'rv', notApartment: a.home !== 'apartment', mobile: a.home === 'mobile' || a.home === 'rv',
-      vehicle: a.vehicle !== 'no', cold: cold, hot: hot
+      vehicle: a.vehicle !== 'no', access: a.access === 'yes', livestock: a.livestock === 'yes', cold: cold, hot: hot
     };
     Object.keys(hz).forEach(function (id) { f['hz:' + id] = true; });
     return {

@@ -280,5 +280,26 @@
     'samhsa-coping': { by: 'SAMHSA', title: 'Coping tips for traumatic events and disasters', url: 'https://www.samhsa.gov/mental-health/disaster-preparedness/coping-tips' },
     'ready-coping': { by: 'Ready.gov', title: 'Coping with disaster', url: 'https://www.ready.gov/coping-disaster' },
     'cdc-kids-cope': { by: 'CDC', title: 'Helping children cope with a disaster', url: 'https://www.cdc.gov/children-and-school-preparedness/before-during-after/helping-children-cope.html' }
+,
+    'cdc-disab-plan': { by: 'CDC', title: 'Emergency preparedness for people with disabilities', url: 'https://www.cdc.gov/disability-emergency-preparedness/people-with-disabilities/index.html' },
+    'acl-emergency': { by: 'Administration for Community Living', title: 'Emergency preparedness for older adults and people with disabilities', url: 'https://acl.gov/programs/emergency-preparedness' },
+    'usfa-disab-fire': { by: 'U.S. Fire Administration (FEMA)', title: 'Fire safety for people with disabilities', url: 'https://www.usfa.fema.gov/prevention/home-fires/at-risk-audiences/people-with-disabilities/' },
+    'fema-ayr-basic': { by: 'FEMA', title: 'Are You Ready? Basic preparedness, including shelters and large animals (PDF)', url: 'https://www.fema.gov/pdf/areyouready/basic_preparedness.pdf' },
+    'cdfa-horse-evac': { by: 'California Department of Food and Agriculture', title: 'Evacuating horses during an emergency (PDF)', url: 'https://www.cdfa.ca.gov/AHFSS/Animal_Health/eprs/docs/Evacuating_Horses_During_an_Emergency.pdf' },
+    'fdacs-horse-prep': { by: 'Florida Department of Agriculture and Consumer Services', title: 'Disaster preparedness for horses (PDF)', url: 'https://ccmedia.fdacs.gov/content/download/11445/file/Disaster%2520Preparedness%2520for%2520Horses.pdf' },
+    'nj-horse-during': { by: 'New Jersey Department of Agriculture', title: 'Horses: what to do during a disaster (PDF)', url: 'https://www.nj.gov/agriculture/animalemergency/documents/horse-during.pdf' },
+    'uconn-equine': { by: 'UConn Extension', title: 'How to prepare for equine disasters', url: 'https://extension.uconn.edu/?p=15538' },
+    'msstate-livestock': { by: 'Mississippi State University Extension', title: 'Disaster preparedness for livestock', url: 'https://blogs.extension.msstate.edu/theriskproject/pet-preparedness-part-4/' },
+    'ready-car': { by: 'Ready.gov', title: 'Car safety and an emergency kit for the car', url: 'https://www.ready.gov/car' },
+    'nhtsa-winter': { by: 'NHTSA', title: 'Winter weather driving tips: prepare your vehicle', url: 'https://www.nhtsa.gov/winter-driving-tips' },
+    'nhtsa-summer': { by: 'NHTSA', title: 'Summer driving tips: vehicle checks and a roadside kit', url: 'https://www.nhtsa.gov/summer-driving-tips' },
+    'epa-cleanroom': { by: 'EPA', title: 'Create a clean room to protect indoor air during a wildfire', url: 'https://www.epa.gov/indoor-air-quality-iaq/create-clean-room-protect-indoor-air-quality-during-wildfire' },
+    'airnow-aqi': { by: 'AirNow (EPA)', title: 'Air Quality Index basics', url: 'https://www.airnow.gov/aqi/aqi-basics/' },
+    'epa-wf-iaq': { by: 'EPA', title: 'Wildfires and indoor air quality', url: 'https://www.epa.gov/emergencies-iaq/wildfires-and-indoor-air-quality-iaq' },
+    'epa-filtration': { by: 'EPA', title: 'Indoor air filtration for wildfire smoke', url: 'https://www.epa.gov/wildfires/indoor-air-filtration' },
+    'epa-diy-cleaner': { by: 'EPA', title: 'Do-it-yourself air cleaners', url: 'https://www.epa.gov/emergencies-iaq/diy-air-cleaners' },
+    'epa-smoke-masks': { by: 'EPA', title: 'Protect yourself from wildfire smoke and ash (respirators)', url: 'https://www.epa.gov/wildfires/protect-yourself-wildfire-smoke-and-ash' },
+    'cdc-wf-kids': { by: 'CDC', title: 'Wildfire smoke and children', url: 'https://www.cdc.gov/wildfires/risk-factors/wildfire-smoke-and-children.html' },
+    'airnow-smokeready': { by: 'AirNow (EPA)', title: 'Be smoke ready', url: 'https://www.airnow.gov/wildfires/be-smoke-ready/' }
   };
 })(typeof window !== 'undefined' ? window : globalThis);

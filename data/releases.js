@@ -4,11 +4,13 @@
   'use strict';
   var RD = root.RD = root.RD || {};
   RD.RELEASES = [
-    { date: '2026-11-26', title: 'Survival first, a Sanitation area, and more basics', items: [
+    { date: '2026-11-26', title: 'Survival first, a Sanitation area, and plans for more homes', items: [
       'Survival and comfort steps are split. Survival steps make your score. Comfort steps, like canning, ham radio and backup power, are extras you choose. They no longer count against you.',
       'A new area: Sanitation and hygiene. The emergency toilet and staying clean moved here, and it has its own forum board.',
       '11 new steps, each with a full guide: dig a latrine, handle trash when pickup stops, keep pests away, clean safely with bleach, cook over a wood fire, store cooking fuel, food after a flood, dry and store food without a fridge, go back in safely after a flood or storm, clean up mold, and handle stress after a disaster.',
       'Deeper guides for the emergency toilet and for cooking with the power out.',
+      '5 more steps, each with a full guide: a plan for anyone older or living with a disability, a plan for livestock and horses, where to go if you cannot stay home, a car emergency kit with a check before the season, and a clean-air room for wildfire smoke.',
+      'Two new questions: whether you keep livestock or horses, and whether anyone needs help to get around or to leave fast.',
       'The Guides page starts with Survival basics: water, a toilet, food, heat, first aid and getting out, one tap away.',
       'This page. Every change is listed here when it goes live.',
       'Visits are now counted with Cloudflare Web Analytics. It uses no cookies and collects no personal information.'

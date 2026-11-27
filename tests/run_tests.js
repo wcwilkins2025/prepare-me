@@ -18,7 +18,7 @@ function eq(a, b, msg) { ok(JSON.stringify(a) === JSON.stringify(b), msg + ' (go
 /* ---------- the step library ---------- */
 var areaIds = RD.AREAS.map(function (a) { return a.id; });
 var hzIds = RD.HAZARDS.map(function (h) { return h.id; });
-var NEEDS = ['household', 'kids', 'babies', 'pets', 'babiesOrPets', 'seniors', 'meds', 'device', 'well', 'notRv', 'notApartment', 'mobile', 'vehicle', 'cold', 'hot'];
+var NEEDS = ['household', 'kids', 'babies', 'pets', 'babiesOrPets', 'seniors', 'meds', 'device', 'well', 'notRv', 'notApartment', 'mobile', 'vehicle', 'access', 'livestock', 'cold', 'hot'];
 var ids = {};
 RD.TASKS.forEach(function (t) {
   ok(!ids[t.id], 'unique id ' + t.id); ids[t.id] = 1;
@@ -69,6 +69,20 @@ BANNED.forEach(function (w, i) { var re = new RegExp(w, /[A-Z]{2}/.test(w) ? '' 
 var ctx = E.context({ adults: 2, kids: 2, babies: 1, pets: 1, water: 'well', home: 'house' });
 eq([ctx.people, ctx.gal3, ctx.gal14], [5, 15, 70], 'five people need 15 and 70 gallons');
 eq(E.fill('{gal3} gallons for {people}{petsLine}', ctx), '15 gallons for 5 people, plus extra for the pet', 'text fills in');
+
+/* the questions for help getting around and for livestock */
+(function () {
+  function has(ans, id) { return E.tasksFor(E.context(ans)).some(function (t) { return t.id === id; }); }
+  var base = { adults: 2, home: 'house', vehicle: 'yes' };
+  ok(!has(base, 'plan-access'), 'no plan for help getting around when nobody needs it');
+  ok(has(Object.assign({}, base, { access: 'yes' }), 'plan-access'), 'the plan shows when someone needs help getting around');
+  ok(has(Object.assign({}, base, { seniors: 1 }), 'plan-access'), 'the plan shows for someone 65 and over');
+  ok(has(Object.assign({}, base, { device: 'yes' }), 'plan-access'), 'the plan shows for a medical device');
+  ok(!has(base, 'plan-livestock') && has(Object.assign({}, base, { livestock: 'yes' }), 'plan-livestock'), 'the livestock plan shows only with livestock');
+  ok(has(base, 'plan-car') && !has(Object.assign({}, base, { vehicle: 'no' }), 'plan-car'), 'the car kit shows only with a vehicle');
+  ok(has(base, 'plan-shelter'), 'every home gets a place to go');
+  ['livestock', 'access'].forEach(function (q) { ok(RD.QUESTIONS.some(function (x) { return x.id === q && x.type === 'yesno' && x.def === 'no'; }), 'the ' + q + ' question exists and starts at no'); });
+})();
 ok(ctx.flags.well && ctx.flags.kids && ctx.flags.babiesOrPets, 'flags from answers');
 var solo = E.context({ adults: 0 });
 eq(solo.people, 1, 'at least one person');

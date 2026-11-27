@@ -4770,6 +4770,299 @@
       ],
       sources: ['samhsa-ddh', 'samhsa-coping', 'ready-coping', 'cdc-kids-cope', 'cdc-return-home'],
       checked: '2026-11-26'
+    },
+
+    'plan-access': {
+      intro: 'A disaster can cut off care, rides and power for days. This plan is built around the person\'s own needs, with people, spares and a way out lined up ahead.',
+      parts: [
+        { head: 'Build a support network', items: [
+          'Pick family, friends, neighbors or caregivers who can help with rides, communication and care when the usual services stop.',
+          'Tell them where you keep the emergency supplies. Give at least one of them a key to the home.',
+          'Make sure at least one knows how to use any lifesaving equipment and how to give medicine.',
+          'Keep their names and numbers in a watertight container in the kit and on the phone.',
+          'Make the plan with them and practice it together.',
+          'In hot weather, ask them to check in often.'
+        ] },
+        { head: 'Spares for aids and devices', items: [
+          'Pack extra glasses, contacts, hearing aids and hearing aid batteries.',
+          'If you use a power wheelchair, keep a light manual chair as a backup if you can, and show others how to fold, set up and run the chair.',
+          'Keep an extra battery for a power chair or other battery device, and keep it charged. If you cannot buy one, ask local agencies or charities for help.',
+          'Keep a tire patch kit or sealant, a spare inner tube and a small pump for chair or scooter tires that can go flat.',
+          'Keep a spare cane or walker, and an extra seat cushion if you use one.',
+          'Write down the style, model and serial number of each device, how to run it, and where it came from (Medicare, Medicaid or insurance).'
+        ] },
+        { head: 'Communication', items: [
+          'Carry a printed card, or keep a note on the phone, that tells responders how to talk with you. The Administration for Community Living offers a communication card and a medical information card.',
+          'Deaf or hard of hearing: a weather radio with a text display and flashing alert, pen and paper, a battery lantern for signing or lip reading in the dark, and smoke alarms with a strobe or vibrating pad.',
+          'Blind or low vision: label supplies in Braille or large print, and keep a list of them as an audio file or on a flash drive.',
+          'Speech: plan for the device failing. Keep laminated cards with phrases or pictures.',
+          'Wear a medical alert tag or bracelet, and keep a list of medicines, doses and allergies.'
+        ] },
+        { head: 'Service animals and treatment', items: [
+          'Pack food, water, a collar with an ID tag and medical records for a service or support animal.',
+          'All shelters take service animals. Many do not take pets, so plan another place for them.',
+          'If you get dialysis or other regular treatment, know more than one place that can give it. Ask your clinic about its emergency plan and backup providers.',
+          'If a device needs power, see the step on medical devices that need power.'
+        ] },
+        { head: 'Medical-needs lists', items: [
+          'Many city and county emergency management offices keep a voluntary list of people who may need help in a disaster. Not every place has one.',
+          'Ask your county emergency management office or your power company if they keep one, and how to sign up.',
+          'Ask your power company to put you on its list for priority power restoration if someone relies on power for health.',
+          'Do not count on a list to keep you safe. Responders may not reach you even if you signed up, so make your own plan too.'
+        ] },
+        { head: 'Getting out fast', items: [
+          'Know two ways out of every room.',
+          'If you can, live or sleep near an exit: the ground floor of an apartment building, the first floor of a home with stairs.',
+          'In an apartment building, ask the management to mark accessible exits and to arrange help to leave the building. In a high-rise, ask about an evacuation chair.',
+          'Line up neighbors who can help you out of the building.',
+          'Plan an accessible ride out of town. Ask local transit and your emergency management office what options exist.',
+          'Leave early. For someone with dementia, never leave them alone, and bring a pillow or blanket they can hold. At a shelter, pick a quiet corner away from the exits.'
+        ] }
+      ],
+      mistakes: [
+        'Counting on a medical-needs list to bring help, with no plan of your own.',
+        'A spare chair battery that was never charged.',
+        'Only one person who knows how the wheelchair or the oxygen works.'
+      ],
+      sources: ['ready-disab', 'ready-older', 'cdc-disab-plan', 'acl-emergency', 'usfa-disab-fire', 'fema-ayr-basic'],
+      checked: '2026-11-26'
+    },
+
+    'plan-livestock': {
+      intro: 'Horses and livestock take time, trailers and help to move. A written plan, ID and practice let you leave early and calm.',
+      parts: [
+        { head: 'Write the plan', items: [
+          'Emergency contacts: your vet, your farrier, local officials and neighbors.',
+          'Animal information: health records, medicines and ID for each animal.',
+          'A farm map with access routes and water sources, and a checklist of halters, leads, first aid, feed and water.',
+          'A plan to shelter in place, a plan to evacuate (transport, routes, destination) and a plan to find each other and the animals after.',
+          'Post copies in the tack room or barn office, in the trailer, at the barn doors and in the house, so a neighbor or responder can follow it if you are not there.',
+          'Go over it and practice it at least once a year with everyone on the farm.'
+        ] },
+        { head: 'ID and proof of ownership', items: [
+          'Give every animal some form of ID.',
+          'Take clear photos from all sides, with close-ups of markings, at different times of year. Include some of you with the animal.',
+          'Write a description: breed, color, markings and temperament.',
+          'Quick ID: a livestock crayon or marker with your name and phone number, a neck band, tags, mane tags or painted numbers on the hooves. Lasting ID: a microchip, brand or tattoo.',
+          'Put a tag on each halter with the animal\'s name, your name, your phone and a second number.',
+          'Keep Coggins tests, vet records, proof of rabies shots and the bill of sale or registration papers in a watertight bag with your other papers.'
+        ] },
+        { head: 'Trailers and loading', items: [
+          'Arrange trailers ahead. If you do not have enough room, keep a list of haulers or friends with trailers and have people on standby.',
+          'Keep trailers and tow vehicles in good working order.',
+          'Get the animals used to being gathered, penned and loaded. Practice until they load and unload calm.',
+          'Line up experienced handlers and drivers.',
+          'Animals can spook in a disaster. Normal handling may not work as well, so practice now.'
+        ] },
+        { head: 'Where to go', items: [
+          'Arrange a place outside your area before you need it: a friend\'s farm, fairgrounds, stockyards, an Extension facility or a horse venue. Find more than one.',
+          'Make sure the place has feed, water, vet care and handling gear.',
+          'Map a main route and a second route.',
+          'Your county Extension agent, animal control or emergency management office can tell you about local animal shelters.',
+          'Call the place before you leave to make sure it is still open and not hit by the disaster. Listen for special livestock evacuation routes.'
+        ] },
+        { head: 'Feed and water for days', cols: ['When', 'Have on hand', 'Source'], rows: [
+          ['Sheltering in place', '7 days of feed, water and fuel', 'California Dept. of Food and Agriculture'],
+          ['Kit kept at home', 'At least a week of feed and of water; replace feed every 3 months', 'UConn Extension'],
+          ['Evacuating', 'Feed, hay and water for at least 3 days, loaded in the trailer', 'New Jersey Dept. of Agriculture'],
+          ['If you must leave them', 'Hay and water for 48 to 72 hours', 'New Jersey Dept. of Agriculture']
+        ], note: 'Store feed in airtight, waterproof containers. Do not count on automatic waterers; the power may go out. Do not leave large amounts of grain, which can upset a horse\'s gut.' },
+        { head: 'Stay, turn out or leave', items: [
+          'Follow officials on whether to evacuate or shelter in place. Leave early: if you wait, you may be told to leave the animals behind, and you may be kept out for days.',
+          'If you cannot move them, decide ahead whether they are safer in the barn or loose in a field. It depends on the disaster, how sound the barn is, flood risk, and trees and debris nearby.',
+          'In a flood or tornado it is usually best not to shut them in the barn, since the roof can come down. In a flood, move them to higher ground.',
+          'Tie down or put away troughs, buckets and loose gear that wind can throw, and fill every trough.',
+          'If you leave them, put them in the spot you picked for that disaster, with hay and water for 48 to 72 hours.',
+          'Make sure every animal carries ID in case you have to turn them loose or claim them from a shelter.'
+        ] }
+      ],
+      mistakes: [
+        'Waiting for the evacuation order, then being told to leave the animals behind.',
+        'A trailer the horse has never been loaded into.',
+        'Counting on an automatic waterer when the power is out.',
+        'Leaving a pile of grain for animals you leave behind.'
+      ],
+      sources: ['ready-pets', 'fema-ayr-basic', 'cdfa-horse-evac', 'fdacs-horse-prep', 'nj-horse-during', 'uconn-equine', 'msstate-livestock'],
+      checked: '2026-11-26'
+    },
+
+    'plan-shelter': {
+      intro: 'If you have to leave, you have three choices: friends or family, a hotel, or a public shelter. Pick them now, in more than one direction.',
+      parts: [
+        { head: 'Pick your places', items: [
+          'Know where you will go before you need to. Write it on your plan.',
+          'Choose several places: a friend\'s or relative\'s home in another town, a motel, or a public shelter.',
+          'Pick places in different directions, so you have a choice whichever way the danger comes.',
+          'Many states have set evacuation zones and routes. Check your state and county emergency management websites.',
+          'Shelter spaces can change from year to year. Check with local officials about what is set for this year.'
+        ] },
+        { head: 'Find an open public shelter', items: [
+          'The FEMA app lists open shelters near you during a disaster. It is free.',
+          'Without the app, text SHELTER and your ZIP code to 43362 (for example: Shelter 01234). Standard text rates apply.',
+          'Sign up for local emergency alerts and weather alerts. They give shelter locations as well as warnings.',
+          'Keep a battery radio and follow local instructions on where to go and which roads to take.'
+        ] },
+        { head: 'What to bring', items: [
+          'Bring your emergency kit. Shelters often have water, food, medicine and toilets, but you should have your own supplies.',
+          'A sleeping bag or warm blanket for each person, a change of clothes and sturdy shoes.',
+          'Medicines, a list of them, glasses, and chargers with a backup battery.',
+          'Copies of IDs and insurance papers, and some cash.',
+          'Soap, hand sanitizer and disinfecting wipes. You will be living close to many people.',
+          'Books or games for the kids, and a familiar pillow or blanket for anyone who struggles with change.'
+        ] },
+        { head: 'Shelter rules', items: [
+          'Alcohol and weapons are not allowed in emergency shelters. Smoking is limited.',
+          'All shelters take service animals. Most public shelters do not take pets, so plan another place for them.',
+          'Shelter life is crowded and hard. Work with the shelter managers and the people helping them.',
+          'Stay until local officials say it is safe to leave.'
+        ] },
+        { head: 'Friends, family and hotels', items: [
+          'Ask now if you can stay, and what they can and cannot take, such as pets.',
+          'Find which hotels and motels on your route take pets. Look at some outside your area too, in case the local ones close.',
+          'When you leave, call or text your out-of-town contact and tell them where you are going.',
+          'Leave a note at home saying when you left and where you went.'
+        ] },
+        { head: 'Before you head home', items: [
+          'Check with officials both where you are staying and back home before you travel.',
+          'Tell family when you leave and when you arrive.',
+          'Bring water and food for the drive.',
+          'See the step on going back in safely after a flood or storm.'
+        ] }
+      ],
+      mistakes: [
+        'Driving to a shelter without checking that it is open.',
+        'Leaving the kit at home because the shelter will have supplies.',
+        'Showing up at a shelter with a pet and no other plan.',
+        'Only one place to go, in the same direction as the storm.'
+      ],
+      sources: ['ready-shelter', 'ready-evacuation', 'fema-app', 'ready-kit', 'fema-ayr-basic'],
+      checked: '2026-11-26'
+    },
+
+    'plan-car': {
+      intro: 'A car that starts, with a full tank and a kit in the back, is how you leave fast or wait out a storm on the road. Check it before storm and winter season, and keep the kit in it all year.',
+      parts: [
+        { head: 'The kit to keep in the car', items: [
+          'Jumper cables, a flashlight with spare batteries, and flares or a reflective triangle.',
+          'A phone charger that works in the car.',
+          'A first aid kit and any medicines you need every day.',
+          'Water, food that will not spoil, and a blanket.',
+          'Work gloves, a change of clothes, paper towels and a little duct tape for a leaking hose.',
+          'A tire pressure gauge, a jack, and basic tools.',
+          'A paper map of your area. Do not count on a phone with a low battery.'
+        ] },
+        { head: 'Add these for winter', items: [
+          'An ice scraper and brush, a small shovel, and a broom for snow.',
+          'A bag of sand or cat litter to put under the tires if you get stuck.',
+          'Blankets or sleeping bags, and extra warm, dry clothes.',
+          'High-calorie food, a water container, and a small can with waterproof matches to melt snow for water.',
+          'A tow rope and a bright cloth to tie on the antenna if you are stuck.',
+          'Extra windshield washer fluid of the winter kind, with de-icer.'
+        ] },
+        { head: 'Check the tires', items: [
+          'Fill each tire to the pressure on the label on the driver\'s door frame, or in the owner\'s manual.',
+          'Do not use the number on the tire itself. That is the most the tire can hold, not what your car needs.',
+          'Check the pressure cold, after the car has sat at least three hours. Cold weather lowers tire pressure.',
+          'Tread must be at least 2/32 of an inch. Put a penny in the tread with Lincoln\'s head upside down. If you can see the top of his head, it is time for new tires.',
+          'Look for cuts, bulges and cracks once a month. Uneven wear means the tires need rotating or the wheels need aligning.',
+          'Check the spare, and make sure the jack is in the car.'
+        ] },
+        { head: 'Check the rest before the season', items: [
+          'Oil, coolant, brake fluid, transmission fluid, power steering fluid and washer fluid. Fill any that are low. If you see a leak, have it looked at.',
+          'Have a mechanic test the battery and charging system. Cold weather drains a battery fast.',
+          'Test the wipers and the defroster. Replace worn wiper blades.',
+          'Check the headlights, brake lights, turn signals and flashers.',
+          'Look at the belts and hoses for bulges, blisters and cracks.',
+          'Look up your car for open recalls with its VIN on the NHTSA recall tool. Recall repairs are free.'
+        ] },
+        { head: 'Fuel and charge', items: [
+          'Keep the tank close to full, in case you have to leave or the power goes out.',
+          'In winter, a full tank also keeps ice out of the tank and fuel lines.',
+          'If the car is electric, keep it charged. In winter, plug it in at night so the battery stays warm.',
+          'If the car is a hybrid, keep gas in the tank too.'
+        ] },
+        { head: 'If you are on the road in a storm', items: [
+          'Stay off the roads in a storm unless you must go. Call 511 for road conditions before you leave, and tell someone your route.',
+          'Never drive into flood water. Six inches can stall a car or make you lose control. A foot of water will float many cars.',
+          'If you are stuck in snow, stay in the car. Run the engine about 10 minutes an hour for heat, with a window open a crack.',
+          'Keep the exhaust pipe clear of snow, so carbon monoxide does not build up inside.',
+          'Turn on the dome light at night, tie a bright cloth to the antenna, and raise the hood when the snow stops.',
+          'If a power line falls on the car, stay inside until help comes. If you are in danger, call 911.'
+        ] }
+      ],
+      mistakes: [
+        'Filling the tires to the number printed on the tire.',
+        'Running the engine while stuck with snow blocking the exhaust pipe.',
+        'Walking away from a stuck car in blowing snow.',
+        'Driving into water on the road because it looks shallow.'
+      ],
+      sources: ['ready-car', 'nhtsa-winter', 'nhtsa-summer', 'nws-winter-before', 'nws-winter-during'],
+      checked: '2026-11-26'
+    },
+
+    'hz-smoke': {
+      intro: 'Wildfire smoke gets into houses, even far from the fire. One closed room with filtered air gives everyone a cleaner place to breathe until it passes.',
+      parts: [
+        { head: 'Check the air', cols: ['AQI', 'Color', 'What it means'], rows: [
+          ['0 to 50', 'Green', 'Good. Little or no risk.'],
+          ['51 to 100', 'Yellow', 'Moderate. Some very sensitive people may feel it.'],
+          ['101 to 150', 'Orange', 'Unhealthy for people at higher risk.'],
+          ['151 to 200', 'Red', 'Unhealthy. Some healthy people feel it, and people at higher risk feel it more.'],
+          ['201 to 300', 'Purple', 'Very unhealthy for everyone.'],
+          ['301 and up', 'Maroon', 'Hazardous. Everyone is likely to be affected.']
+        ], note: 'From AirNow. Check the AirNow Fire and Smoke Map, the AirNow app, your state air quality website or local news. People at higher risk: children and teens, adults over 65, pregnant women, and people with asthma, COPD, heart disease or diabetes. If the fire is close, it may be best to leave. Follow local alerts.' },
+        { head: 'Set up the room', items: [
+          'Pick a room big enough for everyone and comfortable to stay in. A bedroom with its own bathroom works well, since you can keep the door shut for a long time.',
+          'Close the windows and doors, but do nothing that makes it hard to get out.',
+          'Use a bathroom or kitchen fan only for short times. It can pull smoke in from the rest of the house.',
+          'If the central air pulls in outside air, set it to recirculate or close the outdoor intake.',
+          'Close the outdoor air damper on a window air conditioner. If you cannot close it, do not use that unit.',
+          'Keep cool with fans or air conditioning. If you cannot stay cool, or smoke keeps getting in, go somewhere else: family out of the smoke, or a public cleaner-air shelter.'
+        ] },
+        { head: 'Filter the air', items: [
+          'A portable air cleaner with a HEPA or other pleated filter works best. Pick one whose smoke CADR is at least two-thirds of the room\'s floor area in square feet. A 150-square-foot room needs a smoke CADR of at least 100.',
+          'Pick one that makes little or no ozone. The EPA points to the California Air Resources Board list of certified air cleaners.',
+          'Skip ionizers, electrostatic and UV air cleaners for smoke. They may not remove it and can make ozone.',
+          'Run it all the time on the highest setting, with space around it so air flows freely.',
+          'If you have central air, put in a MERV 13 or higher filter if the system can take it, and set the fan to On instead of Auto.',
+          'Buy it before fire season and keep spare filters. Change them when they look dirty or start to smell of smoke.'
+        ] },
+        { head: 'A box-fan filter if you cannot get an air cleaner', items: [
+          'The EPA says a do-it-yourself air cleaner is a stand-in for when a portable air cleaner is not available or affordable.',
+          'You need a 20 by 20 inch box fan, a 20 by 20 inch furnace filter rated MERV 13, and duct tape, clamps or bungee cords.',
+          'Point the arrows on the filter the way the air flows, so air goes through the filter first, then the fan. Seal the edges so no air gets around it.',
+          'Tape a cardboard cover over the front corners of the fan, with a round hole the size of the blades. It works much better.',
+          'More filters work better: two in a wedge, or four or five in a cube. Thicker filters, 2 to 4 inches, help too.',
+          'Use a box fan made in 2012 or later with a UL or ETL mark. Never leave an older fan running alone or while you sleep.',
+          'Do not use an extension cord or a damaged fan, do not leave children alone with it, and make sure the smoke alarms work.'
+        ] },
+        { head: 'Masks', items: [
+          'Buy masks with "NIOSH" and "N95" or "P100" printed on them, with two straps that go around the head.',
+          'Masks with ear loops, dust masks, surgical masks, bandanas and wet cloths do not protect your lungs from smoke.',
+          'Put one strap below the ears and one above, press the nose clip with both hands, and check the seal by the package directions.',
+          'It only seals on a clean-shaven face.',
+          'Throw it away when it gets dirty or harder to breathe through.',
+          'Anyone with heart or lung problems, or who is pregnant, should ask a doctor before wearing one.',
+          'Children 2 and older can wear one, but N95 masks are not made in small sizes. Pick one that fits over the nose and under the chin and watch that they keep it on right.'
+        ] },
+        { head: 'Do not add smoke inside', items: [
+          'No smoking or vaping inside.',
+          'Do not fry or broil food. Keep food on hand that needs no cooking.',
+          'Do not burn candles or incense, or use a gas, propane or wood stove.',
+          'Do not spray air fresheners or other aerosol cleaners.',
+          'Do not vacuum unless the vacuum has a HEPA filter. Dust with a damp cloth instead.',
+          'Rest instead of exercising. When the air gets better, even for a while, open up and air the house out.',
+          'If someone has severe trouble breathing or chest pain, call 911.'
+        ] }
+      ],
+      mistakes: [
+        'Counting on a dust mask, a surgical mask or a bandana.',
+        'Buying an ionizer or ozone air cleaner for smoke.',
+        'Running an old box fan all night while everyone sleeps.',
+        'Frying dinner or lighting candles in the house while it is smoky.'
+      ],
+      sources: ['epa-cleanroom', 'airnow-aqi', 'epa-wf-iaq', 'epa-filtration', 'epa-diy-cleaner', 'epa-smoke-masks', 'cdc-wf-kids', 'airnow-smokeready'],
+      checked: '2026-11-26'
     }
   };
 })(typeof window !== 'undefined' ? window : globalThis);

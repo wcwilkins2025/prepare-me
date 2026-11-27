@@ -66,9 +66,11 @@
     { id: 'seniors', type: 'number', label: 'Adults 65 and over', min: 0, max: 20, def: 0 },
     { id: 'kids',    type: 'number', label: 'Children 2 to 17', min: 0, max: 20, def: 0 },
     { id: 'babies',  type: 'number', label: 'Babies under 2', min: 0, max: 10, def: 0 },
-    { id: 'pets',    type: 'number', label: 'Dogs and cats', min: 0, max: 20, def: 0, hint: 'Livestock are covered by Groundwork. Count house pets here.' },
+    { id: 'pets',    type: 'number', label: 'Dogs and cats', min: 0, max: 20, def: 0, hint: 'Count house pets here. Livestock and horses have their own question.' },
+    { id: 'livestock', type: 'yesno', label: 'Do you keep livestock or horses?', def: 'no' },
     { id: 'meds',    type: 'yesno',  label: 'Does anyone take a daily medicine they cannot go without?', def: 'no' },
     { id: 'device',  type: 'yesno',  label: 'Does anyone use a medical device that needs power (oxygen, CPAP, a pump)?', def: 'no' },
+    { id: 'access',  type: 'yesno',  label: 'Does anyone need help to get around, see, hear or understand, or to leave fast?', def: 'no', hint: 'For example a wheelchair or walker, low vision, hearing loss or memory loss.' },
     { id: 'home',    type: 'choice', label: 'What kind of home?', def: 'house',
       options: [['house', 'A house'], ['apartment', 'An apartment or condo'], ['mobile', 'A mobile or manufactured home'], ['rv', 'An RV or camper']] },
     { id: 'own',     type: 'choice', label: 'Do you own or rent?', def: 'own', options: [['own', 'Own'], ['rent', 'Rent'], ['family', 'Live with family']] },
@@ -1850,5 +1852,89 @@
     why: 'Strong feelings after a disaster are normal, and kids feel them too. SAMHSA runs a toll-free helpline for disaster stress, and the CDC lists what helps kids.',
     done: 'The helpline is saved in every phone, and you know what helps the kids.',
     links: ['samhsa-ddh', 'samhsa-coping', 'cdc-kids-cope'] });
+
+
+  /* ---------- people, animals, the car and smoke, added 2026-11-26 ---------- */
+  add({ id: 'plan-access', area: 'plan', rank: 2, cost: 1, costNote: 'The plan is free; spare batteries and a few small supplies are about $10 to $25', weight: 2, hz: ['all'], needAny: ['seniors', 'access', 'device'],
+    title: 'Make a plan for anyone older or living with a disability',
+    have: 'A plan for the older or disabled people in the house, with a support network and spares',
+    who: 'You, the person the plan is for, and the people in their support network.',
+    steps: [
+      'Pick a few people who will check in and help. Tell them where the supplies are, and give one a key.',
+      'Set aside spares: glasses, hearing aid batteries, a cane or walker, and a charged spare chair battery.',
+      'Write a card that tells responders how to talk with the person, plus a list of medicines and devices.',
+      'Plan food, water and records for a service animal.',
+      'Ask your county emergency management office or your power company if they keep a medical-needs list.',
+      'Plan the fastest way out: two ways out of each room, help to leave the building, and a ride out of town.'
+    ],
+    when: 'This month. One evening, with the person.',
+    why: 'Helpers and medical care may not reach you quickly in a disaster. Ready.gov and the CDC say to build a support network and a plan around each person\'s own needs.',
+    done: 'The support network knows the plan, the spares are packed, and the way out is worked out.',
+    links: ['ready-disab', 'ready-older', 'cdc-disab-plan'] });
+
+  add({ id: 'plan-livestock', area: 'plan', rank: 3, cost: 0, weight: 2, hz: ['evacuate', 'wildfire', 'flood', 'hurricane', 'tornado', 'winter'], need: ['livestock'],
+    title: 'Make a disaster plan for your livestock and horses',
+    have: 'A plan for the livestock: ID, trailers, a place to go and feed for days',
+    who: 'You and everyone who works with the animals, plus a neighbor.',
+    steps: [
+      'Give every animal ID, take photos from all sides, and put the papers in a waterproof bag.',
+      'Line up trailers and drivers, and practice loading until the animals load calm.',
+      'Arrange a place to take them outside your area, and map two routes there.',
+      'Keep at least a week of feed and water on hand. Do not count on automatic waterers.',
+      'Decide ahead, for each disaster, whether the animals go to the barn or stay out in a field if you cannot move them.',
+      'Post the plan in the barn and the trailer.'
+    ],
+    when: 'This season. One afternoon, then a loading practice.',
+    why: 'Large animals take time and trailers to move. Ready.gov and state agriculture offices say give them ID, practice loading, and leave early.',
+    done: 'Every animal has ID, they load calm, and you have a place to go with two routes.',
+    links: ['ready-pets', 'cdfa-horse-evac', 'msstate-livestock'] });
+
+  add({ id: 'plan-shelter', area: 'plan', rank: 2, cost: 0, weight: 2, hz: ['evacuate', 'hurricane', 'flood', 'wildfire', 'fire', 'chemical'],
+    title: 'Know where you will go if you cannot stay home',
+    have: 'I know where we will stay if we must leave, and how to find an open shelter',
+    who: 'You and the other adults.',
+    steps: [
+      'Ask a friend or family member in another town if you can stay with them, and pick a second place in a different direction.',
+      'List a few hotels or motels on your route, and which ones take pets.',
+      'Learn how to find an open public shelter: the FEMA app, or text SHELTER and your ZIP code to 43362.',
+      'Plan to take your emergency kit, bedding and medicines with you, even to a shelter.',
+      'Know that shelters do not allow alcohol or weapons, and most take only service animals.'
+    ],
+    when: 'This week. Twenty minutes and one call.',
+    why: 'Ready.gov says to know your evacuation destination ahead of time, with options in different directions. Shelter spaces change, so you also need a way to find one that is open.',
+    done: 'Two places to stay in two directions, and everyone knows how to find an open shelter.',
+    links: ['ready-shelter', 'ready-evacuation', 'fema-app'] });
+
+  add({ id: 'plan-car', area: 'plan', rank: 3, cost: 2, costNote: 'Jumper cables, a blanket, a scraper, a first aid kit and the rest, about $25 to $100 for what you do not already have', weight: 2, hz: ['winter', 'storm', 'hurricane', 'flood', 'evacuate'], need: ['vehicle'],
+    title: 'Pack a car emergency kit and check the car before the season',
+    have: 'The car has an emergency kit, and I check it before storm and winter season',
+    who: 'You, and whoever drives the car most.',
+    steps: [
+      'Pack a kit in the car: jumper cables, flashlight, flares or a reflective triangle, blanket, water, snacks, a first aid kit and a phone charger.',
+      'Before winter, add a scraper, a small shovel, sand or cat litter, warm clothes and a paper map.',
+      'Check the tire pressure against the label on the driver\'s door frame, and check the tread and the spare.',
+      'Check the oil, coolant and washer fluid, test the wipers and lights, and have a mechanic test the battery.',
+      'Keep the tank close to full. If the car is electric, keep it charged.'
+    ],
+    when: 'This month, and again before each storm or winter season. One hour.',
+    why: 'Ready.gov, NHTSA and the National Weather Service all say to keep a kit in the car and check it before bad weather. A full tank and a working battery are what get you out when you have to leave.',
+    done: 'The kit is in the car, and the tires, fluids, wipers and battery have been checked this season.',
+    links: ['ready-car', 'nhtsa-winter', 'nws-winter-before'] });
+
+  add({ id: 'hz-smoke', area: 'home', rank: 2, cost: 2, costNote: 'A box fan, a MERV 13 furnace filter and a box of N95 masks, about $25 to $100. A portable HEPA air cleaner costs more.', weight: 2, hz: ['wildfire'], need: ['hz:wildfire'],
+    title: 'Set up a clean-air room for wildfire smoke',
+    have: 'I have a room picked for smoke, a way to filter its air, and N95 masks',
+    who: 'You and the family.',
+    steps: [
+      'Learn to check the Air Quality Index on AirNow.gov or its app.',
+      'Pick one room big enough for everyone, with a door that closes. A bedroom with its own bathroom works well.',
+      'Get a portable HEPA air cleaner sized for the room, or a box fan and a MERV 13 filter for a do-it-yourself one. Buy before fire season.',
+      'Keep a few NIOSH N95 masks with two head straps for each adult.',
+      'When smoke comes, close the room up and do not fry food, burn candles or vacuum inside.'
+    ],
+    when: 'Before fire season. One hour.',
+    why: 'The EPA says smoke gets into homes, and a closed room with a filter keeps the air cleaner. Filters and masks can sell out once the smoke arrives.',
+    done: 'The room is picked, the air cleaner or box-fan filter is ready, and the masks are stored.',
+    links: ['epa-cleanroom', 'airnow-aqi', 'epa-smoke-masks'] });
 
 })(typeof window !== 'undefined' ? window : globalThis);
