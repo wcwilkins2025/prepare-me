@@ -237,6 +237,12 @@ footer .hr-family a { color: var(--accent); }
   .howto-table th, .howto-table td { border-color: #666; }
 }
 
+/* the handbook picker (handbook.html) */
+.pick-area { border-top: 1px solid var(--rule); padding: 6px 0; }
+.pick-area summary { display: flex; align-items: center; min-height: 44px; }
+.pick-list { display: grid; gap: 4px; padding: 4px 0 8px 28px; }
+.pick-list .check, .pick-area summary .check { display: flex; gap: 8px; align-items: center; min-height: 40px; }
+
 /* the written family plan (plan.html): the form on screen, and the two printed copies */
 .field textarea { resize: vertical; line-height: 1.4; }
 .person { border-top: 1px solid var(--rule); padding: 12px 0 4px; display: grid; gap: 12px; }

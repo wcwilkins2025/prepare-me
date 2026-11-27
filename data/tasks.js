@@ -105,7 +105,7 @@
     have: 'I know how to boil and bleach water to make it safe',
     who: 'You and one other adult.',
     steps: [
-      'Boiling: bring clear water to a rolling boil for 1 minute. Above 6,500 feet, boil 3 minutes. Let it cool.',
+      'Boiling: heat clear water until it boils hard, then keep it boiling for 1 minute. Above 6,500 feet, boil 3 minutes. Let it cool.',
       'Bleach: check the label says 5% to 9% sodium hypochlorite, plain and unscented. Add 8 drops per gallon. Double it if the water is cloudy or very cold.',
       'Stir and wait 30 minutes before you drink it.',
       'Cloudy water: let it settle or strain it through a clean cloth first.',
@@ -186,7 +186,7 @@
     have: 'A water filter for when stored water runs out',
     who: 'You.',
     steps: [
-      'Pick a filter with an absolute pore size of 1 micron or smaller for parasites, or 0.3 micron for bacteria too. It says on the box.',
+      'Choose a filter rated at an absolute pore size no larger than 1 micron for parasites, or 0.3 micron to stop bacteria too. The box will say.',
       'Know the limit: filters do not remove viruses. After filtering, bleach or boil water you are not sure of.',
       'Practice once with water from a creek, pond or rain barrel, then boil or bleach it.',
       'Store it with your water and the treatment card.'
@@ -221,7 +221,7 @@
       'A full freezer holds about 48 hours. Half full, about 24.',
       'Food at 40°F or below is safe. Toss meat, milk, eggs and leftovers that sat above 40°F for 2 hours or more.',
       'Fill empty freezer space with jugs of water. They hold the cold and become drinking water.',
-      'When in doubt, throw it out. Never taste food to check it.',
+      'If you are not sure, throw it out. Never taste food to check whether it is safe.',
       'Write the 4 and 48 hour rules on the fridge.'
     ],
     when: 'This week. Fifteen minutes.',
@@ -841,7 +841,7 @@
     have: 'We know where we shelter for a tornado',
     who: 'You and the whole family.',
     steps: [
-      'Best: a basement or storm shelter. Next best: a small room on the lowest floor with no windows, like a closet or hallway.',
+      'Best: a basement or storm shelter. Next best: a small windowless room on the lowest floor, like a closet or hallway.',
       'In a mobile home or RV, do not stay. Find a sturdy building nearby and know how to get there fast.',
       'Keep shoes, a light, a helmet or pillows, and the radio in that spot.',
       'Know the difference: a watch means be ready. A warning means go now.',
@@ -875,12 +875,12 @@
     steps: [
       'Look up your address on the FEMA flood map.',
       'Know your way to high ground that does not cross low water.',
-      'Never drive or walk into flood water. Six inches of moving water can knock you down. A foot can carry away most cars, and two feet can carry away trucks. Turn around.',
+      'Never drive or walk into flood water. Moving water just six inches deep can knock you down. A foot can carry away most cars, and two feet can carry away trucks. Turn around.',
       'Know what you would move up first: papers, medicine, electronics.',
       'Check if your insurance covers flood. Most home and renter policies do not.'
     ],
     when: 'This month.',
-    why: 'Floods are the most common disaster in the country. Most flood deaths are in vehicles.',
+    why: 'Floods happen more often than any other disaster in the country. Most flood deaths are in vehicles.',
     done: 'Your route to high ground on the plan, and you know if you have flood coverage.',
     links: ['ready-floods', 'fema-floodmap', 'fema-flood', 'redcross-flood'] });
 
@@ -1138,7 +1138,7 @@
     who: 'You and the family.',
     steps: [
       'Look up your county\'s tsunami zone map on the county or state emergency site.',
-      'Find high ground or go inland: 100 feet above sea level, or at least 1 mile inland.',
+      'Find high ground or go inland: at least 1 mile inland, or 100 feet above sea level.',
       'Plan to walk it. Roads jam.',
       'Rule: if you feel a strong quake near the coast, or see the sea pull back, go to high ground now. Do not wait for a warning.'
     ],
@@ -1440,7 +1440,7 @@
     who: 'You. Then every teen and adult in the house.',
     steps: [
       'Watch the American Heart Association\'s free Hands-Only CPR video. It runs about a minute and a half.',
-      'Learn the two steps, in order: call 911, then push hard and fast in the center of the chest.',
+      'Learn the two steps, in order: call 911, then push fast and hard in the middle of the chest.',
       'Learn the pace: 100 to 120 pushes a minute. Pick a song you know with that beat.',
       'Know the limit: for babies, children, drowning and overdose, a full class with breaths is the next step.',
       'Watch it again with the others in the house.'
@@ -1608,7 +1608,7 @@
       'Stay warm and dry, and signal: three whistle blasts, a mirror, bright clothing.'
     ],
     when: 'Before your next trip out. Ten minutes.',
-    why: 'Rangers do not keep track of overdue hikers. The person at home with your plan is your link to help, and staying put makes you easier to find.',
+    why: 'Rangers do not track hikers who are overdue. The person at home with your plan is your link to help, and staying put makes you easier to find.',
     done: 'Everyone who goes out leaves a plan and knows to stay put.',
     links: ['nps-yose-safety', 'nps-olym-safety', 'nols-lost'] });
 
@@ -1634,7 +1634,7 @@
     who: 'You. Teach a kid.',
     steps: [
       'Cut a few pieces of rope about 3 feet long, 1/4 to 1/2 inch thick.',
-      'Bowline: a loop at the end of a rope that will not slip. The free end must sit inside the loop.',
+      'Bowline: a loop at a rope\'s end that does not slip. The free end must sit inside the loop.',
       'Clove hitch: ties a line to a post or a rail.',
       'Figure-eight: a stopper at the end of a rope, so it cannot pull through a ring.',
       'Sheet bend: joins two ropes, even of different sizes. Make the loop in the thicker one.',
@@ -1656,7 +1656,7 @@
       'Keep the card. Most states require it before you can buy a hunting license.'
     ],
     when: 'Before the next season. Check your state\'s class dates early.',
-    why: 'Hunter education teaches safety, ethics, game laws, outdoor survival and wilderness first aid. Most states require it, and it is the first step to putting meat on the table.',
+    why: 'Hunter education covers safety, ethics, game laws, wilderness first aid and outdoor survival. Most states require it, and it is the first step to putting meat on the table.',
     done: 'You passed and have the card.',
     links: ['fws-hunt-license', 'fws-hunter-ed'] });
 
@@ -1665,7 +1665,7 @@
     have: 'I have a fishing license and can rig, cast and land a fish',
     who: 'You and the kids.',
     steps: [
-      'Buy your state fishing license, online, by phone or in person. Get a copy of the state fishing rules.',
+      'Buy your state fishing license in person, by phone or online. Pick up a copy of the state fishing rules.',
       'Start with a push-button spin-casting rod and reel. It is the easiest for beginners.',
       'Rig it: tie on a hook, add a sinker 6 to 12 inches up the line, and clip on a bobber.',
       'Practice casting in an open yard with a rubber casting plug in place of the hook.',
@@ -1734,7 +1734,7 @@
       'Keep a jug of plain, unscented bleach that says 5% to 9% sodium hypochlorite, plus gloves and eye protection.',
       'Clean with soap and water first. Use bleach only after.',
       'To disinfect, mix 5 tablespoons (1/3 cup) of bleach in a gallon of water. Mix it fresh each day.',
-      'Never mix bleach with ammonia or any other cleaner. Open windows while you work.',
+      'Never mix bleach with any other cleaner, including ammonia. Open windows while you work.',
       'Learn the four steps for dishes: wash, rinse, soak in weak bleach water, air dry.'
     ],
     when: 'This month. Fifteen minutes to read the label and write the mixes on the jug.',
@@ -1783,7 +1783,7 @@
       'After a flood, throw out any food floodwater may have touched, unless it is in an undamaged all-metal can or pouch.',
       'Throw out cardboard boxes, jars with screw caps or snap lids, home-canned food and damaged cans.',
       'Save good cans and pouches: wash, rinse, sanitize, air-dry and relabel them.',
-      'When in doubt, throw it out. Never taste food to check it.'
+      'If you are not sure, throw it out. Never taste food to check whether it is safe.'
     ],
     when: 'This week. Ten minutes to move the food up.',
     why: 'The USDA and the CDC say floodwater makes most food unsafe, even food that looks and smells normal. Knowing the rules saves the cans that can be saved.',
@@ -1896,7 +1896,7 @@
     steps: [
       'Ask a friend or family member in another town if you can stay with them, and pick a second place in a different direction.',
       'List a few hotels or motels on your route, and which ones take pets.',
-      'Learn how to find an open public shelter: the FEMA app, or text SHELTER and your ZIP code to 43362.',
+      'Learn how to find an open public shelter: use the FEMA app, or text SHELTER plus your ZIP code to 43362.',
       'Plan to take your emergency kit, bedding and medicines with you, even to a shelter.',
       'Know that shelters do not allow alcohol or weapons, and most take only service animals.'
     ],
@@ -1952,7 +1952,7 @@
       'Know where official word comes from: the CDC and your state and county health departments.'
     ],
     when: 'This month. One evening, then a little each shopping trip.',
-    why: 'Ready.gov says to prepare for schools and workplaces to close and to gather supplies to stay home for several days or weeks. The CDC says how to care for a sick person at home without the whole house getting sick.',
+    why: 'Ready.gov says to prepare for schools and workplaces to close, and to gather supplies for staying home several days or weeks. The CDC says how to care for a sick person at home without the whole house getting sick.',
     done: 'Two weeks of supplies, a plan for caring for the sick, and a backup for school and work.',
     links: ['ready-pandemic', 'cdc-flu-caring', 'cdc-clean-home'] });
 

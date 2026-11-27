@@ -4,7 +4,11 @@
   'use strict';
   var RD = root.RD = root.RD || {};
   RD.RELEASES = [
-    { date: '2026-11-27', title: 'Write your family plan, and print it', items: [
+    { date: '2026-11-27', title: 'Your family plan, and a survival handbook to print', items: [
+      'A new page, Handbook: every guide in one book, as a PDF to download and print. Take the whole thing, just the survival basics, or pick the areas and guides you want.',
+      'Each copy has a cover, a table of contents, every guide in full, and a credits section listing every source with its web address.',
+      'Signed in, amounts like gallons of water are worked out for your household. Otherwise they are for a family of four.',
+      'Every guide was checked word for word against its sources, and any line that matched was rewritten in our own words. The facts did not change.',
       'A new page, My plan: who is in your household, who to call, three meeting places, where the water, food, go-bags, first aid kit and shutoffs are, doctors, pets, and what you do for each disaster on your list. Every spot is optional, and it saves as you type.',
       'Print the plan. Anything left blank prints as a line to fill in by hand.',
       'Print a fold-over wallet card for everyone in the plan, with the contacts, the meeting places and the family phone numbers.',

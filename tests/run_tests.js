@@ -9,6 +9,7 @@ require(path.join(root, 'data/howto.js'));
 require(path.join(root, 'data/releases.js'));
 require(path.join(root, 'data/forum.js'));
 require(path.join(root, 'data/plan.js'));
+require(path.join(root, 'data/handbook.js'));
 require(path.join(root, 'js/engine.js'));
 var RD = globalThis.RD, E = RD.engine;
 
@@ -58,7 +59,7 @@ Object.keys(RD.HOWTO).forEach(function (id) {
 
 /* calm words, no stores, nothing about how it was made. The word list is kept encoded so the words do not show up in the repo. */
 var words = fs.readFileSync(path.join(root, 'data/tasks.js'), 'utf8') + fs.readdirSync(root).filter(function (f) { return /\.(html|js|css|md)$/.test(f); }).map(function (f) { return fs.readFileSync(path.join(root, f), 'utf8'); }).join('\n') +
-  ['js/engine.js', 'js/site.js', 'js/store.js', 'js/howto-view.js', 'js/alerts.js', 'data/links.js', 'data/howto.js', 'data/nws.js', 'data/forum.js', 'data/releases.js', 'data/plan.js', 'js/plan-view.js', 'supabase/functions/push/index.ts', 'supabase/schema.sql'].map(function (f) { return fs.readFileSync(path.join(root, f), 'utf8'); }).join('\n');
+  ['js/engine.js', 'js/site.js', 'js/store.js', 'js/howto-view.js', 'js/alerts.js', 'data/links.js', 'data/howto.js', 'data/nws.js', 'data/forum.js', 'data/releases.js', 'data/plan.js', 'js/plan-view.js', 'data/handbook.js', 'js/handbook-pdf.js', 'supabase/functions/push/index.ts', 'supabase/schema.sql'].map(function (f) { return fs.readFileSync(path.join(root, f), 'utf8'); }).join('\n');
 var BANNED = Buffer.from('XGJBSVxifGFydGlmaWNpYWwgaW50ZWxsaWdlbmNlfFxiZG9vbXxhcG9jYWx5cHxcYlNIVEZcYnxjb2xsYXBzZSBvZnxlbmQgb2YgdGhlIHdvcmxkfFxicGFuaWNcYnxhbWF6b258d2FsbWFydHxob21lIGRlcG90fGNvc3Rjb3xsb3dlJ3N8aGFyYm9yIGZyZWlnaHR8YmFzcyBwcm98Y2hhdGdwdHxjbGF1ZGV8b3BlbmFpfGdwdC0=', 'base64').toString().split('|');
 /* no group or community names anywhere in the app or README (also encoded) */
 var everything = words + fs.readFileSync(path.join(root, 'README.md'), 'utf8') + fs.readFileSync(path.join(root, 'scripts/build_hazards.py'), 'utf8');
@@ -176,10 +177,36 @@ eq(E.band(0).word, 'Starting out', 'band 0'); eq(E.band(90).word, 'Ready', 'band
 
 /* ---------- the Survival basics list on the Guides page: real steps with guides, set before the page draws ---------- */
 var guidesHtml = fs.readFileSync(path.join(root, 'guides.html'), 'utf8');
-var basics = JSON.parse(((guidesHtml.match(/var BASICS = (\[[^\]]*\])/) || [])[1] || '[]').replace(/'/g, '"'));
+var basics = RD.BASICS;
+ok(/var BASICS = RD\.BASICS/.test(guidesHtml) && /data\/handbook\.js/.test(guidesHtml), 'the Guides page and the handbook share one Survival basics list');
 ok(basics.length >= 8, 'the Guides page has a Survival basics list');
 basics.forEach(function (id) { ok(E.task(id) && RD.HOWTO[id] && !E.task(id).comfort, 'survival basic ' + id + ' is a survival step with a guide'); });
 ok(guidesHtml.indexOf('var BASICS') < guidesHtml.indexOf('if (t) one(t); else list();'), 'the basics list is set before the page draws');
+
+/* ---------- the printable handbook ---------- */
+require(path.join(root, 'js/handbook-pdf.js'));
+(function () {
+  var allIds = RD.handbookIds('all'), withGuide = RD.TASKS.filter(function (t) { return RD.HOWTO[t.id]; });
+  eq(allIds.length, withGuide.length, 'the whole handbook has every guide');
+  var order = allIds.map(function (id) { return areaIds.indexOf(E.task(id).area); });
+  ok(order.every(function (v, i) { return !i || v >= order[i - 1]; }), 'the handbook goes area by area');
+  eq(RD.handbookIds('basics'), RD.BASICS.filter(function (id) { return RD.HOWTO[id]; }), 'Survival basics only is the basics list');
+  eq(RD.handbookIds(['skill-fire', 'water-3day', 'not-a-step']), ['water-3day', 'skill-fire'], 'picked guides come in book order, unknown ones dropped');
+  var doc = RD.handbookDoc(allIds, { ctx: E.context({ adults: 2, kids: 2 }), household: 'a household of 4', paper: 'LETTER', date: new Date('2026-11-27T12:00:00') });
+  var json = JSON.stringify(doc.content);
+  ok(!/\{\w+\}/.test(json), 'the handbook has every household number filled in');
+  ok(withGuide.every(function (t) { return json.indexOf(JSON.stringify(t.title)) >= 0; }), 'every guide title is in the book');
+  var credits = json.slice(json.indexOf('"Sources and credits"'));
+  var everySource = {}; withGuide.forEach(function (t) { RD.HOWTO[t.id].sources.concat(t.links).forEach(function (k) { everySource[k] = 1; }); });
+  ok(Object.keys(everySource).every(function (k) { return credits.indexOf(JSON.stringify(RD.LINKS[k].url)) >= 0; }), 'every source of every guide is credited at the back, with its web address');
+  eq((json.match(/"Sources\. In our own words, from /g) || []).length, allIds.length, 'every guide ends with its own sources');
+  ok(/not endorsed by/.test(JSON.stringify(RD.HANDBOOK)) && /our own words/.test(JSON.stringify(RD.HANDBOOK)), 'the front of the book says it is in our own words and not endorsed');
+  eq(RD.handbookDoc(['water-3day'], { ctx: E.context({}), household: 'one person', paper: 'A4' }).pageSize, 'A4', 'A4 paper');
+  var hb = fs.readFileSync(path.join(root, 'handbook.html'), 'utf8');
+  ok((hb.match(/cdnjs\.cloudflare\.com\/ajax\/libs\/pdfmake\/0\.2\.10\/[\w.]+\.js', 'sha512-[\w+\/=]{80,}'/g) || []).length === 2, 'the PDF maker comes from cdnjs, pinned, with integrity hashes');
+  ok(!/innerHTML/.test(hb), 'the handbook page never writes page code');
+  ok(/'handbook\.html', 'Handbook'/.test(fs.readFileSync(path.join(root, 'js/site.js'), 'utf8')), 'the handbook is in the nav');
+})();
 
 /* ---------- release notes: newest first, real dates, plain lines, linked from every page ---------- */
 ok(RD.RELEASES.length >= 1, 'there are release notes');

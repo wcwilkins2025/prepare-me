@@ -9,7 +9,7 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#9a4f1f">
-<link rel="stylesheet" href="site.css?v=20261127b">
+<link rel="stylesheet" href="site.css?v=20261127c">
 </head>
 <body>
 <header>
@@ -25,14 +25,15 @@
 </main>
 <footer><div class="wrap" id="foot"></div></footer>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
-<script src="config.js?v=20261127b"></script>
-<script src="data/links.js?v=20261127b"></script>
-<script src="data/tasks.js?v=20261127b"></script>
-<script src="js/engine.js?v=20261127b"></script>
-<script src="js/store.js?v=20261127b"></script>
-<script src="js/site.js?v=20261127b"></script>
-<script src="data/howto.js?v=20261127b"></script>
-<script src="js/howto-view.js?v=20261127b"></script>
+<script src="config.js?v=20261127c"></script>
+<script src="data/links.js?v=20261127c"></script>
+<script src="data/tasks.js?v=20261127c"></script>
+<script src="js/engine.js?v=20261127c"></script>
+<script src="js/store.js?v=20261127c"></script>
+<script src="js/site.js?v=20261127c"></script>
+<script src="data/howto.js?v=20261127c"></script>
+<script src="data/handbook.js?v=20261127c"></script>
+<script src="js/howto-view.js?v=20261127c"></script>
 <script>
 (function () {
   'use strict';
@@ -50,7 +51,7 @@
   function fill(s) { return E.fill(s, ctx); }
 
   /* the survival basics, one tap away: water, waste, food, warmth, first aid, getting out */
-  var BASICS = ['water-3day', 'water-treat', 'home-toilet', 'med-hygiene', 'food-3day', 'food-cook', 'food-fire', 'power-heat', 'power-co', 'med-kit', 'med-cpr-video', 'plan-gobag', 'comm-radio'];
+  var BASICS = RD.BASICS;   /* data/handbook.js: the same list starts the printable handbook */
 
   var id = new URLSearchParams(location.search).get('step');
   var t = id && RD.howto(id) ? E.task(id) : null;

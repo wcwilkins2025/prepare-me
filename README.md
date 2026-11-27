@@ -27,6 +27,7 @@ There are 123 steps (17 of them comfort extras), including survival skills: CPR,
 | `index.html` | Signed out: how it works and sign-in. Signed in: the score, next to fix, the ten areas, and his disasters. |
 | `start.html` | The assessment: town lookup with a live preview of his disasters, household, home, what he already has. |
 | `coach.html` | The next step, in full, and the whole plan by area. `coach.html?task=<id>` opens one step. |
+| `handbook.html` | The printable survival handbook: the whole book, Survival basics, or picked areas and guides, as a PDF made in the browser by pdfmake (loaded from cdnjs with its integrity hash, only on Download). `js/handbook-pdf.js` builds it: cover, how to use it, contents, each guide with its sources, and every source at the back. Amounts are for his household signed in, else a family of four. |
 | `plan.html` | The written family plan, from `data/plan.js`: who is in it, who to call, where to meet, where things are, and what to do for each of his disasters. Saves as he types. Prints the plan (blank lines left to fill by hand) and fold-over wallet cards. Signed out: print a blank plan or blank cards. |
 | `checkin.html` | The weekly check-in and the history chart. |
 | `guides.html` | Survival basics first, then every how-to by area, free to read signed out. `guides.html?step=<id>` is one guide, ready to print. |
@@ -118,6 +119,11 @@ Loads every outside link and fails on any that is dead or serves an error page. 
 wsl -e sh supabase/tests/run_rls.sh
 ```
 Runs the real `schema.sql` (twice, to prove it is safe to re-run) on a throwaway Postgres in `/tmp` with a small Supabase stand-in. The schema runs as a plain owner role, not a superuser, as in the Supabase dashboard. Then it checks the row rules with two men. A man reads only his own rows. He cannot change, delete or write rows as another man. A visitor who is not signed in reads nothing. `delete_me()` removes only the man who calls it, with his rows. For the forum it checks a member, a poster and a moderator: reading, posting only as himself, the server setting names and marks, the limits, unique names, reports, hiding and restoring, the moderator table closed to the app, the rate limit, renaming, the reply alert, and deleting. 57 checks.
+
+```
+node scripts/check_copying.js [cache folder]
+```
+Downloads every source page and fails on any guide or step line that shares 8 or more words in a row with a source. The facts come from the sources; the wording must be our own, because the handbook prints it. Names of the groups we credit and official program and book titles are left out of the comparison. PDF sources: save their text in the cache folder as `<link id>.txt`. Run it whenever guides change. On 2026-11-27 all 238 matching lines were reworded and it came back clean against 430 of 431 sources (the American Heart Association CPR page refuses scripts).
 
 To rebuild the county tables from the Land Finder's downloads:
 ```

@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Survival handbook</title>
+<meta name="description" content="Every Prepare Me guide in one printable survival handbook. Pick all of it or just the parts you want, and download a PDF to print.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="site.css?v=20261127c">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#9a4f1f">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav class="nav" id="nav" aria-label="Pages"></nav>
+    <h1>Survival handbook</h1>
+    <p class="lede">Every guide in Prepare Me, in one book you can print. Pick all of it or only the parts you want, then download the PDF. Print it at home or at a print shop, and keep it with your kit.</p>
+  </div>
+</header>
+<main class="wrap" id="main">
+  <form class="card" id="pickForm" onsubmit="return false">
+    <h2 style="margin-top:0">What to put in it</h2>
+    <div class="choice" role="radiogroup" aria-label="What to put in it">
+      <label class="check"><input type="radio" name="pick" value="all" checked> <span id="allLabel">The whole handbook</span></label>
+      <label class="check"><input type="radio" name="pick" value="basics"> <span id="basicsLabel">Survival basics only</span></label>
+      <label class="check"><input type="radio" name="pick" value="some"> <span>Pick areas or single guides</span></label>
+    </div>
+    <div id="picker" hidden></div>
+    <div class="field" style="margin-top:16px;max-width:260px">
+      <label for="paper">Paper</label>
+      <select id="paper"><option value="LETTER">Letter (8.5 by 11 inches)</option><option value="A4">A4</option></select>
+    </div>
+    <p class="muted" id="household"></p>
+    <div class="actions">
+      <button class="btn" type="button" id="go">Download the PDF</button>
+    </div>
+    <p class="flash" id="flash" aria-live="polite"></p>
+  </form>
+  <div class="card">
+    <h2 style="margin-top:0">Where it comes from</h2>
+    <p>Every guide is written in our own words. The facts come from Ready.gov, the CDC, FEMA, the American Red Cross, the USDA, university Extension and the other sources named under each guide. Each guide ends with its sources, and the back of the book lists every source with its web address.</p>
+    <p style="margin:0">Prepare Me is not part of, and is not endorsed by, any of these groups. To read a guide on screen instead, open <a href="guides.html">Guides</a>.</p>
+  </div>
+</main>
+<footer><div class="wrap" id="foot"></div></footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
+<script src="config.js?v=20261127c"></script>
+<script src="data/links.js?v=20261127c"></script>
+<script src="data/tasks.js?v=20261127c"></script>
+<script src="data/howto.js?v=20261127c"></script>
+<script src="data/handbook.js?v=20261127c"></script>
+<script src="js/engine.js?v=20261127c"></script>
+<script src="js/store.js?v=20261127c"></script>
+<script src="js/site.js?v=20261127c"></script>
+<script src="js/handbook-pdf.js?v=20261127c"></script>
+<script>
+(function () {
+  'use strict';
+  var UI = RD.ui, E = RD.engine, el = UI.el, $ = UI.$;
+  /* the PDF maker, from cdnjs, fetched only when he asks for the PDF; the hashes are cdnjs's own */
+  var LIBS = [
+    ['https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/pdfmake.min.js', 'sha512-w61kvDEdEhJPJLSAJpuL+RWp1+zTBUUpgPaP+6pcqCk78wQkOaExjnGWrVbovojeisWGQS7XZKz+gr3L+GPYLg=='],
+    ['https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/vfs_fonts.min.js', 'sha512-EFlschXPq/G5zunGPRSYqazR1CMKj0cQc8v6eMrQwybxgIbhsfoO5NAMQX3xFDQIbFlViv53o7Hy+yCWw6iZxA==']
+  ];
+  var loaded = null;
+  function loadLibs() {
+    if (loaded) return loaded;
+    loaded = LIBS.reduce(function (p, l) {
+      return p.then(function () { return new Promise(function (ok, no) {
+        var s = document.createElement('script');
+        s.src = l[0]; s.integrity = l[1]; s.crossOrigin = 'anonymous'; s.referrerPolicy = 'no-referrer';
+        s.onload = ok; s.onerror = function () { loaded = null; no(new Error('could not load the PDF maker')); };
+        document.head.appendChild(s);
+      }); });
+    }, Promise.resolve());
+    return loaded;
+  }
+
+  var ctx = E.context({ adults: 2, kids: 2 }), household = 'a household of 4 (2 adults, 2 children)';
+  function showHousehold(text) { $('household').textContent = 'Amounts like gallons of water are worked out for ' + text + '.'; }
+  showHousehold(household);
+  UI.chrome();
+  var store = RD.store();
+  if (store) store.session().then(function (s) {
+    var a = $('acctLink'); if (a) a.textContent = s ? 'Account' : 'Sign in';
+    if (!s) { showHousehold(household + '. Sign in to use your own household'); return; }
+    return store.loadAll().then(function (d) {
+      var list = d.assessments || [], ans = (d.profile && d.profile.answers) || (list.length && list[list.length - 1].answers);
+      if (ans) { ctx = E.context(ans); household = 'your household of ' + ctx.people + (ctx.people === 1 ? ' person' : ' people'); showHousehold(household); }
+    });
+  }).catch(function () {});
+
+  var all = RD.handbookIds('all'), basics = RD.handbookIds('basics');
+  $('allLabel').textContent = 'The whole handbook (' + all.length + ' guides)';
+  $('basicsLabel').textContent = 'Survival basics only (' + basics.length + ' guides: water, a toilet, food, heat, first aid and getting out)';
+
+  /* the picker: each area, with its guides */
+  var picker = $('picker');
+  RD.AREAS.forEach(function (a) {
+    var ts = RD.TASKS.filter(function (t) { return t.area === a.id && RD.HOWTO[t.id]; });
+    if (!ts.length) return;
+    var boxes = ts.map(function (t) { return el('input', { type: 'checkbox', value: t.id, 'data-area': a.id, onchange: count }); });
+    var areaBox = el('input', { type: 'checkbox', 'data-whole': a.id, onchange: function () { boxes.forEach(function (b) { b.checked = areaBox.checked; }); count(); } });
+    picker.appendChild(el('details', { class: 'fold pick-area' }, [
+      el('summary', null, [el('label', { class: 'check', onclick: function (e) { e.stopPropagation(); } }, [areaBox, ' ' + a.name + ' (' + ts.length + ')'])]),
+      el('div', { class: 'pick-list' }, ts.map(function (t, i) { return el('label', { class: 'check' }, [boxes[i], ' ' + t.title]); }))
+    ]));
+  });
+  picker.appendChild(el('p', { class: 'muted', id: 'pickCount' }, 'Nothing picked yet.'));
+  function picked() { return Array.prototype.map.call(picker.querySelectorAll('input[data-area]:checked'), function (b) { return b.value; }); }
+  function count() {
+    Array.prototype.forEach.call(picker.querySelectorAll('input[data-whole]'), function (w) {
+      var mine = picker.querySelectorAll('input[data-area="' + w.getAttribute('data-whole') + '"]'), on = Array.prototype.filter.call(mine, function (b) { return b.checked; }).length;
+      w.checked = on === mine.length; w.indeterminate = on > 0 && on < mine.length;
+    });
+    var n = picked().length;
+    $('pickCount').textContent = n ? n + (n === 1 ? ' guide picked.' : ' guides picked.') : 'Nothing picked yet.';
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('input[name=pick]'), function (r) {
+    r.addEventListener('change', function () { picker.hidden = mode() !== 'some'; });
+  });
+  function mode() { return document.querySelector('input[name=pick]:checked').value; }
+
+  $('go').addEventListener('click', function () {
+    var m = mode(), ids = m === 'some' ? RD.handbookIds(picked()) : RD.handbookIds(m);
+    if (!ids.length) { UI.flash('flash', 'Pick at least one guide.'); return; }
+    var btn = $('go'); btn.disabled = true;
+    UI.flash('flash', 'Making your PDF. A whole handbook takes a little while.');
+    loadLibs().then(function () {
+      var doc = RD.handbookDoc(ids, { ctx: ctx, household: household, paper: $('paper').value, date: new Date() });
+      var name = 'prepare-me-' + (m === 'all' ? 'survival-handbook' : m === 'basics' ? 'survival-basics' : 'handbook-' + ids.length + '-guides') + '.pdf';
+      window.pdfMake.createPdf(doc).download(name, function () {
+        btn.disabled = false;
+        UI.flash('flash', 'Done: ' + name + ' is in your downloads. Open it and print.');
+      });
+    }).catch(function (e) {
+      btn.disabled = false;
+      UI.flash('flash', 'Could not make the PDF: ' + (e.message || e) + '. Check your connection and try again.');
+    });
+  });
+})();
+</script>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "a122939dd88246f3ac7ec256a33cd080"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
