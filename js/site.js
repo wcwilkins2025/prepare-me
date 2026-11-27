@@ -49,6 +49,7 @@
       nav.appendChild(UI.el('a', { class: 'brand', href: 'index.html' }, 'Prepare Me'));
       PAGES.forEach(function (p) { nav.appendChild(UI.el('a', { href: p[0], 'aria-current': here === p[0] ? 'page' : null }, p[1])); });
       nav.appendChild(UI.el('a', { class: 'acct', id: 'acctLink', href: 'account.html', 'aria-current': here === 'account.html' ? 'page' : null }, 'Account'));
+      nav.appendChild(UI.el('a', { href: 'whats-new.html', 'aria-current': here === 'whats-new.html' ? 'page' : null }, "What's new"));
       nav.appendChild(UI.el('button', { class: 'theme', id: 'themeBtn', type: 'button', 'aria-pressed': 'false', onclick: function () { setTheme(isDark() ? 'light' : 'dark'); } }, 'Dark mode'));
       setTheme(document.documentElement.getAttribute('data-theme'));
     }
