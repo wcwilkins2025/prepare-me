@@ -68,6 +68,14 @@
   };
 
 
+  /* the written family plan: one per man, his alone */
+  Online.prototype.getPlan = function () {
+    return this.c.from('plans').select('data, updated_at').maybeSingle().then(function (r) { if (r.error) throw err(r.error); return r.data; });
+  };
+  Online.prototype.savePlan = function (userId, data) {
+    return this.c.from('plans').upsert({ user_id: userId, data: data }, { onConflict: 'user_id' }).select('data, updated_at').single().then(function (r) { if (r.error) throw err(r.error); return r.data; });
+  };
+
   /* ---------- the forum (Supabase). The row rules decide who reads what; the triggers set names and counts. ---------- */
   var TOPIC_COLS = 'id, user_id, board, title, task_id, author_name, by_moderator, hidden, reply_count, created_at, last_reply_at';
   /* plain words for the server's refusals */
@@ -208,6 +216,14 @@
     });
   };
 
+  Local.prototype.getPlan = function () {
+    var u = this.me(this.read());
+    if (!u) return Promise.reject(new Error('not signed in'));
+    return Promise.resolve(u.plan ? JSON.parse(JSON.stringify(u.plan)) : null);
+  };
+  Local.prototype.savePlan = function (userId, data) {
+    return this.change(function (u) { u.plan = { data: data, updated_at: iso() }; return u.plan; });
+  };
 
   /* ---------- the forum, in this browser: one forum shared by every local man. The email moderator@example.com
      is the moderator here, so the moderator tools can be checked. The same rules as the server's row rules. ---------- */

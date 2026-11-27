@@ -16,6 +16,8 @@ insert into public.assessments (answers, have, overall, areas, hazards) values (
 insert into public.progress (task_id, status, done_at) values ('comm-contact', 'done', now());
 insert into public.checkins (week_of, overall, done_count, answers) values ('2026-11-16', 14, 1, '{"how": "done"}');
 select pg_temp.check((select count(*) from public.assessments) = 1, 'A sees his own assessment');
+insert into public.plans (data) values ('{"people": [{"name": "Ann", "phone": "555-0100"}], "f": {"meetNear": "the mailbox"}}');
+select pg_temp.check((select data->'f'->>'meetNear' from public.plans) = 'the mailbox', 'A saves and reads his plan');
 
 -- ---------- B sees none of it and cannot touch it ----------
 select set_config('request.jwt.claim.sub', 'bbbbbbbb-0000-0000-0000-000000000002', false);
@@ -23,6 +25,21 @@ select pg_temp.check((select count(*) from public.profiles) = 0, 'B cannot read 
 select pg_temp.check((select count(*) from public.assessments) = 0, 'B cannot read A''s assessments');
 select pg_temp.check((select count(*) from public.progress) = 0, 'B cannot read A''s progress');
 select pg_temp.check((select count(*) from public.checkins) = 0, 'B cannot read A''s check-ins');
+select pg_temp.check((select count(*) from public.plans) = 0, 'B cannot read A''s plan');
+with u as (update public.plans set data = '{}' returning 1) select pg_temp.check((select count(*) from u) = 0, 'B cannot change A''s plan');
+with d as (delete from public.plans returning 1) select pg_temp.check((select count(*) from d) = 0, 'B cannot delete A''s plan');
+do $$ begin
+  begin
+    insert into public.plans (user_id, data) values ('aaaaaaaa-0000-0000-0000-000000000001', '{}');
+    raise exception 'FAIL: B wrote a plan as A';
+  exception when insufficient_privilege then raise notice 'ok   B cannot write a plan under A''s id';
+  end;
+  begin
+    insert into public.plans (data) values ('[1]');
+    raise exception 'FAIL: a plan that is not an object got in';
+  exception when check_violation then raise notice 'ok   a plan must be an object';
+  end;
+end $$;
 with u as (update public.progress set status = 'open' returning 1) select pg_temp.check((select count(*) from u) = 0, 'B cannot change A''s progress');
 with d as (delete from public.assessments returning 1) select pg_temp.check((select count(*) from d) = 0, 'B cannot delete A''s assessments');
 do $$ begin
@@ -127,6 +144,11 @@ do $$ begin
     perform count(*) from public.push_events;
     raise exception 'FAIL: a visitor read alerts';
   exception when insufficient_privilege then raise notice 'ok   a visitor cannot read alerts';
+  end;
+  begin
+    perform count(*) from public.plans;
+    raise exception 'FAIL: a visitor read a plan';
+  exception when insufficient_privilege then raise notice 'ok   a visitor cannot read plans';
   end;
   begin
     perform public.push_test();

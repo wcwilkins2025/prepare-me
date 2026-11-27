@@ -27,6 +27,7 @@ There are 123 steps (17 of them comfort extras), including survival skills: CPR,
 | `index.html` | Signed out: how it works and sign-in. Signed in: the score, next to fix, the ten areas, and his disasters. |
 | `start.html` | The assessment: town lookup with a live preview of his disasters, household, home, what he already has. |
 | `coach.html` | The next step, in full, and the whole plan by area. `coach.html?task=<id>` opens one step. |
+| `plan.html` | The written family plan, from `data/plan.js`: who is in it, who to call, where to meet, where things are, and what to do for each of his disasters. Saves as he types. Prints the plan (blank lines left to fill by hand) and fold-over wallet cards. Signed out: print a blank plan or blank cards. |
 | `checkin.html` | The weekly check-in and the history chart. |
 | `guides.html` | Survival basics first, then every how-to by area, free to read signed out. `guides.html?step=<id>` is one guide, ready to print. |
 | `whats-new.html` | Release notes from `data/releases.js`, newest first. Linked in every footer. |

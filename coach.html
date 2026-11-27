@@ -6,7 +6,7 @@
 <title>Coach</title>
 <meta name="description" content="One next step at a time: who does it, what to do, when, why it matters and what done looks like.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="site.css?v=20261127a">
+<link rel="stylesheet" href="site.css?v=20261127b">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#9a4f1f">
@@ -33,17 +33,19 @@
 <footer><div class="wrap" id="foot"></div></footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
-<script src="config.js?v=20261127a"></script>
-<script src="data/links.js?v=20261127a"></script>
-<script src="data/tasks.js?v=20261127a"></script>
-<script src="js/engine.js?v=20261127a"></script>
-<script src="js/store.js?v=20261127a"></script>
-<script src="js/site.js?v=20261127a"></script>
-<script src="data/howto.js?v=20261127a"></script>
-<script src="js/howto-view.js?v=20261127a"></script>
+<script src="config.js?v=20261127b"></script>
+<script src="data/links.js?v=20261127b"></script>
+<script src="data/tasks.js?v=20261127b"></script>
+<script src="js/engine.js?v=20261127b"></script>
+<script src="js/store.js?v=20261127b"></script>
+<script src="js/site.js?v=20261127b"></script>
+<script src="data/howto.js?v=20261127b"></script>
+<script src="js/howto-view.js?v=20261127b"></script>
 <script>
 (function () {
   'use strict';
+  /* steps whose answers go in the written family plan */
+  var PLAN_STEPS = ['plan-write', 'plan-meet-near', 'plan-meet-far', 'plan-kids', 'plan-pets', 'plan-gobag', 'comm-contact', 'power-shutoff', 'plan-docs'];
   var UI = RD.ui, E = RD.engine, el = UI.el, $ = UI.$;
   var app, current = null, skipped = [];
 
@@ -128,6 +130,7 @@
       card.appendChild(el('ul', { class: 'links' }, t.links.map(UI.link)));
     }
 
+    if (PLAN_STEPS.indexOf(t.id) >= 0) card.appendChild(el('p', null, el('a', { href: 'plan.html' }, 'Write it in your family plan')));
     card.appendChild(el('p', null, el('a', { href: 'forum.html?new=1&task=' + t.id }, 'Ask about this step')));
     var acts = el('div', { class: 'actions' });
     if (isDone) {

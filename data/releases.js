@@ -4,6 +4,14 @@
   'use strict';
   var RD = root.RD = root.RD || {};
   RD.RELEASES = [
+    { date: '2026-11-27', title: 'Write your family plan, and print it', items: [
+      'A new page, My plan: who is in your household, who to call, three meeting places, where the water, food, go-bags, first aid kit and shutoffs are, doctors, pets, and what you do for each disaster on your list. Every spot is optional, and it saves as you type.',
+      'Print the plan. Anything left blank prints as a line to fill in by hand.',
+      'Print a fold-over wallet card for everyone in the plan, with the contacts, the meeting places and the family phone numbers.',
+      'Not signed in? Print a blank plan or blank wallet cards and fill them in with a pen.',
+      'Only you can see your plan. It never asks for Social Security, bank, card or policy numbers.',
+      "What's new is now in the top menu."
+    ] },
     { date: '2026-11-26', title: 'Survival first, more plans, and more voices', items: [
       'Survival and comfort steps are split. Survival steps make your score. Comfort steps, like canning, ham radio and backup power, are extras you choose. They no longer count against you.',
       'A new area: Sanitation and hygiene. The emergency toilet and staying clean moved here, and it has its own forum board.',

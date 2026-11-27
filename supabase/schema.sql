@@ -50,11 +50,20 @@ create table if not exists public.checkins (
   unique (user_id, week_of)
 );
 
+-- His written family plan: who is in it, who to call, where to meet, where things are. His alone.
+create table if not exists public.plans (
+  id         bigint generated always as identity unique,
+  user_id    uuid primary key default auth.uid() references auth.users (id) on delete cascade,
+  data       jsonb not null default '{}'::jsonb check (jsonb_typeof(data) = 'object' and pg_column_size(data) < 60000),
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
 -- ---------- row rules: a man sees and changes only his own rows. Visitors who are not signed in get nothing. ----------
 do $$
 declare t text;
 begin
-  foreach t in array array['profiles', 'assessments', 'progress', 'checkins'] loop
+  foreach t in array array['profiles', 'assessments', 'progress', 'checkins', 'plans'] loop
     execute format('alter table public.%I enable row level security', t);
     execute format('alter table public.%I force row level security', t);
     execute format('revoke all on public.%I from anon', t);
@@ -77,6 +86,8 @@ drop trigger if exists profiles_touch on public.profiles;
 create trigger profiles_touch before update on public.profiles for each row execute function public.rd_touch();
 drop trigger if exists progress_touch on public.progress;
 create trigger progress_touch before update on public.progress for each row execute function public.rd_touch();
+drop trigger if exists plans_touch on public.plans;
+create trigger plans_touch before update on public.plans for each row execute function public.rd_touch();
 
 -- ---------- delete my account: removes the sign-in and, through the cascades, every row. Only on himself. ----------
 create or replace function public.delete_me() returns void

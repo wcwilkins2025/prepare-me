@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Your family plan</title>
+<meta name="description" content="Write your family emergency plan: who to call, where to meet, where things are, and what you do for each disaster. Print it, and print a wallet card for everyone.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="site.css?v=20261127b">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#9a4f1f">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav class="nav" id="nav" aria-label="Pages"></nav>
+    <h1>Your family plan</h1>
+    <p class="lede">Who to call, where to meet, where things are, and what you do for each disaster. Fill in what you can. It saves as you type. Then print it, and print a wallet card for everyone.</p>
+  </div>
+</header>
+<main class="wrap" id="main">
+  <div class="card" id="signedOut" hidden>
+    <h3>Sign in to write your plan</h3>
+    <p>Signed in, your plan is saved to your account, and only you can see it. Or print a blank plan and fill it in by hand.</p>
+    <div class="actions">
+      <a class="btn" href="index.html">Sign in</a>
+      <button class="btn ghost" type="button" id="blankPlan">Print a blank plan</button>
+      <button class="btn ghost" type="button" id="blankCard">Print blank wallet cards</button>
+    </div>
+  </div>
+
+  <div id="signedIn" hidden>
+    <div class="card noprint">
+      <p style="margin-top:0">Only you can see this plan. Names, phone numbers and places only: do not type Social Security, bank, card or policy numbers. A plan never needs them.</p>
+      <div class="actions">
+        <button class="btn" type="button" id="printPlan">Print the plan</button>
+        <button class="btn ghost" type="button" id="printCard">Print wallet cards</button>
+      </div>
+      <p class="flash" id="flash" aria-live="polite"></p>
+      <div id="stepDone"></div>
+    </div>
+    <form id="form" class="plan-form" autocomplete="off" onsubmit="return false"></form>
+  </div>
+
+  <section class="print-area" id="planOut" aria-hidden="true"></section>
+  <section class="print-area" id="cardOut" aria-hidden="true"></section>
+</main>
+<footer><div class="wrap" id="foot"></div></footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
+<script src="config.js?v=20261127b"></script>
+<script src="data/links.js?v=20261127b"></script>
+<script src="data/tasks.js?v=20261127b"></script>
+<script src="data/plan.js?v=20261127b"></script>
+<script src="js/engine.js?v=20261127b"></script>
+<script src="js/store.js?v=20261127b"></script>
+<script src="js/site.js?v=20261127b"></script>
+<script src="js/plan-view.js?v=20261127b"></script>
+<script>
+(function () {
+  'use strict';
+  var UI = RD.ui, E = RD.engine, P = RD.planView, el = UI.el, $ = UI.$;
+
+  function hazardsOf(ctx) { return RD.HAZARDS.filter(function (h) { return ctx.hazards[h.id]; }); }
+
+  UI.boot({}).then(function (app) {
+    if (!app) return;
+    if (!app.session) {
+      $('signedOut').hidden = false;
+      var hz = hazardsOf(E.context({}));
+      $('blankPlan').addEventListener('click', function () { P.print('plan', P.blank(), hz, null); });
+      $('blankCard').addEventListener('click', function () { P.print('card', P.blank(), hz, null); });
+      return;
+    }
+    $('signedIn').hidden = false;
+    var hz = hazardsOf(app.ctx);
+    app.store.getPlan().then(function (row) {
+      var data = P.clean(row && row.data);
+      /* a new plan starts with a row for each person in the household */
+      if (!data.people.length) for (var i = 0; i < Math.min(app.ctx.people || 1, 10); i++) data.people.push({});
+      var form = $('form');
+      P.form(form, data, hz, { hasAssessment: !!app.latest, onChange: save });
+
+      var timer = null, saving = Promise.resolve();
+      function save() {
+        clearTimeout(timer);
+        UI.flash('flash', 'Saving…');
+        timer = setTimeout(function () {
+          var d = P.read(form);
+          saving = app.store.savePlan(app.session.id, d).then(function () {
+            data = d;
+            UI.flash('flash', 'Saved ' + new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }) + '.');
+          }, function (e) { UI.flash('flash', 'Could not save: ' + (e.message || e) + '. Your typing is still here; it will try again on the next change.'); });
+        }, 800);
+      }
+      function current() { return P.read(form); }
+
+      $('printPlan').addEventListener('click', function () {
+        P.print('plan', current(), hz, new Date());
+        offerStep();
+      });
+      $('printCard').addEventListener('click', function () { P.print('card', current(), hz, null); });
+
+      /* once it is printed, offer to check off the step that asks for a written plan */
+      function offerStep() {
+        var t = E.task('plan-write'), p = app.state.progress['plan-write'];
+        if (!t || (p && p.status === 'done') || app.state.have.indexOf('plan-write') >= 0) return;
+        var box = UI.clear($('stepDone'));
+        box.appendChild(el('p', null, 'Printed? Put one copy on the fridge, one in the car and one in each go-bag.'));
+        box.appendChild(el('div', { class: 'actions' }, el('button', { class: 'btn ghost', type: 'button', onclick: function () {
+          UI.setProgress(app, 'plan-write', { status: 'done', done_at: new Date().toISOString() }).then(function () {
+            UI.clear(box).appendChild(el('p', null, ['Checked off: ', el('a', { href: 'coach.html?task=plan-write' }, t.title), '.']));
+          });
+        } }, 'Check off "' + t.title + '"')));
+      }
+    }, function (e) {
+      $('form').appendChild(el('div', { class: 'card' }, el('p', null, 'Could not load your plan: ' + (e.message || e) + '. Try again in a minute.')));
+    });
+  });
+})();
+</script>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "a122939dd88246f3ac7ec256a33cd080"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

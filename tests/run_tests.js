@@ -8,6 +8,7 @@ require(path.join(root, 'data/tasks.js'));
 require(path.join(root, 'data/howto.js'));
 require(path.join(root, 'data/releases.js'));
 require(path.join(root, 'data/forum.js'));
+require(path.join(root, 'data/plan.js'));
 require(path.join(root, 'js/engine.js'));
 var RD = globalThis.RD, E = RD.engine;
 
@@ -57,7 +58,7 @@ Object.keys(RD.HOWTO).forEach(function (id) {
 
 /* calm words, no stores, nothing about how it was made. The word list is kept encoded so the words do not show up in the repo. */
 var words = fs.readFileSync(path.join(root, 'data/tasks.js'), 'utf8') + fs.readdirSync(root).filter(function (f) { return /\.(html|js|css|md)$/.test(f); }).map(function (f) { return fs.readFileSync(path.join(root, f), 'utf8'); }).join('\n') +
-  ['js/engine.js', 'js/site.js', 'js/store.js', 'js/howto-view.js', 'js/alerts.js', 'data/links.js', 'data/howto.js', 'data/nws.js', 'data/forum.js', 'data/releases.js', 'supabase/functions/push/index.ts', 'supabase/schema.sql'].map(function (f) { return fs.readFileSync(path.join(root, f), 'utf8'); }).join('\n');
+  ['js/engine.js', 'js/site.js', 'js/store.js', 'js/howto-view.js', 'js/alerts.js', 'data/links.js', 'data/howto.js', 'data/nws.js', 'data/forum.js', 'data/releases.js', 'data/plan.js', 'js/plan-view.js', 'supabase/functions/push/index.ts', 'supabase/schema.sql'].map(function (f) { return fs.readFileSync(path.join(root, f), 'utf8'); }).join('\n');
 var BANNED = Buffer.from('XGJBSVxifGFydGlmaWNpYWwgaW50ZWxsaWdlbmNlfFxiZG9vbXxhcG9jYWx5cHxcYlNIVEZcYnxjb2xsYXBzZSBvZnxlbmQgb2YgdGhlIHdvcmxkfFxicGFuaWNcYnxhbWF6b258d2FsbWFydHxob21lIGRlcG90fGNvc3Rjb3xsb3dlJ3N8aGFyYm9yIGZyZWlnaHR8YmFzcyBwcm98Y2hhdGdwdHxjbGF1ZGV8b3BlbmFpfGdwdC0=', 'base64').toString().split('|');
 /* no group or community names anywhere in the app or README (also encoded) */
 var everything = words + fs.readFileSync(path.join(root, 'README.md'), 'utf8') + fs.readFileSync(path.join(root, 'scripts/build_hazards.py'), 'utf8');
@@ -310,6 +311,31 @@ var projUrl = (cfgSrc.match(/supabaseUrl: '([^']+)'/) || [])[1];
 ok(projUrl && cron.indexOf("url := '" + projUrl + "/functions/v1/push'") >= 0, 'the cron job calls this project push function');
 ok(/'\* \* \* \* \*'/.test(cron) && /"action": "tick"/.test(cron), 'the cron job ticks each minute');
 ok(!/service_role|secret|eyJ/i.test(cron), 'the cron job carries no key');
+/* ---------- the written family plan ---------- */
+(function () {
+  var PL = RD.PLAN, seen = {};
+  var fields = PL.person.concat.apply(PL.person, PL.sections.map(function (s) { return s.fields; }));
+  PL.sections.forEach(function (s) { ok(s.head && s.fields.length >= 1, 'plan section ' + s.id + ' has a head and spots'); });
+  fields.forEach(function (f) { ok(!seen[f.id + (PL.person.indexOf(f) >= 0 ? 'p' : '')], 'plan spot ' + f.id + ' is unique'); seen[f.id + (PL.person.indexOf(f) >= 0 ? 'p' : '')] = 1; ok(f.label && f.label.length > 2, 'plan spot ' + f.id + ' has a label'); });
+  /* it never asks for numbers a thief could use */
+  ok(!fields.some(function (f) { return /social security|ssn|account number|card number|policy number|routing|password|license number|date of birth|birthday/i.test(f.label + ' ' + (f.hint || '')) && !/not |do not/i.test(f.hint || '') ; }), 'the plan never asks for Social Security, account, card or policy numbers');
+  ['meetNear', 'meetHood', 'meetFar', 'atWater', 'atBags', 'atFirstAid', 'offWater', 'offGas', 'outName', 'outPhone'].forEach(function (id) { ok(fields.some(function (f) { return f.id === id; }), 'the plan has a spot for ' + id); });
+  /* clean() keeps only known spots, as text, within the limits */
+  globalThis.RD.ui = globalThis.RD.ui || { el: function () {}, $: function () {}, clear: function () {} };
+  require(path.join(root, 'js/plan-view.js'));
+  var V = RD.planView;
+  var c = V.clean({ people: new Array(30).fill({ name: 'x'.repeat(500), bogus: 'y' }), f: { meetNear: 'mailbox', evil: '<script>' }, hz: { fire: 'out the back', nope: 'z' }, extra: 1 });
+  eq([c.people.length, c.people[0].name.length, Object.keys(c.people[0]), Object.keys(c.f), Object.keys(c.hz), c.extra], [PL.limits.people, PL.limits.short, ['name'], ['meetNear'], ['fire'], undefined], 'a plan keeps only its own spots, within the limits');
+  eq(V.clean(null), V.blank(), 'no plan is a blank plan');
+  var planHtml = fs.readFileSync(path.join(root, 'plan.html'), 'utf8');
+  ok(/'plan\.html', 'My plan'/.test(fs.readFileSync(path.join(root, 'js/site.js'), 'utf8')), 'My plan is in the nav');
+  ok(/Print the plan/.test(planHtml) && /Print wallet cards/.test(planHtml) && /Print a blank plan/.test(planHtml), 'the plan page prints the plan, the cards and a blank plan');
+  ok(!/innerHTML/.test(planHtml + fs.readFileSync(path.join(root, 'js/plan-view.js'), 'utf8')), 'the plan is shown as plain text, never as page code');
+  ok(/family plan/.test(fs.readFileSync(path.join(root, 'privacy.html'), 'utf8')), 'the privacy page says the plan is kept');
+  ok(/family_plan/.test(fs.readFileSync(path.join(root, 'account.html'), 'utf8')), 'download my data includes the plan');
+  ok(/Ready\.gov family emergency plan/.test(fs.readFileSync(path.join(root, 'js/plan-view.js'), 'utf8')), 'the printed plan credits Ready.gov');
+})();
+
 /* every table in schema.sql has row rules */
 (schema.match(/create table if not exists public\.(\w+)/g) || []).forEach(function (m) {
   var t = m.split('.')[1];
@@ -397,8 +423,16 @@ require(path.join(root, 'js/store.js'));
   await L.signIn('a@example.com');
   var ad = await L.loadAll();
   eq([ad.assessments.length, ad.progress.length, ad.checkins.length, ad.checkins[0].overall], [1, 1, 1, 7], 'the first man\'s rows are his, one check-in a week');
+  /* the family plan: his alone, and gone with his account */
+  await L.savePlan(a.id, { people: [{ name: 'Ann', phone: '555-0100' }], f: { meetNear: 'the mailbox' }, hz: {} });
+  eq((await L.getPlan()).data.f.meetNear, 'the mailbox', 'he saves and reads his plan');
+  await L.signIn('b@example.com');
+  eq(await L.getPlan(), null, 'the second man cannot see the first man\'s plan');
+  await L.signIn('a@example.com');
   await L.deleteMe();
   ok(!(await L.session()), 'deleted and signed out');
+  await L.signIn('a@example.com');
+  eq(await L.getPlan(), null, 'deleting removes his plan');
   await L.signIn('a@example.com');
   eq((await L.loadAll()).assessments.length, 0, 'deleting removes his rows');
 
