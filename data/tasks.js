@@ -1937,4 +1937,87 @@
     done: 'The room is picked, the air cleaner or box-fan filter is ready, and the masks are stored.',
     links: ['epa-cleanroom', 'airnow-aqi', 'epa-smoke-masks'] });
 
+
+  /* ---------- health, work, kids and the farm, added 2026-11-26 ---------- */
+  add({ id: 'plan-pandemic', area: 'plan', rank: 4, cost: 0, weight: 2, hz: ['sickness', 'bio'],
+    title: 'Plan for a long outbreak with the family at home',
+    have: 'A plan to stay home for weeks in an outbreak, with care for the sick and a backup for school and work',
+    who: 'You and the other adults.',
+    steps: [
+      'Build food, water, medicine and cleaning supplies up to two weeks, a little at a time.',
+      'Plan how you will care for a sick person at home: who does it, how they keep close contact short, and how you clean.',
+      'Ask the school and your work what happens if they close: online classes, working from home and sick leave.',
+      'Set up more than one way to stay in touch with family and friends: calls, texts and video.',
+      'Check what your health insurance covers, including visits by phone or video.',
+      'Know where official word comes from: the CDC and your state and county health departments.'
+    ],
+    when: 'This month. One evening, then a little each shopping trip.',
+    why: 'Ready.gov says to prepare for schools and workplaces to close and to gather supplies to stay home for several days or weeks. The CDC says how to care for a sick person at home without the whole house getting sick.',
+    done: 'Two weeks of supplies, a plan for caring for the sick, and a backup for school and work.',
+    links: ['ready-pandemic', 'cdc-flu-caring', 'cdc-clean-home'] });
+
+  add({ id: 'hz-space', area: 'power', rank: 5, cost: 0, weight: 1, hz: ['outage'],
+    title: 'Learn what space weather can do and where to check it',
+    have: 'I know what a solar storm can do and where NOAA posts the space weather forecast',
+    who: 'You.',
+    steps: [
+      'Bookmark NOAA\'s Space Weather Prediction Center at swpc.noaa.gov. It posts a 3-day forecast, plus watches and warnings.',
+      'Learn the G scale for geomagnetic storms: G1 is minor and common, G5 is extreme and rare.',
+      'Know that a strong storm can upset GPS, long-range radio and satellites, and in rare cases cause wide power outages.',
+      'Keep the gas tank close to full. Gas pumps need power.',
+      'Keep your power outage plan up to date: lights, water, food, phone chargers and medicine. It covers space weather too.'
+    ],
+    when: 'This year. Fifteen minutes.',
+    why: 'NOAA says space weather can disrupt power lines, GPS and radio, though power outages from it are rare. Ready.gov says the same outage plan gets you ready.',
+    done: 'The forecast page is bookmarked, and your outage plan is in place.',
+    links: ['ready-space', 'noaa-swpc', 'noaa-scales'] });
+
+  add({ id: 'plan-locations', area: 'plan', rank: 2, cost: 1, costNote: 'The plan is free; a work kit is mostly what you have, under $25 to fill gaps', weight: 2, hz: ['all'],
+    title: 'Make a plan for work, the commute and the places you go',
+    have: 'I know the plans at work and school, keep supplies at work, and have other ways home',
+    who: 'You and each adult who works or commutes.',
+    steps: [
+      'Ask your employer for its emergency plan: the alarm, your exit, the meeting point, and when you shelter inside.',
+      'Keep a small kit at work: food, water, medicine and walking shoes, enough for at least a day.',
+      'Write your normal route home and other routes, plus the bus or train lines, and keep it in your wallet.',
+      'Ask the school or daycare what supplies it keeps, and what extra your child needs there overnight.',
+      'Agree as a family what each person does if it hits while you are apart.'
+    ],
+    when: 'This month. One evening, and one question at work.',
+    why: 'Ready.gov says you cannot know where you will be when a disaster hits, so plan for each place you go often. At work, be ready to stay at least 24 hours.',
+    done: 'You know the plans at work and school, the work kit is packed, and the routes home are in your wallet.',
+    links: ['ready-locations', 'ready-commuter', 'osha-eap'] });
+
+  add({ id: 'plan-kids-kit', area: 'plan', rank: 3, cost: 1, costNote: 'Mostly what you have; a few small items, under $25', weight: 1, hz: ['all'], need: ['kids'],
+    title: 'Build a kit with each child, with comfort items and a contact card',
+    have: 'Each child helped build their part of the kit and carries a contact card',
+    who: 'You and each child.',
+    steps: [
+      'Sit down with each child and go over the kids\' checklist on Ready.gov: what you have and what you still need.',
+      'Let each child pick comfort items: a book, a game or puzzle, a stuffed animal or a blanket.',
+      'Make a contact card for each backpack: name, birth date, allergies and medical needs, and who to call.',
+      'Give each child a job that fits their age, from a scavenger hunt for supplies to checking the list.',
+      'Go over the kit with them every year and swap what they have outgrown.'
+    ],
+    when: 'This month. An hour with the kids.',
+    why: 'The CDC says children who help prepare learn the basics of staying safe and feel less stress. Ready.gov puts books, games and a favorite stuffed animal in the kit.',
+    done: 'Each child can show you their part of the kit and their card.',
+    links: ['ready-kids-kit', 'cdc-kids-before', 'cdc-kids-abc'] });
+
+  add({ id: 'money-farm', area: 'money', rank: 3, cost: 0, weight: 2, hz: ['flood', 'hurricane', 'tornado', 'winter', 'storm', 'drought', 'wildfire'], need: ['livestock'],
+    title: 'Keep the records USDA farm disaster programs ask for',
+    have: 'I keep dated herd counts and records, and I know my USDA Service Center',
+    who: 'You and whoever keeps the farm books.',
+    steps: [
+      'Take dated photos or video of your animals now, so you can show how many you had before a loss.',
+      'Keep purchase, sale, vet, vaccination and tag records in one place, with copies of bank or loan papers.',
+      'After a loss, take dated photos, and keep rendering receipts, vet records and feed or water bills.',
+      'Find your local USDA Service Center on farmers.gov and save its number.',
+      'Report losses to the Farm Service Agency early. Deadlines differ by program.'
+    ],
+    when: 'This month, then each season. One hour.',
+    why: 'The Farm Service Agency asks for proof of how many animals you had before a loss and proof of what was lost. Records kept now are what an application stands on.',
+    done: 'Dated herd photos and records are filed, and the Service Center number is saved.',
+    links: ['fsa-lip', 'fg-flood', 'fg-servicecenter'] });
+
 })(typeof window !== 'undefined' ? window : globalThis);

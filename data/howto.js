@@ -1148,38 +1148,63 @@
     },
 
     'med-rx': {
-      intro: 'About half of Americans take a prescription every day, and pharmacies can close in a storm. A small supply on hand turns a crisis into a wait.',
+      intro: 'About half of Americans take a prescription every day, and an emergency can make it hard to refill one or find an open pharmacy. A supply on hand, kept dry and at the right temperature, turns a crisis into a wait.',
       parts: [
-        { head: 'Build the extra supply', items: [
+        { head: 'Build the supply and refill early', items: [
           'Ask your doctor or pharmacist how you can build an emergency supply of each medicine.',
-          'Refill as early as your plan allows, so you stay ahead.',
-          'Keep several days of each prescription medicine in your emergency kit.',
-          'Add extra nonprescription basics too, like pain and fever relievers and allergy medicine.'
+          'Know how much you have on hand. If a storm may close the pharmacy, ask for an early refill.',
+          'Learn your state\'s emergency refill law, and ask your pharmacist what it allows. In some states, such as North Carolina, a pharmacist can give an early refill of some medicines when an emergency is declared.',
+          'Add extra nonprescription basics too, like pain and fever relievers, allergy medicine and diarrhea medicine.',
+          'If you get treatments at a clinic or hospital, ask about their emergency plan. If you are on dialysis or another life-sustaining treatment, know more than one place that can help.'
+        ] },
+        { head: 'The list and the go-bag', items: [
+          'Write a list of every medicine: its name and strength, what it is for, how much you take and when.',
+          'Add medical conditions, medical supplies you need, and allergies. The step on writing down everyone\'s medicines and doctors covers the rest.',
+          'Keep a copy of each prescription with your emergency supplies.',
+          'Keep several days of each prescription medicine in your emergency kit or go-bag.',
+          'Pack the supplies that go with them: syringes, test strips, a blood sugar monitor, a spare inhaler or an epinephrine autoinjector.',
+          'Put bottles and packages in watertight containers, like plastic containers with lids, and store them where floodwater is unlikely to reach.',
+          'Make sure at least one trusted person knows where the supply is and how to give your medicine.'
         ] },
         { head: 'Medicine that must stay cold', items: [
-          'Have a cooler and chemical ice packs ready for an outage.',
+          'Have a cooler and ice or frozen gel packs ready for an outage. Follow the storage directions on the label.',
+          'Most medicine that needs the fridge can stay in a closed fridge for several hours without a problem. Ask your doctor or pharmacist about yours.',
           'Ask how long each medicine can be kept at higher temperatures.',
-          'If the power is out for more than a day, throw out medicine that should be refrigerated, unless its label says otherwise.',
-          'Then call your doctor or pharmacist right away for a new supply.'
+          'If the power is out for more than a day, throw out medicine that should be refrigerated, unless its label says otherwise. Then call your doctor or pharmacist right away for a new supply.',
+          'If a medicine was not kept at the right temperature, check its storage directions or ask a pharmacist, your doctor or the maker if it can still be used.',
+          'If a medicine is needed to stay alive, like insulin, and you cannot get a replacement, the FDA says it may be used until you get a new supply.'
+        ] },
+        { head: 'Insulin storage', cols: ['Insulin', 'Temperature', 'How long it keeps'], rows: [
+          ['Unopened, in the fridge', '36°F to 46°F', 'Until the expiration date'],
+          ['Vials or cartridges from the maker, opened or not, out of the fridge', '59°F to 86°F', 'Up to 28 days'],
+          ['Diluted, or taken out of the maker\'s vial', 'Any', 'Throw away within two weeks'],
+          ['In a pump\'s reservoir and tubing', 'Any', 'Throw away after 48 hours, unless the pump or insulin directions say longer'],
+          ['In a pump', 'Above 98.6°F', 'Throw it away'],
+          ['Frozen', 'Below freezing', 'Do not use it']
+        ], note: 'From the FDA. Keep insulin as cool as you can, out of direct sun and away from heat. If you use ice, do not let the insulin freeze. Some insulins have longer limits, so check the package insert. Once you have properly stored insulin again, replace any that got too hot or cold. Switch to a different insulin only under a doctor\'s care.' },
+        { head: 'If medicine got wet, hot or frozen', items: [
+          'After a disaster, check every medicine for damage.',
+          'Heat from a fire can weaken or ruin medicine. Think about replacing any that got very hot.',
+          'Throw out medicine that touched floodwater or unsafe water, even in its original container with a screw cap, snap lid or dropper.',
+          'Do not use medicine that is wet or looks changed. It is contaminated.',
+          'One exception: if a medicine from a fire or unsafe water is needed for a life-threatening condition and you cannot get a replacement soon, it may be used if it looks unchanged. Replace it as soon as you can.',
+          'If a medicine has to be mixed with water, use only purified or bottled water.',
+          'Never use insulin that froze. For other medicine that froze or got too hot, ask the pharmacist.'
         ] },
         { head: 'Hot weather', items: [
-          'Some medicines must be kept out of hot places. Do not store them in a car or hot garage.',
+          'Some medicines must be kept out of hot places.',
           'Many medicines make it easier to get dehydrated or overheated on hot days.',
           'Do not stop or change a medicine before you talk to the doctor.'
-        ] },
-        { head: 'Regular treatments', items: [
-          'If you get treatments at a clinic or hospital, ask about their emergency plan and a backup place to go.',
-          'If you are on dialysis or another life-sustaining treatment, know more than one place that can help.',
-          'Make sure at least one trusted person knows how to give your medicine.'
         ] }
       ],
       mistakes: [
         'Waiting for the last pill before you refill.',
-        'Keeping the emergency supply in a hot car or garage.',
+        'Keeping medicine that sat in floodwater because the cap was on tight.',
+        'Letting insulin freeze against the ice in a cooler.',
         'Changing how you take a medicine on your own during a heat wave.'
       ],
-      sources: ['ready-disab', 'ready-older', 'ready-power', 'cdc-heat', 'ready-kit'],
-      checked: '2026-11-21'
+      sources: ['fda-disaster', 'fda-insulin', 'cdc-rx', 'ready-disab', 'ready-older', 'ready-power', 'ready-space', 'cdc-heat'],
+      checked: '2026-11-26'
     },
 
     'med-fill': {
@@ -1841,77 +1866,122 @@
     },
 
     'plan-kids': {
-      intro: 'If it hits on a school day, the school plan decides where your kids go. Learn it now and fit your own plan around it.',
+      intro: 'If it hits on a school day, the school plan decides where your kids go. Learn it now, fit your own plan around it, and teach the kids their part.',
       parts: [
         { head: 'Ask the school or child care', items: [
+          'Every school and child care center should have a written emergency plan. Ask to see it.',
           'Where do children go if they shelter inside, and where if they leave the building?',
-          'How will you tell parents what is happening?',
+          'How will you tell parents what is happening, and how can parents reach you?',
           'Where and how do parents pick children up after the danger passes?',
-          'In a tsunami zone, ask where the assembly area is.'
+          'What drills do you run? Ask the teacher how to help your child see drills as a way to be strong, not scared.',
+          'In a tsunami zone, ask where the assembly area is.',
+          'Keep your contact details on file current, and tell the school right away when your address or phone changes.'
         ] },
         { head: 'Write it down', items: [
-          'Ready.gov\'s family card has a line for each school and child care: name, address, emergency number, website and pick-up plan.',
-          'Fill in one for each child.'
+          'Ready.gov\'s family card has a line for each school and child care: name, address, emergency number, website and pick-up plan. Fill in one for each child.',
+          'Put an emergency card in each child\'s backpack with emergency contacts, medicines and allergies.',
+          'Ready.gov\'s kids\' card has room for the family numbers, an out-of-state contact, two meeting spots and a small map. Keep it in a backpack, notebook or wallet.',
+          'If your child has a phone, put the numbers in it too.'
         ] },
         { head: 'Plan for when you cannot get there', items: [
-          'Make a backup plan for the kids in case you cannot get home, such as a trusted adult nearby.',
-          'Tell the kids who that adult is.',
-          'In a radiation emergency, stay where you are. Schools have plans to keep children safe inside, and going out to get them could expose you both.'
+          'Make a backup plan in case you cannot get home, such as a trusted adult nearby. Tell the kids who that adult is.',
+          'If the school moves children to a safer place, do not go to them during the emergency. Wait until it is over or the school says pickup is safe.',
+          'In a radiation emergency, stay where you are. Schools have plans to keep children safe inside, and going out to get them could expose you both.',
+          'Plan to reunite somewhere other than home in case you cannot go back, such as a community center.'
         ] },
-        { head: 'Get the kids ready', items: [
+        { head: 'Teach the kids', items: [
+          'When old enough, teach them when and how to call 911. Only call for a real emergency.',
+          'The 911 operator will ask for name, phone number and address, so have them learn the home address and phone.',
+          'Have them learn your cell number by heart too.',
+          'Make a family password or phrase, so they do not go with a stranger.',
+          'Teach them the meeting spots and the out-of-town contact\'s number. Text, don\'t talk: texts get through more easily.',
           'Children with phones get emergency alerts too. Talk with them about what an alert means.',
-          'Teach them the meeting spots and the out-of-town contact\'s number.',
-          'Walk them through the plan so they know what will happen.'
+          'Go over the warning signs for the dangers where you live, and what to do, such as where to go in a tornado.'
+        ] },
+        { head: 'Practice', items: [
+          'Walk them through the plan so they know what will happen.',
+          'Hold a short family meeting now and then to review and practice the plan, including how you would leave the house.',
+          'Let them help pack the family kit and choose what goes in. For their own bag, see the step on a kit each child builds.',
+          'Family needs change over time, so update the plan regularly.'
+        ] },
+        { head: 'Talk with them calmly', items: [
+          'Stay calm and reassure them.',
+          'Keep it simple and truthful, in words they understand. Correct wrong things they hear from friends.',
+          'Ask how they feel, and let them ask questions.',
+          'After a disaster, get back to normal routines like family meals and school as soon as you can.',
+          'Limit how much news coverage of the disaster they see.',
+          'Kids can help in safe ways, but keep them out of cleanup.',
+          'If a child stays very upset or it gets in the way of school or friends, talk with a doctor or school counselor.'
         ] }
       ],
       mistakes: [
         'Driving to the school during a shelter order.',
         'Never asking where the school goes if it has to leave.',
-        'A backup adult the kids have never been told about.'
+        'A backup adult the kids have never been told about.',
+        'Kids who do not know their own address.'
       ],
-      sources: ['ready-kids', 'ready-locations', 'ready-commcard', 'cdc-getinside', 'ready-alerts'],
-      checked: '2026-11-21'
+      sources: ['ready-kids', 'ready-locations', 'ready-commcard', 'ready-kids-commplan', 'ready-kids-plan', 'cdc-kids-before', 'cdc-kids-cope', 'ready-heat', 'ready-kids-fire', 'cdc-getinside', 'ready-alerts'],
+      checked: '2026-11-26'
     },
 
     'plan-pets': {
-      intro: 'If you are told to leave, your pets should leave too. A plan and a small kit make that easy.',
+      intro: 'If you are told to leave, your pets should leave too. Pets left behind are likely to be lost or hurt, so a place to go, a kit and a little practice make leaving easy.',
       parts: [
         { head: 'Where they can stay', items: [
-          'Many public shelters and hotels do not allow pets inside. Find a safe place before you need it.',
-          'Set up a buddy system: a neighbor, friend or relative who can care for or move your pets if you cannot.',
-          'Your local emergency management office, animal shelter or animal control can give advice.'
+          'Many public shelters and hotels do not allow pets inside, except service animals. Find a safe place before you need it.',
+          'Line up choices: friends or family out of the area, pet-friendly hotels along your evacuation route, and boarding places or animal hospitals near where you would stay.',
+          'Ask your local emergency management office if it offers shelter for owners with pets. Your animal shelter or animal control can also give advice.',
+          'Find a vet near where you would stay, and put the number in the kit.',
+          'Never leave a pet chained outside.',
+          'For shelters in general, see the step on where to go if you cannot stay home.'
         ] },
-        { head: 'ID and records', items: [
-          'Have each pet microchipped. Keep your phone and address current, with an out-of-area contact.',
-          'Keep a collar with an ID tag, and a backup collar, leash and tag.',
-          'Keep shot and registration records in a waterproof container and saved electronically.',
-          'Keep a photo of you with your pet. It proves ownership and helps others find them.'
+        { head: 'A buddy for when you are away', items: [
+          'Set up a buddy system: a trusted neighbor, friend or relative who can care for or move your pets if you cannot get home.',
+          'Show them where the pets hide, and where the carrier, leash and kit are.',
+          'Keep a leash and carrier near the door so anyone can grab them.',
+          'If you have no car, make plans with neighbors, family or friends, or ask your local government about rides in a disaster.'
         ] },
-        { head: 'Two kits', items: [
-          'A larger kit for staying home, a lighter one for leaving.',
-          'Several days of food in an airtight, waterproof container, plus water and a bowl.',
-          'Extra medicine in a waterproof container, and a pet first aid kit (ask your vet what to put in it).',
-          'A carrier for each pet, litter and box or bags, and a familiar toy or bed.'
+        { head: 'ID, microchip and records', items: [
+          'A microchip is one of the best ways to get a lost pet back. Register it with the chip company and keep your phone and address current, with an out-of-area contact.',
+          'Keep a collar with an up-to-date ID tag on each pet, plus a backup collar, leash and tag.',
+          'Write the pet\'s name, your name and your phone numbers on each carrier.',
+          'Keep copies of vet records: rabies certificate, shots, medical history, and prescriptions.',
+          'Add proof of ownership or adoption, a short description (breed, sex, color, weight), the chip number and company, and recent photos, including one of you with your pet.',
+          'Keep the papers in a waterproof container and saved electronically.'
         ] },
-        { head: 'Practice the carrier', items: [
-          'Leave the carrier out and open where your pet likes to be.',
-          'Put treats and a favorite blanket inside.',
-          'Note where your pets hide, so you can find them fast.',
+        { head: 'The kit', items: [
+          'Two kits: a larger one for staying home and a lighter one for leaving. Check them often so food and medicine stay fresh.',
+          'Food in an airtight, waterproof container, water, and bowls that do not spill. Ready.gov says several days. The CDC list says two weeks of each for every animal.',
+          'Extra medicine in a waterproof container, with written instructions, plus a month of flea, tick and heartworm medicine.',
+          'A pet first aid kit. Ask your vet what to put in it.',
+          'A carrier for each pet with a blanket or towel, and a harness or leash.',
+          'Litter and box or bags, paper towels, trash bags and a disinfectant for accidents.',
+          'A familiar toy, treats or bed to lower stress, a manual can opener and feeding notes.'
+        ] },
+        { head: 'Practice', items: [
+          'Leave the carrier out and open where your pet likes to be. Put treats and a favorite blanket inside.',
+          'Take your pet on car rides, so the trip is not new on the day.',
+          'Note where your pets hide, and practice catching them. A cat can go in a pillowcase or sturdy box if the carrier is not at hand.',
+          'Have the whole family practice leaving with the pets, so everyone knows what to take and where to meet.',
           'Bring pets indoors at the first sign or warning of a storm.'
         ] },
-        { head: 'Large animals', items: [
-          'Give every animal some form of ID.',
-          'Map two routes, line up trailers and handlers, and move the animals early when you can.',
-          'Make sure where you are going has food, water and vet care.'
+        { head: 'In a shelter and after', items: [
+          'Owners of dogs, cats and ferrets should bring proof of rabies shots to a shelter that takes pets.',
+          'Keep pets in a carrier or on a leash. Scared pets may bite or scratch, even gentle ones.',
+          'Wash your hands after touching pets, their food or their waste. Do not let pets play in or drink flood water.',
+          'After a disaster, smells and landmarks change and pets get lost. Keep them leashed outside, and check the home for sharp objects, spilled chemicals and bare wires.',
+          'If a pet goes missing, call the microchip company and check local shelters and animal control.',
+          'For horses, goats, pigs and other large animals, see the step on livestock and horses.'
         ] }
       ],
       mistakes: [
         'Leaving pets behind "just for a day".',
         'A carrier the cat has never been inside.',
-        'Old phone numbers on the microchip.'
+        'Old phone numbers on the microchip.',
+        'No buddy who can reach the pets when you are at work.'
       ],
-      sources: ['ready-pets', 'ready-petsheet'],
-      checked: '2026-11-21'
+      sources: ['ready-pets', 'ready-petsheet', 'cdc-pets-em', 'cdc-pet-kit', 'cdc-pet-evac'],
+      checked: '2026-11-26'
     },
 
     'plan-gobag': {
@@ -1999,39 +2069,67 @@
     },
 
     'hz-hurricane': {
-      intro: 'Water, not wind, causes most hurricane deaths. Know your zone, decide in advance, and leave early when it is called.',
+      intro: 'Water, not wind, causes most hurricane deaths. Know your zone, decide in advance, leave early when it is called, and stay careful after the storm passes.',
       parts: [
-        { head: 'Know the season and the threat', cols: ['Ocean', 'Season'], rows: [
-          ['Atlantic', 'June 1 to November 30'],
-          ['Eastern Pacific', 'May 15 to November 30'],
-          ['Central Pacific', 'June 1 to November 30']
-        ], note: 'Storm surge is the leading cause of hurricane deaths. Flooding from rain is second, and can reach hundreds of miles inland.' },
+        { head: 'Know the season and the alerts', cols: ['Alert', 'What it means'], rows: [
+          ['Tropical storm watch', 'Winds of 39 to 73 mph are possible within 48 hours.'],
+          ['Hurricane watch', 'Winds of 74 mph or more are possible. Issued 48 hours before tropical storm winds are expected, while you can still prepare.'],
+          ['Tropical storm warning', 'Winds of 39 to 73 mph are expected within 36 hours.'],
+          ['Hurricane warning', 'Winds of 74 mph or more are expected. Issued 36 hours ahead. Finish getting ready, and leave right away if told to.'],
+          ['Storm surge warning', 'Rising water moving in from the shore is expected, generally within 36 hours. Check for evacuation orders.'],
+          ['Extreme wind warning', 'Winds of 115 mph or more are expected within an hour. Take shelter in the inside part of a sturdy building now.']
+        ], note: 'The Atlantic and Central Pacific seasons run June 1 to November 30, and the Eastern Pacific May 15 to November 30. Storm surge is the leading cause of hurricane deaths. Flooding from rain is second, and can reach hundreds of miles inland and last for days.' },
         { head: 'Before the season', items: [
           'Find out if you live in an evacuation zone. Ask your local emergency office or check its website.',
-          'Pick where you would go, and learn the routes there.',
-          'Review your insurance. Homeowners insurance does not cover flood.',
-          'Make copies of ID and policies and keep them in a password-protected place.'
+          'Pick where you would go, and learn the routes there. For choices, see the step on where to go if you cannot stay home.',
+          'Review your insurance. Homeowners insurance does not cover flood, and a flood policy usually takes up to 30 days to start.',
+          'Make copies of ID and policies and keep them in a password-protected place.',
+          'If anyone in the house is older or has a disability and cannot leave fast, ask your local officials for advice now.',
+          'Write emergency numbers on the fridge and put them in your phone.',
+          'Check the battery in your carbon monoxide detector.'
         ] },
         { head: 'Get the home ready', items: [
           'Clear drains and gutters.',
-          'Plan to bring in outside furniture. Loose things become flying debris.',
-          'Consider hurricane shutters.',
-          'Keep at least half a tank of gas, and a full tank when a storm is coming.'
+          'Bring in outside furniture, bikes, grills, propane tanks and building materials, or put them under cover. Loose things become flying debris.',
+          'Consider hurricane shutters, or plan to nail plywood to the outside window frames.',
+          'Keep at least half a tank of gas, and a full tank when a storm is coming. Gas stations may be closed during emergencies.',
+          'Before the storm, fill clean containers with drinking water. Fill sinks and tubs with water for washing.'
         ] },
         { head: 'When a storm comes', items: [
-          'If officials tell your zone to leave, go right away.',
-          'If you stay for wind, use a storm shelter or an inside room.',
+          'If officials tell your zone to leave, go right away. Even sturdy houses may not hold up.',
+          'If you leave, take only what you need: phone, chargers, medicine, ID and cash. If you have time, unplug appliances and turn off gas, power and water.',
+          'Follow the roads officials name, even with traffic. Other roads may be blocked or flooded.',
+          'If you stay for wind, use a storm shelter or an inside room with no windows, or a closet.',
+          'Stay inside until you hear an official all-clear. A calm can come in the middle of the storm, and the weather can turn bad again fast.',
           'If water traps you, go to the highest floor. Do not go into a closed attic.',
           'Do not walk, swim or drive through flood water.'
+        ] },
+        { head: 'After the storm: outside', items: [
+          'Keep listening to a weather radio or local news. If you left, go back only when officials say it is safe. For going back in, see the step on going back in after a flood or storm.',
+          'Drive only if you must. Avoid flooded roads and washed-out bridges, and watch for fallen objects, downed wires and weak roads.',
+          'Stay out of flood water. It can carry germs, chemicals, waste and debris, and power lines can charge it. If you must be near it, wear a life jacket, and wash your hands after.',
+          'Stay clear of fallen power lines, including ones hanging overhead. Report them to the electric company.',
+          'Stay out of a building if you smell gas, water is still around it, or officials have not called it safe. Leave if you hear shifting or odd noises.',
+          'Save calls for emergencies. Text family instead.'
+        ] },
+        { head: 'After the storm: power, heat and people', items: [
+          'Carbon monoxide is one of the leading causes of death after storms. Never run a generator, pressure washer, grill or camp stove inside the home, basement or garage. Keep it outside, at least 20 feet from windows, doors and vents.',
+          'Use a battery or battery-backup carbon monoxide detector any time something burns fuel. If it sounds, get out and call 911.',
+          'Use flashlights, not candles. Turn the flashlight on before you walk into a closed-up building, since a spark could light leaking gas.',
+          'Do not touch electrical equipment that is wet or if you are standing in water. If it is safe, turn off power at the main breaker.',
+          'If the power is out in hot weather, drink plenty, take cool showers, and go to a cooling center or a place with power. A fan alone will not keep you safe. Signs of heat stroke, like a temperature above 103 degrees or hot, red, dry skin, mean call 911.',
+          'Check on family, older adults and neighbors.',
+          'Photograph the damage and call your insurance company. Keep children out of cleanup. For food, see the step on which food is safe after a flood.'
         ] }
       ],
       mistakes: [
         'Waiting to see how bad it gets before leaving.',
         'Thinking you are safe because you live inland.',
-        'Climbing into a closed attic to escape rising water.'
+        'Climbing into a closed attic to escape rising water.',
+        'Running a generator in the garage with the door open.'
       ],
-      sources: ['ready-hurricanes', 'nws-hurricane', 'nws-hurricane-prep', 'ready-evacuation'],
-      checked: '2026-11-21'
+      sources: ['ready-hurricanes', 'nws-hurricane', 'nws-hurricane-prep', 'nws-hurr-ww', 'nws-hurr-after', 'cdc-hurr-prep', 'cdc-hurr-after', 'cdc-co', 'ready-heat', 'ready-evacuation', 'ready-floods'],
+      checked: '2026-11-26'
     },
 
     'hz-flood': {
@@ -2076,42 +2174,61 @@
     },
 
     'hz-wildfire': {
-      intro: 'The first 5 feet around your home matter most. Work out from the walls, closest first, and plan to leave early.',
+      intro: 'The first 5 feet around your home matter most. Work out from the walls, closest first, have the go-bag ready, and leave early.',
       parts: [
         { head: 'The zones around your home', cols: ['Zone', 'Distance', 'What to do'], rows: [
           ['Immediate', '0 to 5 feet', 'Clear roof and gutters of leaves and needles. Fix loose shingles. Move mulch, plants, leaves and firewood away from the walls.'],
           ['Intermediate', '5 to 30 feet', 'Mow grass to 4 inches. Remove plants under trees. Prune trees 6 to 10 feet up from the ground.'],
-          ['Extended', '30 to 100 feet', 'Clear ground litter and dead plants. Clear plants from around sheds.']
-        ], note: 'The first 5 feet is the most important zone.' },
-        { head: 'Get the home ready', items: [
-          'Use fire-resistant materials when you build or repair.',
-          'Have an outside hose that reaches every part of the property.',
-          'Pick a room you can close off from outside air when it is smoky.'
+          ['Extended', '30 to 100 feet', 'Clear ground litter and dead plants. Remove dead trees. Clear plants from around sheds.']
+        ], note: 'The first 5 feet is the most important zone, because embers are most likely to land there. Your local fire department may have stricter rules.' },
+        { head: 'More for the first 5 feet', items: [
+          'Use gravel, pavers or concrete there instead of bark or wood-chip mulch.',
+          'Keep the space under decks, porches and stairs free of plants and things that burn.',
+          'Do not keep firewood or lumber there. Keep wood piles farther out, with 10 feet cleared around them.',
+          'Move trash cans and recycling bins out of this zone, and keep less that burns on the deck.',
+          'Keep tree branches 10 feet from the chimney.',
+          'These tips come from California\'s state fire agency. Ask your local fire department what applies where you live.'
         ] },
-        { head: 'Plan to leave', items: [
-          'Learn your evacuation zone and routes, and where you will go.',
-          'Practice with your pets.',
-          'Plan for work, school and child care too.',
-          'Keep the go-bag ready and the phone charged in fire season.'
+        { head: 'Get ready and get set', items: [
+          'Ready, Set, Go: get ready by clearing the zones, get set with a plan and go-bags, and go early.',
+          'Use fire-resistant materials when you build or repair. Have an outside hose that reaches every part of the property.',
+          'Learn your evacuation zone and routes, and where you will go. Plan for work, school and child care too.',
+          'Practice leaving with the whole family and the pets.',
+          'In fire season, keep a go-bag packed for each person, the phone charged, at least half a tank of gas, and shoes by the bed.',
+          'Store N95 masks if you can.',
+          'Keep copies of ID and insurance in a password-protected place.'
         ] },
-        { head: 'When fire is near', items: [
-          'Leave right away when officials say to.',
-          'If you are trapped, call 911 and say where you are. Turn on lights to help rescuers find you.'
+        { head: 'Go early, and close up if there is time', items: [
+          'Leave right away when officials say to. If you feel at risk, do not wait for an order.',
+          'Inside: shut all windows and doors but leave them unlocked. Take down curtains that burn, and move things that burn to the middle of rooms. Turn off the gas at the meter and the air conditioning. Leave lights on.',
+          'Outside: bring in patio furniture, doormats and trash bins. Shut off propane tanks and move grills away from the house.',
+          'Hook hoses to the outside taps for firefighters, but do not leave sprinklers or water running. It lowers water pressure.',
+          'Park the car facing out, loaded, with the windows shut.',
+          'Wear long pants, long sleeves and sturdy shoes, in cotton if you can.'
         ] },
-        { head: 'When it is smoky', items: [
-          'Stay inside with doors and windows shut.',
-          'Use an N95 mask if you must go out.',
+        { head: 'If you are trapped', items: [
+          'Call 911 and say where you are. Help may be slow or unable to reach you. Turn on lights to help rescuers find you.',
+          'In a car: park away from plants, close the windows and vents, lie on the floor and cover up with a wool blanket or jacket.',
+          'On foot: move to a clear area like a ditch or flat ground, lie face down and cover your body.',
+          'At home: gather everyone, fill sinks and tubs with cold water, keep doors and windows shut but unlocked, and stay away from outside walls and windows.',
+          'Stay as calm as you can.'
+        ] },
+        { head: 'Smoke, and coming home', items: [
+          'When it is smoky, stay inside with doors and windows shut. Use an N95 mask if you must go out.',
           'Set the air system to recirculate and close the outside air intake.',
-          'Use a portable air cleaner in the closed-off room.'
+          'Use a portable air cleaner in a closed-off room. For how to set it up, see the step on a clean-air room for wildfire smoke.',
+          'Do not go home until officials say it is safe. Hot ash, embers and hidden hot spots can burn you or start a new fire.',
+          'Photograph the damage, make a list, and call your insurance company.'
         ] }
       ],
       mistakes: [
         'Stacking firewood against the house.',
         'Waiting for the last minute to leave.',
+        'Leaving sprinklers running when you go. It drains the water firefighters need.',
         'Going home before officials say it is safe. The ground can hold hidden hot spots.'
       ],
-      sources: ['ready-wildfires', 'usfa-wildfire', 'usfa-zones'],
-      checked: '2026-11-21'
+      sources: ['ready-wildfires', 'usfa-wildfire', 'usfa-zones', 'calfire-space', 'calfire-rsg', 'calfire-go'],
+      checked: '2026-11-26'
     },
 
     'hz-earthquake': {
@@ -5062,6 +5179,278 @@
         'Frying dinner or lighting candles in the house while it is smoky.'
       ],
       sources: ['epa-cleanroom', 'airnow-aqi', 'epa-wf-iaq', 'epa-filtration', 'epa-diy-cleaner', 'epa-smoke-masks', 'cdc-wf-kids', 'airnow-smokeready'],
+      checked: '2026-11-26'
+    },
+
+    'plan-pandemic': {
+      intro: 'In a long outbreak, schools and work may close and you may need to stay home for weeks. A plan for supplies, caring for the sick and staying in touch keeps the house running.',
+      parts: [
+        { head: 'Stock up for two weeks at home', items: [
+          'Gather supplies to stay home for several days or weeks: cleaning supplies, food that keeps, prescriptions and water.',
+          'Store at least a gallon of water per person per day, and try for two weeks. The steps on two weeks of water and two weeks of food show how.',
+          'Buy a little at a time, so everyone can get what they need.',
+          'If you expect trouble getting to a pharmacy, ask for early refills. See the step on keeping a week of extra daily medicine.',
+          'Keep the sick-day basics from the step on sickness in the house, plus extra soap, tissues and household cleaner.',
+          'Keep masks that fit well. N95 respirators protect the most, then other filtering respirators, then disposable masks, then cloth.'
+        ] },
+        { head: 'Caring for a sick person at home', items: [
+          'The sick person stays home and away from others, including people in the house who are not sick.',
+          'Spend as little time close to the sick person as you can, and avoid being face to face.',
+          'When you hold a sick child, put their chin on your shoulder so they do not cough in your face.',
+          'Wash your hands after touching the sick person, their tissues or their laundry.',
+          'A mask on the sick person, the caregiver or both adds protection, most of all when there is no room to stay fully apart.',
+          'Bring in fresh air: open windows and doors, run exhaust fans, or use a portable HEPA air cleaner. With central air that has a filter, set the fan to on instead of auto and use pleated filters.',
+          'Watch for the emergency signs in the guide on sickness in the house. For a medical emergency, call 911.'
+        ] },
+        { head: 'Cleaning when someone is sick', items: [
+          'Clean first with soap or detergent and water. When someone is sick, disinfect after cleaning.',
+          'Use an EPA-registered disinfectant or a stronger bleach solution. See the step on cleaning with bleach the safe way.',
+          'Leave the disinfectant wet on the surface for the contact time on the label.',
+          'Wear gloves, open windows or run a fan, and never mix products.',
+          'Clean things people touch often: light switches, doorknobs, countertops and handrails.',
+          'It is safe to wash a sick person\'s laundry with everyone else\'s. Use detergent, dry it completely, and wash your hands after.'
+        ] },
+        { head: 'When schools and work close', items: [
+          'Prepare for schools, workplaces and community centers to close.',
+          'Set up online school, working from home and video calls before you need them.',
+          'Ask your employer about paid time off and working from home. The CDC asks employers to offer both.',
+          'Know that someone with flu who has no fever should still stay home from work at least 5 days after symptoms start.',
+          'Review your health insurance, including visits by phone or video.',
+          'Make password-protected digital copies of important papers and keep them in a safe place.'
+        ] },
+        { head: 'Stay in touch and stay informed', items: [
+          'Have more than one way to reach family, friends and caregivers: calls, texts, the internet and social media. Texts often go through when calls do not.',
+          'Keep important phone numbers in your plan. See the step on writing the key phone numbers on paper.',
+          'Stay connected with family and friends by phone and video calls.',
+          'It is normal to feel anxious or stressed. Talk to someone if you are upset. See the step on handling stress.',
+          'Follow the CDC and your state and local health departments for vaccine and testing news.',
+          'Share only accurate information, and watch out for scams and fraud.'
+        ] }
+      ],
+      mistakes: [
+        'Buying everything at once at the first news.',
+        'Holding a sick child face to face.',
+        'Mixing cleaning products to make them stronger.',
+        'Passing on rumors about cures instead of word from the health department.'
+      ],
+      sources: ['ready-pandemic', 'cdc-flu-caring', 'cdc-flu-home', 'cdc-resp-sick', 'cdc-resp-air', 'cdc-resp-masks', 'cdc-clean-home', 'cdc-store', 'cdc-stay-connected', 'fda-disaster'],
+      checked: '2026-11-26'
+    },
+
+    'hz-space': {
+      intro: 'Space weather is the changing conditions on the sun and in space that can affect technology on Earth. Earth\'s magnetic field and atmosphere block the most harmful effects, and power outages from it are rare, so a strong storm is handled with the same plan as any long outage.',
+      parts: [
+        { head: 'What it is', items: [
+          'The sun is the main source. Bursts of plasma called coronal mass ejections, and bursts of radiation called solar flares, cause space weather.',
+          'A coronal mass ejection that reaches Earth can cause a geomagnetic storm. Most take several days to arrive, but some have arrived in as little as 18 hours.',
+          'Solar flares can cause radio blackouts on the side of Earth facing the sun.',
+          'A big storm can bring the northern lights far south. At the extreme level they have been seen as far south as Florida and southern Texas.'
+        ] },
+        { head: 'What it can do', items: [
+          'Power: a storm can push strong currents through long power lines. In extreme cases this can cause wide blackouts and damage transformers. A storm on March 13, 1989 left 6 million people in Canada without power for 9 hours.',
+          'GPS: a storm can throw off GPS positions, for hours in a severe storm and for days in an extreme one.',
+          'Radio: long-range high frequency (HF) radio can fade or black out, from minutes to a day or two.',
+          'Satellites: particles from the sun can damage satellites used for communications, GPS and weather forecasts.',
+          'A long outage could then stop water and wastewater systems, food and medicine kept cold, heat and air conditioning, phones, public transit and fuel delivery.'
+        ] },
+        { head: 'The storm scale', cols: ['Level', 'Name', 'What it can do to the power grid', 'How often in an 11-year cycle'], rows: [
+          ['G1', 'Minor', 'Weak power grid swings', 'About 1,700 storms (900 days)'],
+          ['G2', 'Moderate', 'Voltage alarms in far-north power systems. Long storms may damage transformers.', 'About 600 (360 days)'],
+          ['G3', 'Strong', 'Voltage fixes may be needed. False alarms on some protection devices.', 'About 200 (130 days)'],
+          ['G4', 'Severe', 'Possible wide voltage problems. Some protective systems may trip key parts of the grid off.', 'About 100 (60 days)'],
+          ['G5', 'Extreme', 'Wide voltage problems. Some grids may collapse or black out, and transformers may be damaged.', 'About 4 (4 days)']
+        ], note: 'From NOAA\'s Space Weather Scales. NOAA also has an R scale for radio blackouts and an S scale for solar radiation storms. The S scale mostly affects satellites, high-flying aircraft and radio near the poles.' },
+        { head: 'Where to get the forecast', items: [
+          'NOAA\'s Space Weather Prediction Center, swpc.noaa.gov, is the official source. Its home page shows current conditions on the NOAA scales.',
+          'Its 3-Day Forecast is a plain-language, one-page forecast issued every 12 hours.',
+          'It issues alerts, watches and warnings, like weather bulletins, and you can sign up to get them by email.',
+          'A geomagnetic storm watch can come up to three days ahead, but it is less sure of the timing and strength. A warning is more certain, but often comes only minutes to a couple of hours ahead.',
+          'Follow Emergency Alert System messages and your local officials for what to do.'
+        ] },
+        { head: 'Get ready, and what to do in a storm', items: [
+          'Build your kit and family communication plan. The steps on lights, phone charging, water, food and the fridge cover a space weather outage too.',
+          'Keep the gas tank close to full. Gas pumps need power.',
+          'Learn where the manual release lever is on an electric garage door, and how to use it.',
+          'Keep extra batteries or chargers for phones and laptops, and a charger in the car.',
+          'Most refrigerated medicine can stay in a closed fridge for several hours. Ask the doctor or pharmacist about yours.',
+          'During a storm, use as little electricity as you can, to help the power company avoid rolling blackouts. Unplug appliances if officials ask, and keep phone calls to what you need.',
+          'If GPS is off, see the step on getting around without your phone.'
+        ] },
+        { head: 'After the power comes back', items: [
+          'Throw out food that sat at 40°F or warmer for two hours or more, or that smells, looks or feels wrong.',
+          'Never taste food to check it. Some food looks and smells fine but is not safe.',
+          'You can refreeze food that is still colder than 40°F and has ice crystals. Use a food thermometer if you are not sure.'
+        ] }
+      ],
+      mistakes: [
+        'Treating every solar storm headline as a coming blackout. Most storms are minor, and big outages are rare.',
+        'Taking rumors over the NOAA forecast.',
+        'Running the car low on gas when pumps may not work in an outage.',
+        'Tasting food to see if it is still safe after an outage.'
+      ],
+      sources: ['ready-space', 'noaa-swpc', 'noaa-scales', 'noaa-3day', 'noaa-swpc-alerts', 'nws-space', 'noaa-gstorm'],
+      checked: '2026-11-26'
+    },
+
+    'plan-locations': {
+      intro: 'A disaster may hit while you are at work, on the road or apart from the kids. Find out the plans at the places you go most, and fit your own plan around them.',
+      parts: [
+        { head: 'The places to plan for', items: [
+          'Ready.gov lists them: work, the car, the bus or train, school and daycare, places of worship, sports fields, theaters, shopping areas, and hotels when you travel.',
+          'For each one, ask the building manager or the group what plan they have. If there is none, you may need to help build one.',
+          'Learn the local alerts there, the building alarm, the evacuation plan with other exits, and the shelter-in-place plan.',
+          'Outdoor places like ball fields need a quick place to shelter from lightning or a tornado.',
+          'Notice low ground that could flash flood, and buildings like mobile or modular ones that need a plan to go elsewhere.'
+        ] },
+        { head: 'At work', items: [
+          'Ask your employer about its policies for disasters, and how it will give you warnings.',
+          'Many workplaces must have an emergency action plan. It covers how to report an emergency, how to evacuate and which route to take, how everyone is counted afterward, and who to contact.',
+          'Ask who can order an evacuation, which exit is yours, where the meeting point is, and when you would shelter inside instead, such as for a tornado or a chemical spill nearby.',
+          'Learn what each alarm sounds like. Different alarms can mean different actions.',
+          'A workplace with 10 or fewer workers may give its plan by word of mouth, not on paper. Ask anyway.',
+          'In a high-rise: know the closest exit and a second one. Do not use the elevators. Stay to the right on the stairs so responders can come up.'
+        ] },
+        { head: 'What to keep at work', items: [
+          'Be ready to shelter at work for at least 24 hours.',
+          'Pack food, water and any medicines you need in one grab-and-go case.',
+          'Keep comfortable walking shoes there. Leaving may mean walking a long way.'
+        ] },
+        { head: 'Getting home when roads or transit are out', items: [
+          'Use Ready.gov\'s Commuter Emergency Plan. Write your daily route and other routes, to and from work and the other places you go.',
+          'List the bus, train or ferry lines, the stops and the fares, and the numbers for a local taxi, commuter rail and bus line.',
+          'Check if your area has a 511 traffic and travel information service, and write down the local links.',
+          'Keep the plan in your wallet or another place you can reach in a disaster.',
+          'If a car is hard to control, pull over, stop and set the parking brake. If the road could be damaged, stay off overpasses and bridges and away from power lines and signs.',
+          'If a power line falls on your car, stay inside until a trained person removes it. Listen to the radio for instructions.'
+        ] },
+        { head: 'School and daycare', items: [
+          'Ask if the school stores food, water and other basic supplies.',
+          'Ask what extra your child would need overnight there: diapers, a battery pack for equipment, special food or formula, and medicines such as inhalers. Ask if the school keeps them or if you should bring them to store.',
+          'Ask how and when staff can give your child medicine, and who does it.',
+          'Keep your phone number and address current with the school. Tell them as soon as either changes.',
+          'If the school shelters in place, you may not be allowed to drive there, and the doors will likely be locked. Wait until school officials say it is safe to pick up your child.',
+          'See the step on the school plan for the pickup list.'
+        ] },
+        { head: 'Meeting up', items: [
+          'Talk as a family about what each person would do if a warning came while they were away from home.',
+          'Use the meeting spots on your family plan. See the step on meeting spots.',
+          'Text instead of calling. Texts get through more easily and leave the lines open for emergency workers.'
+        ] }
+      ],
+      mistakes: [
+        'Keeping dress shoes at work and the walking shoes at home.',
+        'Knowing only the elevator and the front door of the building.',
+        'Knowing one way home, and not which bus runs if the trains stop.'
+      ],
+      sources: ['ready-locations', 'ready-commuter', 'osha-eap', 'osha-evac', 'ready-kit', 'fema-ayr-basic', 'cdc-kids-abc', 'cdc-kids-before'],
+      checked: '2026-11-26'
+    },
+
+    'plan-kids-kit': {
+      intro: 'A child who helped build the kit knows what is in it and feels calmer when it comes out. Ready.gov and the CDC both say to bring the kids into the work.',
+      parts: [
+        { head: 'Start from the kids\' checklist', items: [
+          'Ready.gov has a printable emergency checklist for kids. Sit down together and mark what the family already has and what you still need.',
+          'Plan enough for at least three days.',
+          'Each child\'s part: a change of clothes for three days with sturdy shoes, right for your weather, and a sleeping bag or warm blanket.',
+          'A toothbrush, toothpaste and soap.',
+          'A flashlight with spare batteries, and a whistle to signal for help.',
+          'Keep the kit together in a safe place that everyone can find easily.'
+        ] },
+        { head: 'Comfort items', items: [
+          'Books, games or puzzles.',
+          'A favorite stuffed animal or blanket.',
+          'The CDC says a flashlight, games and special toys help keep children calm in an emergency.',
+          'Ask the child what they think should go in. Let them choose their own comfort items.'
+        ] },
+        { head: 'The contact card', items: [
+          'The CDC says to make a card for your child\'s backpack and one for your wallet.',
+          'On it: the child\'s name, date of birth, and any medical conditions or allergies.',
+          'Contact information for the school, daycare or caregivers, and for each parent or guardian.',
+          'Emergency contacts to call if you cannot be reached, including one person out of town that everyone in the family contacts.',
+          'Keep it in the backpack, a school notebook or a wallet, or put the numbers in the child\'s phone.',
+          'Help them memorize the home number and each parent\'s cell number.'
+        ] },
+        { head: 'Jobs that fit their age', items: [
+          'Young children: pick their comfort items, and find the supplies on a family scavenger hunt.',
+          'Matches go in a waterproof container, and a grown-up handles them.',
+          'Children old enough: learn how to call 911 and memorize the key numbers.',
+          'Older kids: read the checklist and find what is missing. Ready.gov Kids has a free Build a Kit game for practice.',
+          'Every child can draw a map with home, school and the meeting spot marked.',
+          'Teens can lead the family\'s planning. Some areas run a Teen CERT program for more training.'
+        ] },
+        { head: 'Children with special health care needs', items: [
+          'Make an emergency care plan and an emergency care kit. If possible, let the child help.',
+          'Ask the child\'s health care provider to help make sure the medical needs are in the plan.',
+          'Tell your local EMS and emergency management office if the child has special equipment, or equipment that needs power. Ask about transportation and shelters that can meet the child\'s needs.',
+          'Practice the plan with the child so they stay calm.'
+        ] },
+        { head: 'Keep it going', items: [
+          'Hold regular family meetings to go over the plan and the kit.',
+          'Rethink the kit every year as the child grows. Swap clothes and comfort items they have outgrown.',
+          'Replace anything past its date.'
+        ] }
+      ],
+      mistakes: [
+        'Packing the kit for the kids instead of with them.',
+        'A contact card with no line for allergies or medicines.',
+        'Letting a child pack or carry the matches.'
+      ],
+      sources: ['ready-kids-kit', 'ready-kids-checklist', 'ready-kids-commplan', 'cdc-kids-before', 'cdc-kids-abc', 'cdc-kids-shcn', 'ready-kit', 'ready-teen-cert'],
+      checked: '2026-11-26'
+    },
+
+    'money-farm': {
+      intro: 'The USDA Farm Service Agency runs disaster programs for farms and ranches. They may help after a loss, but only if you can prove what you had and what you lost, and file in time.',
+      parts: [
+        { head: 'The main programs for livestock', cols: ['Program', 'What the page says it covers', 'Last day to file'], rows: [
+          ['Livestock Indemnity Program (LIP)', 'Deaths above normal from eligible adverse weather, disease, or attacks by federally protected animals. Also animals sold at a reduced price after an injury from an eligible loss.', 'March 1 after the year of the loss'],
+          ['Emergency Assistance for Livestock, Honeybees, and Farm-Raised Fish (ELAP)', 'Losses other programs do not cover: disease, certain adverse weather, and feed and water shortages, including hauling feed and water. Not on federally managed land.', 'March 1 after the year of the loss'],
+          ['Livestock Forage Disaster Program (LFP)', 'Grazing losses from qualifying drought, or from fire on federally managed land.', 'March 1 after the year of the loss'],
+          ['Emergency Conservation Program (ECP)', 'Repairing farmland, permanent fences and water structures after a natural disaster, and emergency water measures in severe drought.', 'Set signup periods after a disaster. Apply as soon as you can.'],
+          ['Emergency Farm Loans', 'Loans for farms in a disaster-designated county that cannot get enough credit elsewhere.', 'Within eight months of the disaster designation']
+        ], note: 'From the Farm Service Agency and farmers.gov pages as loaded on November 26, 2026.' },
+        { head: 'Records to keep now', items: [
+          'Take time- and date-stamped photos or video of your animals before any loss, to show your starting numbers.',
+          'Keep purchase and sales receipts, production records and vaccination records.',
+          'Keep vet records, brand inspection records, and ear tag, shearing or docking records.',
+          'Keep the inventory records you use for taxes, property tax records, and bank or loan papers.',
+          'Keep trucking or livestock hauling records, and any private insurance papers.',
+          'Records made at the time count. Write the counts down as they change.'
+        ] },
+        { head: 'Proof after a loss', items: [
+          'Take photos, with the date, of the animals that died.',
+          'Keep rendering truck receipts or certificates, and vet records.',
+          'Keep any FEMA or National Guard records, and any third-party certification.',
+          'If you sell injured animals at a reduced price, keep the sales receipt from an independent auction or sale barn, or the processing plant receipt.',
+          'For feed or water losses, keep the feed and water receipts.'
+        ] },
+        { head: 'Report the loss', items: [
+          'Report losses to your local Farm Service Agency office, and to your crop insurance provider if you have crop coverage.',
+          'Deadlines differ by program. The crop ones are short: crop insurance wants a call within 72 hours of finding damage and a written follow-up within 15 days. Noninsured crop coverage wants notice within 15 days.',
+          'For LIP and ELAP you file a notice of loss and an application for payment, with proof of your herd count, the losses and the event that caused them.',
+          'Go in early. The office can tell you the forms and the current dates.'
+        ] },
+        { head: 'Find your local office', items: [
+          'Use the Service Center Locator on farmers.gov. Pick your state and county.',
+          'A USDA Service Center connects you with the Farm Service Agency, the Natural Resources Conservation Service and Rural Development.',
+          'The FSA Office Locator lets you book an appointment with your local farm program or farm loan office.',
+          'The Disaster Assistance Discovery Tool on farmers.gov asks five short questions to point you to programs that may fit.'
+        ] },
+        { head: 'Programs change', items: [
+          'Congress and the USDA change these programs. A new law changed some LIP, ELAP and LFP rules starting in 2026.',
+          'The LIP records fact sheet is dated January 2026. The rest is from the program pages as loaded on November 26, 2026.',
+          'A county committee reviews your records. Payment is never certain, and some programs depend on the funds Congress sets aside.',
+          'Check the program page or call your local office before you count on any help.'
+        ] }
+      ],
+      mistakes: [
+        'No dated count of the herd from before the loss.',
+        'Losing the proof: no dated photos and no rendering receipt.',
+        'Waiting to report because the deadline seems far off.',
+        'Assuming one program covers every kind of loss.'
+      ],
+      sources: ['fsa-lip', 'fsa-elap', 'fsa-lfp', 'fsa-ecp', 'fsa-emloan', 'usda-lip-docs', 'fg-flood', 'fg-servicecenter', 'fg-disaster'],
       checked: '2026-11-26'
     }
   };

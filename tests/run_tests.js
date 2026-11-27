@@ -81,6 +81,9 @@ eq(E.fill('{gal3} gallons for {people}{petsLine}', ctx), '15 gallons for 5 peopl
   ok(!has(base, 'plan-livestock') && has(Object.assign({}, base, { livestock: 'yes' }), 'plan-livestock'), 'the livestock plan shows only with livestock');
   ok(has(base, 'plan-car') && !has(Object.assign({}, base, { vehicle: 'no' }), 'plan-car'), 'the car kit shows only with a vehicle');
   ok(has(base, 'plan-shelter'), 'every home gets a place to go');
+  ok(!has(base, 'plan-kids-kit') && has(Object.assign({}, base, { kids: 1 }), 'plan-kids-kit'), 'the kids kit shows only with children');
+  ok(!has(base, 'money-farm') && has(Object.assign({}, base, { livestock: 'yes' }), 'money-farm'), 'farm disaster help shows only with livestock');
+  ['plan-locations', 'plan-pandemic', 'hz-space'].forEach(function (id) { ok(has(base, id), id + ' applies to every home'); });
   ['livestock', 'access'].forEach(function (q) { ok(RD.QUESTIONS.some(function (x) { return x.id === q && x.type === 'yesno' && x.def === 'no'; }), 'the ' + q + ' question exists and starts at no'); });
 })();
 ok(ctx.flags.well && ctx.flags.kids && ctx.flags.babiesOrPets, 'flags from answers');
