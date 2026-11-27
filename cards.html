@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Flash cards</title>
+<meta name="description" content="Flash cards to learn the facts that matter in a disaster, and your own family plan, a few minutes at a time.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="site.css?v=20261127d">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#9a4f1f">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav class="nav" id="nav" aria-label="Pages"></nav>
+    <h1>Flash cards</h1>
+    <p class="lede">Learn what matters a few minutes at a time: the facts from the guides, and your own family plan. Cards you know come back less often. Cards you miss come back tomorrow.</p>
+  </div>
+</header>
+<main class="wrap" id="main">
+  <section id="home">
+    <p class="flash" id="saveNote" aria-live="polite"></p>
+    <div class="deck-grid" id="decks"></div>
+  </section>
+  <section id="study" hidden>
+    <p class="muted" id="studyHead"></p>
+    <div class="card flashcard" id="fc" aria-live="polite">
+      <p class="fc-q" id="fcQ"></p>
+      <div id="fcA" hidden>
+        <p class="fc-a" id="fcAText"></p>
+        <p class="muted" id="fcFrom"></p>
+      </div>
+    </div>
+    <div class="actions" id="fcShowRow"><button class="btn" type="button" id="fcShow">Show the answer</button></div>
+    <div class="actions" id="fcGradeRow" hidden>
+      <button class="btn" type="button" id="fcRight">I knew it</button>
+      <button class="btn ghost" type="button" id="fcWrong">Not yet</button>
+    </div>
+    <p class="muted noprint">Keys: space shows the answer, right arrow for I knew it, left arrow for not yet.</p>
+    <div class="actions"><button class="btn ghost" type="button" id="fcBack">Back to the decks</button></div>
+  </section>
+  <section class="print-area" id="cardsOut" aria-hidden="true"></section>
+</main>
+<footer><div class="wrap" id="foot"></div></footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
+<script src="config.js?v=20261127d"></script>
+<script src="data/links.js?v=20261127d"></script>
+<script src="data/tasks.js?v=20261127d"></script>
+<script src="data/handbook.js?v=20261127d"></script>
+<script src="data/plan.js?v=20261127d"></script>
+<script src="data/cards.js?v=20261127d"></script>
+<script src="js/engine.js?v=20261127d"></script>
+<script src="js/store.js?v=20261127d"></script>
+<script src="js/site.js?v=20261127d"></script>
+<script src="js/cards.js?v=20261127d"></script>
+<script>
+(function () {
+  'use strict';
+  var UI = RD.ui, E = RD.engine, C = RD.cardsEngine, el = UI.el, $ = UI.$;
+  var LOCAL_KEY = 'prepare-me-cards-v1';
+  var app = null, state = C.blank(), planCards = [], planNote = null;
+
+  /* ---------- where his progress is kept: his account when signed in, else this browser ---------- */
+  function loadLocal() { try { return C.clean(JSON.parse(localStorage.getItem(LOCAL_KEY))); } catch (e) { return C.blank(); } }
+  var saveTimer = null;
+  function save() {
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(function () {
+      if (app && app.session) {
+        app.store.saveStudy(app.session.id, state).then(function () { UI.flash('saveNote', ''); },
+          function (e) { UI.flash('saveNote', 'Could not save your progress: ' + (e.message || e) + '. It will try again after the next card.'); });
+      } else { try { localStorage.setItem(LOCAL_KEY, JSON.stringify(state)); } catch (e) {} }
+    }, 600);
+  }
+
+  function hazardsOf(ctx) { return RD.HAZARDS.filter(function (h) { return ctx.hazards[h.id]; }); }
+
+  UI.boot({}).then(function (a) {
+    app = a;
+    if (!app) { state = loadLocal(); drawHome(); return; }
+    if (!app.session) {
+      state = loadLocal();
+      planNote = el('span', null, [el('a', { href: 'index.html' }, 'Sign in'), ' and write ', el('a', { href: 'plan.html' }, 'your family plan'), ' to get cards about your own home. Signed out, your progress is kept in this browser only.']);
+      drawHome(); return;
+    }
+    Promise.all([app.store.getStudy(), app.store.getPlan()]).then(function (r) {
+      state = C.clean(r[0] && r[0].data);
+      var plan = r[1] && r[1].data;
+      planCards = C.planDeck(plan ? Object.assign({ people: [], f: {}, hz: {} }, plan) : null, hazardsOf(app.ctx));
+      if (!planCards.length) planNote = el('span', null, ['Fill in ', el('a', { href: 'plan.html' }, 'your family plan'), ' and each spot becomes a card: where you meet, who to call, where the water and go-bags are.']);
+      drawHome();
+    }, function (e) { UI.flash('saveNote', 'Could not load your cards: ' + (e.message || e) + '.'); state = C.blank(); drawHome(); });
+  });
+
+  /* ---------- the decks ---------- */
+  function deckCards(id) { return id === 'plan' ? planCards : id === 'due' ? allCards().filter(function (c) { return C.isDue(state, c.id, C.today()); }) : C.factDeck(id); }
+  function allCards() { return planCards.concat(C.factDeck('all')); }
+
+  function drawHome() {
+    $('study').hidden = true; $('home').hidden = false;
+    var box = UI.clear($('decks'));
+    var due = deckCards('due');
+    if (due.length) box.appendChild(tile({ id: 'due', name: 'Everything due today', line: 'Cards from every deck that are ready to review.' }, due, true));
+    box.appendChild(planCards.length ? tile({ id: 'plan', name: 'Your plan', line: 'Where you meet, who to call, where things are. Only you see these.' }, planCards)
+      : el('div', { class: 'card deck' }, [el('h2', null, 'Your plan'), el('p', null, planNote || '')]));
+    C.decks().forEach(function (d) { box.appendChild(tile(d, C.factDeck(d.id))); });
+  }
+  function tile(d, cards, hot) {
+    var s = C.summary(cards, state), ses = C.session(cards, state);
+    var line = s.total + (s.total === 1 ? ' card' : ' cards') + ' · ' + s.learned + ' learned' + (s.due ? ' · ' + s.due + ' due' : '') + (s.fresh ? ' · ' + s.fresh + ' new' : '');
+    return el('div', { class: 'card deck' + (hot ? ' hot' : '') }, [
+      el('h2', null, d.name),
+      d.line ? el('p', { class: 'muted' }, d.line) : null,
+      el('p', null, line),
+      el('div', { class: 'actions' }, [
+        ses.length ? el('button', { class: 'btn', type: 'button', onclick: function () { study(d, cards); } }, 'Study ' + ses.length)
+          : el('span', { class: 'muted' }, s.next !== null ? 'All caught up. More come back ' + whenDay(s.next) + '.' : 'All caught up.'),
+        el('button', { class: 'btn ghost', type: 'button', onclick: function () { printDeck(d, cards); } }, 'Print')
+      ])
+    ]);
+  }
+  function whenDay(day) {
+    var n = day - C.today();
+    return n <= 1 ? 'tomorrow' : 'in ' + n + ' days';
+  }
+
+  /* ---------- a sitting ---------- */
+  var queue = [], at = 0, right = 0, missed = {}, deck = null;
+  function study(d, cards) {
+    deck = d; queue = C.session(cards, state); at = 0; right = 0; missed = {};
+    $('home').hidden = true; $('study').hidden = false;
+    show();
+    window.scrollTo(0, 0);
+  }
+  function show() {
+    if (at >= queue.length) return finish();
+    var c = queue[at], t = c.task && E.task(c.task);
+    $('studyHead').textContent = deck.name + ' · card ' + (at + 1) + ' of ' + queue.length;
+    $('fcQ').textContent = c.q;
+    $('fcAText').textContent = c.a;
+    UI.clear($('fcFrom'));
+    if (t) $('fcFrom').appendChild(el('span', null, ['From the guide: ', el('a', { href: 'guides.html?step=' + t.id, target: '_blank', rel: 'noopener' }, t.title), '.']));
+    else if (c.plan) $('fcFrom').appendChild(el('span', null, ['From ', el('a', { href: 'plan.html' }, 'your family plan'), '.']));
+    $('fcA').hidden = true; $('fcShowRow').hidden = false; $('fcGradeRow').hidden = true;
+    $('fcShow').focus();
+  }
+  function reveal() { $('fcA').hidden = false; $('fcShowRow').hidden = true; $('fcGradeRow').hidden = false; $('fcRight').focus(); }
+  function grade(ok) {
+    var c = queue[at];
+    /* a card missed once in this sitting is not marked up even if he gets it on the second try */
+    if (!missed[c.id]) C.grade(state, c.id, ok);
+    if (ok) right++; else if (!missed[c.id]) { missed[c.id] = 1; queue.push(c); }
+    save();
+    at++; show();
+  }
+  function finish() {
+    var box = UI.clear($('fcQ'));
+    box.textContent = 'Done for now.';
+    var cards = queue.length - Object.keys(missed).length, miss = Object.keys(missed).length;
+    $('fcAText').textContent = (cards - miss) + ' of ' + cards + ' right the first time.' + (miss ? ' The ' + (miss === 1 ? 'one' : miss) + ' you missed ' + (miss === 1 ? 'comes' : 'come') + ' back tomorrow.' : '');
+    UI.clear($('fcFrom'));
+    $('fcA').hidden = false; $('fcShowRow').hidden = true; $('fcGradeRow').hidden = true;
+    $('studyHead').textContent = deck.name;
+    $('fcBack').focus();
+  }
+  $('fcShow').addEventListener('click', reveal);
+  $('fcRight').addEventListener('click', function () { grade(true); });
+  $('fcWrong').addEventListener('click', function () { grade(false); });
+  $('fcBack').addEventListener('click', function () { drawHome(); window.scrollTo(0, 0); });
+  document.addEventListener('keydown', function (e) {
+    if ($('study').hidden || e.altKey || e.ctrlKey || e.metaKey) return;
+    if (/^(INPUT|TEXTAREA|SELECT)$/.test((e.target && e.target.tagName) || '')) return;
+    if (!$('fcShowRow').hidden && (e.key === ' ' || e.key === 'Enter')) { e.preventDefault(); reveal(); }
+    else if (!$('fcGradeRow').hidden && e.key === 'ArrowRight') { e.preventDefault(); grade(true); }
+    else if (!$('fcGradeRow').hidden && e.key === 'ArrowLeft') { e.preventDefault(); grade(false); }
+  });
+
+  /* ---------- print a deck: question on the left, answer on the right; cut the rows and fold ---------- */
+  function printDeck(d, cards) {
+    var out = UI.clear($('cardsOut'));
+    out.appendChild(el('h1', { class: 'pc-title' }, 'Flash cards: ' + d.name));
+    out.appendChild(el('p', { class: 'pp-sub' }, 'Cut along the dashed lines and fold each card down the middle: question on the front, answer on the back.'));
+    var grid = el('div', { class: 'print-cards' });
+    cards.forEach(function (c) {
+      var t = c.task && E.task(c.task);
+      grid.appendChild(el('div', { class: 'pc' }, [
+        el('div', { class: 'pc-side' }, [el('div', { class: 'pc-label' }, 'Question'), el('div', { class: 'pc-q' }, c.q)]),
+        el('div', { class: 'pc-side' }, [el('div', { class: 'pc-label' }, 'Answer'), el('div', null, c.a), t ? el('div', { class: 'pc-from' }, 'Guide: ' + t.title) : null])
+      ]));
+    });
+    out.appendChild(grid);
+    out.appendChild(el('p', { class: 'pp-foot' }, 'Prepare Me flash cards, preparemeapp.org. In our own words, from the sources listed with each guide.'));
+    document.body.classList.add('printing-cards');
+    var done = function () { document.body.classList.remove('printing-cards'); window.removeEventListener('afterprint', done); };
+    window.addEventListener('afterprint', done);
+    window.print();
+  }
+})();
+</script>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "a122939dd88246f3ac7ec256a33cd080"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

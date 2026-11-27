@@ -7,7 +7,7 @@
 'use strict';
 var fs = require('fs'), path = require('path'), os = require('os');
 var root = path.join(__dirname, '..');
-['data/links.js', 'data/tasks.js', 'data/howto.js'].forEach(function (f) { require(path.join(root, f)); });
+['data/links.js', 'data/tasks.js', 'data/howto.js', 'data/cards.js'].forEach(function (f) { require(path.join(root, f)); });
 var RD = globalThis.RD, N = 8;
 var cache = process.argv[2] || path.join(os.tmpdir(), 'prepare-me-sources');
 fs.mkdirSync(cache, { recursive: true });
@@ -59,6 +59,7 @@ async function fetchAll() {
     (h.mistakes || []).forEach(function (x) { units.push([id, x]); });
   });
   RD.TASKS.forEach(function (t) { ['title', 'have', 'who', 'when', 'why', 'done'].forEach(function (k) { units.push([t.id, t[k]]); }); t.steps.forEach(function (x) { units.push([t.id, x]); }); });
+  (RD.CARDS || []).forEach(function (c) { units.push(['card ' + c.id, c.q + ' ' + c.a]); });
   var hits = 0;
   units.forEach(function (u) {
     var w = words(u[1]);

@@ -10,6 +10,7 @@ require(path.join(root, 'data/releases.js'));
 require(path.join(root, 'data/forum.js'));
 require(path.join(root, 'data/plan.js'));
 require(path.join(root, 'data/handbook.js'));
+require(path.join(root, 'data/cards.js'));
 require(path.join(root, 'js/engine.js'));
 var RD = globalThis.RD, E = RD.engine;
 
@@ -59,7 +60,7 @@ Object.keys(RD.HOWTO).forEach(function (id) {
 
 /* calm words, no stores, nothing about how it was made. The word list is kept encoded so the words do not show up in the repo. */
 var words = fs.readFileSync(path.join(root, 'data/tasks.js'), 'utf8') + fs.readdirSync(root).filter(function (f) { return /\.(html|js|css|md)$/.test(f); }).map(function (f) { return fs.readFileSync(path.join(root, f), 'utf8'); }).join('\n') +
-  ['js/engine.js', 'js/site.js', 'js/store.js', 'js/howto-view.js', 'js/alerts.js', 'data/links.js', 'data/howto.js', 'data/nws.js', 'data/forum.js', 'data/releases.js', 'data/plan.js', 'js/plan-view.js', 'data/handbook.js', 'js/handbook-pdf.js', 'supabase/functions/push/index.ts', 'supabase/schema.sql'].map(function (f) { return fs.readFileSync(path.join(root, f), 'utf8'); }).join('\n');
+  ['js/engine.js', 'js/site.js', 'js/store.js', 'js/howto-view.js', 'js/alerts.js', 'data/links.js', 'data/howto.js', 'data/nws.js', 'data/forum.js', 'data/releases.js', 'data/plan.js', 'js/plan-view.js', 'data/handbook.js', 'js/handbook-pdf.js', 'data/cards.js', 'js/cards.js', 'supabase/functions/push/index.ts', 'supabase/schema.sql'].map(function (f) { return fs.readFileSync(path.join(root, f), 'utf8'); }).join('\n');
 var BANNED = Buffer.from('XGJBSVxifGFydGlmaWNpYWwgaW50ZWxsaWdlbmNlfFxiZG9vbXxhcG9jYWx5cHxcYlNIVEZcYnxjb2xsYXBzZSBvZnxlbmQgb2YgdGhlIHdvcmxkfFxicGFuaWNcYnxhbWF6b258d2FsbWFydHxob21lIGRlcG90fGNvc3Rjb3xsb3dlJ3N8aGFyYm9yIGZyZWlnaHR8YmFzcyBwcm98Y2hhdGdwdHxjbGF1ZGV8b3BlbmFpfGdwdC0=', 'base64').toString().split('|');
 /* no group or community names anywhere in the app or README (also encoded) */
 var everything = words + fs.readFileSync(path.join(root, 'README.md'), 'utf8') + fs.readFileSync(path.join(root, 'scripts/build_hazards.py'), 'utf8');
@@ -206,6 +207,54 @@ require(path.join(root, 'js/handbook-pdf.js'));
   ok((hb.match(/cdnjs\.cloudflare\.com\/ajax\/libs\/pdfmake\/0\.2\.10\/[\w.]+\.js', 'sha512-[\w+\/=]{80,}'/g) || []).length === 2, 'the PDF maker comes from cdnjs, pinned, with integrity hashes');
   ok(!/innerHTML/.test(hb), 'the handbook page never writes page code');
   ok(/'handbook\.html', 'Handbook'/.test(fs.readFileSync(path.join(root, 'js/site.js'), 'utf8')), 'the handbook is in the nav');
+})();
+
+/* ---------- flash cards ---------- */
+require(path.join(root, 'js/cards.js'));
+(function () {
+  var C = RD.cardsEngine, ids = {};
+  ok(RD.CARDS.length >= 150, 'there are at least 150 fact cards');
+  RD.CARDS.forEach(function (c) {
+    ok(!ids[c.id], 'card id ' + c.id + ' is unique'); ids[c.id] = 1;
+    ok(!!RD.HOWTO[c.task], 'card ' + c.id + ' comes from a guide');
+    ok(/\?$/.test(c.q) && c.a.length > 0 && c.a.split(/\s+/).length <= 30, 'card ' + c.id + ' is a question with a short answer');
+    ok(!/\{\w+\}/.test(c.q + c.a), 'card ' + c.id + ' has no household numbers');
+  });
+  RD.BASICS.forEach(function (id) { ok(RD.CARDS.filter(function (c) { return c.task === id; }).length >= 2, 'survival basic ' + id + ' has cards'); });
+  ok(C.decks().length >= 8 && C.factDeck('basics').every(function (c) { return RD.BASICS.indexOf(c.task) >= 0; }), 'a deck for the basics and each area');
+  /* the schedule */
+  var day0 = new Date(2026, 10, 27, 9), s = C.blank(), deck = C.factDeck('water');
+  var first = C.session(deck, s, day0);
+  eq(first.length, Math.min(C.NEW_PER, deck.length), 'a first sitting has up to ' + C.NEW_PER + ' new cards');
+  C.grade(s, first[0].id, true, day0); C.grade(s, first[1].id, false, day0);
+  eq(s.c[first[0].id], [1, C.today(day0) + 1], 'right on a new card: box 1, back tomorrow');
+  eq(s.c[first[1].id], [1, C.today(day0) + 1], 'wrong: box 1, back tomorrow');
+  var day1 = new Date(2026, 10, 28, 9);
+  C.grade(s, first[0].id, true, day1);
+  eq(s.c[first[0].id], [2, C.today(day1) + 3], 'right again: box 2, back in 3 days');
+  ok(C.session(deck, s, day1)[0].id === first[1].id, 'cards due come before new ones');
+  C.grade(s, first[0].id, false, day1);
+  eq(s.c[first[0].id][0], 1, 'a miss sends a card back to box 1');
+  var sum = C.summary(deck, s, day1);
+  eq([sum.total, sum.due, sum.fresh], [deck.length, 1, deck.length - 2], 'the deck counts what is due and what is new');
+  eq(C.clean({ c: { a: [9, 1], b: [1, 'x'], c: [2, 20000], d: 'bad' } }), { v: 1, c: { c: [2, 20000] } }, 'saved progress keeps only good entries');
+  eq(Object.keys(C.prune({ v: 1, c: { x: [1, 1], y: [1, 1] } }, ['y']).c), ['y'], 'cards that are gone are dropped');
+  /* his own plan */
+  var plan = { people: [{ name: 'Ann', phone: '555-0100', health: 'Insulin in the fridge' }, {}], f: { meetNear: 'The mailbox', outName: 'Aunt Sue', outPhone: '555-0199', atBags: 'Hall closet', notes: 'x' }, hz: { fire: 'Out the back door' } };
+  var pd = C.planDeck(plan, RD.HAZARDS.filter(function (h) { return h.id === 'fire' || h.id === 'flood'; }));
+  var byId = {}; pd.forEach(function (c) { byId[c.id] = c; });
+  eq(pd.length, 6, 'one plan card for each spot he filled in');
+  eq([byId['plan:meetNear'].q, byId['plan:meetNear'].a], ['Where do we meet right outside the home?', 'The mailbox'], 'a meeting place card');
+  eq(byId['plan:outName'].a, 'Aunt Sue, 555-0199', 'the contact card carries the phone number');
+  ok(/Ann/.test(byId['plan:phone:0'].q) && byId['plan:phone:0'].a === '555-0100', 'a phone card for each person');
+  ok(/House fire/.test(byId['plan:hz:fire'].q), 'a card for each disaster he wrote a plan for');
+  eq(C.planDeck(null, []), [], 'no plan, no plan cards');
+  var cardsHtml = fs.readFileSync(path.join(root, 'cards.html'), 'utf8');
+  ok(!/innerHTML/.test(cardsHtml + fs.readFileSync(path.join(root, 'js/cards.js'), 'utf8')), 'cards are shown as plain text, never as page code');
+  ok(/'cards\.html', 'Flash cards'/.test(fs.readFileSync(path.join(root, 'js/site.js'), 'utf8')), 'flash cards are in the nav');
+  ok(/printDeck/.test(cardsHtml) && /saveStudy/.test(cardsHtml) && /localStorage/.test(cardsHtml), 'decks print, and progress saves to the account or this browser');
+  ok(/flash card/.test(fs.readFileSync(path.join(root, 'privacy.html'), 'utf8')) && /flash_cards/.test(fs.readFileSync(path.join(root, 'account.html'), 'utf8')), 'the privacy page and the download cover flash cards');
+  ok(/'cards'|data\/cards\.js/.test(fs.readFileSync(path.join(root, 'scripts/check_copying.js'), 'utf8')), 'the copying check covers the cards');
 })();
 
 /* ---------- release notes: newest first, real dates, plain lines, linked from every page ---------- */
@@ -455,6 +504,11 @@ require(path.join(root, 'js/store.js'));
   eq((await L.getPlan()).data.f.meetNear, 'the mailbox', 'he saves and reads his plan');
   await L.signIn('b@example.com');
   eq(await L.getPlan(), null, 'the second man cannot see the first man\'s plan');
+  await L.signIn('a@example.com');
+  await L.saveStudy(a.id, { v: 1, c: { 'water-3day.1': [2, 20420] } });
+  eq((await L.getStudy()).data.c['water-3day.1'], [2, 20420], 'he saves his flash card progress');
+  await L.signIn('b@example.com');
+  eq(await L.getStudy(), null, 'the second man cannot see the first man\'s flash cards');
   await L.signIn('a@example.com');
   await L.deleteMe();
   ok(!(await L.session()), 'deleted and signed out');

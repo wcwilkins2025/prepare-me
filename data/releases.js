@@ -4,7 +4,9 @@
   'use strict';
   var RD = root.RD = root.RD || {};
   RD.RELEASES = [
-    { date: '2026-11-27', title: 'Your family plan, and a survival handbook to print', items: [
+    { date: '2026-11-27', title: 'Your family plan, a survival handbook, and flash cards', items: [
+      'Flash cards: about 240 cards drawn from the guides, a Survival basics deck, a deck for each area, and a Your plan deck made from your own family plan. Cards you know come back less often; cards you miss come back tomorrow.',
+      'Any deck prints as fold-over cards: question on the front, answer on the back.',
       'A new page, Handbook: every guide in one book, as a PDF to download and print. Take the whole thing, just the survival basics, or pick the areas and guides you want.',
       'Each copy has a cover, a table of contents, every guide in full, and a credits section listing every source with its web address.',
       'Signed in, amounts like gallons of water are worked out for your household. Otherwise they are for a family of four.',

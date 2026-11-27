@@ -18,6 +18,8 @@ insert into public.checkins (week_of, overall, done_count, answers) values ('202
 select pg_temp.check((select count(*) from public.assessments) = 1, 'A sees his own assessment');
 insert into public.plans (data) values ('{"people": [{"name": "Ann", "phone": "555-0100"}], "f": {"meetNear": "the mailbox"}}');
 select pg_temp.check((select data->'f'->>'meetNear' from public.plans) = 'the mailbox', 'A saves and reads his plan');
+insert into public.study (data) values ('{"v": 1, "c": {"water-3day.1": [2, 20420]}}');
+select pg_temp.check((select count(*) from public.study) = 1, 'A saves his flash card progress');
 
 -- ---------- B sees none of it and cannot touch it ----------
 select set_config('request.jwt.claim.sub', 'bbbbbbbb-0000-0000-0000-000000000002', false);
@@ -26,6 +28,8 @@ select pg_temp.check((select count(*) from public.assessments) = 0, 'B cannot re
 select pg_temp.check((select count(*) from public.progress) = 0, 'B cannot read A''s progress');
 select pg_temp.check((select count(*) from public.checkins) = 0, 'B cannot read A''s check-ins');
 select pg_temp.check((select count(*) from public.plans) = 0, 'B cannot read A''s plan');
+select pg_temp.check((select count(*) from public.study) = 0, 'B cannot read A''s flash cards');
+with u as (update public.study set data = '{}' returning 1) select pg_temp.check((select count(*) from u) = 0, 'B cannot change A''s flash cards');
 with u as (update public.plans set data = '{}' returning 1) select pg_temp.check((select count(*) from u) = 0, 'B cannot change A''s plan');
 with d as (delete from public.plans returning 1) select pg_temp.check((select count(*) from d) = 0, 'B cannot delete A''s plan');
 do $$ begin
@@ -144,6 +148,11 @@ do $$ begin
     perform count(*) from public.push_events;
     raise exception 'FAIL: a visitor read alerts';
   exception when insufficient_privilege then raise notice 'ok   a visitor cannot read alerts';
+  end;
+  begin
+    perform count(*) from public.study;
+    raise exception 'FAIL: a visitor read flash cards';
+  exception when insufficient_privilege then raise notice 'ok   a visitor cannot read flash cards';
   end;
   begin
     perform count(*) from public.plans;

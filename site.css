@@ -237,6 +237,30 @@ footer .hr-family a { color: var(--accent); }
   .howto-table th, .howto-table td { border-color: #666; }
 }
 
+/* flash cards (cards.html) */
+.deck-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+.deck-grid .card { margin: 0; }
+.deck h2 { margin-top: 0; }
+.deck.hot { border-color: var(--accent); border-width: 2px; }
+.flashcard { min-height: 220px; display: flex; flex-direction: column; justify-content: center; text-align: center; }
+.fc-q { font-size: 22px; font-weight: 600; line-height: 1.35; margin: 0 0 12px; }
+.fc-a { font-size: 19px; line-height: 1.45; border-top: 1px solid var(--rule); padding-top: 14px; margin: 0 0 8px; white-space: pre-wrap; }
+.print-cards { display: grid; grid-template-columns: 1fr; }
+.pc { display: grid; grid-template-columns: 1fr 1fr; border: 1px dashed #000; border-top: 0; break-inside: avoid; min-height: 1.45in; font-size: 10.5pt; }
+.pc:first-child { border-top: 1px dashed #000; }
+.pc-side { padding: 0.15in 0.2in; white-space: pre-wrap; }
+.pc-side + .pc-side { border-left: 1px dotted #000; }
+.pc-label { font-size: 7.5pt; text-transform: uppercase; letter-spacing: .06em; color: #555; margin-bottom: 4px; }
+.pc-q { font-weight: 600; }
+.pc-from { font-size: 7.5pt; color: #555; margin-top: 6px; }
+.pc-title { font-size: 18pt; margin: 0 0 4px; }
+@media print {
+  body.printing-cards main > :not(#cardsOut) { display: none !important; }
+  body.printing-cards #cardsOut { display: block !important; }
+  body.printing-cards { background: #fff; color: #000; }
+  body.printing-cards .wrap { max-width: none; padding: 0; }
+}
+
 /* the handbook picker (handbook.html) */
 .pick-area { border-top: 1px solid var(--rule); padding: 6px 0; }
 .pick-area summary { display: flex; align-items: center; min-height: 44px; }
