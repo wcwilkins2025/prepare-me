@@ -70,6 +70,9 @@ var ctx = E.context({ adults: 2, kids: 2, babies: 1, pets: 1, water: 'well', hom
 eq([ctx.people, ctx.gal3, ctx.gal14], [5, 15, 70], 'five people need 15 and 70 gallons');
 eq(E.fill('{gal3} gallons for {people}{petsLine}', ctx), '15 gallons for 5 people, plus extra for the pet', 'text fills in');
 
+/* books worth owning: title, author and a line, never a store link */
+ok(RD.BOOKS.length >= 5 && RD.BOOKS.every(function (b) { return b.title && b.by && b.about && !b.url; }), 'books have a title, an author and a line, and no store link');
+
 /* the questions for help getting around and for livestock */
 (function () {
   function has(ans, id) { return E.tasksFor(E.context(ans)).some(function (t) { return t.id === id; }); }

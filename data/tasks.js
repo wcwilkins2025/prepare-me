@@ -98,7 +98,7 @@
     when: 'This week. About an hour.',
     why: 'Water runs short first when the taps stop. The CDC and Ready.gov both set the floor at one gallon a person a day for three days.',
     done: '{gal3} gallons, dated, in one spot everyone in the house knows.',
-    links: ['cdc-store', 'ready-water'] });
+    links: ['cdc-store', 'ready-water', 'church-water'] });
 
   add({ id: 'water-treat', area: 'water', rank: 2, cost: 0, weight: 2, hz: ['all'],
     title: 'Learn two ways to make water safe',
@@ -115,7 +115,7 @@
     when: 'This week. Twenty minutes.',
     why: 'Stored water runs out. Knowing how to make more safe water turns any clean source into drinking water.',
     done: 'The card is taped to the water, a bottle of plain bleach sits with it, and one other adult can tell you both ways.',
-    links: ['cdc-safe'] });
+    links: ['cdc-safe', 'hesperian-water-safe'] });
 
   add({ id: 'water-find', area: 'water', rank: 3, cost: 0, weight: 1, hz: ['all'], need: ['notRv'],
     title: 'Find the water already in your house',
@@ -132,7 +132,7 @@
     when: 'This month. Thirty minutes.',
     why: 'Most homes hold more water than men think. Knowing where it is adds days before you need anything else.',
     done: 'You can find the drain valve in the dark and you know the steps to drain it safely.',
-    links: ['ready-water'] });
+    links: ['ready-water', 'usu-water'] });
 
   add({ id: 'water-rotate', area: 'water', rank: 3, cost: 0, weight: 1, hz: ['all'],
     title: 'Set a date to swap your stored water',
@@ -147,7 +147,7 @@
     when: 'Today. Five minutes.',
     why: 'Stored water that is never swapped gets forgotten. A date on the calendar keeps it fresh without you thinking about it.',
     done: 'A repeating reminder is on the calendar.',
-    links: ['cdc-store'] });
+    links: ['cdc-store', 'church-water'] });
 
   add({ id: 'water-well', area: 'water', rank: 2, cost: 0, weight: 2, hz: ['outage', 'winter', 'hurricane', 'tornado'], need: ['well'],
     title: 'Know what your well needs when the power is out',
@@ -163,7 +163,7 @@
     when: 'This month. Thirty minutes.',
     why: 'On a well, a power outage is also a water outage. A plan now saves a scramble later.',
     done: 'The pump size and breaker are written on your plan.',
-    links: ['cdc-safe', 'ready-power'] });
+    links: ['cdc-safe', 'ready-power', 'hesperian-wells'] });
 
   add({ id: 'water-2week', area: 'water', rank: 5, cost: 2, costNote: 'About $30 to $80 for food-grade containers, or less if you reuse jugs', weight: 2, hz: ['all'],
     title: 'Build up to two weeks of water',
@@ -179,7 +179,7 @@
     when: 'Over the next month. A little each week.',
     why: 'The CDC says try for two weeks. Many outages and boil notices run longer than three days.',
     done: '{gal14} gallons, dated, on your swap schedule.',
-    links: ['cdc-store', 'ready-water'] });
+    links: ['cdc-store', 'ready-water', 'church-water'] });
 
   add({ id: 'water-filter', area: 'water', rank: 6, cost: 2, costNote: 'About $25 to $60', weight: 1, hz: ['all'],
     title: 'Add a water filter for the long run',
@@ -194,7 +194,7 @@
     when: 'After the free water steps are done.',
     why: 'Stored water lasts days. A filter plus boiling or bleach turns a creek or rain barrel into weeks of water.',
     done: 'A filter you have used once, stored with your water.',
-    links: ['cdc-safe'] });
+    links: ['cdc-safe', 'hesperian-rain'] });
 
   /* ======================= FOOD ======================= */
   add({ id: 'food-count', area: 'food', rank: 1, cost: 0, weight: 2, hz: ['all'],
@@ -210,7 +210,7 @@
     when: 'This weekend. Thirty minutes.',
     why: 'Most homes already have more than they think. Counting turns a guess into a number and shows the gap.',
     done: 'A number of days, written on your plan.',
-    links: ['ready-food'] });
+    links: ['ready-food', 'church-food'] });
 
   add({ id: 'food-fridge', area: 'food', rank: 2, cost: 0, weight: 1, hz: ['outage', 'hurricane', 'tornado', 'winter', 'flood'],
     title: 'Learn the fridge and freezer rules for an outage',
@@ -227,7 +227,7 @@
     when: 'This week. Fifteen minutes.',
     why: 'Bad food makes people sick right when a doctor is hardest to reach. The USDA rules are simple and they work.',
     done: 'The rules are on the fridge, and spare freezer space holds water jugs.',
-    links: ['usda-food'] });
+    links: ['usda-food', 'redcross-power'] });
 
   add({ id: 'food-cook', area: 'food', rank: 3, cost: 0, weight: 1, hz: ['outage', 'winter', 'hurricane', 'tornado', 'earthquake'],
     title: 'Plan how you would cook with the power out',
@@ -271,7 +271,7 @@
     when: 'Over the next two or three shopping trips.',
     why: 'Ready.gov says to keep at least several days of food, and three days is the place to start. Food you already eat gets rotated and does not go to waste.',
     done: 'A box or shelf with three days of food for {people}, kept apart from everyday food.',
-    links: ['ready-food', 'redcross-kit'] });
+    links: ['ready-food', 'redcross-kit', 'church-food'] });
 
   add({ id: 'food-special', area: 'food', rank: 2, cost: 1, costNote: 'About $15 to $25', weight: 2, hz: ['all'], need: ['babiesOrPets'],
     title: 'Set aside food for the baby and the pets',
@@ -285,7 +285,7 @@
     when: 'This month.',
     why: 'Stores close in an outage, and babies and pets cannot wait.',
     done: 'Three days of their food stored with yours.',
-    links: ['ready-pets', 'ready-kids'] });
+    links: ['ready-pets', 'ready-kids', 'redcross-pets'] });
 
   add({ id: 'food-2week', area: 'food', rank: 5, cost: 3, costNote: 'About $100 to $200, spread over months', weight: 2, hz: ['all'],
     title: 'Build up to two weeks of food',
@@ -300,7 +300,7 @@
     when: 'Over the next three months.',
     why: 'Two weeks covers most storms, outages and short layoffs without a trip to the store.',
     done: 'Two weeks of food for {people}, rotated as you eat it.',
-    links: ['ready-food', 'usda-food'] });
+    links: ['ready-food', 'usda-food', 'church-longterm'] });
 
   add({ id: 'food-grow', comfort: true, area: 'food', rank: 7, cost: 1, costNote: 'Seeds and a few jars, under $25 to start', weight: 1, hz: ['income', 'all'],
     title: 'Grow or put up some of your own food',
@@ -315,7 +315,7 @@
     when: 'This season.',
     why: 'Food you grow or put up is food the store cannot run out of.',
     done: 'One crop grown or one batch put up, start to finish.',
-    links: ['usda-preserve', 'usda-extension', 'groundwork'] });
+    links: ['usda-preserve', 'usda-extension', 'groundwork', 'usu-canmistakes'] });
 
   /* ======================= POWER AND HEAT ======================= */
   add({ id: 'power-lights', area: 'power', rank: 1, cost: 0, weight: 2, hz: ['outage', 'tornado', 'hurricane', 'winter', 'earthquake', 'evacuate'],
@@ -331,7 +331,7 @@
     when: 'Tonight. Fifteen minutes.',
     why: 'Most outages start at night or in a storm. A light within reach keeps people from falling and keeps kids calm.',
     done: 'Every person can reach a working light from bed.',
-    links: ['ready-power'] });
+    links: ['ready-power', 'nfpa-candles'] });
 
   add({ id: 'power-heat', area: 'power', rank: 2, cost: 0, weight: 2, hz: ['winter', 'outage'], need: ['cold'],
     title: 'Plan how you stay warm if the heat goes out',
@@ -348,7 +348,7 @@
     when: 'Before the first freeze.',
     why: 'Cold is the real danger in a winter outage, most of all for babies and older adults. A plan makes it routine.',
     done: 'A warm room picked, blankets in it, and a place to go if it gets too cold.',
-    links: ['ready-winter', 'cdc-co'] });
+    links: ['ready-winter', 'cdc-co', 'redcross-winter'] });
 
   add({ id: 'power-cool', area: 'power', rank: 2, cost: 0, weight: 2, hz: ['heat', 'outage'], need: ['hot'],
     title: 'Plan how you stay cool in a heat wave or summer outage',
@@ -365,7 +365,7 @@
     when: 'Before summer.',
     why: 'Heat hurts more people than most storms, and it is the easiest to plan for.',
     done: 'A cool room, a cool place to go, and the warning signs written on your plan.',
-    links: ['cdc-heat', 'ready-heat'] });
+    links: ['cdc-heat', 'ready-heat', 'redcross-heat'] });
 
   add({ id: 'power-device', area: 'power', rank: 1, cost: 0, weight: 3, hz: ['outage', 'winter', 'hurricane', 'tornado'], need: ['device'],
     title: 'Make a power plan for the medical device',
@@ -380,7 +380,7 @@
     when: 'This week. Two phone calls.',
     why: 'For someone on oxygen or a pump, an outage is a medical problem. A plan settles it in advance.',
     done: 'The power company knows, you know the battery hours, and you know where you would go.',
-    links: ['ready-disab', 'ready-power'] });
+    links: ['ready-disab', 'ready-power', 'redcross-power'] });
 
   add({ id: 'power-shutoff', area: 'power', rank: 2, cost: 0, weight: 2, hz: ['earthquake', 'flood', 'hurricane', 'fire', 'tornado'], need: ['notApartment'],
     title: 'Learn where to shut off the power, water and gas',
@@ -396,7 +396,7 @@
     when: 'This weekend. Thirty minutes.',
     why: 'A broken pipe, a flood or a gas leak goes from bad to worse fast. Shutting it off in a minute saves the house.',
     done: 'Two adults can find and work every shutoff.',
-    links: ['ready-skills'] });
+    links: ['ready-skills', 'redcross-power'] });
 
   add({ id: 'power-co', area: 'power', rank: 4, cost: 2, costNote: 'About $25 to $40 each', weight: 2, hz: ['outage', 'winter', 'fire'],
     title: 'Put a carbon monoxide alarm on every level of your home',
@@ -411,7 +411,7 @@
     when: 'This month.',
     why: 'Carbon monoxide has no smell. It is the hidden risk when people run generators, grills or heaters in an outage.',
     done: 'An alarm on every level and outside each sleeping area, tested.',
-    links: ['cdc-co'] });
+    links: ['cdc-co', 'nfpa-co'] });
 
   add({ id: 'power-batteries', area: 'power', rank: 4, cost: 1, costNote: 'About $15 to $25', weight: 1, hz: ['outage', 'tornado', 'hurricane', 'winter', 'earthquake'],
     title: 'Keep spare batteries for the lights and radio',
@@ -426,7 +426,7 @@
     when: 'Next shopping trip.',
     why: 'A light with dead batteries is no light at all.',
     done: 'One spare set for every light and the radio.',
-    links: ['ready-kit'] });
+    links: ['ready-kit', 'nfpa-liion'] });
 
   add({ id: 'power-phone', area: 'power', rank: 4, cost: 2, costNote: 'About $25 to $50', weight: 1, hz: ['outage', 'hurricane', 'tornado', 'winter', 'evacuate'],
     title: 'Keep a way to charge phones without the wall',
@@ -440,7 +440,7 @@
     when: 'This month.',
     why: 'The phone is your flashlight, your radio and your line to family. Keeping it alive keeps you in touch.',
     done: 'A charged battery pack, or a car charger in the vehicle.',
-    links: ['ready-power'] });
+    links: ['ready-power', 'redcross-power'] });
 
   add({ id: 'power-backup', comfort: true, area: 'power', rank: 9, cost: 4, costNote: 'Usually $500 or more', weight: 1, hz: ['outage', 'winter', 'hurricane', 'heat'],
     title: 'Plan backup power for the things that matter',
@@ -456,7 +456,7 @@
     when: 'After the free and low-cost steps are done.',
     why: 'Backup power is a comfort, not the foundation. Water, food, light and a plan come first.',
     done: 'Power sized to your list, run safely, with an alarm for carbon monoxide inside.',
-    links: ['ready-power', 'cdc-gen'] });
+    links: ['ready-power', 'cdc-gen', 'redcross-generator'] });
 
   /* ======================= MEDICAL ======================= */
   add({ id: 'med-list', area: 'medical', rank: 1, cost: 0, weight: 2, hz: ['all'],
@@ -472,7 +472,7 @@
     when: 'This week. Thirty minutes.',
     why: 'If you are away from home or not able to talk, this list speaks for you. It also helps refill medicine fast.',
     done: 'A list for every person, in three places.',
-    links: ['ready-plan'] });
+    links: ['ready-plan', 'redcross-older'] });
 
   add({ id: 'med-kit', area: 'medical', rank: 1, cost: 0, weight: 2, hz: ['all'],
     title: 'Gather a first aid kit from what you have',
@@ -487,7 +487,7 @@
     when: 'This weekend. Thirty minutes.',
     why: 'Small cuts and burns are the most common injury after any storm. A kit you can find saves a trip you may not be able to make.',
     done: 'One kit in a known spot, and a short list of what to add.',
-    links: ['redcross-firstaidkit'] });
+    links: ['redcross-firstaidkit', 'mayo-kit'] });
 
   add({ id: 'med-app', area: 'medical', rank: 2, cost: 0, weight: 1, hz: ['all'],
     title: 'Learn first aid basics from the free Red Cross app',
@@ -517,7 +517,7 @@
     when: 'In the next month or two.',
     why: 'Heavy bleeding can take a life in minutes, before help arrives. This is the one skill that makes the most difference.',
     done: 'You took the class and can show someone how to pack a wound.',
-    links: ['stopthebleed'] });
+    links: ['stopthebleed', 'mayo-bleeding'] });
 
   add({ id: 'med-rx', area: 'medical', rank: 2, cost: 1, costNote: 'Usually your normal copay', weight: 3, hz: ['all'], need: ['meds'],
     title: 'Keep a week of extra daily medicine',
@@ -532,7 +532,7 @@
     when: 'At your next refill.',
     why: 'Pharmacies close in storms and outages. A week ahead turns a crisis into a wait.',
     done: 'Seven or more days of every daily medicine, on hand at all times.',
-    links: ['ready-older', 'ready-disab'] });
+    links: ['ready-older', 'ready-disab', 'redcross-older'] });
 
   add({ id: 'med-fill', area: 'medical', rank: 4, cost: 2, costNote: 'About $25 to $60', weight: 1, hz: ['all'],
     title: 'Fill the gaps in your first aid kit',
@@ -547,7 +547,7 @@
     when: 'This month.',
     why: 'The kit is only as good as what is in it when you open it.',
     done: 'Your kit matches the Red Cross list.',
-    links: ['redcross-firstaidkit'] });
+    links: ['redcross-firstaidkit', 'mayo-kit'] });
 
   add({ id: 'med-sick', area: 'medical', rank: 3, cost: 0, weight: 1, hz: ['sickness'],
     title: 'Plan for sickness in the house',
@@ -562,7 +562,7 @@
     when: 'This month.',
     why: 'Flu season and stomach bugs hit whole houses. A little plan keeps it from spreading and keeps the house running.',
     done: 'A sick room picked, the basics on hand, and a backup for the kids.',
-    links: ['ready-pandemic'] });
+    links: ['ready-pandemic', 'mayo-flu'] });
 
   add({ id: 'med-class', area: 'medical', rank: 6, cost: 2, costNote: 'About $30 to $100, and many fire departments run free ones', weight: 2, hz: ['all'],
     title: 'Take a CPR and first aid class',
@@ -577,7 +577,7 @@
     when: 'In the next three months.',
     why: 'CPR in the first minutes doubles or triples the chance a person lives. Hands-on practice makes it stick.',
     done: 'A current CPR and first aid card.',
-    links: ['redcross-class'] });
+    links: ['redcross-class', 'mayo-cpr'] });
 
   /* ======================= COMMUNICATIONS ======================= */
   add({ id: 'comm-contact', area: 'comms', rank: 1, cost: 0, weight: 2, hz: ['all'],
@@ -593,7 +593,7 @@
     when: 'This week. One phone call.',
     why: 'Local lines jam in a disaster. A long-distance call or text often goes through, and one person can pass the word.',
     done: 'The contact said yes, and everyone in the house knows who it is.',
-    links: ['ready-plan', 'redcross-plan'] });
+    links: ['ready-plan', 'redcross-plan', 'redcross-reconnect'] });
 
   add({ id: 'comm-card', area: 'comms', rank: 1, cost: 0, weight: 2, hz: ['all'],
     title: 'Write the key phone numbers on paper',
@@ -608,7 +608,7 @@
     when: 'This week. Twenty minutes.',
     why: 'A dead phone takes every number with it. Paper does not run out of battery.',
     done: 'Every person carries a card.',
-    links: ['ready-plan'] });
+    links: ['ready-plan', 'redcross-informed'] });
 
   add({ id: 'comm-alerts', area: 'comms', rank: 1, cost: 0, weight: 2, hz: ['all'],
     title: 'Sign up for local emergency alerts',
@@ -623,7 +623,7 @@
     when: 'Today. Ten minutes.',
     why: 'Warning time is the most valuable thing in a storm, flood or fire. Alerts give it to you for free.',
     done: 'Alerts on for every phone, and county texts signed up.',
-    links: ['ready-alerts', 'fema-app'] });
+    links: ['ready-alerts', 'fema-app', 'redcross-informed'] });
 
   add({ id: 'comm-ham-learn', comfort: true, area: 'comms', rank: 3, cost: 0, weight: 2, hz: ['all'],
     title: 'Start learning for the ham radio Technician license',
@@ -667,7 +667,7 @@
     when: 'This month.',
     why: 'When power and cell service go, a weather radio still tells you what is coming.',
     done: 'The radio is set to your station and sits with the lights.',
-    links: ['nws-nwr'] });
+    links: ['nws-nwr', 'redcross-kit'] });
 
   add({ id: 'comm-ham-test', comfort: true, area: 'comms', rank: 6, cost: 2, costNote: 'About $35 FCC fee, plus up to $15 for the test', weight: 2, hz: ['all'], after: 'comm-ham-learn',
     title: 'Take the Technician exam',
@@ -713,7 +713,7 @@
     when: 'Tonight. Ten minutes.',
     why: 'In a fire, the worst danger is someone going back in for a person who is already out. A meeting spot ends that.',
     done: 'Every person can walk you to the spot.',
-    links: ['usfa-escape', 'ready-plan'] });
+    links: ['usfa-escape', 'ready-plan', 'nfpa-escape'] });
 
   add({ id: 'plan-meet-far', area: 'plan', rank: 2, cost: 0, weight: 2, hz: ['all'],
     title: 'Pick a meeting spot outside your neighborhood and one out of town',
@@ -728,7 +728,7 @@
     when: 'This week.',
     why: 'If you are at work and the kids are at school when it hits, you need a place to find each other.',
     done: 'Both spots and two routes written down, and driven once.',
-    links: ['ready-plan', 'ready-evacuation'] });
+    links: ['ready-plan', 'ready-evacuation', 'redcross-plan'] });
 
   add({ id: 'plan-write', area: 'plan', rank: 2, cost: 0, weight: 3, hz: ['all'],
     title: 'Write your family plan on one page',
@@ -743,7 +743,7 @@
     when: 'This weekend. One hour.',
     why: 'A plan in your head is gone when you are hurt or away. On paper, anyone in the house can follow it.',
     done: 'One page, in three places.',
-    links: ['ready-plan', 'redcross-plan'] });
+    links: ['ready-plan', 'redcross-plan', 'redcross-informed'] });
 
   add({ id: 'plan-docs', area: 'plan', rank: 2, cost: 0, weight: 2, hz: ['all'],
     title: 'Copy the papers that matter',
@@ -758,7 +758,7 @@
     when: 'This month. One evening.',
     why: 'After a fire, flood or storm, these papers are how you prove who you are, what you own and what insurance owes you.',
     done: 'Photos in a safe place and paper copies in a sealed bag.',
-    links: ['ready-money'] });
+    links: ['ready-money', 'msstate-gobox'] });
 
   add({ id: 'plan-practice', area: 'plan', rank: 3, cost: 0, weight: 2, hz: ['fire', 'tornado', 'earthquake', 'all'],
     title: 'Walk the plan with the family',
@@ -773,7 +773,7 @@
     when: 'This month. Twenty minutes.',
     why: 'People do what they practiced. Kids who have walked it stay calm.',
     done: 'One drill done, the next one on the calendar.',
-    links: ['usfa-escape', 'ready-kids'] });
+    links: ['usfa-escape', 'ready-kids', 'nfpa-escape'] });
 
   add({ id: 'plan-hazards', area: 'plan', rank: 1, cost: 0, weight: 2, hz: ['all'],
     title: 'Know the disasters that can reach your home',
@@ -788,7 +788,7 @@
     when: 'This week. Twenty minutes.',
     why: 'You get ready for what is likely, not for everything. This tells you which.',
     done: 'You read the FEMA list for your county, and your Prepare Me list matches what you know.',
-    links: ['landfinder', 'fema-floodmap', 'nws-safety'] });
+    links: ['landfinder', 'fema-floodmap', 'nws-safety', 'redcross-informed'] });
 
   add({ id: 'plan-kids', area: 'plan', rank: 2, cost: 0, weight: 2, hz: ['all'], need: ['kids'],
     title: 'Know the school\'s plan and who can pick up the kids',
@@ -818,7 +818,7 @@
     when: 'This month.',
     why: 'Men stay behind for their animals. A place for them makes leaving easy.',
     done: 'A place for the pets, written on the plan.',
-    links: ['ready-pets'] });
+    links: ['ready-pets', 'redcross-pets'] });
 
   add({ id: 'plan-gobag', area: 'plan', rank: 4, cost: 1, costNote: 'Mostly what you have; under $25 to fill gaps', weight: 2, hz: ['evacuate', 'wildfire', 'hurricane', 'flood', 'chemical', 'fire'],
     title: 'Pack a grab-and-go bag',
@@ -850,7 +850,7 @@
     when: 'This week. Fifteen minutes.',
     why: 'Tornado warnings give minutes. Knowing the spot means nobody has to think.',
     done: 'Everyone can reach the spot in two minutes.',
-    links: ['ready-tornadoes'] });
+    links: ['ready-tornadoes', 'redcross-tornado'] });
 
   add({ id: 'hz-hurricane', area: 'plan', rank: 1, cost: 0, weight: 2, hz: ['hurricane'], need: ['hz:hurricane'],
     title: 'Know your hurricane zone and when you leave',
@@ -866,7 +866,7 @@
     when: 'Before storm season.',
     why: 'Most hurricane harm comes from water, not wind. Leaving early, on a plan, is the safe call.',
     done: 'Your zone, your destination and two routes written on the plan.',
-    links: ['ready-hurricanes', 'ready-evacuation'] });
+    links: ['ready-hurricanes', 'ready-evacuation', 'redcross-hurricane'] });
 
   add({ id: 'hz-flood', area: 'plan', rank: 1, cost: 0, weight: 2, hz: ['flood', 'hurricane'], need: ['hz:flood'],
     title: 'Make your flood plan',
@@ -882,7 +882,7 @@
     when: 'This month.',
     why: 'Floods are the most common disaster in the country. Most flood deaths are in vehicles.',
     done: 'Your route to high ground on the plan, and you know if you have flood coverage.',
-    links: ['ready-floods', 'fema-floodmap', 'fema-flood'] });
+    links: ['ready-floods', 'fema-floodmap', 'fema-flood', 'redcross-flood'] });
 
   add({ id: 'hz-wildfire', area: 'plan', rank: 1, cost: 0, weight: 2, hz: ['wildfire'], need: ['hz:wildfire'],
     title: 'Make your wildfire plan and clear the first five feet',
@@ -898,7 +898,7 @@
     when: 'Before fire season.',
     why: 'Most homes lost to wildfire catch from embers landing near the house. The first five feet matter most.',
     done: 'The first five feet are clear and two routes out are on the plan.',
-    links: ['ready-wildfires', 'usfa-wildfire'] });
+    links: ['ready-wildfires', 'usfa-wildfire', 'nfpa-wildfire'] });
 
   add({ id: 'hz-earthquake', area: 'home', rank: 1, cost: 0, weight: 2, hz: ['earthquake'], need: ['hz:earthquake'],
     title: 'Make your home safer for an earthquake',
@@ -914,7 +914,7 @@
     when: 'This month.',
     why: 'Most earthquake injuries come from things falling, not buildings falling.',
     done: 'Tall furniture and the water heater are strapped, and the family has practiced.',
-    links: ['ready-earthquakes'] });
+    links: ['ready-earthquakes', 'rc-earthquake'] });
 
   add({ id: 'hz-winter', area: 'home', rank: 2, cost: 0, weight: 2, hz: ['winter'], need: ['hz:winter'],
     title: 'Get the house and truck ready for a winter storm',
@@ -929,7 +929,7 @@
     when: 'Before the first freeze.',
     why: 'Burst pipes and stuck vehicles are the two big winter problems. Both are easy to get ahead of.',
     done: 'The vehicle kit is packed and you know the pipe steps.',
-    links: ['ready-winter'] });
+    links: ['ready-winter', 'redcross-winter'] });
 
   add({ id: 'hz-chemical', area: 'plan', rank: 2, cost: 0, weight: 2, hz: ['chemical'], need: ['hz:chemical'],
     title: 'Know how to shelter in place from a chemical release',
@@ -947,7 +947,7 @@
     when: 'This month. Twenty minutes.',
     why: 'Whether it is a tanker wreck or an attack, the safest move is often to get inside and seal up. Knowing how makes it quick.',
     done: 'A room picked, and every adult knows how to shut off the air and seal the room.',
-    links: ['ready-chemical', 'ready-shelter'] });
+    links: ['ready-chemical', 'ready-shelter', 'redcross-chemical'] });
 
   /* ---------- attacks (on for every plan; he can take one off on the home page) ---------- */
   add({ id: 'att-nuclear', area: 'plan', rank: 2, cost: 0, weight: 2, hz: ['nuclear'], need: ['hz:nuclear'],
@@ -966,7 +966,7 @@
     when: 'This month. Twenty minutes at dinner.',
     why: 'Most people in a radiation emergency are not near the center of it. Getting inside and staying there is what protects them, and it costs nothing.',
     done: 'Everyone can say the rule and point to the shelter spot at home.',
-    links: ['ready-radiation', 'cdc-getinside'] });
+    links: ['ready-radiation', 'cdc-getinside', 'redcross-terror'] });
 
   add({ id: 'att-clean', area: 'medical', rank: 3, cost: 0, weight: 1, hz: ['nuclear', 'chemical', 'bio'], needAny: ['hz:nuclear', 'hz:chemical', 'hz:bio'],
     title: 'Learn how to clean off after an exposure',
@@ -984,7 +984,7 @@
     when: 'This month. Ten minutes.',
     why: 'Getting it off your skin and clothes fast is the biggest thing you can do yourself after an exposure.',
     done: 'Two adults can walk through the steps.',
-    links: ['cdc-decon', 'ready-radiation', 'ready-bio'] });
+    links: ['cdc-decon', 'ready-radiation', 'ready-bio', 'redcross-chemical'] });
 
   add({ id: 'att-kit', area: 'plan', rank: 5, cost: 2, costNote: 'About $30 to $60', weight: 1, hz: ['nuclear', 'chemical', 'bio'], needAny: ['hz:nuclear', 'hz:chemical', 'hz:bio'],
     title: 'Stock a shelter and clean-up kit',
@@ -1052,7 +1052,7 @@
     when: 'This week. Twenty minutes.',
     why: 'A cyber attack on power, banks or phones looks a lot like a long outage. A plan on paper keeps the family together when the screens go dark.',
     done: 'The family knows the noon and 6 p.m. rule, and the paper copies are in the go-bag.',
-    links: ['ready-cyber', 'ready-plan'] });
+    links: ['ready-cyber', 'ready-plan', 'redcross-reconnect'] });
 
   add({ id: 'att-cyber-backup', comfort: true, area: 'home', rank: 4, cost: 1, costNote: 'About $15 for a USB drive', weight: 1, hz: ['cyber', 'fire', 'flood'], need: ['hz:cyber'],
     title: 'Back up your photos and papers where no one can reach them',
@@ -1083,7 +1083,7 @@
     when: 'This month.',
     why: 'Floods, fires and spills can give little warning. Fifteen minutes is enough if it is planned.',
     done: 'You timed it once at 15 minutes or less.',
-    links: ['ready-evacuation'] });
+    links: ['ready-evacuation', 'redcross-plan'] });
 
   /* ---------- more disaster steps (they show when his county has the disaster) ---------- */
   add({ id: 'hz-storm', area: 'home', rank: 2, cost: 0, weight: 2, hz: ['storm'], need: ['hz:storm'],
@@ -1100,7 +1100,7 @@
     when: 'This month. One hour.',
     why: 'Wind and hail damage more homes each year than most bigger disasters. Most of it comes from loose things and dead limbs.',
     done: 'The yard is tied down and a storm room is on the plan.',
-    links: ['ready-thunderstorms', 'nws-safety'] });
+    links: ['ready-thunderstorms', 'nws-safety', 'rc-thunderstorm'] });
 
   add({ id: 'hz-drought', area: 'water', rank: 4, cost: 0, weight: 1, hz: ['drought'], need: ['hz:drought'],
     title: 'Plan for a dry season',
@@ -1115,7 +1115,7 @@
     when: 'Before the dry season.',
     why: 'In a drought, water you do not waste is water you have. On a well, it can mean the well keeps up.',
     done: 'Drips fixed and the local rules known.',
-    links: ['ready-drought', 'landfinder'] });
+    links: ['ready-drought', 'landfinder', 'redcross-drought'] });
 
   add({ id: 'hz-landslide', area: 'plan', rank: 2, cost: 0, weight: 1, hz: ['landslide'], need: ['hz:landslide'],
     title: 'Know the landslide signs around your home',
@@ -1130,7 +1130,7 @@
     when: 'This month. Twenty minutes.',
     why: 'Landslides often follow heavy rain or fire, and they give warning signs to those who know them.',
     done: 'You walked the slope and the way out is on the plan.',
-    links: ['ready-landslide'] });
+    links: ['ready-landslide', 'redcross-landslide'] });
 
   add({ id: 'hz-tsunami', area: 'plan', rank: 1, cost: 0, weight: 2, hz: ['tsunami'], need: ['hz:tsunami'],
     title: 'Know your way to high ground for a tsunami',
@@ -1145,7 +1145,7 @@
     when: 'This month.',
     why: 'A local tsunami can arrive in minutes. The walk you know is the one you will take.',
     done: 'The family has walked the route to high ground.',
-    links: ['ready-tsunamis'] });
+    links: ['ready-tsunamis', 'redcross-tsunami'] });
 
   add({ id: 'hz-volcano', area: 'plan', rank: 3, cost: 0, weight: 1, hz: ['volcano'], need: ['hz:volcano'],
     title: 'Know your volcano plan',
@@ -1160,7 +1160,7 @@
     when: 'This year.',
     why: 'Ash travels far. Simple masks and a full tank cover most of it.',
     done: 'Masks in the go-bag and the hazard map read.',
-    links: ['ready-volcanoes'] });
+    links: ['ready-volcanoes', 'redcross-volcano'] });
 
   add({ id: 'hz-avalanche', area: 'skills', rank: 4, cost: 0, weight: 1, hz: ['avalanche'], need: ['hz:avalanche'],
     title: 'Learn avalanche basics before you go out in the snow',
@@ -1175,7 +1175,7 @@
     when: 'Before the snow season.',
     why: 'Avalanches catch people outdoors, not homes. Checking the forecast keeps you out of one.',
     done: 'You know where to find the forecast and you check it.',
-    links: ['ready-avalanche'] });
+    links: ['ready-avalanche', 'nols-avy-beacons'] });
 
   /* ======================= SECURITY AND HOME ======================= */
   add({ id: 'home-smoke', area: 'home', rank: 1, cost: 0, weight: 3, hz: ['fire'],
@@ -1191,7 +1191,7 @@
     when: 'Today. Ten minutes.',
     why: 'House fire is the disaster most families actually face. Working alarms give you the minutes to get out.',
     done: 'Every alarm tested and in the right places.',
-    links: ['usfa-smoke'] });
+    links: ['usfa-smoke', 'nfpa-smoke-alarms'] });
 
   add({ id: 'home-neighbors', area: 'home', rank: 2, cost: 0, weight: 2, hz: ['all'],
     title: 'Know two neighbors by name',
@@ -1206,7 +1206,7 @@
     when: 'This month.',
     why: 'Neighbors are the first help in every disaster. A street that knows each other is safer every day, not just in a storm.',
     done: 'Two neighbors\' numbers on your cards.',
-    links: ['ready-plan'] });
+    links: ['ready-plan', 'redcross-winter'] });
 
   add({ id: 'home-check', area: 'home', rank: 2, cost: 0, weight: 2, hz: ['all'],
     title: 'Walk the house at night like a stranger',
@@ -1221,7 +1221,7 @@
     when: 'This week. Twenty minutes.',
     why: 'A home that looks cared for is passed over. Most of this costs nothing.',
     done: 'Every door and window checked, and a list of fixes.',
-    links: ['ready-plan'] });
+    links: ['ready-plan', 'nfpa-escape'] });
 
   add({ id: 'home-inventory', area: 'home', rank: 3, cost: 0, weight: 1, hz: ['fire', 'flood', 'tornado', 'hurricane', 'wildfire', 'earthquake'],
     title: 'Video the house for insurance',
@@ -1236,7 +1236,7 @@
     when: 'This month. Thirty minutes.',
     why: 'After a fire or storm, insurance pays for what you can show. This is your proof.',
     done: 'A saved video of every room.',
-    links: ['ready-money'] });
+    links: ['ready-money', 'pf-inventory'] });
 
   add({ id: 'home-insurance', area: 'home', rank: 3, cost: 0, weight: 1, hz: ['fire', 'flood', 'tornado', 'hurricane', 'wildfire', 'earthquake'],
     title: 'Read your home or renter policy',
@@ -1251,7 +1251,7 @@
     when: 'This month. Thirty minutes.',
     why: 'Many men find out what they are not covered for after the storm. Better to know now.',
     done: 'You know what is and is not covered, and the claim number is on the plan.',
-    links: ['fema-flood', 'ready-money'] });
+    links: ['fema-flood', 'ready-money', 'umn-insurance-review'] });
 
   add({ id: 'home-extinguisher', area: 'home', rank: 4, cost: 2, costNote: 'About $25 to $50', weight: 2, hz: ['fire'],
     title: 'Keep a fire extinguisher in the kitchen',
@@ -1266,7 +1266,7 @@
     when: 'This month.',
     why: 'A small kitchen fire put out in seconds stays small.',
     done: 'An extinguisher mounted by the kitchen exit, and two adults know PASS.',
-    links: ['usfa-ext'] });
+    links: ['usfa-ext', 'nfpa-extinguishers'] });
 
   /* ======================= SKILLS ======================= */
   add({ id: 'skill-map', area: 'skills', rank: 2, cost: 0, weight: 2, hz: ['evacuate', 'all'],
@@ -1282,7 +1282,7 @@
     when: 'This month.',
     why: 'GPS needs a signal and a charge. A map always works.',
     done: 'A marked map in the vehicle, and one route driven with it.',
-    links: ['usgs-maps'] });
+    links: ['usgs-maps', 'nols-lost'] });
 
   add({ id: 'skill-teach', area: 'skills', rank: 2, cost: 0, weight: 1, hz: ['all'], need: ['household'],
     title: 'Teach the family three things',
@@ -1297,7 +1297,7 @@
     when: 'This week. At dinner.',
     why: 'You will not always be home. A family that knows these three things can look after itself.',
     done: 'Everyone passed the dinner quiz.',
-    links: ['ready-kids'] });
+    links: ['ready-kids', 'nfpa-escape'] });
 
   add({ id: 'skill-fix', comfort: true, area: 'skills', rank: 3, cost: 0, weight: 1, hz: ['all'],
     title: 'Learn three repairs you would need with no repairman',
@@ -1312,7 +1312,7 @@
     when: 'This month.',
     why: 'After a storm, repairmen are booked for weeks. Small fixes keep the house running.',
     done: 'You did each repair once, or know how.',
-    links: ['ready-skills', 'usda-extension'] });
+    links: ['ready-skills', 'usda-extension', 'purdue-plumbing'] });
 
   add({ id: 'skill-fema', comfort: true, area: 'skills', rank: 3, cost: 0, weight: 1, hz: ['all'],
     title: 'Take a free FEMA online course',
@@ -1358,7 +1358,7 @@
     when: 'This month. One evening.',
     why: 'After a disaster or a layoff, one call can delay a bill or stop a late fee. This list makes those calls easy.',
     done: 'A paper list with every bill and account.',
-    links: ['ready-money'] });
+    links: ['ready-money', 'lds-fin-crisis'] });
 
   add({ id: 'money-nets', area: 'money', rank: 2, cost: 0, weight: 1, hz: ['income', 'all'],
     title: 'Know your safety nets before you need them',
@@ -1373,7 +1373,7 @@
     when: 'This month. Twenty minutes.',
     why: 'A layoff or disaster is no time to be searching. Knowing where to turn keeps a hard month from turning into a hard year.',
     done: 'The numbers and sites are written on your bill list.',
-    links: ['ready-money', 'fema-app'] });
+    links: ['ready-money', 'fema-app', 'lds-fin-crisis'] });
 
   add({ id: 'money-cash', area: 'money', rank: 3, cost: 1, costNote: 'Money you keep, not spend. Start with $50', weight: 2, hz: ['outage', 'all'],
     title: 'Keep some cash at home',
@@ -1388,7 +1388,7 @@
     when: 'Start this payday.',
     why: 'Card readers and ATMs go down with the power. Cash still works.',
     done: 'Cash in small bills, in a known safe spot.',
-    links: ['ready-money'] });
+    links: ['ready-money', 'usu-cash-stash'] });
 
   add({ id: 'money-starter', area: 'money', rank: 4, cost: 3, costNote: 'Saved, not spent. $500 to $1,000', weight: 3, hz: ['income', 'all'],
     title: 'Save a starter cushion',
@@ -1403,7 +1403,7 @@
     when: 'Start this payday.',
     why: 'Most emergencies are a car repair, a doctor bill or a short layoff. A cushion keeps those from becoming debt.',
     done: '$500 to $1,000 in savings.',
-    links: ['fdic-moneysmart', 'ready-money'] });
+    links: ['fdic-moneysmart', 'ready-money', 'usu-saving-plan'] });
 
   add({ id: 'money-month', comfort: true, area: 'money', rank: 6, cost: 4, costNote: 'Saved, not spent. One month of living costs', weight: 2, hz: ['income'], after: 'money-starter',
     title: 'Build the cushion to one month of expenses',
@@ -1417,7 +1417,7 @@
     when: 'Over the next year.',
     why: 'A month of cushion turns a layoff into a job search instead of a crisis.',
     done: 'One month of living costs saved.',
-    links: ['fdic-moneysmart', 'groundwork'] });
+    links: ['fdic-moneysmart', 'groundwork', 'lds-fin-emergency'] });
 
   add({ id: 'money-three', comfort: true, area: 'money', rank: 8, cost: 4, costNote: 'Saved, not spent. Three months of living costs', weight: 1, hz: ['income'], after: 'money-month',
     title: 'Grow the cushion to three months',
@@ -1431,7 +1431,7 @@
     when: 'Over the next few years.',
     why: 'Three months is real freedom. You can wait out most hard seasons.',
     done: 'Three months saved.',
-    links: ['fdic-moneysmart'] });
+    links: ['fdic-moneysmart', 'pf-cash-reserve'] });
 
   /* ---------- survival skills, added 2026-11-21 ---------- */
   add({ id: 'med-cpr-video', area: 'medical', rank: 2, cost: 0, weight: 2, hz: ['all'],
@@ -1448,7 +1448,7 @@
     when: 'This week. Ten minutes.',
     why: 'About 70 percent of cardiac arrests outside a hospital happen at home, so the person you save will likely be family. CPR right away can double or triple the chance they live.',
     done: 'You watched the video, know the two steps and the pace, and showed one other person.',
-    links: ['aha-hocpr', 'aha-hocpr-facts'] });
+    links: ['aha-hocpr', 'aha-hocpr-facts', 'mayo-cpr'] });
 
   add({ id: 'med-heat-cold', area: 'medical', rank: 2, cost: 0, weight: 2, hz: ['heat', 'winter', 'outage', 'all'],
     title: 'Learn the signs of heat stroke and hypothermia, and what to do',
@@ -1464,7 +1464,7 @@
     when: 'This week. Twenty minutes.',
     why: 'Heat and cold are the quiet dangers in an outage or a day outdoors. Both cloud a person\'s thinking, so someone else has to spot them.',
     done: 'You can name the signs of all four and what to do, and the card is in the kit.',
-    links: ['cdc-heat-ill', 'cdc-hypo'] });
+    links: ['cdc-heat-ill', 'cdc-hypo', 'mayo-hypothermia'] });
 
   add({ id: 'med-wounds', area: 'medical', rank: 3, cost: 0, weight: 2, hz: ['all'],
     title: 'Learn to treat a burn, a deep cut and a sprain',
@@ -1481,7 +1481,7 @@
     when: 'This week. Thirty minutes.',
     why: 'Clean-up and outdoor work bring burns, cuts and twisted ankles. Knowing the first ten minutes keeps a small injury small.',
     done: 'You can walk through all three without looking, and the kit has what they need.',
-    links: ['nih-burns', 'nih-cuts', 'nih-sprains'] });
+    links: ['nih-burns', 'nih-cuts', 'nih-sprains', 'mayo-burns'] });
 
   add({ id: 'med-hygiene', area: 'sanitation', rank: 3, cost: 1, costNote: 'Hand sanitizer and wipes, about $10', weight: 1, hz: ['all'],
     title: 'Plan how to stay clean without running water',
@@ -1497,7 +1497,7 @@
     when: 'This month. Twenty minutes.',
     why: 'Clean hands matter most when safe water is hard to find. The CDC calls handwashing critical to stop sickness from spreading.',
     done: 'A hand-washing jug set aside, sanitizer in the kit, and everyone knows when to wash.',
-    links: ['cdc-hygiene', 'cdc-sanitizer'] });
+    links: ['cdc-hygiene', 'cdc-sanitizer', 'mayo-handwashing'] });
 
   add({ id: 'home-toilet', area: 'sanitation', rank: 3, cost: 1, costNote: 'A bucket with a lid, heavy bags and bleach, about $15 to $25 if you have none', weight: 2, hz: ['all'],
     title: 'Make an emergency toilet',
@@ -1513,7 +1513,7 @@
     when: 'This month. Twenty minutes.',
     why: 'When the water or the sewer stops, waste becomes the next health problem. FEMA and Ready.gov both put sanitation supplies in the basic kit.',
     done: 'The kit is packed in the bucket, and one other adult knows where it is.',
-    links: ['ready-kit', 'fema-supplies'] });
+    links: ['ready-kit', 'fema-supplies', 'hesperian-germs'] });
 
   add({ id: 'food-can', comfort: true, area: 'food', rank: 7, cost: 2, costNote: 'About $40 to $80 for a canner, jars and lids, less if you have some', weight: 1, hz: ['all'],
     title: 'Learn to can and preserve food safely',
@@ -1529,7 +1529,7 @@
     when: 'This season. One afternoon.',
     why: 'Canning done wrong can cause botulism, which can kill. Done by the tested method, it puts a season of food on the shelf.',
     done: 'One batch canned from a tested recipe, every seal checked, every jar labeled.',
-    links: ['usda-preserve', 'usda-extension'] });
+    links: ['usda-preserve', 'usda-extension', 'usu-canmistakes'] });
 
   add({ id: 'skill-fire', area: 'skills', rank: 4, cost: 0, weight: 1, hz: ['all'],
     title: 'Learn to build and put out a fire safely',
@@ -1545,7 +1545,7 @@
     when: 'This month. One evening.',
     why: 'Fire is heat, light, cooking and a signal for help. People start most wildfires, so putting it out matters as much as lighting it.',
     done: 'You built a fire and put it out until it was cold to the touch.',
-    links: ['fs-campfire', 'smokey-campfire'] });
+    links: ['fs-campfire', 'smokey-campfire', 'bwh-fire-weather'] });
 
   add({ id: 'skill-ten', area: 'skills', rank: 4, cost: 2, costNote: 'Mostly what you have; about $25 to $60 to fill gaps', weight: 1, hz: ['all'],
     title: 'Pack the 10 essentials for the vehicle and the outdoors',
@@ -1562,7 +1562,7 @@
     when: 'This month. One hour.',
     why: 'A breakdown on a back road or a hike that runs late can turn into a night out. The National Park Service built this list for exactly that.',
     done: 'All ten in one pack, in the vehicle or by the door.',
-    links: ['nps-10'] });
+    links: ['nps-10', 'redcross-winter'] });
 
   add({ id: 'skill-compass', area: 'skills', rank: 4, cost: 1, costNote: 'About $10 to $20 for a basic compass', weight: 1, hz: ['all'], after: 'skill-map',
     title: 'Learn to use a compass and read the land on a topo map',
@@ -1578,7 +1578,7 @@
     when: 'This month. Two short sessions.',
     why: 'Off the road there are no street signs, and GPS often gets no signal in deep valleys and thick woods. A compass and the shape of the land still work.',
     done: 'You took a bearing off the map and walked it to a landmark.',
-    links: ['usgs-maps', 'usgs-bearing'] });
+    links: ['usgs-maps', 'usgs-bearing', 'nols-lost'] });
 
   add({ id: 'skill-signal', area: 'skills', rank: 3, cost: 1, costNote: 'A whistle and a signal mirror, under $15', weight: 1, hz: ['all'],
     title: 'Learn to signal for help',
@@ -1594,7 +1594,7 @@
     when: 'This week. Fifteen minutes.',
     why: 'Searchers have to find you before they can help. A whistle, a mirror and bright cloth make you easy to find.',
     done: 'Every pack has a whistle and a mirror, and every kid knows "stop and blow."',
-    links: ['fs-willamette-lost', 'nps-olym-safety'] });
+    links: ['fs-willamette-lost', 'nps-olym-safety', 'rc-earthquake'] });
 
   add({ id: 'skill-lost', area: 'skills', rank: 2, cost: 0, weight: 2, hz: ['all'],
     title: 'If you get lost outdoors, stay put and get found',
@@ -1610,7 +1610,7 @@
     when: 'Before your next trip out. Ten minutes.',
     why: 'Rangers do not keep track of overdue hikers. The person at home with your plan is your link to help, and staying put makes you easier to find.',
     done: 'Everyone who goes out leaves a plan and knows to stay put.',
-    links: ['nps-yose-safety', 'nps-olym-safety'] });
+    links: ['nps-yose-safety', 'nps-olym-safety', 'nols-lost'] });
 
   add({ id: 'skill-night', area: 'skills', rank: 4, cost: 1, costNote: 'A space blanket and a small sit pad, under $25', weight: 1, hz: ['all'],
     title: 'Learn to stay warm through a night outdoors',
@@ -1626,7 +1626,7 @@
     when: 'Before cold weather.',
     why: 'Most hypothermia cases happen between 30 and 50 degrees, when people do not think it is cold enough to matter. Wet and wind do the damage.',
     done: 'Your pack has the layers, hat, shelter and sit pad, and you know the warning signs.',
-    links: ['fs-hypothermia', 'fs-backcountry'] });
+    links: ['fs-hypothermia', 'fs-backcountry', 'nols-sleep-warm'] });
 
   add({ id: 'skill-knots', comfort: true, area: 'skills', rank: 4, cost: 0, weight: 1, hz: ['all'],
     title: 'Learn to tie four useful knots',
@@ -1643,7 +1643,7 @@
     when: 'This week. Twenty minutes a night.',
     why: 'A tarp, a load in the truck, a line on a boat: each needs the right knot. A good knot holds under strain and still unties easily.',
     done: 'You can tie all four from memory and teach one to someone else.',
-    links: ['noaa-knots'] });
+    links: ['noaa-knots', 'men-knots'] });
 
   add({ id: 'skill-hunted', comfort: true, area: 'skills', rank: 6, cost: 1, costNote: 'Some states run the class free in person; online versions may charge a fee', weight: 1, hz: ['all'],
     title: 'Take a hunter education course',
@@ -1692,7 +1692,7 @@
     when: 'This season. Half an hour to walk the yard and pick the spot.',
     why: 'Oregon State University Extension says rural households can bury waste when the sewer is out, but never within 100 feet of a water source. The CDC lists pit and trench latrines as short-term options.',
     done: 'You picked a spot that meets the distance rule, and the shovel is with the kit.',
-    links: ['osu-sanitation', 'cdc-sanitation', 'fema-supplies'] });
+    links: ['osu-sanitation', 'cdc-sanitation', 'fema-supplies', 'hesperian-emerg-toilet'] });
 
   add({ id: 'san-trash', area: 'sanitation', rank: 3, cost: 0, weight: 1, hz: ['outage', 'hurricane', 'flood', 'tornado', 'earthquake', 'winter', 'storm'],
     title: 'Plan how to handle trash when pickup stops',
@@ -1708,7 +1708,7 @@
     when: 'This month. Fifteen minutes.',
     why: 'The CDC says to put trash in a covered can and clean up debris fast after a disaster, because it draws rats. The EPA warns that burning trash is a health hazard.',
     done: 'You have a can with a tight lid and you know what stays out of it.',
-    links: ['cdc-disaster-animals', 'epa-debris-sort', 'epa-backyard-burning'] });
+    links: ['cdc-disaster-animals', 'epa-debris-sort', 'epa-backyard-burning', 'nols-waste'] });
 
   add({ id: 'san-pests', area: 'sanitation', rank: 4, cost: 1, costNote: 'Insect repellent and a few snap traps, if you have none', weight: 1, hz: ['hurricane', 'flood', 'storm', 'tornado', 'earthquake'],
     title: 'Keep rats, mosquitoes and snakes away after a disaster',
@@ -1724,7 +1724,7 @@
     when: 'This month. Twenty minutes.',
     why: 'The CDC says rodents, mosquitoes and snakes all move toward people after a storm or flood. A few habits keep them out.',
     done: 'Food is sealed, the yard has no standing water, and repellent is in the kit.',
-    links: ['cdc-disaster-animals', 'cdc-mosquito-home', 'cdc-rodents-home'] });
+    links: ['cdc-disaster-animals', 'cdc-mosquito-home', 'cdc-rodents-home', 'mayo-snakebite'] });
 
   add({ id: 'san-clean', area: 'sanitation', rank: 3, cost: 1, costNote: 'Plain bleach, gloves and goggles, under $25', weight: 2, hz: ['all'],
     title: 'Learn to clean and disinfect with bleach the safe way',
@@ -1740,7 +1740,7 @@
     when: 'This month. Fifteen minutes to read the label and write the mixes on the jug.',
     why: 'After a flood or a long outage, germs spread on dishes and surfaces. The CDC gives exact bleach mixes and one hard rule: never mix bleach with other cleaners.',
     done: 'The bleach, gloves and goggles are together, and the mixes are written on the jug.',
-    links: ['cdc-bleach', 'cdc-food-after', 'cdc-disaster-cleanup'] });
+    links: ['cdc-bleach', 'cdc-food-after', 'cdc-disaster-cleanup', 'redcross-flood'] });
 
   add({ id: 'food-fire', area: 'food', rank: 4, cost: 1, costNote: 'A food thermometer, under $25 if you have none', weight: 1, hz: ['outage', 'winter', 'hurricane', 'tornado', 'earthquake'],
     title: 'Learn to cook a meal safely over a wood fire',
@@ -1803,7 +1803,7 @@
     when: 'This season. One batch.',
     why: 'The National Center for Home Food Preservation and university Extension services publish tested ways to dry food and store root crops. Neither needs power.',
     done: 'One batch of fruit dried and stored, and a cool spot picked for root crops.',
-    links: ['nchfp-sundry', 'psu-dry', 'uconn-coldstore'] });
+    links: ['nchfp-sundry', 'psu-dry', 'uconn-coldstore', 'church-longterm'] });
 
   add({ id: 'home-return', area: 'home', rank: 3, cost: 0, weight: 2, hz: ['flood', 'hurricane', 'tornado', 'storm', 'earthquake', 'wildfire'],
     title: 'Learn how to go back in safely after a flood or storm',
@@ -1819,7 +1819,7 @@
     when: 'This month. Thirty minutes.',
     why: 'Gas leaks, wet wiring and weak walls are still there after the storm passes. The CDC and Ready.gov say wait for the all-clear, check the outside first, and photograph damage before cleanup.',
     done: 'Two adults know the three shutoffs, and the return bag is packed.',
-    links: ['cdc-return-home', 'cdc-flood-reenter', 'fs-claim'] });
+    links: ['cdc-return-home', 'cdc-flood-reenter', 'fs-claim', 'lsu-storm-cleanup'] });
 
   add({ id: 'home-mold', area: 'home', rank: 4, cost: 1, costNote: 'N95 masks, goggles and long rubber gloves, about $20 to $25 if you have none', weight: 1, hz: ['flood', 'hurricane', 'storm'],
     title: 'Learn how to clean up mold after water damage',
@@ -1835,7 +1835,7 @@
     when: 'This month. Fifteen minutes.',
     why: 'Mold grows fast on wet drywall, carpet and wood. The EPA and the CDC say dry within 24 to 48 hours, protect your lungs, and throw out what cannot be cleaned.',
     done: 'Masks, goggles and gloves set aside, and you know the 10-square-foot rule.',
-    links: ['epa-mold-brief', 'cdc-mold-about', 'cdc-disaster-cleanup'] });
+    links: ['epa-mold-brief', 'cdc-mold-about', 'cdc-disaster-cleanup', 'lsu-mold'] });
 
   add({ id: 'med-stress', area: 'medical', rank: 2, cost: 0, weight: 2, hz: ['all'],
     title: 'Plan how to handle stress after a disaster, for you and the kids',
@@ -1870,7 +1870,7 @@
     when: 'This month. One evening, with the person.',
     why: 'Helpers and medical care may not reach you quickly in a disaster. Ready.gov and the CDC say to build a support network and a plan around each person\'s own needs.',
     done: 'The support network knows the plan, the spares are packed, and the way out is worked out.',
-    links: ['ready-disab', 'ready-older', 'cdc-disab-plan'] });
+    links: ['ready-disab', 'ready-older', 'cdc-disab-plan', 'redcross-disab'] });
 
   add({ id: 'plan-livestock', area: 'plan', rank: 3, cost: 0, weight: 2, hz: ['evacuate', 'wildfire', 'flood', 'hurricane', 'tornado', 'winter'], need: ['livestock'],
     title: 'Make a disaster plan for your livestock and horses',
@@ -1887,7 +1887,7 @@
     when: 'This season. One afternoon, then a loading practice.',
     why: 'Large animals take time and trailers to move. Ready.gov and state agriculture offices say give them ID, practice loading, and leave early.',
     done: 'Every animal has ID, they load calm, and you have a place to go with two routes.',
-    links: ['ready-pets', 'cdfa-horse-evac', 'msstate-livestock'] });
+    links: ['ready-pets', 'cdfa-horse-evac', 'msstate-livestock', 'msstate-beef'] });
 
   add({ id: 'plan-shelter', area: 'plan', rank: 2, cost: 0, weight: 2, hz: ['evacuate', 'hurricane', 'flood', 'wildfire', 'fire', 'chemical'],
     title: 'Know where you will go if you cannot stay home',
@@ -1903,7 +1903,7 @@
     when: 'This week. Twenty minutes and one call.',
     why: 'Ready.gov says to know your evacuation destination ahead of time, with options in different directions. Shelter spaces change, so you also need a way to find one that is open.',
     done: 'Two places to stay in two directions, and everyone knows how to find an open shelter.',
-    links: ['ready-shelter', 'ready-evacuation', 'fema-app'] });
+    links: ['ready-shelter', 'ready-evacuation', 'fema-app', 'redcross-shelter'] });
 
   add({ id: 'plan-car', area: 'plan', rank: 3, cost: 2, costNote: 'Jumper cables, a blanket, a scraper, a first aid kit and the rest, about $25 to $100 for what you do not already have', weight: 2, hz: ['winter', 'storm', 'hurricane', 'flood', 'evacuate'], need: ['vehicle'],
     title: 'Pack a car emergency kit and check the car before the season',
@@ -1919,7 +1919,7 @@
     when: 'This month, and again before each storm or winter season. One hour.',
     why: 'Ready.gov, NHTSA and the National Weather Service all say to keep a kit in the car and check it before bad weather. A full tank and a working battery are what get you out when you have to leave.',
     done: 'The kit is in the car, and the tires, fluids, wipers and battery have been checked this season.',
-    links: ['ready-car', 'nhtsa-winter', 'nws-winter-before'] });
+    links: ['ready-car', 'nhtsa-winter', 'nws-winter-before', 'redcross-winter'] });
 
   add({ id: 'hz-smoke', area: 'home', rank: 2, cost: 2, costNote: 'A box fan, a MERV 13 furnace filter and a box of N95 masks, about $25 to $100. A portable HEPA air cleaner costs more.', weight: 2, hz: ['wildfire'], need: ['hz:wildfire'],
     title: 'Set up a clean-air room for wildfire smoke',
@@ -1935,7 +1935,7 @@
     when: 'Before fire season. One hour.',
     why: 'The EPA says smoke gets into homes, and a closed room with a filter keeps the air cleaner. Filters and masks can sell out once the smoke arrives.',
     done: 'The room is picked, the air cleaner or box-fan filter is ready, and the masks are stored.',
-    links: ['epa-cleanroom', 'airnow-aqi', 'epa-smoke-masks'] });
+    links: ['epa-cleanroom', 'airnow-aqi', 'epa-smoke-masks', 'osu-smoke'] });
 
 
   /* ---------- health, work, kids and the farm, added 2026-11-26 ---------- */
@@ -2018,6 +2018,6 @@
     when: 'This month, then each season. One hour.',
     why: 'The Farm Service Agency asks for proof of how many animals you had before a loss and proof of what was lost. Records kept now are what an application stands on.',
     done: 'Dated herd photos and records are filed, and the Service Center number is saved.',
-    links: ['fsa-lip', 'fg-flood', 'fg-servicecenter'] });
+    links: ['fsa-lip', 'fg-flood', 'fg-servicecenter', 'uga-livestock-losses'] });
 
 })(typeof window !== 'undefined' ? window : globalThis);

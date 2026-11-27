@@ -30,7 +30,7 @@
       box.appendChild(el(opts.big ? 'h3' : 'h4', null, 'Mistakes to skip'));
       box.appendChild(el('ul', { class: 'howto-mistakes' }, h.mistakes.map(function (s) { return el('li', null, s); })));
     }
-    box.appendChild(el('p', { class: 'howto-src' }, ['From ', h.sources.map(function (k) { return RD.LINKS[k].by; }).filter(function (v, i, a) { return a.indexOf(v) === i; }).join(' and '),
+    box.appendChild(el('p', { class: 'howto-src' }, ['From ', h.sources.map(function (k) { return RD.LINKS[k].by; }).filter(function (v, i, a) { return a.indexOf(v) === i; }).reduce(function (out, v, i, a) { return out + (i === 0 ? '' : i === a.length - 1 ? ' and ' : ', ') + v; }, ''),
       '. Checked ' + UI.date(h.checked + 'T12:00:00') + '.']));
     return box;
   };

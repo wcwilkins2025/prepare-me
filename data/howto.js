@@ -12,13 +12,16 @@
         { head: 'How much', items: [
           'One gallon a person a day. That covers drinking, cooking and brushing teeth.',
           'Store three days at the least. Two weeks is better when you can.',
-          'Store more for someone who is pregnant or sick, for pets, or if you live where it is hot.'
+          'Store more for someone who is pregnant or sick, for pets, or if you live where it is hot.',
+          'The American Red Cross sets three days for a kit you carry if you have to leave, and two weeks for water kept at home.'
         ] },
         { head: 'Containers that work', items: [
           'Best: food-grade water containers, made for storing water.',
           'Fine: plastic soda bottles with caps that close tight. Not milk or juice jugs.',
           'The container should close tight, not break if dropped, and pour easily. No glass.',
-          'Never use anything that held bleach, pesticide or any other chemical.'
+          'Never use anything that held bleach, pesticide or any other chemical.',
+          'The Church of Jesus Christ of Latter-day Saints\' preparedness guide says to skip milk jugs because they do not seal well and turn brittle over time.',
+          'For store-bought water, that guide picks bottles made of PETE plastic. Its long-term storage page says to look for PETE or PET under the recycle sign.'
         ] },
         { head: 'Clean the containers', items: [
           'Wash each one with dish soap and rinse it well.',
@@ -35,7 +38,8 @@
         ] },
         { head: 'When you use it', items: [
           'Pour it out, or use a clean scoop each time.',
-          'Keep hands out of the water and the inside of the container.'
+          'Keep hands out of the water and the inside of the container.',
+          'Hesperian Health Guides says narrow-mouthed containers are the safest. If you must reach in, use a clean, long-handled dipper.'
         ] }
       ],
       mistakes: [
@@ -43,8 +47,8 @@
         'Storing water in a hot garage next to the gas can.',
         'Skipping the date, then not knowing how old the water is.'
       ],
-      sources: ['cdc-store', 'ready-water'],
-      checked: '2026-11-21'
+      sources: ['cdc-store', 'ready-water', 'redcross-kit', 'church-water', 'church-longterm', 'hesperian-water-store'],
+      checked: '2026-11-26'
     },
 
     'water-treat': {
@@ -54,12 +58,15 @@
           'If the water is cloudy, let it settle, or strain it through a clean cloth, paper towel or coffee filter.',
           'Bring it to a rolling boil for 1 minute. Above 6,500 feet, boil it for 3 minutes.',
           'Let it cool. Store it in clean containers with tight lids.',
-          'Flat taste: pour it back and forth between two containers, or add a pinch of salt per quart.'
+          'Flat taste: pour it back and forth between two containers, or add a pinch of salt per quart.',
+          'The Church of Jesus Christ of Latter-day Saints\' preparedness guide boils for 3 to 5 minutes, and Utah State University Extension for 5. The CDC says 1 minute is enough, or 3 minutes above 6,500 feet.',
+          'Hesperian Health Guides strains through a cloth folded 4 times. Pour through the same side every time, then wash the cloth and dry it in the sun.'
         ] },
         { head: 'Bleach it', items: [
           'Use plain, unscented bleach. The label should say 5% to 9% sodium hypochlorite.',
           'If the label has directions for drinking water, follow them.',
-          'Strain cloudy water first. Add the bleach, stir well, and wait at least 30 minutes before drinking.'
+          'Strain cloudy water first. Add the bleach, stir well, and wait at least 30 minutes before drinking.',
+          'After 30 minutes the water should smell a little of chlorine. If it does not, Utah State University Extension says to add the same dose again and wait 15 more minutes.'
         ] },
         { head: 'How much bleach (5% to 9%)', cols: ['Water', 'Dropper', 'Measuring spoon'], rows: [
           ['1 quart', '2 drops', 'Too small to measure; use a dropper'],
@@ -69,7 +76,8 @@
         { head: 'Tablets and drops', items: [
           'Follow the label. Each one is made for a set amount of water.',
           'They kill germs but may not kill every parasite. Chlorine dioxide tablets work on more of them when used as directed.',
-          'Skip iodine if you are pregnant or have thyroid trouble. No one should drink iodine-treated water for more than a few weeks.'
+          'Skip iodine if you are pregnant or have thyroid trouble. No one should drink iodine-treated water for more than a few weeks.',
+          'Check the date on tablets. Utah State University Extension says most keep about 2 to 5 years unopened.'
         ] },
         { head: 'Filters', items: [
           'A camping filter takes out parasites but not viruses, and many do not take out bacteria.',
@@ -78,7 +86,9 @@
         { head: 'Sunlight, when you have nothing else', items: [
           'Fill clean, clear plastic bottles with clear water.',
           'Lay them on their side in the sun, on a dark surface if you can.',
-          'Leave them 6 hours on a sunny day, or 2 days if it is cloudy.'
+          'Leave them 6 hours on a sunny day, or 2 days if it is cloudy.',
+          'Hesperian Health Guides adds a step: fill the bottle half full, shake it for 20 seconds, then fill it to the top. The air helps.',
+          'Drink straight from the bottle, so hands and cups do not put germs back in.'
         ] }
       ],
       mistakes: [
@@ -86,8 +96,8 @@
         'Drinking it before the 30 minutes are up.',
         'Thinking boiling or bleach fixes water with fuel or chemicals in it. It does not. Use bottled water or find another source.'
       ],
-      sources: ['cdc-safe'],
-      checked: '2026-11-21'
+      sources: ['cdc-safe', 'church-water', 'usu-water', 'hesperian-water-safe'],
+      checked: '2026-11-26'
     },
 
     'water-find': {
@@ -98,7 +108,8 @@
           'The water still sitting in your pipes.',
           'Ice cubes made from clean water. Melt them in a clean pot.',
           'The liquid in canned fruit and vegetables.',
-          'The toilet tank, not the bowl, if the water is clear and no tank cleaner has ever been used in it.'
+          'The toilet tank, not the bowl, if the water is clear and no tank cleaner has ever been used in it.',
+          'Utah State University Extension is more careful with the toilet tank. It treats that water as a last resort, to disinfect before you drink it.'
         ] },
         { head: 'Never drink these', items: [
           'Water from radiators or boilers, or from a tank that feeds the home heating system. In older homes, make sure you use the tap water heater, not the heating tank.',
@@ -117,7 +128,8 @@
           'Turn on a hot water faucet so air can get in.',
           'Open the drain at the bottom and let the water run into a clean container.',
           'Refill the tank before you turn the power or gas back on.',
-          'If the gas was shut off, you will need a professional to turn it back on.'
+          'If the gas was shut off, you will need a professional to turn it back on.',
+          'Utah State University Extension adds 8 drops of plain bleach to each gallon drained from the heater, stirs it, and waits 30 minutes before using it.'
         ] },
         { head: 'Drain the pipes', items: [
           'Turn on the highest faucet in the house to let air into the pipes. A little water will trickle out.',
@@ -130,8 +142,8 @@
         'Turning the heater back on while the tank is empty.',
         'Leaving the main valve open after a water main break is reported.'
       ],
-      sources: ['cdc-findwater', 'fema-foodwater', 'epa-emergwater', 'cdc-safe'],
-      checked: '2026-11-21'
+      sources: ['cdc-findwater', 'fema-foodwater', 'epa-emergwater', 'cdc-safe', 'usu-water'],
+      checked: '2026-11-26'
     },
 
     'water-rotate': {
@@ -140,7 +152,8 @@
         { head: 'How long it keeps', items: [
           'Water you filled yourself: replace it every six months.',
           'Store-bought water in its sealed bottle: keep it until the date on the bottle.',
-          'Write "drinking water" and the fill date on every container, so you always know which is which.'
+          'Write "drinking water" and the fill date on every container, so you always know which is which.',
+          'Utah State University Extension says safe water that was treated and sealed well can keep indefinitely, if you check it every 6 to 12 months for loose lids, cracks and cloudiness. The CDC and The Church of Jesus Christ of Latter-day Saints\' preparedness guide both say to replace it every six months.'
         ] },
         { head: 'Set the reminder', items: [
           'Put a reminder on your phone calendar six months from today, set to repeat.',
@@ -151,12 +164,14 @@
           'Do not pour the old water down the drain. Use it on house plants or the garden.',
           'Wash each container with dish soap and rinse it well.',
           'Sanitize it: 1 teaspoon of plain, unscented bleach in 1 quart of water. Cap, shake so it touches every surface, wait 30 seconds, pour it out, and let it air-dry.',
-          'Refill with clean tap water, cap it tight, and write the new date.'
+          'Refill with clean tap water, cap it tight, and write the new date.',
+          'Stored water can taste flat or dusty. The Latter-day Saints guide says that alone does not mean it has gone bad. Pour it back and forth between two clean containers to freshen it.'
         ] },
         { head: 'Check where it sits', items: [
           'The spot should stay cool, about 50°F to 70°F, and out of direct sun.',
           'Keep it away from gas, pesticides and other chemicals.',
-          'Keep the caps tight, and keep hands out of the water when you use it.'
+          'Keep the caps tight, and keep hands out of the water when you use it.',
+          'Clear bottles let light in. That guide suggests covering them or keeping them in dark plastic bags, and storing water where a leak will not damage the house.'
         ] },
         { head: 'Keep the bleach fresh too', items: [
           'Keep a bottle of plain, unscented bleach with your water. The label should say 5% to 9% sodium hypochlorite.',
@@ -169,8 +184,8 @@
         'Dumping good water down the sink when the plants could use it.',
         'Counting on a bottle of bleach that has sat in the garage for years.'
       ],
-      sources: ['cdc-store', 'ready-water', 'ready-drought', 'epa-emergwater', 'ready-kit'],
-      checked: '2026-11-21'
+      sources: ['cdc-store', 'ready-water', 'ready-drought', 'epa-emergwater', 'ready-kit', 'usu-water', 'church-water'],
+      checked: '2026-11-26'
     },
 
     'water-well': {
@@ -208,7 +223,8 @@
           'Keep a cap or seal on the well.',
           'Do not mix or use pesticides, fertilizer, fuel or other chemicals near it.',
           'Look for a cracked casing or a broken cap now and then.',
-          'If the pump turns on when no water is running, you have a leak.'
+          'If the pump turns on when no water is running, you have a leak.',
+          'Keep pit toilets, garbage pits and livestock well away from the well. Hesperian Health Guides says at least 30 meters, about 100 feet.'
         ] }
       ],
       mistakes: [
@@ -216,8 +232,8 @@
         'Drinking well water after a flood before it has been tested.',
         'Fixing wet wiring at the well yourself.'
       ],
-      sources: ['cdc-wells', 'epa-wells', 'ready-power', 'ready-drought', 'fema-foodwater'],
-      checked: '2026-11-21'
+      sources: ['cdc-wells', 'epa-wells', 'ready-power', 'ready-drought', 'fema-foodwater', 'hesperian-wells'],
+      checked: '2026-11-26'
     },
 
     'water-2week': {
@@ -241,13 +257,20 @@
           'City tap water that is treated with chlorine needs nothing added.',
           'Well water or other water without chlorine: add 2 drops of plain, unscented bleach to each gallon.',
           'Fill to the top. Do not touch the inside of the cap.',
-          'Label "drinking water" with the date.'
+          'Label "drinking water" with the date.',
+          'The CDC uses 2 drops a gallon for stored well water. The Church of Jesus Christ of Latter-day Saints\' preparedness guide and Utah State University Extension use 8 drops a gallon for any stored water that has no chlorine.'
         ] },
         { head: 'Store them', items: [
           'Somewhere cool, about 50°F to 70°F, and dark.',
           'Away from gas, pesticides and other chemicals.',
           'Store-bought water stays in its sealed bottle until you need it.',
-          'When you use it, pour it out or use a clean scoop. Keep hands out of the water.'
+          'When you use it, pour it out or use a clean scoop. Keep hands out of the water.',
+          'Put it where a leak will not damage the house, and where it will not freeze.'
+        ] },
+        { head: 'More ways to hold two weeks', items: [
+          'The Church of Jesus Christ of Latter-day Saints\' preparedness guide also counts 14 gallons for each adult for two weeks. It says adults drink at least 2 quarts a day. The rest is for cooking and washing.',
+          'If you have freezer space, Utah State University Extension suggests keeping some water there. It also helps keep food frozen in an outage. Leave 2 to 3 inches at the top for the ice.',
+          'Utah State University Extension also cans water: clean canning jars with 1 inch of space at the top, processed 20 minutes in a boiling-water canner. A white ring of minerals inside is normal.'
         ] }
       ],
       mistakes: [
@@ -255,8 +278,8 @@
         'Putting all of it in a hot garage next to the gas can.',
         'Adding new jugs without adding them to the six-month swap.'
       ],
-      sources: ['cdc-store', 'ready-water', 'fema-foodwater'],
-      checked: '2026-11-21'
+      sources: ['cdc-store', 'ready-water', 'fema-foodwater', 'church-water', 'usu-water'],
+      checked: '2026-11-26'
     },
 
     'water-filter': {
@@ -272,7 +295,9 @@
           'Streams, rivers and other moving water. Moving water is usually better than still water.',
           'Ponds, lakes and natural springs.',
           'Skip water with things floating in it, a dark color or an odd smell.',
-          'Never use flood water, or water with fuel or chemicals in it. No filter, boiling or bleach can make it safe.'
+          'Never use flood water, or water with fuel or chemicals in it. No filter, boiling or bleach can make it safe.',
+          'For rainwater, Hesperian Health Guides says to clean the roof, gutters and tank first, and let the first rain of the year run through to rinse them.',
+          'Metal roofs are best. Do not collect drinking water from roofs made of lead, asbestos or tar. Screen the tank inlet to keep out insects and leaves.'
         ] },
         { head: 'Use it', items: [
           'If the water is cloudy, let it settle, or strain it through a clean cloth, paper towel or coffee filter first.',
@@ -295,8 +320,8 @@
         'Trying to filter water that smells of fuel or chemicals.',
         'Using a UV light on cloudy water.'
       ],
-      sources: ['cdc-safe', 'cdc-findwater', 'epa-emergwater', 'fema-foodwater'],
-      checked: '2026-11-21'
+      sources: ['cdc-safe', 'cdc-findwater', 'epa-emergwater', 'fema-foodwater', 'hesperian-rain'],
+      checked: '2026-11-26'
     },
 
     'food-count': {
@@ -313,7 +338,9 @@
           'Three meals a day is 9 meals a person for three days, and 42 meals for two weeks.',
           'Count only food your family will actually eat.',
           'Note anyone with a special diet, allergy, a baby or an older adult. They may need different food.',
-          'Write the number of days on your plan, and what is short.'
+          'Write the number of days on your plan, and what is short.',
+          'Starting from nothing? The Church of Jesus Christ of Latter-day Saints\' preparedness guide says to store one day of food, multiply it by seven for a week, then build toward a month.',
+          'Keep a list of where your food is stored, so you can find it and count it fast.'
         ] },
         { head: 'Check every can', items: [
           'A small dent is fine if the can is otherwise in good shape.',
@@ -325,7 +352,8 @@
           ['Low-acid canned food: meat, stews, beans, corn, carrots, most soups', '2 to 5 years'],
           ['High-acid canned food: tomatoes, fruit, juice, pickles', '12 to 18 months'],
           ['Rice and dried pasta', '2 years'],
-          ['Dried fruit, crisp crackers, boxed powdered milk', 'Use within about 6 months']
+          ['Dried fruit, crisp crackers, boxed powdered milk', 'Use within about 6 months'],
+          ['Home-canned food (Utah State University Extension)', 'Best within 1 year; use within 2 years']
         ], note: 'Eat what is closest to its date first, and move it to the front.' }
       ],
       mistakes: [
@@ -333,8 +361,8 @@
         'Counting food in the fridge or freezer.',
         'Counting food nobody in the house will eat.'
       ],
-      sources: ['ready-food', 'usda-shelf', 'fema-foodwater', 'usda-food'],
-      checked: '2026-11-21'
+      sources: ['ready-food', 'usda-shelf', 'fema-foodwater', 'usda-food', 'church-food', 'usu-canned'],
+      checked: '2026-11-26'
     },
 
     'food-fridge': {
@@ -354,7 +382,8 @@
           'Keep the doors shut.',
           'Past 4 hours, move fridge food into a cooler with ice. Keep adding ice so it stays at 40°F or below.',
           'For a long outage, dry ice or block ice helps. 50 pounds of dry ice holds an 18 cubic foot freezer about 2 days. Never touch dry ice bare-handed or set it right on food.',
-          'In snow, do not put food outside. Fill buckets or cans with water, set them outside to freeze, and use that ice.'
+          'In snow, do not put food outside. Fill buckets or cans with water, set them outside to freeze, and use that ice.',
+          'Eat the fresh food from the fridge first, the American Red Cross says, and keep a thermometer in the cooler too.'
         ] },
         { head: 'Throw out after 4 hours without power', items: [
           'Meat, poultry, fish, eggs and leftovers.',
@@ -377,8 +406,8 @@
         'Tasting food to see if it is still good. Never do that.',
         'Keeping food that smells, looks or feels off. When in doubt, throw it out.'
       ],
-      sources: ['usda-food'],
-      checked: '2026-11-21'
+      sources: ['usda-food', 'redcross-power'],
+      checked: '2026-11-26'
     },
 
     'food-cook': {
@@ -466,7 +495,8 @@
         { head: 'How much', items: [
           'Three meals a day for three days is 9 meals a person.',
           'Familiar food helps. It lifts spirits and feels normal when things are not.',
-          'Pick food that is filling and has some nutrition, not just snacks.'
+          'Pick food that is filling and has some nutrition, not just snacks.',
+          'The American Red Cross sets three days for food you carry if you leave, and two weeks for food at home.'
         ] },
         { head: 'What to pick', items: [
           'Food that needs no fridge, no water, and no cooking.',
@@ -474,7 +504,8 @@
           'Protein or fruit bars, dry cereal or granola, peanut butter and dried fruit.',
           'Canned juice and shelf-stable milk.',
           'A few comfort foods.',
-          'Food for anyone with a special diet or allergy.'
+          'Food for anyone with a special diet or allergy.',
+          'The Church of Jesus Christ of Latter-day Saints\' preparedness guide says to pick from different food groups, and to include a source of vitamin C.'
         ] },
         { head: 'Go easy on salt', items: [
           'Salty food makes you thirsty, and water may be short.',
@@ -498,8 +529,8 @@
         'Picking food that needs water or cooking for the first three days.',
         'Storing the box next to the stove or in a hot garage.'
       ],
-      sources: ['ready-food', 'fema-foodwater', 'usda-shelf', 'ready-kit'],
-      checked: '2026-11-21'
+      sources: ['ready-food', 'fema-foodwater', 'usda-shelf', 'ready-kit', 'redcross-kit', 'church-food'],
+      checked: '2026-11-26'
     },
 
     'food-special': {
@@ -531,7 +562,8 @@
           'Extra of any medicine they take, in a waterproof container.',
           'A collar with ID, a leash or harness, and a spare of each.',
           'A carrier or crate, litter if needed, and a photo of you with your pet.',
-          'Keep a bigger kit for staying home and a light one for leaving.'
+          'Keep a bigger kit for staying home and a light one for leaving.',
+          'The American Red Cross adds a pet first aid kit, the feeding schedule, and your vet\'s name and number, with the medical records in a waterproof container.'
         ] }
       ],
       mistakes: [
@@ -539,8 +571,8 @@
         'Mixing formula with tap water during a boil notice.',
         'Forgetting the pet\'s medicine.'
       ],
-      sources: ['cdc-infant-kit', 'cdc-infant-special', 'ready-pets', 'ready-kit'],
-      checked: '2026-11-21'
+      sources: ['cdc-infant-kit', 'cdc-infant-special', 'ready-pets', 'ready-kit', 'redcross-pets'],
+      checked: '2026-11-26'
     },
 
     'food-2week': {
@@ -556,12 +588,15 @@
         { head: 'Where to keep it', items: [
           'Cool and dry. Below 85°F is best.',
           'Never above or beside the stove, under the sink, or in a damp garage or basement.',
-          'If your home can flood, keep it up high, not in the basement or low cabinets.'
+          'If your home can flood, keep it up high, not in the basement or low cabinets.',
+          'Keep it off bare concrete. The Church of Jesus Christ of Latter-day Saints\' preparedness guide and Utah State University Extension both say concrete can rust cans and let moisture into plastic.',
+          'Cooler is better. Utah State University Extension says 40°F to 70°F is best. In its tests, wheat kept good quality 25 years in a cool basement but only 5 in a hot garage or attic.'
         ] },
         { head: 'Keep out air and pests', items: [
           'Put boxed food in tightly closed plastic or metal containers.',
           'Pour open sugar, dried fruit and nuts into screw-top jars or airtight canisters.',
-          'Open boxes carefully so they close tight again.'
+          'Open boxes carefully so they close tight again.',
+          'Never seal moist food with oxygen absorbers. The Latter-day Saints guide says this can cause botulism. Only dry food, about 10 percent moisture or less, such as grains and dry beans, belongs in that kind of package.'
         ] },
         { head: 'Rotate it', items: [
           'Write the date you bought it on each item.',
@@ -573,15 +608,22 @@
           'The can bulges, leaks or is badly rusted.',
           'The dent is deep enough to lay a finger in, or sits on a seam.',
           'The food smells, looks or feels wrong when you open it. Never taste it to check.'
-        ] }
+        ] },
+        { head: 'Longer-term staples', cols: ['Dry food, sealed airtight', 'Can still feed you for'], rows: [
+          ['Wheat, white rice and corn', '30 years or more'],
+          ['Pinto beans, rolled oats, pasta and potato flakes', '30 years'],
+          ['Nonfat powdered milk', '20 years'],
+          ['Dehydrated carrots', '10 years'],
+          ['Sugar', 'No set limit']
+        ], note: 'Estimates from The Church of Jesus Christ of Latter-day Saints\' preparedness guide, for dry food sealed in cans, foil pouches or PETE bottles with oxygen absorbers and kept at 75°F or cooler. Rice and pasta in their store box still follow the USDA\'s 2 years above. Brown rice, whole wheat flour, nuts, granola and jerky do not keep this long.' }
       ],
       mistakes: [
         'Storing it in a hot garage or over the stove.',
         'Buying a pile once and never eating from it.',
         'Keeping a bulging can because it is still sealed.'
       ],
-      sources: ['usda-shelf', 'fema-foodwater', 'ready-food', 'usda-food'],
-      checked: '2026-11-21'
+      sources: ['usda-shelf', 'fema-foodwater', 'ready-food', 'usda-food', 'church-longterm', 'church-food', 'usu-storage-conditions'],
+      checked: '2026-11-26'
     },
 
     'food-grow': {
@@ -611,7 +653,9 @@
           'Open-kettle canning, where hot food is sealed in jars with no processing.',
           'Processing jars in the oven, microwave or dishwasher.',
           '"Dry canning" vegetables without the liquid the recipe calls for.',
-          'Canning powders. They do not replace heat.'
+          'Canning powders. They do not replace heat.',
+          'Canning butter, quick breads baked in jars, or wheat kernels soaked in water. Utah State University Extension says none of these is safe.',
+          'Adding extra flour or starch to thicken, or extra onions or peppers to a tested salsa. Both can leave the food under-processed.'
         ] },
         { head: 'After the canner', items: [
           'Let jars cool, untouched, for 12 to 24 hours. Do not tighten the lids.',
@@ -631,8 +675,8 @@
         'Skipping the change for your elevation.',
         'Tasting a jar to see if it is still good.'
       ],
-      sources: ['usda-preserve', 'nchfp-canners', 'nchfp-safe', 'nchfp-storing', 'usda-extension', 'umn-garden', 'umn-garden-water'],
-      checked: '2026-11-21'
+      sources: ['usda-preserve', 'nchfp-canners', 'nchfp-safe', 'nchfp-storing', 'usda-extension', 'umn-garden', 'umn-garden-water', 'usu-canmistakes'],
+      checked: '2026-11-26'
     },
 
     'power-lights': {
@@ -642,7 +686,9 @@
           'The U.S. Fire Administration says to use flashlights, not candles, in a power outage.',
           'On average, about 20 home candle fires are reported each day.',
           'Never use lit candles in bedrooms or where people sleep.',
-          'If you like the look of a candle, use a battery-operated flameless one.'
+          'If you like the look of a candle, use a battery-operated flameless one.',
+          'If you do light a candle, NFPA says to keep it at least 12 inches from anything that can burn, and blow it out before you leave the room or go to bed.',
+          'NFPA found that over a third of home candle fires start in the bedroom, and more than half start when something that can burn is too close to the flame.'
         ] },
         { head: 'One light for every person', items: [
           'Ready.gov says to have a flashlight for every person in the house.',
@@ -665,8 +711,8 @@
         'Using the phone as the only light, then having no battery left for calls.',
         'Keeping the only flashlight in a drawer no one remembers.'
       ],
-      sources: ['ready-power', 'usfa-candle', 'usfa-severe', 'ready-kit'],
-      checked: '2026-11-21'
+      sources: ['ready-power', 'usfa-candle', 'usfa-severe', 'ready-kit', 'nfpa-candles'],
+      checked: '2026-11-26'
     },
 
     'power-heat': {
@@ -677,7 +723,8 @@
           'Insulate water lines that run along outside walls, so they are less likely to freeze.',
           'Covering windows with plastic from the inside helps hold the heat.',
           'If you would use a fireplace or wood stove for heat, have the chimney or flue inspected every year.',
-          'Have the furnace and its vent checked by a qualified technician each winter.'
+          'Have the furnace and its vent checked by a qualified technician each winter.',
+          'The Red Cross suggests an indoor thermometer, so you can watch how cold the house is getting.'
         ] },
         { head: 'Heat only with safe sources', items: [
           'Never heat the house with a gas stove or oven. It raises the risk of carbon monoxide, fire and burns.',
@@ -685,14 +732,23 @@
           'Do not use flameless chemical heaters indoors either.',
           'Keep anything that can burn at least 3 feet from a fireplace, wood stove or space heater.',
           'Turn space heaters off when you leave the room or go to bed.',
-          'Heating with a fireplace, wood stove or kerosene heater? Put a smoke alarm and a battery carbon monoxide alarm near that area.'
+          'Heating with a fireplace, wood stove or kerosene heater? Put a smoke alarm and a battery carbon monoxide alarm near that area.',
+          'NFPA found that space heaters and heating stoves cause about 30 percent of home heating fires, but nearly 3 in 4 of the deaths. Give them room.'
         ] },
         { head: 'Stay warm', items: [
           'Wear layers of warm clothing, and limit time outside.',
           'Pace yourself shoveling snow. Overdoing it raises the risk of a heart attack.',
           'Over 65? Keep an easy-to-read thermometer where you see it often. People feel cold less as they age.',
           'If the house gets too cold, go to a place with power. Check with local officials about warming locations near you.',
-          'If heating bills are hard to pay, the Low Income Home Energy Assistance Program (LIHEAP) can help.'
+          'If heating bills are hard to pay, the Low Income Home Energy Assistance Program (LIHEAP) can help.',
+          'Drink plenty of warm fluids, but go easy on caffeine and alcohol, the Red Cross says.',
+          'When you go out, cover the nose, ears, cheeks, chin, fingers and toes. They are the first to get frostbite.'
+        ] },
+        { head: 'Stock for the cold', items: [
+          'The Red Cross says to have enough hats, mittens and blankets for everyone in the house.',
+          'Keep a stay-at-home kit with at least two weeks of supplies, and a go-kit with three days you can carry if you must go somewhere warmer.',
+          'Put backup batteries and chargers for devices like a CPAP or wheelchair in the go-kit.',
+          'Keep a blanket, warm clothes, boots and a first aid kit in the car.'
         ] },
         { head: 'Frostbite', items: [
           'Signs: numbness, white or grayish-yellow skin, skin that feels firm or waxy. It hits the face, fingers and toes first.',
@@ -711,8 +767,8 @@
         'Running a generator or grill in the garage.',
         'Rubbing frostbitten skin or putting a heating pad on it.'
       ],
-      sources: ['ready-winter', 'cdc-co', 'cdc-winter', 'usfa-heating', 'ready-power'],
-      checked: '2026-11-21'
+      sources: ['ready-winter', 'cdc-co', 'cdc-winter', 'usfa-heating', 'ready-power', 'redcross-winter', 'nfpa-heating'],
+      checked: '2026-11-26'
     },
 
     'power-cool': {
@@ -728,7 +784,9 @@
           'Use a fan only while the room is under 90°F. Above that, a fan can raise body temperature.',
           'A fan moves air but does not cool your body. Do not count on it as your only cooling.',
           'Find places to cool off, like a library. Dial 2-1-1 or call your local health department to find cooling centers.',
-          'A friend or relative with air conditioning can be your cool place. Ask ahead.'
+          'A friend or relative with air conditioning can be your cool place. Ask ahead.',
+          'The Red Cross puts the line a little higher: in the high 90s, fans may not prevent heat illness. Either way, a cool shower or an air-conditioned place works better.',
+          'A few hours a day in air conditioning helps prevent heat illness, the Red Cross says.'
         ] },
         { head: 'Stay cool and drink', items: [
           'Take cool showers or baths.',
@@ -736,7 +794,8 @@
           'Carry a water bottle. Drink and refill it all day.',
           'Go easy on drinks with lots of sugar, salt, caffeine or alcohol.',
           'Light yellow or clear urine usually means you are drinking enough.',
-          'Do outdoor work early or late. Skip hard work in the midday heat.'
+          'Do outdoor work early or late. Skip hard work in the midday heat.',
+          'The Red Cross says an average person needs about three-quarters of a gallon of water a day. Sweating a lot? Add snacks or a sports drink to replace the salt you lose.'
         ] },
         { head: 'Know the warning signs', items: [
           'Heat cramps: muscle pain or spasms in the stomach, arms or legs.',
@@ -751,7 +810,8 @@
           'Many medicines make it easier to get dehydrated or overheated. Do not stop or change a medicine before you talk to the doctor.',
           'Never leave a person or a pet in a closed car on a warm day.',
           'Check on family and neighbors, most of all those who live alone.',
-          'Give pets outside plenty of cool water and shade.'
+          'Give pets outside plenty of cool water and shade.',
+          'Mayo Clinic adds children under 4, and people not used to the heat yet, as in an early heat wave or after a move from a cold place.'
         ] }
       ],
       mistakes: [
@@ -759,8 +819,8 @@
         'Leaving a child or a pet in a closed car, even for a minute.',
         'Stopping a medicine because of the heat without asking the doctor.'
       ],
-      sources: ['ready-heat', 'cdc-heat', 'ready-disab'],
-      checked: '2026-11-21'
+      sources: ['ready-heat', 'cdc-heat', 'ready-disab', 'redcross-heat', 'mayo-heatexh'],
+      checked: '2026-11-26'
     },
 
     'power-device': {
@@ -779,7 +839,9 @@
           'Get an extra battery for a power wheelchair or any battery-run medical device. Keep the spares charged at all times.',
           'If you cannot afford a spare battery, ask what agencies or local charities can help buy one.',
           'Keep a backup supply of oxygen if the person uses it.',
-          'If you use a power wheelchair, keep a light manual chair as a backup if you can.'
+          'If you use a power wheelchair, keep a light manual chair as a backup if you can.',
+          'The Red Cross says to list everything in the house that needs power, then plan both a backup and a no-power way for each: the device, cold medicine, lights, garage doors and locks.',
+          'Pack backup batteries and chargers for devices like a CPAP or wheelchair in a go-kit you can carry.'
         ] },
         { head: 'Write it down', items: [
           'The style and serial number of each device, with any special steps to run it.',
@@ -792,7 +854,9 @@
           'Keep a list of the nearest hospitals and medical facilities, and accessible rides to reach them.',
           'If heat or cold is extreme, go to a place in your area that has power.',
           'If the person cannot be cared for at a regular cooling center, talk to local hospitals or nursing homes ahead of time.',
-          'For a medical emergency, call 911.'
+          'For a medical emergency, call 911.',
+          'Leave if the home is too hot or too cold, or the device needs power you do not have. Communities often open warming or cooling centers and charging stations, the Red Cross says.',
+          'Keep the car\'s gas tank at least half full, so you can leave when you need to.'
         ] }
       ],
       mistakes: [
@@ -800,8 +864,8 @@
         'Keeping a spare battery that was never charged.',
         'Having the device model and serial number only in your head.'
       ],
-      sources: ['ready-disab', 'ready-power'],
-      checked: '2026-11-21'
+      sources: ['ready-disab', 'ready-power', 'redcross-power', 'redcross-winter'],
+      checked: '2026-11-26'
     },
 
     'power-shutoff': {
@@ -817,7 +881,8 @@
           'If you smell gas or hear a blowing or hissing sound, open a window and get everyone out fast.',
           'Turn off the gas at the outside main valve if you can.',
           'Call the gas company from a neighbor\'s home. If anyone is hurt or there is a fire, call 911.',
-          'Once the gas is off, only a qualified professional can turn it back on. Never do it yourself.'
+          'Once the gas is off, only a qualified professional can turn it back on. Never do it yourself.',
+          'The Red Cross says to turn utilities off only if you think there is damage, or officials tell you to.'
         ] },
         { head: 'Water', items: [
           'Find the main valve where the water line enters the house. Tag it so anyone can spot it.',
@@ -829,7 +894,9 @@
         { head: 'Electricity', items: [
           'Find the breaker box or fuse box, and keep the path to it clear.',
           'To shut it all off, switch off each single circuit first, then the main.',
-          'Sparks can light leaking gas, so every adult who is able should know how.'
+          'Sparks can light leaking gas, so every adult who is able should know how.',
+          'If breakers have tripped, the Red Cross says to have an electrician check them before you turn them back on.',
+          'Stay at least 35 feet from a fallen power line and anything it touches, and call 911.'
         ] }
       ],
       mistakes: [
@@ -837,8 +904,8 @@
         'Fighting the street valve instead of the house valve.',
         'Finding out in a flood that the water valve is rusted open.'
       ],
-      sources: ['ready-skills', 'ready-kit', 'usfa-garage'],
-      checked: '2026-11-21'
+      sources: ['ready-skills', 'ready-kit', 'usfa-garage', 'redcross-power'],
+      checked: '2026-11-26'
     },
 
     'power-co': {
@@ -848,23 +915,35 @@
           'Put one near every sleeping area.',
           'Put one on every level of the home too, in a central spot outside each separate sleeping area.',
           'If the basement has oil, gas or wood-burning equipment, put one there.',
-          'Heating with a fireplace, wood stove or kerosene heater? Put one near the area you heat.'
+          'Heating with a fireplace, wood stove or kerosene heater? Put one near the area you heat.',
+          'NFPA says to connect the alarms to each other if you can, so when one sounds, they all sound.',
+          'Follow the maker\'s directions for where and how high to mount each one.'
         ] },
         { head: 'What kind', items: [
           'Pick one that runs on batteries or has a battery backup, so it still works in an outage.',
-          'One with a digital readout can show the highest level it has picked up, not only sound an alarm.'
+          'One with a digital readout can show the highest level it has picked up, not only sound an alarm.',
+          'Pick one with the label of a recognized testing lab, NFPA says.'
         ] },
         { head: 'Keep them working', items: [
           'Test them monthly.',
           'Change the batteries twice a year. An easy time is when the clocks change in spring and fall.',
           'Replace each alarm when its maker says, or every 5 years.',
-          'Set a phone reminder for the replacement date the day you put it up.'
+          'Set a phone reminder for the replacement date the day you put it up.',
+          'If it chirps with a trouble signal, check the battery. If it still sounds with a new battery, call the fire department.'
         ] },
         { head: 'Know the signs', items: [
           'Headache, dizziness, weakness, upset stomach, vomiting, chest pain and confusion. People often say it feels like the flu.',
           'People who are asleep or drunk can die before they notice anything.',
           'Babies, older adults, and people with heart disease, anemia or breathing problems get sick from it sooner.',
-          'If the alarm sounds or someone has these signs, treat it as an emergency and call 911.'
+          'If the alarm sounds or someone has these signs, treat it as an emergency and call 911.',
+          'Mayo Clinic says memory or mood problems can show up later, after someone seems to recover. Get checked even if you feel better.'
+        ] },
+        { head: 'If the alarm sounds', items: [
+          'Believe it, Mayo Clinic says. Get to fresh air right away, outside or by an open door or window.',
+          'Make sure everyone in the home is accounted for.',
+          'Call for help from the fresh air, and stay there until responders arrive.',
+          'Opening doors and windows or running fans will not stop carbon monoxide from building up, the Red Cross says. Get out.',
+          'Ahead of time, call your fire department\'s non-emergency number and ask which number to call if the alarm sounds.'
         ] },
         { head: 'Stop it at the source', items: [
           'Have the furnace, water heater and any gas, oil or coal appliance serviced by a qualified technician every year.',
@@ -877,10 +956,11 @@
       mistakes: [
         'Buying a plug-in alarm with no battery backup. It goes quiet in an outage, when you need it most.',
         'Keeping an alarm long past its replacement date.',
-        'Thinking you would smell it. You cannot.'
+        'Thinking you would smell it. You cannot.',
+        'Opening a window and staying inside when the alarm sounds.'
       ],
-      sources: ['cdc-co', 'usfa-co', 'cdc-winter', 'usfa-garage'],
-      checked: '2026-11-21'
+      sources: ['cdc-co', 'usfa-co', 'cdc-winter', 'usfa-garage', 'nfpa-co', 'mayo-co', 'redcross-generator'],
+      checked: '2026-11-26'
     },
 
     'power-batteries': {
@@ -901,7 +981,9 @@
           'Keep kit items in airtight plastic bags.',
           'Store rechargeable lithium-ion batteries at room temperature, away from anything that can burn.',
           'Keep lithium-ion batteries out of direct sun and hot cars. That is a fire risk.',
-          'Do not charge them below 32°F or above 105°F.'
+          'Do not charge them below 32°F or above 105°F.',
+          'NFPA says to buy batteries listed by a recognized testing lab, and to use the charger that came with the device.',
+          'Stop charging a battery once it is full.'
         ] },
         { head: 'Keep them fresh', items: [
           'Replace anything past its date.',
@@ -910,7 +992,8 @@
         ] },
         { head: 'When a battery goes bad', items: [
           'Stop using a lithium-ion battery that smells, changes color, gets too hot, changes shape, leaks or makes odd noises.',
-          'Do not put lithium-ion batteries in the trash. Take them to a battery recycling spot.'
+          'Do not put lithium-ion batteries in the trash. Take them to a battery recycling spot.',
+          'Have any repairs done by a qualified professional.'
         ] }
       ],
       mistakes: [
@@ -918,8 +1001,8 @@
         'Throwing lithium-ion batteries in the trash.',
         'Forgetting the backup batteries in the smoke and carbon monoxide alarms.'
       ],
-      sources: ['ready-kit', 'usfa-batt', 'usfa-severe', 'ready-disab', 'cdc-winter'],
-      checked: '2026-11-21'
+      sources: ['ready-kit', 'usfa-batt', 'usfa-severe', 'ready-disab', 'cdc-winter', 'nfpa-liion'],
+      checked: '2026-11-26'
     },
 
     'power-phone': {
@@ -928,7 +1011,8 @@
         { head: 'Before a storm', items: [
           'Charge every phone and device fully before bad weather comes.',
           'Keep a charged backup battery at home.',
-          'Keep a car charger and a portable charger in the car at all times.'
+          'Keep a car charger and a portable charger in the car at all times.',
+          'Sign up for local text alerts, and keep a paper copy of your contact list, the Red Cross says.'
         ] },
         { head: 'Charging from the car', items: [
           'Run the car only outside, in open air.',
@@ -949,7 +1033,8 @@
         { head: 'Other backups', items: [
           'Find out whether your home phone works in an outage, and how long its battery backup lasts.',
           'A corded phone that does not need electricity can work in an outage. Cordless phones usually will not.',
-          'Keep battery packs at room temperature, not in a hot car.'
+          'Keep battery packs at room temperature, not in a hot car.',
+          'The Red Cross lists a battery or crank radio, a home phone that is not cordless, and chargers or batteries for phones and computers.'
         ] }
       ],
       mistakes: [
@@ -957,8 +1042,8 @@
         'Redialing again and again, which jams the network for everyone.',
         'Letting the battery pack sit uncharged in the drawer.'
       ],
-      sources: ['ready-tech', 'fcc-tips', 'ready-power', 'cdc-co', 'usfa-batt'],
-      checked: '2026-11-21'
+      sources: ['ready-tech', 'fcc-tips', 'ready-power', 'cdc-co', 'usfa-batt', 'redcross-power', 'redcross-winter'],
+      checked: '2026-11-26'
     },
 
     'power-backup': {
@@ -967,22 +1052,33 @@
         { head: 'Decide what must run', items: [
           'Walk the house and list everything you need that runs on electricity.',
           'Put medical devices and medicine that must stay cold at the top.',
-          'Ask the doctor about a power plan for those first.'
+          'Ask the doctor about a power plan for those first.',
+          'To size a generator, the Red Cross says to add up the watts on each appliance\'s label and the bulbs you want, then divide by volts to get amps.',
+          'Pick one that makes more amps than you need. Some machines draw up to 3 times their power when they start.'
         ] },
         { head: 'Where it runs', items: [
           'Outdoors only, at least 20 feet from windows, doors, vents and attached garages.',
           'Never inside the house or garage, even with the doors and windows open.',
-          'Keep it dry and out of the rain and floodwater. Touching a wet generator, or what is plugged into it, can shock you.'
+          'Keep it dry and out of the rain and floodwater. Touching a wet generator, or what is plugged into it, can shock you.',
+          'Run it on a dry surface under an open, canopy-like cover, such as a tarp on poles. Do not touch it with wet hands.',
+          'Opening doors and windows or running fans will not stop carbon monoxide from building up inside.'
         ] },
         { head: 'Hooking things up', items: [
           'Plug appliances into the generator with heavy-duty extension cords.',
           'Follow the maker\'s instructions every time.',
-          'Start it and check it now and then. A generator that is rarely used or cared for is a fire risk.'
+          'Start it and check it now and then. A generator that is rarely used or cared for is a fire risk.',
+          'Use a heavy-duty, outdoor-rated cord rated for at least the total load. Check it for cuts, and make sure the plug has all three prongs.',
+          'Never plug the generator into a wall outlet. This backfeeding can electrocute utility workers, neighbors and your family. To connect it to the house wiring, have an electrician put in a transfer switch.'
         ] },
         { head: 'Fuel', items: [
           'Never add fuel while it is running.',
           'Let it cool first. Fuel spilled on a hot engine can catch fire.',
-          'Store gasoline in a shed away from the house, not in the house or attached garage.'
+          'Store gasoline in a shed away from the house, not in the house or attached garage.',
+          'Store fuel in an approved safety can, and not near a fuel-burning appliance like a gas water heater. Ask your fire department how much you may store.'
+        ] },
+        { head: 'Avoid overloads', items: [
+          'Even a properly connected generator can overload, overheat or fail, the Red Cross says.',
+          'If needed, take turns running things, so the load stays under what the generator makes.'
         ] },
         { head: 'Inside while it runs', items: [
           'Have a battery or battery-backup carbon monoxide alarm working on every level.',
@@ -992,10 +1088,11 @@
       mistakes: [
         'Running it in the garage with the door open.',
         'Setting it under an open window.',
-        'Refueling it while it is hot.'
+        'Refueling it while it is hot.',
+        'Plugging the generator into a wall outlet to power the house.'
       ],
-      sources: ['ready-power', 'cdc-co', 'usfa-severe', 'usfa-garage'],
-      checked: '2026-11-21'
+      sources: ['ready-power', 'cdc-co', 'usfa-severe', 'usfa-garage', 'redcross-generator'],
+      checked: '2026-11-26'
     },
 
     'med-list': {
@@ -1012,7 +1109,8 @@
           'One copy in a watertight bag in your emergency kit.',
           'A copy on your phone. Your phone camera can scan the list and your cards.',
           'Store digital copies in a password-protected place, like a secure drive or the cloud.',
-          'Add key medical facts to your phone, and wear a medical alert tag or bracelet if you need one.'
+          'Add key medical facts to your phone, and wear a medical alert tag or bracelet if you need one.',
+          'The Red Cross suggests a small card with your medicines and doses, as written on the label, that you carry with you.'
         ] },
         { head: 'Who should know', items: [
           'Pick at least one trusted person who knows where your supplies are and how to give your medicine.',
@@ -1025,7 +1123,8 @@
         ] },
         { head: 'Keep it current', items: [
           'Change the list the day a medicine or dose changes.',
-          'Once a year, read it over with the whole household.'
+          'Once a year, read it over with the whole household.',
+          'The Red Cross says to review your plan, supplies and papers every six months.'
         ] }
       ],
       mistakes: [
@@ -1033,8 +1132,8 @@
         'Leaving off allergies.',
         'Carrying an old list with a medicine that has changed.'
       ],
-      sources: ['ready-disab', 'ready-plan', 'ready-older', 'ready-tech'],
-      checked: '2026-11-21'
+      sources: ['ready-disab', 'ready-plan', 'ready-older', 'ready-tech', 'redcross-older', 'redcross-winter'],
+      checked: '2026-11-26'
     },
 
     'med-kit': {
@@ -1042,7 +1141,8 @@
       parts: [
         { head: 'Where kits go', items: [
           'Keep one kit at home and one in the car.',
-          'Find out where the first aid kits are at work.'
+          'Find out where the first aid kits are at work.',
+          'Mayo Clinic says to store each kit where it is easy to reach but out of reach of young children, and to show older kids where it is.'
         ] },
         { head: 'Start with what you have', items: [
           'Adhesive bandages of different sizes, and sterile gauze pads.',
@@ -1050,7 +1150,8 @@
           'Antibiotic ointment and antiseptic wipes.',
           'Tweezers and a few pairs of nonlatex gloves.',
           'A thermometer that is not mercury and not glass.',
-          'A first aid guide, so anyone can follow the steps.'
+          'A first aid guide, so anyone can follow the steps.',
+          'Mayo Clinic also lists things most homes already have: safety pins, scissors, plastic bags, duct tape and hand sanitizer.'
         ] },
         { head: 'Add what is personal', items: [
           'Your own medicines and a list of emergency phone numbers.',
@@ -1064,7 +1165,9 @@
         ] },
         { head: 'Keep it ready', items: [
           'Check the kit regularly.',
-          'Replace anything you use, and anything past its date.'
+          'Replace anything you use, and anything past its date.',
+          'Mark the kit with the date it was last used. Kits can go years between uses, and some things expire.',
+          'Check that the flashlight batteries in it still work.'
         ] }
       ],
       mistakes: [
@@ -1072,8 +1175,8 @@
         'Using the last bandage and not replacing it.',
         'Forgetting the medicines your own family needs.'
       ],
-      sources: ['redcross-firstaidkit', 'ready-home', 'ready-kit'],
-      checked: '2026-11-21'
+      sources: ['redcross-firstaidkit', 'ready-home', 'ready-kit', 'mayo-kit'],
+      checked: '2026-11-26'
     },
 
     'med-app': {
@@ -1120,7 +1223,8 @@
           'How to tell when bleeding is life-threatening.',
           'Three ways to control it: pressing on the wound with your hands, packing the wound, and putting on a tourniquet.',
           'An instructor watches you practice and keeps working with you until you do each skill right.',
-          'The hands-on practice is the point. These skills are learned with an instructor, not from a page.'
+          'The hands-on practice is the point. These skills are learned with an instructor, not from a page.',
+          'Stop the Bleed has trained over 5 million people, from students to teachers.'
         ] },
         { head: 'Find a class', items: [
           'Go to the Stop the Bleed site, choose Find a Course, and enter your location.',
@@ -1132,6 +1236,15 @@
           'Bring another adult from your house, so two of you know what to do.',
           'Older kids can learn it too, if they are old enough to follow it.'
         ] },
+        { head: 'Until help comes', items: [
+          'Mayo Clinic says to put on gloves if you have them.',
+          'Cover the wound with sterile gauze or a clean cloth and press firmly with your palm.',
+          'If blood soaks through, add more gauze or cloth on top and keep pressing. Leave the first layer on.',
+          'Leave large or deeply stuck objects in place, and do not probe the wound.',
+          'Keep the person still, lying down and warm, on a rug or blanket if you can.',
+          'A tourniquet is for life-threatening bleeding from an arm or leg. Mayo Clinic says to use a ready-made one only if you are trained, never a scarf or belt, and to tell responders how long it has been on.',
+          'Wash your hands afterward, even if no blood seems to have touched them.'
+        ] },
         { head: 'After the class', items: [
           'In a real emergency, call 911 first, or have someone call while you help.',
           'Ask the instructor what bleeding control supplies to add to your first aid kit, and put them on your list.',
@@ -1141,10 +1254,11 @@
       mistakes: [
         'Doing only the online course and never practicing with an instructor.',
         'Starting to help before anyone has called 911.',
-        'Putting the class off for a year.'
+        'Putting the class off for a year.',
+        'Lifting soaked gauze to look. Add more on top instead.'
       ],
-      sources: ['stopthebleed', 'stb-train'],
-      checked: '2026-11-21'
+      sources: ['stopthebleed', 'stb-train', 'mayo-bleeding'],
+      checked: '2026-11-26'
     },
 
     'med-rx': {
@@ -1155,7 +1269,9 @@
           'Know how much you have on hand. If a storm may close the pharmacy, ask for an early refill.',
           'Learn your state\'s emergency refill law, and ask your pharmacist what it allows. In some states, such as North Carolina, a pharmacist can give an early refill of some medicines when an emergency is declared.',
           'Add extra nonprescription basics too, like pain and fever relievers, allergy medicine and diarrhea medicine.',
-          'If you get treatments at a clinic or hospital, ask about their emergency plan. If you are on dialysis or another life-sustaining treatment, know more than one place that can help.'
+          'If you get treatments at a clinic or hospital, ask about their emergency plan. If you are on dialysis or another life-sustaining treatment, know more than one place that can help.',
+          'The Red Cross suggests more than a few days: a 1-month supply of needed medicine and medical supplies, and at least 30 days for older adults. Ask your doctor what is possible for you.',
+          'The Red Cross says to keep the supply in a child-proof container.'
         ] },
         { head: 'The list and the go-bag', items: [
           'Write a list of every medicine: its name and strength, what it is for, how much you take and when.',
@@ -1203,7 +1319,7 @@
         'Letting insulin freeze against the ice in a cooler.',
         'Changing how you take a medicine on your own during a heat wave.'
       ],
-      sources: ['fda-disaster', 'fda-insulin', 'cdc-rx', 'ready-disab', 'ready-older', 'ready-power', 'ready-space', 'cdc-heat'],
+      sources: ['fda-disaster', 'fda-insulin', 'cdc-rx', 'ready-disab', 'ready-older', 'ready-power', 'ready-space', 'cdc-heat', 'redcross-winter', 'redcross-heat', 'redcross-older'],
       checked: '2026-11-26'
     },
 
@@ -1236,7 +1352,9 @@
           'A few days of each person\'s prescription medicine.',
           'Extra nonprescription basics your family uses, like pain and fever relievers, allergy medicine and diarrhea medicine.',
           'Spare glasses or contacts, and hearing aid batteries.',
-          'Ask your doctor or pharmacist what else to keep for your family.'
+          'Ask your doctor or pharmacist what else to keep for your family.',
+          'Mayo Clinic\'s longer list adds an elastic wrap bandage, a finger splint, an eye pad, eyewash, sterile saline and a bulb syringe for rinsing wounds.',
+          'Write the Poison Control number in the kit: 1-800-222-1222. It is free and open 24 hours, Mayo Clinic notes.'
         ] },
         { head: 'Keep it full', items: [
           'Check the kit regularly.',
@@ -1249,8 +1367,8 @@
         'Leaving used items unreplaced.',
         'Letting ointments and medicines run past their dates.'
       ],
-      sources: ['redcross-firstaidkit', 'ready-home', 'ready-disab'],
-      checked: '2026-11-21'
+      sources: ['redcross-firstaidkit', 'ready-home', 'ready-disab', 'mayo-kit'],
+      checked: '2026-11-26'
     },
 
     'med-sick': {
@@ -1272,7 +1390,9 @@
           'Keep cleaning supplies, food that keeps, prescriptions and water to stay home for several days or weeks.',
           'Have a thermometer in your first aid kit.',
           'Schools and workplaces may close. Plan who stays home with the kids if the adults are sick.',
-          'Know how your health insurance covers visits by phone or video.'
+          'Know how your health insurance covers visits by phone or video.',
+          'Mayo Clinic says rest and plenty of liquids, like water, juice and warm soup, help ease the flu.',
+          'Never give aspirin to children or teens getting over a flu-like illness. Mayo Clinic says it is linked to Reye\'s syndrome, which is rare but can kill.'
         ] },
         { head: 'When to get care', items: [
           'Adults: trouble breathing, pain or pressure in the chest or belly that will not go away, dizziness or confusion that will not go away, seizures, not urinating, or severe weakness.',
@@ -1284,7 +1404,8 @@
         ] },
         { head: 'When they can go back out', items: [
           'When, for at least 24 hours, symptoms are getting better and there has been no fever without fever-reducing medicine.',
-          'For the next 5 days, take extra care around others: masks, clean hands, fresh air and some distance.'
+          'For the next 5 days, take extra care around others: masks, clean hands, fresh air and some distance.',
+          'If the fever comes back or they feel worse, they stay apart again until they have gone 24 hours with no fever, without fever medicine, Mayo Clinic says.'
         ] }
       ],
       mistakes: [
@@ -1292,8 +1413,8 @@
         'Going back to work the day a fever breaks.',
         'Sharing cups and utensils with the sick person.'
       ],
-      sources: ['cdc-resp-sick', 'cdc-flu-signs', 'cdc-flu-prevent', 'cdc-flu-treat', 'ready-pandemic'],
-      checked: '2026-11-21'
+      sources: ['cdc-resp-sick', 'cdc-flu-signs', 'cdc-flu-prevent', 'cdc-flu-treat', 'ready-pandemic', 'mayo-flu'],
+      checked: '2026-11-26'
     },
 
     'med-class': {
@@ -1302,7 +1423,8 @@
         { head: 'Why a hands-on class', items: [
           'First aid is a skill. You need proper training in the techniques.',
           'Beyond basic first aid, CPR and using an AED (automated external defibrillator) are key skills.',
-          'Survival after the heart stops depends on fast CPR or a fast AED.'
+          'Survival after the heart stops depends on fast CPR or a fast AED.',
+          'In a winter storm or other disaster, emergency services may be delayed, the Red Cross notes. That is when your skills count most.'
         ] },
         { head: 'Where to find one', items: [
           'The American Red Cross runs classes. Contact your local chapter, or call 1-800-RED-CROSS (1-800-733-2767) to register.',
@@ -1312,13 +1434,15 @@
         { head: 'What to look for', items: [
           'A class with CPR, AED and first aid together.',
           'Time to practice with your own hands, not only videos.',
-          'A certificate at the end. Ready.gov notes it helps protect you under Good Samaritan laws, which vary by state.'
+          'A certificate at the end. Ready.gov notes it helps protect you under Good Samaritan laws, which vary by state.',
+          'Mayo Clinic says to choose an accredited course that teaches both CPR and how to use an AED.'
         ] },
         { head: 'After the class', items: [
           'Write the date your certificate runs out on your calendar.',
           'Refresh your skills regularly. They fade if you do not use them.',
           'Keep a copy of your card with your emergency plan.',
-          'In an emergency, call 911 first, then start helping.'
+          'In an emergency, call 911 first, then start helping.',
+          'If you ever feel unsure of your skills, Mayo Clinic says it is always better to try than to do nothing.'
         ] }
       ],
       mistakes: [
@@ -1326,8 +1450,8 @@
         'Letting the certificate lapse.',
         'Waiting to call 911 until you have tried to help.'
       ],
-      sources: ['ready-skills', 'ready-home', 'cdc-cerp', 'redcross-class'],
-      checked: '2026-11-21'
+      sources: ['ready-skills', 'ready-home', 'cdc-cerp', 'redcross-class', 'mayo-cpr', 'redcross-winter'],
+      checked: '2026-11-26'
     },
 
     'comm-contact': {
@@ -1349,12 +1473,19 @@
           'Text first. A text may go through when a call will not, even if it arrives late.',
           'Keep any call short. Say only what matters: where you are, who is with you, and that you are safe.',
           'If a call does not connect, wait 10 seconds before you try again. Fast redialing jams the network more.',
-          'Call 911 only for an emergency. Use your state\'s other number for things like a minor road accident.'
+          'Call 911 only for an emergency. Use your state\'s other number for things like a minor road accident.',
+          'The Red Cross says to call at off-peak hours for the best chance of getting through.'
         ] },
         { head: 'Plan for people who are away', items: [
           'Think about family who live elsewhere part of the year, like a student at college or someone deployed.',
           'Decide how the plan changes when they are home, and when they are away.',
           'Write the contact on your family plan, and practice it with your household.'
+        ] },
+        { head: 'If you cannot reach someone', items: [
+          'The Red Cross says to be creative and keep trying. If one way fails, try another.',
+          'Send a text or an email, check their social media pages, or even mail a letter. Their mail may be forwarded to where they are staying.',
+          'Call friends and relatives, and the places where the person is known: neighbors, their employer, school or place of worship.',
+          'If the person is older, has a disability or a medical condition, or has trouble with English, your local Red Cross chapter can help look for them after a disaster.'
         ] }
       ],
       mistakes: [
@@ -1362,8 +1493,8 @@
         'Never testing it. Send a practice text so everyone knows it works.',
         'Kids who have a phone but have never sent a text.'
       ],
-      sources: ['redcross-plan', 'fcc-emergency', 'ready-plan'],
-      checked: '2026-11-21'
+      sources: ['redcross-plan', 'fcc-emergency', 'ready-plan', 'redcross-reconnect'],
+      checked: '2026-11-26'
     },
 
     'comm-card': {
@@ -1374,20 +1505,23 @@
           'Each family member\'s name and cell number, and an email or other way to reach them.',
           'The out-of-area contact, with cell, home phone and email.',
           'Your meeting places, with a short note on how to get there.',
-          'The school, daycare and each workplace, with their emergency or hotline number.'
+          'The school, daycare and each workplace, with their emergency or hotline number.',
+          'Any other numbers you may need. The Red Cross notes that 911 lines can be overloaded in a disaster.'
         ] },
         { head: 'Medical and other numbers', items: [
           'The doctor and the children\'s doctor.',
           'Allergies and prescriptions for anyone who has them.',
           'The health insurance name and policy number.',
           'The vet, if you have pets.',
-          'Utilities, the insurance company and other services you would need to call.'
+          'Utilities, the insurance company and other services you would need to call.',
+          'Poison Control: 1-800-222-1222. The Red Cross lists it, with 911, for a poisoning or chemical emergency.'
         ] },
         { head: 'Make it', items: [
           'Ready.gov has a free fillable form for a family communication plan, and a wallet-size card.',
           'Fill it in, print it, and cut out one card for each person.',
           'Put the cards in a zip bag or tape over them so they stay dry.',
-          'Keep extra copies in the go-bag and the car.'
+          'Keep extra copies in the go-bag and the car.',
+          'The Red Cross also has a free contact card template. Print one for each person, fold it to fit a pocket or wallet, and carry it.'
         ] },
         { head: 'Keep it current', items: [
           'Check the cards when a number, school or job changes.',
@@ -1400,8 +1534,8 @@
         'Leaving a young child\'s card loose where it falls out. Tape it inside the backpack.',
         'Making the cards once and never updating them.'
       ],
-      sources: ['ready-planform', 'ready-plan', 'redcross-plan', 'fcc-emergency'],
-      checked: '2026-11-21'
+      sources: ['ready-planform', 'ready-plan', 'redcross-plan', 'fcc-emergency', 'redcross-informed', 'redcross-chemical', 'redcross-disab'],
+      checked: '2026-11-26'
     },
 
     'comm-alerts': {
@@ -1422,7 +1556,8 @@
         { head: 'Local alerts', items: [
           'Sign up for alerts from your local government. They add to the phone alerts and cover more local events.',
           'Also sign up with your school and your workplace if they offer alerts.',
-          'Write down the local emergency office number on your plan.'
+          'Write down the local emergency office number on your plan.',
+          'The Red Cross says to find out now how local officials will warn you: by local radio, TV or NOAA Weather Radio.'
         ] },
         { head: 'The FEMA app and texts', items: [
           'The FEMA app is free. It gives weather alerts from the National Weather Service for up to five places.',
@@ -1432,7 +1567,9 @@
         ] },
         { head: 'Other ways warnings come', items: [
           'TV and radio carry the Emergency Alert System.',
-          'NOAA Weather Radio broadcasts warnings all day and night. It works when cell service is down.'
+          'NOAA Weather Radio broadcasts warnings all day and night. It works when cell service is down.',
+          'For a chemical spill, a warning may come by siren, a phone call, a loudspeaker from a passing vehicle, or officials at your door. The Red Cross says to go inside and turn on a local emergency station.',
+          'When you travel or move to a new place, learn its alerts and its likely disasters too.'
         ] }
       ],
       mistakes: [
@@ -1440,8 +1577,8 @@
         'Counting on the phone alone. Have a weather radio too.',
         'Setting the FEMA app to your old address. Update the main location when you move.'
       ],
-      sources: ['ready-alerts', 'fcc-wea', 'fcc-emergency', 'fema-app'],
-      checked: '2026-11-21'
+      sources: ['ready-alerts', 'fcc-wea', 'fcc-emergency', 'fema-app', 'redcross-informed', 'redcross-chemical'],
+      checked: '2026-11-26'
     },
 
     'comm-ham-learn': {
@@ -1532,7 +1669,8 @@
           'Prices run from about $20 to over $100, depending on features.',
           'A standalone weather radio is best if you want alarms day and night.',
           'The weather band also comes on some AM/FM, shortwave, CB and marine radios, scanners, and two-way family radios.',
-          'A hand-crank or solar radio may also charge a phone. Check its manual first.'
+          'A hand-crank or solar radio may also charge a phone. Check its manual first.',
+          'The Red Cross kit list puts a battery-powered or hand-crank radio, a NOAA Weather Radio if possible, and extra batteries among the basics.'
         ] },
         { head: 'Set it up', items: [
           'Find your county on the NWS county coverage list. It shows your station\'s frequency and your county\'s SAME code.',
@@ -1557,8 +1695,8 @@
         'Not entering the SAME code, then turning it off after alarms for far-away counties.',
         'Buying the cheapest model. Those have the most reception trouble.'
       ],
-      sources: ['nws-nwr', 'nws-nwr-receivers', 'nws-nwr-counties', 'nws-nwr-test', 'fcc-emergency'],
-      checked: '2026-11-21'
+      sources: ['nws-nwr', 'nws-nwr-receivers', 'nws-nwr-counties', 'nws-nwr-test', 'fcc-emergency', 'redcross-kit'],
+      checked: '2026-11-26'
     },
 
     'comm-ham-test': {
@@ -1646,19 +1784,23 @@
       parts: [
         { head: 'Pick the spot', items: [
           'Choose something fixed in front of the home, a safe distance from it: a tree, a light post, the mailbox.',
-          'In an apartment or high-rise, pick a spot outside the building, and know where every exit stair is.'
+          'In an apartment or high-rise, pick a spot outside the building, and know where every exit stair is.',
+          'NFPA gives examples: a neighbor\'s house, a light post, a mailbox or a stop sign. Mark the spot on your escape plan.',
+          'Check that your house number can be seen from the street. If not, paint it on the curb or put up numbers, so firefighters can find you.'
         ] },
         { head: 'Know two ways out', items: [
           'Draw a simple map of the home with every door and window.',
           'Find two ways out of every room, in case one is blocked by smoke or fire.',
           'Check that windows open, screens come out fast, and any security bars open from inside.',
-          'An upper floor may need an escape ladder for its second way out.'
+          'An upper floor may need an escape ladder for its second way out.',
+          'Mark each smoke alarm on the map too, NFPA says.'
         ] },
         { head: 'Teach the rule', items: [
           'Once you are out, stay out. Never go back inside.',
           'Get to the spot first, then call 911, and keep everyone close until firefighters come.',
           'If someone is still inside, tell the firefighters where that person is.',
-          'Teach children not to hide from firefighters.'
+          'Teach children not to hide from firefighters.',
+          'NFPA notes you may have as little as one or two minutes to get out once the smoke alarm sounds.'
         ] },
         { head: 'Small children', items: [
           'Children under six may not get out on their own. Decide which adult helps each one.',
@@ -1674,8 +1816,8 @@
         'Going back in for a person or a pet. Tell firefighters instead.',
         'Never walking the kids out to the spot, so they do not know where it is.'
       ],
-      sources: ['usfa-escape', 'ready-fireplan', 'ready-commcard', 'ready-plan'],
-      checked: '2026-11-21'
+      sources: ['usfa-escape', 'ready-fireplan', 'ready-commcard', 'ready-plan', 'nfpa-escape'],
+      checked: '2026-11-26'
     },
 
     'plan-meet-far': {
@@ -1696,7 +1838,9 @@
           'Learn your main route and other routes out of the area.',
           'Follow the routes officials name on the day. Do not take shortcuts; they may be blocked.',
           'Your way out may be on foot, depending on the disaster. Know how you would walk it.',
-          'Write normal and other routes on paper and keep a copy in your wallet.'
+          'Write normal and other routes on paper and keep a copy in your wallet.',
+          'The Red Cross says to practice twice a year: grab your kit as you would for real, then drive your route. Plot other routes on a map in case roads are closed.',
+          'Save the places and maps on phones and GPS units, and keep them on paper too.'
         ] },
         { head: 'An outside contact', items: [
           'Pick one out-of-town or out-of-state contact everyone will call or text.',
@@ -1709,8 +1853,8 @@
         'Knowing only one road out.',
         'Choosing a far spot that will not take your pets.'
       ],
-      sources: ['ready-commcard', 'ready-evacuation', 'ready-plan', 'ready-tech'],
-      checked: '2026-11-21'
+      sources: ['ready-commcard', 'ready-evacuation', 'ready-plan', 'ready-tech', 'redcross-plan'],
+      checked: '2026-11-26'
     },
 
     'plan-write': {
@@ -1720,13 +1864,17 @@
           'How will we get alerts and warnings?',
           'Where do we shelter, and what is our way out?',
           'How do we reach each other, and where do we meet?',
-          'Does our kit need updating?'
+          'Does our kit need updating?',
+          'The Red Cross adds: give each person a job, and decide how you will work together as a team.',
+          'Plan for disasters that keep you home, like a winter storm, and ones that make you leave, like a hurricane.'
         ] },
         { head: 'Think about your household', items: [
           'Ages, and who helps whom.',
           'Medicine, medical equipment, diets and disabilities.',
           'Pets or service animals, and children in school.',
-          'Places you go often, and languages spoken.'
+          'Places you go often, and languages spoken.',
+          'If someone has a disability, the Red Cross says to base the plan on the lowest level of ability they may have.',
+          'Make sure at least one person is trained in first aid and CPR and knows how to use an AED. Help may be slow after a big disaster.'
         ] },
         { head: 'What goes on the page', items: [
           'Each person\'s name, mobile number, email and key medical facts.',
@@ -1738,7 +1886,8 @@
         { head: 'Keep it where you need it', items: [
           'Make copies. Keep one with your emergency supplies, where you can reach it in a disaster.',
           'Keep the small card in a wallet or bag.',
-          'Practice the plan with your household, and update it when things change.'
+          'Practice the plan with your household, and update it when things change.',
+          'The Red Cross has free plan templates in English and Spanish, with tips for filling them in.'
         ] }
       ],
       mistakes: [
@@ -1746,8 +1895,8 @@
         'Leaving out the school and work plans.',
         'Writing it once and never updating it.'
       ],
-      sources: ['ready-plan', 'ready-planform', 'ready-commcard', 'nws-hurricane-prep'],
-      checked: '2026-11-21'
+      sources: ['ready-plan', 'ready-planform', 'ready-commcard', 'nws-hurricane-prep', 'redcross-plan', 'redcross-informed', 'redcross-disab'],
+      checked: '2026-11-26'
     },
 
     'plan-docs': {
@@ -1762,7 +1911,9 @@
           'Lease, mortgage or deed. Car loan, registration and title.',
           'Insurance policies: home or renters, auto, life and flood.',
           'Bank and retirement accounts, pay stubs and benefits.',
-          'Recent tax returns. A will, trust or power of attorney.'
+          'Recent tax returns. A will, trust or power of attorney.',
+          'Add cash for several days and a few blank checks from each account, Mississippi State Extension suggests.',
+          'List your debts with due dates and contacts. Copy the front and back of each card, with the company\'s phone number.'
         ] },
         { head: 'Health', items: [
           'Health and dental insurance cards, including Medicare, Medicaid or VA.',
@@ -1772,21 +1923,26 @@
         { head: 'Photos and electronic copies', items: [
           'A phone camera works as a scanner. Take clear photos of each paper.',
           'Keep them on a password-protected drive or a secure cloud service.',
-          'Take photos and video of your major belongings and valuables too. They help with insurance claims.'
+          'Take photos and video of your major belongings and valuables too. They help with insurance claims.',
+          'Send a copy of the scanned files to a trusted friend or relative who lives at least 300 miles away, Mississippi State Extension suggests.',
+          'Make a household inventory. NC State Extension says not to forget tools in the garage, lawn furniture, the attic and food in the freezer.'
         ] },
         { head: 'Paper copies and originals', items: [
           'Keep paper copies in a fireproof, waterproof box or safe, a bank safe deposit box, or with a trusted friend or relative.',
           'Keep originals in a watertight safe deposit box if you can.',
-          'Put a set in a waterproof container you can grab when you leave.'
+          'Put a set in a waterproof container you can grab when you leave.',
+          'Put papers in folders, then in sealed waterproof plastic bags, then in a sturdy box that locks. If you leave, keep the box with you, not alone in the car.',
+          'Review it all at least once a year, and after a birth, death, move, marriage or divorce.'
         ] }
       ],
       mistakes: [
         'Storing papers in a basement that can flood.',
         'Sharing account or Social Security numbers with anyone who calls or texts. The government will not call or text you about owing money.',
-        'Keeping the only copies in the house.'
+        'Keeping the only copies in the house.',
+        'Putting old papers with account or Social Security numbers in the trash. Colorado State Extension says to shred them.'
       ],
-      sources: ['ready-money', 'ready-docsheet', 'ready-tech', 'fema-flood'],
-      checked: '2026-11-21'
+      sources: ['ready-money', 'ready-docsheet', 'ready-tech', 'fema-flood', 'msstate-gobox', 'ncsu-records', 'colostate-papers'],
+      checked: '2026-11-26'
     },
 
     'plan-practice': {
@@ -1797,14 +1953,16 @@
           'Test the smoke alarm so the kids know the sound.',
           'Send the kids to their rooms. One adult sounds the alarm and starts a timer.',
           'Assign adults to help young children.',
-          'Everyone gets to the spot. Aim for under 2 minutes. If not, try again.'
+          'Everyone gets to the spot. Aim for under 2 minutes. If not, try again.',
+          'Watch whether children and others wake to the alarm. If they do not, give someone the job of waking them, in drills and for real.'
         ] },
         { head: 'Make it real', items: [
           'Run drills at different times of day and night.',
           'Use different ways out, not just the front door.',
           'Practice getting low and moving to the exit, as if there were smoke.',
           'Practice feeling your way out with eyes closed.',
-          'Show kids how to check a door with the back of the hand, and to use another way out if it is hot.'
+          'Show kids how to check a door with the back of the hand, and to use another way out if it is hot.',
+          'Close doors behind you as you leave. NFPA says it slows the fire and gives you more time.'
         ] },
         { head: 'Shelter drill', items: [
           'Practice going to your shelter spot for your local disasters, like a tornado safe room.',
@@ -1816,7 +1974,14 @@
         ] },
         { head: 'Keep it going', items: [
           'Do the fire drill at least twice a year. Test smoke alarms twice a year too.',
-          'Put the next date on the calendar before you finish.'
+          'Put the next date on the calendar before you finish.',
+          'NFPA says to let children learn the drill by day before you practice at night. Telling them before bed works as well as a surprise.'
+        ] },
+        { head: 'If you cannot get out', items: [
+          'NFPA suggests practicing how to seal yourself in if smoke blocks the way. Close the doors between you and the fire.',
+          'Stuff towels or tape in the door cracks, and cover vents, to keep smoke out.',
+          'Call the fire department and say exactly where you are. Wave a flashlight or a light-colored cloth at the window.',
+          'If you have an escape ladder, practice setting it up from a first-floor window. Children practice only with an adult.'
         ] }
       ],
       mistakes: [
@@ -1824,8 +1989,8 @@
         'Not checking that windows and screens open.',
         'Skipping a drill because everyone "knows it".'
       ],
-      sources: ['ready-fireplan', 'ready-homefire', 'usfa-escape', 'nws-tsunami-before'],
-      checked: '2026-11-21'
+      sources: ['ready-fireplan', 'ready-homefire', 'usfa-escape', 'nws-tsunami-before', 'nfpa-escape'],
+      checked: '2026-11-26'
     },
 
     'plan-hazards': {
@@ -1834,7 +1999,8 @@
         { head: 'Look up your risks', items: [
           'FEMA\'s National Risk Index shows natural hazard risk by area. Ready.gov links to it from its evacuation page.',
           'Look up your address on the FEMA Flood Map Service Center.',
-          'Remember that flooding does not follow lines on a map. Where it rains, it can flood. Almost one-third of flood insurance claims come from outside high-risk areas.'
+          'Remember that flooding does not follow lines on a map. Where it rains, it can flood. Almost one-third of flood insurance claims come from outside high-risk areas.',
+          'A past landslide is the biggest risk factor for another, the Red Cross says. Any hill or mountain can have one.'
         ] },
         { head: 'Ask your local offices', items: [
           'Your county or state emergency management site has evacuation zones, routes and shelter plans.',
@@ -1844,7 +2010,8 @@
         { head: 'Think past the obvious', items: [
           'Hurricanes are not just a coastal problem. Rain, wind and tornadoes can reach far inland.',
           'A wildfire burn scar raises the chance of landslides for several years.',
-          'Floods can follow landslides, because the same rain starts both.'
+          'Floods can follow landslides, because the same rain starts both.',
+          'The Red Cross says to plan for emergencies that can happen anywhere, like home fires and floods, as well as the ones special to your region.'
         ] },
         { head: 'Set up warnings', items: [
           'Wireless Emergency Alerts come to most phones with no sign-up. Check your phone settings to make sure they are on.',
@@ -1853,7 +2020,8 @@
         ] },
         { head: 'Then use it', items: [
           'For each hazard on your list, decide: do we shelter here, or do we leave?',
-          'Read the National Weather Service safety page for each weather hazard you face.'
+          'Read the National Weather Service safety page for each weather hazard you face.',
+          'Learn what to do for the disasters where you travel or have just moved, too.'
         ] }
       ],
       mistakes: [
@@ -1861,8 +2029,8 @@
         'Planning only for the last disaster you saw.',
         'Leaving phone alerts turned off.'
       ],
-      sources: ['landfinder', 'fema-floodmap', 'nws-safety', 'ready-evacuation', 'ready-floods', 'fema-flood', 'ready-alerts'],
-      checked: '2026-11-21'
+      sources: ['landfinder', 'fema-floodmap', 'nws-safety', 'ready-evacuation', 'ready-floods', 'fema-flood', 'ready-alerts', 'redcross-plan', 'redcross-informed', 'redcross-landslide'],
+      checked: '2026-11-26'
     },
 
     'plan-kids': {
@@ -1933,7 +2101,8 @@
           'Ask your local emergency management office if it offers shelter for owners with pets. Your animal shelter or animal control can also give advice.',
           'Find a vet near where you would stay, and put the number in the kit.',
           'Never leave a pet chained outside.',
-          'For shelters in general, see the step on where to go if you cannot stay home.'
+          'For shelters in general, see the step on where to go if you cannot stay home.',
+          'The Red Cross says to call pet-friendly hotels ahead if you may need to leave, and ask if a no-pets rule can be waived in an emergency.'
         ] },
         { head: 'A buddy for when you are away', items: [
           'Set up a buddy system: a trusted neighbor, friend or relative who can care for or move your pets if you cannot get home.',
@@ -1963,7 +2132,9 @@
           'Take your pet on car rides, so the trip is not new on the day.',
           'Note where your pets hide, and practice catching them. A cat can go in a pillowcase or sturdy box if the carrier is not at hand.',
           'Have the whole family practice leaving with the pets, so everyone knows what to take and where to meet.',
-          'Bring pets indoors at the first sign or warning of a storm.'
+          'Bring pets indoors at the first sign or warning of a storm.',
+          'Be ready to house your pets apart, even if they usually live together.',
+          'A rescue sticker on a front window tells rescuers how many pets, and what kinds, are inside, with your vet\'s number. If you leave with them, write "EVACUATED" across it.'
         ] },
         { head: 'In a shelter and after', items: [
           'Owners of dogs, cats and ferrets should bring proof of rabies shots to a shelter that takes pets.',
@@ -1971,7 +2142,8 @@
           'Wash your hands after touching pets, their food or their waste. Do not let pets play in or drink flood water.',
           'After a disaster, smells and landmarks change and pets get lost. Keep them leashed outside, and check the home for sharp objects, spilled chemicals and bare wires.',
           'If a pet goes missing, call the microchip company and check local shelters and animal control.',
-          'For horses, goats, pigs and other large animals, see the step on livestock and horses.'
+          'For horses, goats, pigs and other large animals, see the step on livestock and horses.',
+          'The Red Cross says its shelters try to take household pets, though they may be housed in a separate place run by animal groups. Ready.gov says many shelters do not take pets, so keep another place lined up.'
         ] }
       ],
       mistakes: [
@@ -1980,7 +2152,7 @@
         'Old phone numbers on the microchip.',
         'No buddy who can reach the pets when you are at work.'
       ],
-      sources: ['ready-pets', 'ready-petsheet', 'cdc-pets-em', 'cdc-pet-kit', 'cdc-pet-evac'],
+      sources: ['ready-pets', 'ready-petsheet', 'cdc-pets-em', 'cdc-pet-kit', 'cdc-pet-evac', 'redcross-pets', 'redcross-shelter'],
       checked: '2026-11-26'
     },
 
@@ -2001,7 +2173,9 @@
           'Glasses or contact lens supplies.',
           'Copies of ID, insurance cards and bank details, in a waterproof bag or saved where you can reach them from a phone.',
           'Your family plan card with phone numbers and meeting spots.',
-          'Cash in small bills. Card readers may be down.'
+          'Cash in small bills. Card readers may be down.',
+          'A small card listing your medicines and doses, the Red Cross suggests, plus proof of address and a copy of your deed or lease.',
+          'An extra set of car and house keys.'
         ] },
         { head: 'Clothes and comfort', items: [
           'A full change of clothes for the season, and sturdy shoes.',
@@ -2018,6 +2192,12 @@
           'Add a paper map with your routes out marked.',
           'Keep it by the door or in the vehicle.',
           'Twice a year, swap the water, food and medicine, and check the batteries.'
+        ] },
+        { head: 'How much to pack', items: [
+          'The list above says at least a day of water and food. The Red Cross suggests a go-kit with 3 days of supplies you can carry, and a home kit with 2 weeks.',
+          'Water at one gallon per person per day, the Red Cross says, for both kits.',
+          'For medicine, the Red Cross kit list says a 7-day supply. Its storm pages say to keep a 1-month supply on hand, in a child-proof container.',
+          'Pack backup batteries and chargers for anything you rely on, like a phone, a breathing machine or a power wheelchair.'
         ] }
       ],
       mistakes: [
@@ -2025,8 +2205,8 @@
         'Letting the medicine in it run past its date.',
         'Keeping the only copy of your papers in the bag.'
       ],
-      sources: ['ready-kit', 'redcross-kit'],
-      checked: '2026-11-21'
+      sources: ['ready-kit', 'redcross-kit', 'redcross-hurricane'],
+      checked: '2026-11-26'
     },
 
     'hz-tornado': {
@@ -2036,7 +2216,8 @@
           'Best: a safe room built to FEMA criteria, or a storm shelter built to ICC 500.',
           'Next best: a basement, or a small room on the lowest floor with no windows, in the middle of a sturdy building.',
           'In a mobile home, or a home without a basement, pick a nearby sturdy building you can reach quickly.',
-          'Sheds, mobile homes and tents are not safe.'
+          'Sheds, mobile homes and tents are not safe.',
+          'The Red Cross says to find a shelter spot in every place you spend a lot of time, not just at home.'
         ] },
         { head: 'Watch or warning', cols: ['Alert', 'What it means', 'What you do'], rows: [
           ['Tornado watch', 'Tornadoes are possible', 'Review the plan, check supplies and the safe spot, be ready to move'],
@@ -2052,20 +2233,30 @@
         { head: 'Get the warning', items: [
           'Learn your community\'s warnings. If you have sirens, know the tone.',
           'Keep a NOAA Weather Radio, and make sure phone alerts are on.',
-          'Signs to know: a rotating funnel cloud, a cloud of debris coming toward you, or a loud roar like a freight train.'
+          'Signs to know: a rotating funnel cloud, a cloud of debris coming toward you, or a loud roar like a freight train.',
+          'You may not always get a warning, the Red Cross says. If you feel you are in danger, take shelter.'
         ] },
         { head: 'Practice', items: [
           'Have a family drill so everyone goes to the spot when a warning comes.',
           'At work or school, follow the drill. Avoid large open rooms like gyms and cafeterias.'
+        ] },
+        { head: 'After it passes', items: [
+          'Stay in your shelter until the warning is over.',
+          'Do not go into damaged buildings. If yours is damaged, leave with care. Leave right away if you smell gas.',
+          'If you are trapped, cover your mouth with a cloth. Text, bang on a pipe or wall, or blow a whistle instead of shouting.',
+          'Do not use matches or lighters inside. Use flashlights.',
+          'Clean up in thick-soled shoes, long pants and work gloves. Keep children out of cleanup.',
+          'Do not move someone with a back or neck injury unless they are in danger. Call 911.'
         ] }
       ],
       mistakes: [
         'Hiding under a bridge or overpass. It gives little protection.',
         'Waiting to see the tornado before you move.',
-        'Staying in a mobile home.'
+        'Staying in a mobile home.',
+        'Shouting for help when trapped, instead of texting, banging on a pipe or using a whistle.'
       ],
-      sources: ['ready-tornadoes', 'nws-tornado-alerts', 'nws-tornado-during', 'nws-tornado-prep'],
-      checked: '2026-11-21'
+      sources: ['ready-tornadoes', 'nws-tornado-alerts', 'nws-tornado-during', 'nws-tornado-prep', 'redcross-tornado'],
+      checked: '2026-11-26'
     },
 
     'hz-hurricane': {
@@ -2093,11 +2284,13 @@
           'Bring in outside furniture, bikes, grills, propane tanks and building materials, or put them under cover. Loose things become flying debris.',
           'Consider hurricane shutters, or plan to nail plywood to the outside window frames.',
           'Keep at least half a tank of gas, and a full tank when a storm is coming. Gas stations may be closed during emergencies.',
-          'Before the storm, fill clean containers with drinking water. Fill sinks and tubs with water for washing.'
+          'Before the storm, fill clean containers with drinking water. Fill sinks and tubs with water for washing.',
+          'Anchor what is unsafe to bring in, like a gas grill or propane tank. Trim or remove trees close enough to fall on the house, the Red Cross says.',
+          'Keep plastic sheeting and sandbags on hand. Think about raising the furnace, water heater and electric panel above flood level.'
         ] },
         { head: 'When a storm comes', items: [
           'If officials tell your zone to leave, go right away. Even sturdy houses may not hold up.',
-          'If you leave, take only what you need: phone, chargers, medicine, ID and cash. If you have time, unplug appliances and turn off gas, power and water.',
+          'If you leave, take only what you need: phone, chargers, medicine, ID and cash. If you have time, unplug appliances. Turn off gas, power and water if officials tell you to.',
           'Follow the roads officials name, even with traffic. Other roads may be blocked or flooded.',
           'If you stay for wind, use a storm shelter or an inside room with no windows, or a closet.',
           'Stay inside until you hear an official all-clear. A calm can come in the middle of the storm, and the weather can turn bad again fast.',
@@ -2110,7 +2303,8 @@
           'Stay out of flood water. It can carry germs, chemicals, waste and debris, and power lines can charge it. If you must be near it, wear a life jacket, and wash your hands after.',
           'Stay clear of fallen power lines, including ones hanging overhead. Report them to the electric company.',
           'Stay out of a building if you smell gas, water is still around it, or officials have not called it safe. Leave if you hear shifting or odd noises.',
-          'Save calls for emergencies. Text family instead.'
+          'Save calls for emergencies. Text family instead.',
+          'Heart attacks are a leading cause of death after a hurricane, the Red Cross says. Pace yourself, and work with a partner on heavy debris.'
         ] },
         { head: 'After the storm: power, heat and people', items: [
           'Carbon monoxide is one of the leading causes of death after storms. Never run a generator, pressure washer, grill or camp stove inside the home, basement or garage. Keep it outside, at least 20 feet from windows, doors and vents.',
@@ -2128,7 +2322,7 @@
         'Climbing into a closed attic to escape rising water.',
         'Running a generator in the garage with the door open.'
       ],
-      sources: ['ready-hurricanes', 'nws-hurricane', 'nws-hurricane-prep', 'nws-hurr-ww', 'nws-hurr-after', 'cdc-hurr-prep', 'cdc-hurr-after', 'cdc-co', 'ready-heat', 'ready-evacuation', 'ready-floods'],
+      sources: ['ready-hurricanes', 'nws-hurricane', 'nws-hurricane-prep', 'nws-hurr-ww', 'nws-hurr-after', 'cdc-hurr-prep', 'cdc-hurr-after', 'cdc-co', 'ready-heat', 'ready-evacuation', 'ready-floods', 'redcross-hurricane'],
       checked: '2026-11-26'
     },
 
@@ -2138,7 +2332,9 @@
         { head: 'Know your risk', items: [
           'Look up your address on the FEMA Flood Map Service Center.',
           'Know where water collects on the roads you drive most.',
-          'Know the fastest way to higher ground that does not cross low spots.'
+          'Know the fastest way to higher ground that does not cross low spots.',
+          'Flash floods can come with little or no warning. The Red Cross says to pick a place on higher ground you can reach quickly.',
+          'Know the kinds of flooding near you: flash floods, river floods, storm surge, burn scars, ice jams, and dam or levee breaks.'
         ] },
         { head: 'How little water it takes', cols: ['Moving water', 'What it can do'], rows: [
           ['6 inches', 'Knock an adult off their feet'],
@@ -2162,15 +2358,22 @@
           'If moving water traps you, get to the highest point and call 911 if you can.',
           'If water is rising inside your car, get on the roof.',
           'Do not go into a room where water covers outlets or cords.'
+        ] },
+        { head: 'After the water goes down', items: [
+          'Wait for officials to say it is safe before going home. Stay away from downed power lines.',
+          'Clean up in boots, long pants, work gloves, eye protection and an N95 mask. Work with a partner and take breaks.',
+          'Dry the home and everything in it within 24 to 48 hours if you can. If you cannot, the Red Cross says to assume mold is growing.',
+          'Throw out food that got wet or warm. Ask the health department whether the tap water is safe to drink.'
         ] }
       ],
       mistakes: [
         'Driving into water you cannot see the bottom of.',
         'Buying flood insurance when the storm is already coming.',
-        'Going into a closed attic. You can be trapped.'
+        'Going into a closed attic. You can be trapped.',
+        'Waiting days to dry out a flooded home. After 24 to 48 hours, expect mold.'
       ],
-      sources: ['ready-floods', 'nws-turnaround', 'nws-flood-before', 'fema-floodmap', 'fema-flood'],
-      checked: '2026-11-21'
+      sources: ['ready-floods', 'nws-turnaround', 'nws-flood-before', 'fema-floodmap', 'fema-flood', 'redcross-flood'],
+      checked: '2026-11-26'
     },
 
     'hz-wildfire': {
@@ -2180,14 +2383,15 @@
           ['Immediate', '0 to 5 feet', 'Clear roof and gutters of leaves and needles. Fix loose shingles. Move mulch, plants, leaves and firewood away from the walls.'],
           ['Intermediate', '5 to 30 feet', 'Mow grass to 4 inches. Remove plants under trees. Prune trees 6 to 10 feet up from the ground.'],
           ['Extended', '30 to 100 feet', 'Clear ground litter and dead plants. Remove dead trees. Clear plants from around sheds.']
-        ], note: 'The first 5 feet is the most important zone, because embers are most likely to land there. Your local fire department may have stricter rules.' },
+        ], note: 'The first 5 feet is the most important zone, because embers are most likely to land there. Your local fire department may have stricter rules. NFPA says embers can blow more than a mile, and most homes that burn are lit by embers and small flames.' },
         { head: 'More for the first 5 feet', items: [
           'Use gravel, pavers or concrete there instead of bark or wood-chip mulch.',
           'Keep the space under decks, porches and stairs free of plants and things that burn.',
           'Do not keep firewood or lumber there. Keep wood piles farther out, with 10 feet cleared around them.',
           'Move trash cans and recycling bins out of this zone, and keep less that burns on the deck.',
           'Keep tree branches 10 feet from the chimney.',
-          'These tips come from California\'s state fire agency. Ask your local fire department what applies where you live.'
+          'These tips come from California\'s state fire agency. Ask your local fire department what applies where you live.',
+          'NFPA says to cover vents in the eaves and attic with 1/8-inch metal mesh to keep embers out, and to screen or box in the space under decks.'
         ] },
         { head: 'Get ready and get set', items: [
           'Ready, Set, Go: get ready by clearing the zones, get set with a plan and go-bags, and go early.',
@@ -2200,7 +2404,7 @@
         ] },
         { head: 'Go early, and close up if there is time', items: [
           'Leave right away when officials say to. If you feel at risk, do not wait for an order.',
-          'Inside: shut all windows and doors but leave them unlocked. Take down curtains that burn, and move things that burn to the middle of rooms. Turn off the gas at the meter and the air conditioning. Leave lights on.',
+          'Inside: shut all windows and doors but leave them unlocked. Take down curtains that burn, and move things that burn to the middle of rooms. For wildfire, CAL FIRE says to turn off the gas at the meter and the air conditioning. Leave lights on.',
           'Outside: bring in patio furniture, doormats and trash bins. Shut off propane tanks and move grills away from the house.',
           'Hook hoses to the outside taps for firefighters, but do not leave sprinklers or water running. It lowers water pressure.',
           'Park the car facing out, loaded, with the windows shut.',
@@ -2218,7 +2422,9 @@
           'Set the air system to recirculate and close the outside air intake.',
           'Use a portable air cleaner in a closed-off room. For how to set it up, see the step on a clean-air room for wildfire smoke.',
           'Do not go home until officials say it is safe. Hot ash, embers and hidden hot spots can burn you or start a new fire.',
-          'Photograph the damage, make a list, and call your insurance company.'
+          'Photograph the damage, make a list, and call your insurance company.',
+          'Watch for pits of ash in the ground. Hot embers can hide under them. Mark them and warn others, the Red Cross says.',
+          'Clean up ash in gloves, long sleeves, long pants, goggles and an N95. Children, pregnant women and people with asthma, heart or lung problems should not breathe ash dust.'
         ] }
       ],
       mistakes: [
@@ -2227,7 +2433,7 @@
         'Leaving sprinklers running when you go. It drains the water firefighters need.',
         'Going home before officials say it is safe. The ground can hold hidden hot spots.'
       ],
-      sources: ['ready-wildfires', 'usfa-wildfire', 'usfa-zones', 'calfire-space', 'calfire-rsg', 'calfire-go'],
+      sources: ['ready-wildfires', 'usfa-wildfire', 'usfa-zones', 'calfire-space', 'calfire-rsg', 'calfire-go', 'nfpa-wildfire', 'redcross-wildfire'],
       checked: '2026-11-26'
     },
 
@@ -2245,7 +2451,8 @@
           'Keep heavy and breakable things on low shelves.',
           'Hang pictures and mirrors on closed hooks.',
           'Put latches on kitchen cabinets above waist level so the doors stay shut.',
-          'Strap down the TV, computer and microwave with flexible straps.'
+          'Strap down the TV, computer and microwave with flexible straps.',
+          'The Red Cross adds the refrigerator and the TV to the list of things to secure. Straps, hooks and latches are made for this.'
         ] },
         { head: 'The water heater', items: [
           'Fasten it to the wall studs with metal straps. Strap kits are sold at hardware stores.',
@@ -2265,14 +2472,17 @@
           'Hold on until the shaking stops. Under a table, hold it with one hand and move with it.',
           'In bed: turn face down and cover your head and neck with a pillow.',
           'Stay inside. Do not run out, and do not stand in a doorway.',
-          'In a walker or wheelchair: lock the wheels, bend over, cover your head and neck, and hold on.'
+          'In a walker or wheelchair: lock the wheels, bend over, cover your head and neck, and hold on.',
+          'The Red Cross suggests a small bag tied to each bed: sturdy shoes, a flashlight, glasses, a dust mask and a whistle.'
         ] },
         { head: 'After the shaking', items: [
           'Expect aftershocks. Drop, Cover, Hold On again each time.',
           'If the building is damaged, go outside and move away from it.',
           'If you are trapped, text, bang on a pipe or wall, or use a whistle. Save your voice.',
           'Near the coast, head inland or to high ground as soon as the shaking stops.',
-          'For a medical emergency, call 911. Use texts for everything else; they can work better than calls.'
+          'For a medical emergency, call 911. Use texts for everything else; they can work better than calls.',
+          'The Red Cross says to wait a minute before you get up, then put on sturdy shoes. Broken glass is one of the most common earthquake injuries.',
+          'Do not use matches, lighters or light switches until you know there is no gas leak. A spark can set off the gas.'
         ] }
       ],
       mistakes: [
@@ -2281,8 +2491,8 @@
         'Turning the gas back on yourself.',
         'Thinking home insurance covers it. A standard policy does not cover earthquake damage.'
       ],
-      sources: ['ready-earthquakes', 'fema-eqhunt', 'ready-skills'],
-      checked: '2026-11-21'
+      sources: ['ready-earthquakes', 'fema-eqhunt', 'ready-skills', 'rc-earthquake'],
+      checked: '2026-11-26'
     },
 
     'hz-winter': {
@@ -2320,7 +2530,15 @@
           'Stuck: stay with the vehicle. In wind-driven snow you can lose your way fast.',
           'Run the engine about 10 minutes each hour for heat. Crack a window and clear snow from the exhaust pipe first.',
           'Be easy to find: dome light on at night while the engine runs, a bright cloth on the antenna or door, and the hood up once the snow stops.',
-          'Move your arms, legs, fingers and toes now and then. Do not wear yourself out pushing or digging.'
+          'Move your arms, legs, fingers and toes now and then. Do not wear yourself out pushing or digging.',
+          'The Red Cross says to leave the vehicle only if help is in sight, within about 100 yards.',
+          'Huddle together. Wrap up in floor mats, maps or newspapers to hold in body heat. If more than one of you is there, take turns sleeping.'
+        ] },
+        { head: 'If the heat goes out', items: [
+          'Know where you will go if the house gets too cold: a friend\'s house, a public library or a warming center (Red Cross).',
+          'Keep anything that can burn at least 3 feet from space heaters and fireplaces. Use flashlights, not candles.',
+          'If the heat may stay off for a long time in freezing weather, Purdue Extension says to shut the main water valve, or the well pump if it is inside, and open every faucet until the lines drain.',
+          'Drain the toilet tanks too, and the drains and hoses on the washer and dishwasher. Purdue says never to put antifreeze in those appliances.'
         ] }
       ],
       mistakes: [
@@ -2329,8 +2547,8 @@
         'Running the engine with the exhaust pipe packed with snow.',
         'Heating the house with the oven.'
       ],
-      sources: ['ready-winter', 'nws-winter-before', 'nws-winter-during', 'nws-cold-pipes', 'ready-skills'],
-      checked: '2026-11-21'
+      sources: ['ready-winter', 'nws-winter-before', 'nws-winter-during', 'nws-cold-pipes', 'ready-skills', 'redcross-winter', 'purdue-plumbing'],
+      checked: '2026-11-26'
     },
 
     'hz-chemical': {
@@ -2339,7 +2557,8 @@
         { head: 'Pick the room', items: [
           'An inside room above ground, with as few windows and doors as you can.',
           'Big enough for everyone and your pets.',
-          'Keep plastic sheeting, duct tape, scissors and a radio there.'
+          'Keep plastic sheeting, duct tape, scissors and a radio there.',
+          'The Red Cross explains why it should be above ground: some chemicals are heavier than air and can seep into a basement even with the windows shut.'
         ] },
         { head: 'Know your air system', items: [
           'Learn how to turn off the furnace, air conditioner and fans.',
@@ -2362,16 +2581,26 @@
         { head: 'Stay tuned and stay in', items: [
           'Listen to local radio or TV. Some chemicals have no smell.',
           'Do not go outside, even to help others, until officials say it is safe.',
-          'If officials say to leave instead, leave right away.'
+          'If officials say to leave instead, leave right away.',
+          'Use the phone only for a life-threatening emergency. Call 911, or Poison Control at 1-800-222-1222.',
+          'If someone seems hurt by a chemical, make sure you are not in danger before you help.'
+        ] },
+        { head: 'Prevent accidents at home', items: [
+          'Most chemical accidents happen at home, the Red Cross says, and most can be prevented.',
+          'Never mix household products. Ammonia and bleach together make a toxic gas.',
+          'Keep products closed in their first containers. Buy only what you will use.',
+          'Keep medicines and cleaners out of sight and reach of children.',
+          'If a child swallows something, take the container to the phone and call Poison Control or 911. Do not give anything by mouth unless they tell you to.'
         ] }
       ],
       mistakes: [
         'Picking a basement. Ready.gov says to use a room above ground.',
         'Leaving the air running while you seal the room.',
-        'Going out to check before officials give the all-clear.'
+        'Going out to check before officials give the all-clear.',
+        'Mixing bleach with ammonia or other cleaners to make them stronger.'
       ],
-      sources: ['ready-chemical', 'ready-shelter'],
-      checked: '2026-11-21'
+      sources: ['ready-chemical', 'ready-shelter', 'redcross-chemical', 'redcross-terror'],
+      checked: '2026-11-26'
     },
 
     'att-nuclear': {
@@ -2399,7 +2628,9 @@
           'A battery or hand-crank radio is the best way to hear officials. Keep spare batteries.',
           'Texts may get through when calls do not.',
           'If a device stops working, take the batteries out, put them back and restart it.',
-          'Officials will say when and how to leave, and where to go to be checked.'
+          'Officials will say when and how to leave, and where to go to be checked.',
+          'Call your family contact, then use the phone only for a life-threatening emergency, the Red Cross says.',
+          'Take turns listening to the news with the other adults. Keep children from watching the same upsetting footage again and again; young children may think it is happening again.'
         ] },
         { head: 'Food and water', items: [
           'Food and drink that was inside, or sealed, is safe. Wipe sealed containers that were outside.',
@@ -2412,8 +2643,8 @@
         'Using household cleaning wipes or hand sanitizer on skin. Use soap and water or a clean wet cloth.',
         'Turning on a fan or furnace that pulls in outside air.'
       ],
-      sources: ['ready-radiation', 'cdc-getinside', 'cdc-stayinside', 'cdc-staytuned'],
-      checked: '2026-11-21'
+      sources: ['ready-radiation', 'cdc-getinside', 'cdc-stayinside', 'cdc-staytuned', 'redcross-terror'],
+      checked: '2026-11-26'
     },
 
     'att-clean': {
@@ -2421,7 +2652,8 @@
       parts: [
         { head: 'Get ready now', items: [
           'Pack a spare change of clothes for each person in your kit.',
-          'Add a trash bag for clothes that need to come off.'
+          'Add a trash bag for clothes that need to come off.',
+          'The Red Cross notes you can be exposed to a chemical even when you cannot see or smell anything unusual.'
         ] },
         { head: 'Take off the outer layer', items: [
           'Taking off your outer layer of clothes can remove up to 90 percent of radioactive material.',
@@ -2450,7 +2682,9 @@
           'Food and drinks that stayed inside are safe.',
           'Sealed cans and containers from outside are fine once you wipe them with a damp cloth. Bag the cloth.',
           'Do not eat from the garden, or anything left outside uncovered, until officials say it is safe.',
-          'After a germ exposure, contact the authorities and get medical help. For a medical emergency, call 911.'
+          'After a germ exposure, contact the authorities and get medical help. For a medical emergency, call 911.',
+          'If you find someone hurt by a chemical, make sure you are not in danger yourself before you help, the Red Cross says.',
+          'For a swallowed chemical, call Poison Control at 1-800-222-1222, or 911. Give nothing by mouth until they tell you to.'
         ] }
       ],
       mistakes: [
@@ -2458,8 +2692,8 @@
         'Scrubbing hard, or using very hot water.',
         'Using cleaning wipes or hand sanitizer instead of soap and water.'
       ],
-      sources: ['cdc-decon', 'ready-radiation', 'ready-bio'],
-      checked: '2026-11-21'
+      sources: ['cdc-decon', 'ready-radiation', 'ready-bio', 'redcross-chemical'],
+      checked: '2026-11-26'
     },
 
     'att-kit': {
@@ -2607,7 +2841,8 @@
         ] },
         { head: 'Money', items: [
           'Keep some cash at home in small bills, in a safe place.',
-          'Keep at least half a tank of gas. Pumps may not work.'
+          'Keep at least half a tank of gas. Pumps may not work.',
+          'Mississippi State Extension suggests cash for several days of living costs, and a few blank checks from each account.'
         ] },
         { head: 'Getting news', items: [
           'A battery or hand-crank radio keeps working when other ways fail.',
@@ -2618,7 +2853,9 @@
         { head: 'Finding each other', items: [
           'Agree now on where you will meet if you cannot reach each other, and when.',
           'Know how each person gets home with no phone map.',
-          'When a network comes back, try a text first. Texts get through more easily than calls.'
+          'When a network comes back, try a text first. Texts get through more easily than calls.',
+          'If you cannot reach someone, the Red Cross suggests another way: an email, a letter, or a call to friends, neighbors or their workplace.',
+          'Call at off-peak hours for the best chance of getting through.'
         ] },
         { head: 'After it is back', items: [
           'Check bank and card statements and your credit reports for anything you did not do.',
@@ -2630,8 +2867,8 @@
         'Having no cash at home.',
         'No meeting plan for when the phones are out.'
       ],
-      sources: ['ready-cyber', 'ready-plan', 'ready-power', 'ready-money', 'ready-alerts', 'ready-commuter'],
-      checked: '2026-11-21'
+      sources: ['ready-cyber', 'ready-plan', 'ready-power', 'ready-money', 'ready-alerts', 'ready-commuter', 'msstate-gobox', 'redcross-reconnect'],
+      checked: '2026-11-26'
     },
 
     'att-cyber-backup': {
@@ -2684,7 +2921,8 @@
           'Keep at least half a tank of gas. Fill it when trouble looks likely; stations may be closed or without power.',
           'Keep the go-bag where everyone knows, with one person in charge of it.',
           'Keep an emergency kit in the car.',
-          'Know a place in each direction to go.'
+          'Know a place in each direction to go.',
+          'The Red Cross says to practice leaving twice a year: grab your kit as if it were real, and drive the route.'
         ] },
         { head: 'The grab list', items: [
           'The go-bag and medicine.',
@@ -2699,7 +2937,8 @@
           'Unplug small electronics. Leave the fridge and freezer on unless there is a flood risk.',
           'If the home is damaged and officials say to, shut off water, gas and power.',
           'Leave a note saying when you left and where you went.',
-          'Wear sturdy shoes, long pants, long sleeves and a hat.'
+          'Wear sturdy shoes, long pants, long sleeves and a hat.',
+          'Leave the natural gas on unless officials say to turn it off. Only a professional can turn it back on, and after a disaster that can take weeks, the Red Cross says.'
         ] },
         { head: 'On the road', items: [
           'Take one car per family to cut traffic.',
@@ -2710,7 +2949,8 @@
         { head: 'Coming home', items: [
           'Wait until officials say it is safe, both where you are and back home.',
           'Stay away from downed power lines and report them.',
-          'Run a generator only outside, away from the house.'
+          'Run a generator only outside, away from the house.',
+          'Go back only when you have the supplies you will need, the Red Cross says.'
         ] }
       ],
       mistakes: [
@@ -2718,8 +2958,8 @@
         'Leaving late and getting caught by the weather.',
         'Never timing it, so you find out on the day.'
       ],
-      sources: ['ready-evacuation'],
-      checked: '2026-11-21'
+      sources: ['ready-evacuation', 'redcross-plan', 'redcross-terror', 'redcross-hurricane'],
+      checked: '2026-11-26'
     },
 
     'hz-storm': {
@@ -2730,7 +2970,9 @@
           'Fix loose gutters and shutters.',
           'Make a list of what is outside that must be tied down or put away.',
           'Charge phones, battery packs and the weather radio.',
-          'Surge protectors help guard electronics from lightning.'
+          'Surge protectors help guard electronics from lightning.',
+          'Keep gutters, drains and downspouts clear.',
+          'Tie down or secure things that are unsafe to bring inside, like a gas grill or a propane tank (Red Cross).'
         ] },
         { head: 'Pick your storm room', items: [
           'A small inside room on the lowest floor: a basement, an inside bathroom or a closet.',
@@ -2748,7 +2990,8 @@
           'Safe places: a solid building with wiring and plumbing, or a hard-topped vehicle with the windows up. Rain shelters, small sheds and open vehicles are not safe.',
           'Inside, stay off corded phones and plugged-in electronics, out of the shower and sink, and away from windows and doors.',
           'Wait 30 minutes after the last thunder before going back out.',
-          'Someone struck by lightning carries no charge and is safe to touch. Call 911 and start CPR if needed.'
+          'Someone struck by lightning carries no charge and is safe to touch. Call 911 and start CPR if needed.',
+          'The Red Cross says taking shelter under a tree is the leading cause of lightning deaths.'
         ] },
         { head: 'On the road', items: [
           'Avoid driving through severe storms. Pull over or wait.',
@@ -2758,7 +3001,9 @@
         ] },
         { head: 'After the storm', items: [
           'Stay inside until the storm has passed and alerts say it is safe to go out.',
-          'Watch for fallen trees and power lines. A line on the ground may be live. Stay away and report it.'
+          'Watch for fallen trees and power lines. A line on the ground may be live. Stay away and report it.',
+          'Use flashlights, not candles. Run generators, grills and camp stoves only outside, away from windows.',
+          'Throw out food that got wet or warm. When in doubt, throw it out.'
         ] }
       ],
       mistakes: [
@@ -2767,8 +3012,8 @@
         'Waiting for the warning to start tying things down.',
         'Driving into a flooded road.'
       ],
-      sources: ['ready-thunderstorms', 'nws-wind-before', 'nws-wind-during', 'nws-lightning', 'nws-severe-rules'],
-      checked: '2026-11-21'
+      sources: ['ready-thunderstorms', 'nws-wind-before', 'nws-wind-during', 'nws-lightning', 'nws-severe-rules', 'rc-thunderstorm'],
+      checked: '2026-11-26'
     },
 
     'hz-drought': {
@@ -2786,7 +3031,9 @@
           'Do not let the water run while you brush your teeth or shave.',
           'Run the washer and dishwasher only when full.',
           'Catch the cold water while you wait for hot, and use it on plants.',
-          'Wash vegetables in a pan of water, not under the tap. Thaw food in the fridge, not under running water.'
+          'Wash vegetables in a pan of water, not under the tap. Thaw food in the fridge, not under running water.',
+          'Keep a bucket in the shower to catch water for plants. The American Red Cross also suggests turning the water off while you lather.',
+          'Washing dishes by hand? Fill one basin with soapy water and one with rinse water, instead of running the tap.'
         ] },
         { head: 'Save water outside', items: [
           'Water early in the morning or in the evening, when it is cool.',
@@ -2794,13 +3041,15 @@
           'Before you water a lawn, check the soil. If it is moist, or the grass springs back, skip it.',
           'Mulch around trees and plants to hold water in the soil.',
           'Drip watering and native, drought-tolerant plants need less water.',
-          'In a bad drought, let the lawn go and save water for trees and large shrubs.'
+          'In a bad drought, let the lawn go and save water for trees and large shrubs.',
+          'The Red Cross says most lawns need water only every 5 to 7 days in summer and every 10 to 14 days in winter. A heavy rain covers up to two weeks.'
         ] },
         { head: 'Rules, wells and rain', items: [
           'Follow your state and local water limits. Your water utility or local government posts them.',
           'On a well, if the pump turns on while no water is running, you have a leak.',
           'Catch rainwater where it is practical and allowed, for the garden and animals.',
-          'Never pour water down the drain if it could water a plant or garden.'
+          'Never pour water down the drain if it could water a plant or garden.',
+          'The Red Cross notes that water limits apply to you even if your water comes from your own well.'
         ] }
       ],
       mistakes: [
@@ -2808,8 +3057,8 @@
         'Ignoring a toilet that runs or refills on its own.',
         'Watering in the heat of the day.'
       ],
-      sources: ['ready-drought', 'epa-leaks', 'umn-garden-water'],
-      checked: '2026-11-21'
+      sources: ['ready-drought', 'epa-leaks', 'umn-garden-water', 'redcross-drought'],
+      checked: '2026-11-26'
     },
 
     'hz-landslide': {
@@ -2819,7 +3068,9 @@
           'See where gutters, the driveway and storm water run. Water poured onto a slope weakens it.',
           'Keep native plants on slopes. Their roots help hold the soil.',
           'Do not dump yard waste on a slope. It adds weight and smothers roots.',
-          'Ask your county planning office about landslide maps and local geologists.'
+          'Ask your county planning office about landslide maps and local geologists.',
+          'A past landslide is the biggest risk factor for another, the Red Cross says. Even a few inches of movement can crack a foundation and break water and sewer lines.',
+          'Do not cut into steep slopes. Ask a professional to survey your land if you are unsure.'
         ] },
         { head: 'Slow signs, around the house', items: [
           'Doors or windows that stick for the first time.',
@@ -2827,7 +3078,8 @@
           'Walls, walks or stairs pulling away from the house.',
           'Widening cracks in the ground, street or driveway.',
           'Fences, walls, poles or trees that tilt. Bulging ground at the base of a slope.',
-          'Water coming up from the ground in new places.'
+          'Water coming up from the ground in new places.',
+          'Sagging utility lines, leaking pipes, and soil pulling away from the foundation.'
         ] },
         { head: 'Fast signs, in a storm', items: [
           'Rushing water or mud, or trees cracking and boulders knocking.',
@@ -2839,12 +3091,14 @@
           'Stay awake and alert in a storm that could cause a slide. Many people are caught while asleep.',
           'Leave if told to, or if it feels unsafe to stay.',
           'Never cross a road with water or mud flowing, or a bridge if a flow is coming.',
-          'If a slide is coming at you, move uphill fast. Stay out of valleys and low ground.'
+          'If a slide is coming at you, move uphill fast. Stay out of valleys and low ground.',
+          'Know the alerts. An advisory points out where slides could happen. A watch means slides are possible. A warning means slides are happening: leave the area.'
         ] },
         { head: 'Afterward', items: [
           'Stay away from the slide. More can follow, and floods often do too.',
           'Report broken utility lines and damaged roads.',
-          'Ask your insurance agent. Debris flow may be covered by flood insurance.'
+          'Ask your insurance agent. Debris flow may be covered by flood insurance.',
+          'Without going into the slide, look for hurt or trapped people and point rescuers to them.'
         ] }
       ],
       mistakes: [
@@ -2852,8 +3106,8 @@
         'Sending the gutter water onto the slope.',
         'Thinking no map means no risk.'
       ],
-      sources: ['ready-landslide', 'usgs-landslide-prep'],
-      checked: '2026-11-21'
+      sources: ['ready-landslide', 'usgs-landslide-prep', 'redcross-landslide'],
+      checked: '2026-11-26'
     },
 
     'hz-tsunami': {
@@ -2875,7 +3129,8 @@
           'A strong or long earthquake.',
           'A loud roar from the ocean, like a train or plane.',
           'The sea rising fast like a flood, or draining away to show the sea floor.',
-          'Any one of these is enough. Do not wait for an official warning.'
+          'Any one of these is enough. Do not wait for an official warning.',
+          'A natural sign may be your first or only warning, the Red Cross says. You may not get an official alert at all.'
         ] },
         { head: 'If the ground shakes', items: [
           'Drop, cover and hold on until the shaking stops.',
@@ -2885,16 +3140,24 @@
         { head: 'Stay away', items: [
           'The first wave may not be the last or the largest. Danger can last hours or days.',
           'Stay out of the zone until officials say it is safe.',
-          'If you are already outside the zone, stay where you are unless told otherwise.'
-        ] }
+          'If you are already outside the zone, stay where you are unless told otherwise.',
+          'Tsunami waves can flood, drain and flood the land again for hours, and reach more than a mile inland.',
+          'Afterward, stay off roads that flooded. They may be damaged and could collapse.'
+        ] },
+        { head: 'Official alerts', cols: ['Alert', 'What it means', 'What you do'], rows: [
+          ['Information statement', 'A quake happened, but there is no threat, or it is not known yet', 'Watch local news'],
+          ['Watch', 'A distant quake happened. A tsunami is possible', 'Be ready to act'],
+          ['Advisory', 'Dangerous currents or waves are expected', 'Stay out of the water and off beaches'],
+          ['Warning', 'Widespread flooding is expected', 'Move to high ground or inland now']
+        ], note: 'From the Red Cross. Alerts come on local radio, TV, weather radios and phone alerts.' }
       ],
       mistakes: [
         'Going to the beach to watch the water pull back.',
         'Driving when you could walk.',
         'Going back after the first wave.'
       ],
-      sources: ['ready-tsunamis', 'nws-tsunami-before', 'nws-tsunami-during'],
-      checked: '2026-11-21'
+      sources: ['ready-tsunamis', 'nws-tsunami-before', 'nws-tsunami-during', 'redcross-tsunami'],
+      checked: '2026-11-26'
     },
 
     'hz-volcano': {
@@ -2909,7 +3172,9 @@
           'A well-fitting N95 mask for each person.',
           'Glasses for anyone who wears contacts. Ash under a lens can hurt the eye.',
           'Food, water, cleaning supplies and medicine for several days.',
-          'Anyone with breathing trouble should talk to their doctor ahead of time.'
+          'Anyone with breathing trouble should talk to their doctor ahead of time.',
+          'An N95 helps with ash for a short time, but it does not filter volcanic gases, the Red Cross says.',
+          'Add goggles, long sleeves and long pants. Keep at least a gallon of water per person per day, since ash can make water unsafe.'
         ] },
         { head: 'If ash is coming', items: [
           'Go home if you can, before it falls.',
@@ -2920,12 +3185,14 @@
         { head: 'If told to leave', items: [
           'Leave early.',
           'Stay away from areas downwind, and river valleys downstream, of the volcano.',
-          'Avoid driving in heavy ash. It can clog engines and stall cars. If you must, keep windows up and the air off.'
+          'Avoid driving in heavy ash. It can clog engines and stall cars. If you must, keep windows up and the air off.',
+          'Stay out of river valleys. Fast mudflows called lahars can rush down them.'
         ] },
         { head: 'After the ash', items: [
           'Do not climb on the roof to clear ash unless you have training. Ash is slippery and heavy.',
           'Wear a mask and covering clothes to clean up. Children should not help.',
-          'If ash is in your water, let it settle and use the clear water.'
+          'If ash is in your water, let it settle and use the clear water.',
+          'Throw out food that was exposed to ash. The Red Cross adds: ask your health department whether your water is safe.'
         ] }
       ],
       mistakes: [
@@ -2933,8 +3200,8 @@
         'Wearing contacts in ashfall.',
         'Climbing on the roof to sweep it off.'
       ],
-      sources: ['ready-volcanoes', 'usgs-ash'],
-      checked: '2026-11-21'
+      sources: ['ready-volcanoes', 'usgs-ash', 'redcross-volcano'],
+      checked: '2026-11-26'
     },
 
     'hz-avalanche': {
@@ -2959,13 +3226,16 @@
           'An avalanche beacon, worn on you, so rescuers can find you.',
           'A probe and a small shovel, so you can find and dig out others.',
           'An avalanche airbag can help keep you from being buried all the way.',
-          'Practice with each one before the season.'
+          'Practice with each one before the season.',
+          'NOLS warns that a beacon only helps if you also carry a shovel and probe, are trained, have practiced searching, and travel with partners who can do the same.',
+          'Follow the maker\'s guidance on batteries. Newer beacons need more practice, not less.'
         ] },
         { head: 'Get trained', items: [
           'Take an avalanche class from a trained educator. The avalanche.org site lists course providers.',
           'Start with the "Know Before You Go" awareness video.',
           'Take first aid training too, so you can help with breathing problems, cold and injuries.',
-          'Tell someone where you are going and when to expect you back.'
+          'Tell someone where you are going and when to expect you back.',
+          'Never head into avalanche terrain alone. NOLS says always go with a partner or a group.'
         ] },
         { head: 'If someone is buried', items: [
           'Call 911, then start searching if it is safe.',
@@ -2979,8 +3249,8 @@
         'Carrying a beacon and probe you have never practiced with.',
         'Heading onto steep slopes right after new snow or strong wind.'
       ],
-      sources: ['ready-avalanche', 'avalanche-scale', 'avalanche-basics', 'nps-10essentials'],
-      checked: '2026-11-21'
+      sources: ['ready-avalanche', 'avalanche-scale', 'avalanche-basics', 'nps-10essentials', 'nols-avy-beacons', 'nols-backcountry-ski'],
+      checked: '2026-11-26'
     },
 
     'home-smoke': {
@@ -2991,14 +3261,18 @@
           'Outside each sleeping area.',
           'On every level, basement too.',
           'On the ceiling or high on the wall. Check the alarm\'s instructions.',
-          'Best: alarms linked together, so when one sounds they all sound.'
+          'Best: alarms linked together, so when one sounds they all sound.',
+          'NFPA adds: on a level with no bedrooms, put one in the living room or near the stairs to the next level.',
+          'In the basement, put it on the ceiling at the bottom of the stairs.'
         ] },
         { head: 'Which kind', items: [
           'There are two kinds, and they catch different fires. Have both kinds, or dual-sensor alarms that do both.',
           'Basic alarms start at about $6. Dual-sensor ones start at about $24.',
           'For someone with hearing loss, there are alarms that flash or shake.',
           'Some fire departments give out or put in alarms for free. Call their non-emergency number.',
-          'Hardwired alarms should be put in by an electrician.'
+          'Hardwired alarms should be put in by an electrician.',
+          'NFPA explains the two kinds: ionization alarms react faster to flaming fires, photoelectric alarms to smoldering ones.',
+          'If you link alarms, buy them all from the same maker. Alarms that do not match may not sound together.'
         ] },
         { head: 'Keep them working', cols: ['Power', 'Test', 'Battery', 'Replace the alarm'], rows: [
           ['9-volt battery', 'Monthly', 'At least once a year', 'Every 10 years'],
@@ -3008,22 +3282,30 @@
         { head: 'When cooking sets it off', items: [
           'Never take the battery out.',
           'Open a window or door, press the hush button, and wave a towel at it.',
-          'If it keeps happening, move the alarm a few feet farther from the kitchen or bathroom.'
+          'If it keeps happening, move the alarm a few feet farther from the kitchen or bathroom.',
+          'NFPA says to keep alarms at least 10 feet from the stove.',
+          'Keep them away from windows, doors and vents, where drafts can keep them from working. Never paint over one.'
         ] },
         { head: 'Pair it with a way out', items: [
           'Draw a map of the house with every door and window.',
           'Find two ways out of each room, and keep them clear.',
           'Pick a meeting spot outside, in front of the house.',
           'Push the test button to start a home fire drill, and practice getting out.'
+        ] },
+        { head: 'When it chirps', items: [
+          'A sealed 10-year alarm that chirps for low battery: replace the whole alarm right away (NFPA).',
+          'Any other alarm that chirps: change the battery right away.',
+          'Use the battery the maker lists on the back of the alarm. A different kind may not work right.'
         ] }
       ],
       mistakes: [
         'Pulling the battery while you cook.',
         'Counting 10 years from the day you put it up instead of the date made.',
-        'Skipping the monthly test on a sealed 10-year alarm.'
+        'Skipping the monthly test on a sealed 10-year alarm.',
+        'Painting over an alarm, or covering it with stickers.'
       ],
-      sources: ['usfa-smoke', 'usfa-escape', 'ready-kids-fire'],
-      checked: '2026-11-21'
+      sources: ['usfa-smoke', 'usfa-escape', 'ready-kids-fire', 'nfpa-smoke-alarms'],
+      checked: '2026-11-26'
     },
 
     'home-neighbors': {
@@ -3037,13 +3319,15 @@
         { head: 'Learn what is on the street', items: [
           'Find out who has useful equipment, like a generator.',
           'Find out who has skills that help in a crisis, like medical training.',
-          'Decide together who will check on older or disabled neighbors.'
+          'Decide together who will check on older or disabled neighbors.',
+          'The Red Cross calls this a support team: people you may help, and who can help you. Plan how you will help each other.'
         ] },
         { head: 'Plan the check-ins', items: [
           'Agree to check on each other if extreme cold or a storm knocks out power.',
           'Make a backup plan for the kids, in case you cannot get home.',
           'Ask a neighbor to check your house daily when you are away in winter, so the heat stays on.',
-          'Talk about who could help with pets, child care or passing messages.'
+          'Talk about who could help with pets, child care or passing messages.',
+          'In a winter storm, the Red Cross says to check that loved ones and neighbors are staying warm, older adults and babies most of all.'
         ] },
         { head: 'Put it on paper', items: [
           'Add their names and numbers to your family cards.',
@@ -3056,8 +3340,8 @@
         'Assuming someone else on the street will check on the older neighbor.',
         'Keeping the numbers only in your phone.'
       ],
-      sources: ['ready-locations', 'ready-resolution', 'ready-plan', 'ready-2-help', 'nws-cold-pipes'],
-      checked: '2026-11-21'
+      sources: ['ready-locations', 'ready-resolution', 'ready-plan', 'ready-2-help', 'nws-cold-pipes', 'redcross-winter', 'rc-earthquake'],
+      checked: '2026-11-26'
     },
 
     'home-check': {
@@ -3065,13 +3349,16 @@
       parts: [
         { head: 'Doors and windows', items: [
           'Check that no door or window you would use to get out is blocked by furniture or boxes.',
-          'Each room should have two ways out. Note any that do not.'
+          'Each room should have two ways out. Note any that do not.',
+          'NFPA says to check that each door and window on your way out opens easily.',
+          'Bars on a window or door need a quick-release latch inside, so you can open them at once in a fire.'
         ] },
         { head: 'Outside the house', items: [
           'Look for branches over the roof or near power lines. Trim the ones you can reach safely.',
           'Look for loose gutters, shutters and roof tiles.',
           'Look at a brick chimney. In an earthquake, bricks can fall into the house.',
-          'Make a list of yard items that wind could throw.'
+          'Make a list of yard items that wind could throw.',
+          'Check that your house number can be read from the street, so responders can find you. If not, put up numbers or paint them on the curb (NFPA).'
         ] },
         { head: 'Find the shutoffs on the way', items: [
           'The main water valve, where the line comes into the house. Tag it.',
@@ -3089,8 +3376,8 @@
         'Leaving dead limbs over the roof until the storm.',
         'Not knowing where the water valve is until a pipe bursts.'
       ],
-      sources: ['usfa-escape', 'nws-wind-before', 'fema-eqhunt', 'ready-skills'],
-      checked: '2026-11-21'
+      sources: ['usfa-escape', 'nws-wind-before', 'fema-eqhunt', 'ready-skills', 'nfpa-escape'],
+      checked: '2026-11-26'
     },
 
     'home-inventory': {
@@ -3100,24 +3387,31 @@
           'Photos and video of every major item and anything of value.',
           'Serial numbers, where items have them. Make and model for appliances and electronics.',
           'Parts of the house: the furnace, the water heater, the fridge and the stove.',
-          'Belongings: furniture, clothing, electronics, and valuables like art.'
+          'Belongings: furniture, clothing, electronics, and valuables like art.',
+          'Extension adds: open closets, cabinets, cupboards and drawers, and film what is inside.',
+          'Include the garage, basement, attic and outbuildings, and things family members keep away from home.'
         ] },
         { head: 'How to do it', items: [
           'Go room by room so you do not miss one.',
           'Say what each big item is as you film it.',
-          'Get close enough that a serial plate is readable.'
+          'Get close enough that a serial plate is readable.',
+          'Date the photos. Take close-ups of costly or unusual things to show they exist and their condition.',
+          'For furniture, note the color, wood and size. Gather the product manuals; they list model details.'
         ] },
         { head: 'Store it safely', items: [
           'Keep a copy off the phone: on an external drive, in the cloud, or both.',
           'Store it with your other key papers, in a safe, dry, waterproof place.',
           'Keep originals of papers in a watertight safe deposit box if you can.',
-          'Keep one copy away from home.'
+          'Keep one copy away from home.',
+          'Update it when you buy or get rid of things, and look it over twice a year (Extension).',
+          'Antiques and art may need an expert appraisal and a rider on your policy to be covered for what they are worth.'
         ] },
         { head: 'If damage happens', items: [
           'Report the loss to your insurance company as soon as you can.',
           'Before cleanup, photograph and video the damage.',
           'For a flood, keep samples of carpet, flooring and curtains for the adjuster.',
-          'A flood claim often takes 4 to 8 weeks to be paid.'
+          'A flood claim often takes 4 to 8 weeks to be paid.',
+          'LSU AgCenter: after you call the insurer, send a letter about the damage and keep a copy.'
         ] }
       ],
       mistakes: [
@@ -3125,8 +3419,8 @@
         'Filming too fast to read the serial numbers.',
         'Throwing out damaged things before you photograph them.'
       ],
-      sources: ['fs-document', 'fs-claim', 'ready-money', 'fema-eqhunt'],
-      checked: '2026-11-21'
+      sources: ['fs-document', 'fs-claim', 'ready-money', 'fema-eqhunt', 'pf-inventory', 'lsu-claims'],
+      checked: '2026-11-26'
     },
 
     'home-insurance': {
@@ -3135,13 +3429,17 @@
         { head: 'Read your policy', items: [
           'If you have no property insurance, get it: homeowners if you own, renters if you rent.',
           'Check that the coverage fits the hazards where you live.',
-          'If something is unclear, call your agent and ask.'
+          'If something is unclear, call your agent and ask.',
+          'Ask your agent whether claims are paid at replacement cost or actual cash value, and whether it pays the full cost or only a percent (University of Minnesota Extension).',
+          'Make sure the coverage keeps up with any remodeling or improvements.'
         ] },
         { head: 'What most policies leave out', items: [
           'Flood. Most homeowners and renters policies do not cover it.',
           'Earthquake. A standard homeowners policy does not cover it.',
           'Renters: your landlord\'s insurance covers the building, not your things.',
-          'A renters policy can cover theft, wind and fire, but usually not flood.'
+          'A renters policy can cover theft, wind and fire, but usually not flood.',
+          'Renters insurance is usually not very expensive. Ask the agent who insures your vehicle what adding it would cost.',
+          'University of Minnesota Extension notes that after one flood, renters qualified for few government recovery programs and leaned on their own insurance.'
         ] },
         { head: 'Flood insurance limits (NFIP)', cols: ['Policy', 'Covers up to'], rows: [
           ['Home building', '$250,000'],
@@ -3158,7 +3456,8 @@
         { head: 'Keep the numbers handy', items: [
           'Write the policy number and the claims phone number on your plan.',
           'Keep a copy of the policy with your other key papers.',
-          'If you cannot find your flood insurer after a flood, call the NFIP at 877-336-2627.'
+          'If you cannot find your flood insurer after a flood, call the NFIP at 877-336-2627.',
+          'Keep a copy of your home inventory and policies outside the house, such as with a trusted family member.'
         ] }
       ],
       mistakes: [
@@ -3166,8 +3465,8 @@
         'Renters assuming the landlord\'s policy covers their things.',
         'Thinking low risk means no risk.'
       ],
-      sources: ['ready-money', 'fema-flood', 'fs-coverage', 'nfip-renters', 'ready-earthquakes', 'fema-floodmap'],
-      checked: '2026-11-21'
+      sources: ['ready-money', 'fema-flood', 'fs-coverage', 'nfip-renters', 'ready-earthquakes', 'fema-floodmap', 'umn-insurance-review', 'pf-disaster-finances'],
+      checked: '2026-11-26'
     },
 
     'home-extinguisher': {
@@ -3177,7 +3476,8 @@
           'Get a multipurpose one, labeled A-B-C. It works on most home fires: wood and paper, grease and oil, and things plugged in.',
           'Look for the UL listed label.',
           'Get the biggest one you can handle easily.',
-          'Reading the label: on a 1A:10B:C, the 1A means it works like 1.25 gallons of water, and the 10B means it can put out a grease or fuel fire up to 10 square feet.'
+          'Reading the label: on a 1A:10B:C, the 1A means it works like 1.25 gallons of water, and the 10B means it can put out a grease or fuel fire up to 10 square feet.',
+          'Read its instructions and learn its parts before a fire ever starts (NFPA).'
         ] },
         { head: 'Only use it if every answer is yes', items: [
           'Have I told everyone in the house there is a fire?',
@@ -3192,7 +3492,8 @@
           'Pull the pin. Hold it with the nozzle pointing away from you.',
           'Aim low, at the base of the fire.',
           'Squeeze the handle slowly and evenly.',
-          'Sweep the nozzle side to side.'
+          'Sweep the nozzle side to side.',
+          'Keep your back to a clear exit while you use it. If the room fills with smoke, leave right away.'
         ] },
         { head: 'Check it monthly', items: [
           'Nothing blocks the way to it.',
@@ -3201,6 +3502,11 @@
           'Wipe off dust and grease.',
           'Read its label: some need shaking each month, some need testing every few years, some are thrown out when the pressure drops.',
           'Your fire department may offer training. Call and ask.'
+        ] },
+        { head: 'Where it goes, and who uses it', items: [
+          'NFPA says to mount it close to an exit.',
+          'Getting out safely comes first. The extinguisher is only one part of your fire plan.',
+          'NFPA says only adults who know how should use one. Children are taught to get out and stay out.'
         ] }
       ],
       mistakes: [
@@ -3208,8 +3514,8 @@
         'Fighting a fire that is already spreading. Get out.',
         'Aiming at the flames instead of the base.'
       ],
-      sources: ['usfa-ext'],
-      checked: '2026-11-21'
+      sources: ['usfa-ext', 'nfpa-extinguishers'],
+      checked: '2026-11-26'
     },
 
     'skill-map': {
@@ -3242,7 +3548,14 @@
           'Turn the dial until its north lines up with north on the map. Do not move the compass.',
           'Adjust for declination. East: subtract (turn the dial clockwise). West: add (turn it counterclockwise).',
           'Hold the compass flat, travel arrow pointing away from you. Turn your whole body until the red needle sits in the orienting arrow.',
-          'Pick a landmark straight ahead and walk to it. Repeat until you arrive.'
+          'Pick a landmark straight ahead and walk to it. Repeat until you arrive.',
+          'NOLS says to look over your shoulder on the way out, so you know what the route looks like coming back.'
+        ] },
+        { head: 'Practice before you need it', items: [
+          'NOLS says to learn the map and compass in a city park or near a trailhead, not miles out.',
+          'Use handrails: rivers, peaks or trails along your route that keep you on track.',
+          'Stop for map checks where the view is good, so you can match the map to the land.',
+          'The less sure you are of where you are, the slower you should move and the more often you should check.'
         ] }
       ],
       mistakes: [
@@ -3251,8 +3564,8 @@
         'Letting the needle drift out of the orienting arrow as you walk.',
         'Learning it for the first time on the day you need it.'
       ],
-      sources: ['usgs-maps', 'usgs-topo-faq', 'usgs-compass', 'nps-compass-course', 'nps-declination', 'nps-olym-travel', 'nps-10essentials', 'nws-winter-before'],
-      checked: '2026-11-21'
+      sources: ['usgs-maps', 'usgs-topo-faq', 'usgs-compass', 'nps-compass-course', 'nps-declination', 'nps-olym-travel', 'nps-10essentials', 'nws-winter-before', 'nols-lost'],
+      checked: '2026-11-26'
     },
 
     'skill-teach': {
@@ -3279,21 +3592,26 @@
         { head: 'Where things are', items: [
           'Walk the house together: the kit, the water, the flashlights, and the written plan.',
           'Show two ways out of each room, and the meeting spot in front of the house.',
-          'Let the kids help pack the kit. They remember what they handled.'
+          'Let the kids help pack the kit. They remember what they handled.',
+          'During a drill, check that each child wakes to the alarm. If one does not, give an adult the job of waking them (NFPA).',
+          'Practice getting low and going under the smoke to the way out.'
         ] },
         { head: 'Practice', items: [
           'Act out a 911 call with a made-up emergency. Take turns being the operator.',
           'Press the smoke alarm test button and run a fire drill.',
-          'Quiz them again a week later, and every few months.'
+          'Quiz them again a week later, and every few months.',
+          'NFPA and the Red Cross say to practice the fire drill twice a year.',
+          'Let kids learn the plan before you hold a drill at night. Tell them a drill is coming; the point is to practice, not to frighten.'
         ] }
       ],
       mistakes: [
         'Teaching it once and never practicing.',
         'A child who only knows "Mom," not her full name or number.',
-        'Hanging up after calling 911 by mistake.'
+        'Hanging up after calling 911 by mistake.',
+        'Teaching kids to use the fire extinguisher. NFPA says children should get out and stay out.'
       ],
-      sources: ['ready-kids', 'ready-kids-fire', 'ready-2-help', 'usfa-escape', 'ready-plan'],
-      checked: '2026-11-21'
+      sources: ['ready-kids', 'ready-kids-fire', 'ready-2-help', 'usfa-escape', 'ready-plan', 'nfpa-escape', 'rc-homefire', 'nfpa-extinguishers'],
+      checked: '2026-11-26'
     },
 
     'skill-fix': {
@@ -3303,7 +3621,9 @@
           'Find the main valve where the water line comes into the house. Tag it so anyone can find it.',
           'Make sure it closes all the way. If it is rusted open or will not close, have it replaced.',
           'This is not the street valve in the box at the curb. That one needs a special tool.',
-          'After a disaster, shutting the main also keeps clean water in your water heater and toilet tanks.'
+          'After a disaster, shutting the main also keeps clean water in your water heater and toilet tanks.',
+          'If the heat may be off a long time in freezing weather, Purdue Extension says to shut the main valve, or the well pump if it is inside, then open every faucet until the lines drain.',
+          'Drain the toilet tanks too, and the hoses and drains on the washer and dishwasher. Purdue says never to put antifreeze in those appliances.'
         ] },
         { head: 'Shut off the power', items: [
           'Find the circuit box and show the other adults.',
@@ -3342,8 +3662,8 @@
         'Turning the gas back on yourself.',
         'Fighting the curb valve instead of the house main.'
       ],
-      sources: ['ready-skills', 'uf-drains', 'usda-extension'],
-      checked: '2026-11-21'
+      sources: ['ready-skills', 'uf-drains', 'usda-extension', 'purdue-plumbing'],
+      checked: '2026-11-26'
     },
 
     'skill-fema': {
@@ -3443,12 +3763,15 @@
           'You still owe the mortgage and credit cards after a disaster, even if the house is damaged.',
           'Call your lenders, landlord and utilities right away. Explain what happened.',
           'They may delay payments, set up a payment plan, give more time or waive late fees.',
-          'Call before you miss a payment, not after.'
+          'Call before you miss a payment, not after.',
+          'If money is short, the Church of Jesus Christ of Latter-day Saints\' finance guide says to cover food, shelter, utilities and needed transportation first.',
+          'Ask each biller about hardship grace periods, payment plans without interest, or a later due date. Delays can add fees, so ask what it will cost.'
         ] },
         { head: 'Keep it current', items: [
           'Look it over at tax time, or when the clocks change.',
           'Update it when you move, change insurance, or open or close an account.',
-          'If you get federal benefits by paper check, think about direct deposit. Mail can stop for weeks after a disaster.'
+          'If you get federal benefits by paper check, think about direct deposit. Mail can stop for weeks after a disaster.',
+          'Track your spending for one month to see where the money goes, then sort it into needs and wants.'
         ] }
       ],
       mistakes: [
@@ -3456,8 +3779,8 @@
         'Skipping payments without calling first.',
         'Giving account details to a caller who says they are from the government. The government will not call or text you about money owed.'
       ],
-      sources: ['ready-money', 'ready-effak', 'ftc-papers', 'ftc-back-on-track'],
-      checked: '2026-11-21'
+      sources: ['ready-money', 'ready-effak', 'ftc-papers', 'ftc-back-on-track', 'lds-fin-crisis', 'lds-budget'],
+      checked: '2026-11-26'
     },
 
     'money-nets': {
@@ -3483,13 +3806,16 @@
         ] },
         { head: 'Protect your credit', items: [
           'Get your free credit report at AnnualCreditReport.com or 1-877-322-8228. It lists every lender, even if your papers are lost.',
-          'Call lenders, landlords and utilities early and ask for help.'
+          'Call lenders, landlords and utilities early and ask for help.',
+          'If you can only make minimum payments, or cannot keep up, a nonprofit credit counselor can help you make a plan with your lenders.',
+          'Calling your insurer to ask whether something is covered does not file a claim (Church of Jesus Christ finance guide).'
         ] },
         { head: 'Watch for scams', items: [
           'Never pay anyone to help you get government aid. FEMA help is free.',
           'The government will not call, text or message you on social media about money owed or payments.',
           'Do not click links in texts or emails from people you do not know.',
-          'Report scams at ReportFraud.ftc.gov.'
+          'Report scams at ReportFraud.ftc.gov.',
+          'For free or low-cost money counseling, pick a well-established nonprofit and check that it is properly registered.'
         ] }
       ],
       mistakes: [
@@ -3497,8 +3823,8 @@
         'Paying a stranger who promises to speed up FEMA aid.',
         'Not writing the numbers down until you need them.'
       ],
-      sources: ['ready-money', 'ftc-back-on-track', 'fema-disasterassistance', 'fema-app', 'ready-effak'],
-      checked: '2026-11-21'
+      sources: ['ready-money', 'ftc-back-on-track', 'fema-disasterassistance', 'fema-app', 'ready-effak', 'lds-fin-crisis'],
+      checked: '2026-11-26'
     },
 
     'money-cash': {
@@ -3507,17 +3833,23 @@
         { head: 'How much', items: [
           'Base it on what your household needs each day: food, gas and the other things you use.',
           'Start small and add to it over time.',
-          'Keep small bills. A store may not be able to make change.'
+          'Keep small bills. A store may not be able to make change.',
+          'Utah State University Extension says to picture a real emergency. Would you need cash for food, gas, or a motel if you had to leave? Count everyone you would pay for.',
+          'Start with $20 in small bills and coins and add a little each month, or use part of a tax refund. Ones and fives work best, plus a roll of quarters.'
         ] },
         { head: 'Where to keep it', items: [
           'In a safe place at home. A lockable, fireproof box works well.',
           'Keep it with your important papers, a spare set of house and car keys, and your safe deposit box key.',
           'Or keep some with a trusted relative or friend.',
-          'Tell the other adult in the house where it is.'
+          'Tell the other adult in the house where it is.',
+          'USU suggests a small fireproof, waterproof safe bolted to the floor. Most thieves skip what takes time.',
+          'Put a few small bills in each person\'s grab-and-go kit, in case you get separated.'
         ] },
         { head: 'Know the risks', items: [
           'Cash can be lost, stolen or burned. Keep only a small amount at home.',
-          'Keep the rest of your emergency savings in an insured bank or credit union account.'
+          'Keep the rest of your emergency savings in an insured bank or credit union account.',
+          'Cash at home is not FDIC insured. Ask whether your home policy covers cash lost to fire or theft.',
+          'Write down where it is, and keep the note with your will or key papers.'
         ] },
         { head: 'Keep it ready', items: [
           'Use it only for an emergency.',
@@ -3530,8 +3862,8 @@
         'Borrowing from it for everyday spending.',
         'Hiding it so well that no one else can find it.'
       ],
-      sources: ['ready-money', 'ready-effak', 'ftc-papers', 'cfpb-emergency-fund'],
-      checked: '2026-11-21'
+      sources: ['ready-money', 'ready-effak', 'ftc-papers', 'cfpb-emergency-fund', 'usu-cash-stash'],
+      checked: '2026-11-26'
     },
 
     'money-starter': {
@@ -3540,7 +3872,9 @@
         { head: 'Set a goal', items: [
           'Think back to your last few surprise bills. What did they cost?',
           'Use that to set your first goal.',
-          'Even a small amount helps, if money is tight or your pay changes from week to week.'
+          'Even a small amount helps, if money is tight or your pay changes from week to week.',
+          'Utah State University Extension suggests a first goal of about $500 on income under $20,000 a year, and at least $2,000 on income over $40,000.',
+          'The Church of Jesus Christ\'s finance pages suggest another first goal: what you spend from one paycheck to the next. Then build to two, then three.'
         ] },
         { head: 'How fast it adds up', cols: ['Each week', 'To $500', 'To $1,000'], rows: [
           ['$10', '50 weeks', '100 weeks'],
@@ -3551,18 +3885,22 @@
           'Set a recurring transfer from checking to savings each payday.',
           'Or ask your employer to split your direct deposit between two accounts.',
           'Check your balance before transfers, so you do not get an overdraft fee.',
-          'Put all or part of a tax refund or cash gift into it.'
+          'Put all or part of a tax refund or cash gift into it.',
+          'If you can, aim to save 10 to 20 percent of your income. If not, save what you can (Church of Jesus Christ finance pages).',
+          'University of Illinois Extension: even $50 to $100 a paycheck adds up. A small fund beats none.'
         ] },
         { head: 'Where to keep it', items: [
           'A separate savings account at a bank or credit union, so you do not spend it by accident.',
           'At an FDIC-insured bank, deposits are covered up to $250,000 per person, per bank, per type of account.',
           'Check that a bank is insured with the FDIC\'s BankFind tool.',
-          'Money left sitting in a payment app is usually not insured. Move it to your account.'
+          'Money left sitting in a payment app is usually not insured. Move it to your account.',
+          'Illinois Extension: an account at a different bank can make it harder to spend on a whim. Keep it where you can reach it fast, not tied up.'
         ] },
         { head: 'Using it', items: [
           'Decide now what counts as an emergency, and stick to it.',
           'Do not be afraid to use it when you need it. That is what it is for.',
-          'When you use it, start building it back up.'
+          'When you use it, start building it back up.',
+          'If you dip into it, treat it like a loan to yourself, with a payback schedule (USU Extension).'
         ] }
       ],
       mistakes: [
@@ -3570,8 +3908,8 @@
         'Putting a surprise bill on a credit card when the cash is there. Interest makes it cost more.',
         'Stopping the transfers once you reach the goal. Raise the goal instead.'
       ],
-      sources: ['cfpb-emergency-fund', 'fdic-deposit-ins', 'cfpb-payment-app', 'fdic-moneysmart'],
-      checked: '2026-11-21'
+      sources: ['cfpb-emergency-fund', 'fdic-deposit-ins', 'cfpb-payment-app', 'fdic-moneysmart', 'usu-saving-plan', 'lds-fin-emergency', 'lds-fin-prepared', 'il-emergency-fund'],
+      checked: '2026-11-26'
     },
 
     'money-month': {
@@ -3580,7 +3918,9 @@
         { head: 'Find your number', items: [
           'Use your bill list. Add up one month of housing, utilities, phone, food, gas, insurance and loan payments.',
           'Leave out the extras you could stop for a while.',
-          'That total is your goal.'
+          'That total is your goal.',
+          'Some households need a bigger cushion, says Extension\'s Financial Security for All: the self-employed, seasonal or commission workers, someone with an uncertain job, or big medical costs ahead.',
+          'Utah State University Extension says to think about how long it would take to find work in your field. Some jobs fill fast; others take months.'
         ] },
         { head: 'Keep it growing', items: [
           'Keep the automatic transfer going.',
@@ -3596,7 +3936,8 @@
         { head: 'Debt and the cushion', items: [
           'Debt from a card or loan used for emergencies grows with interest and fees.',
           'A cushion keeps you from adding new debt when something goes wrong.',
-          'Keep saving while you pay down what you owe.'
+          'Keep saving while you pay down what you owe.',
+          'The Church of Jesus Christ\'s finance pages: pay the minimum on every debt, then put any extra toward the one with the highest interest rate.'
         ] }
       ],
       mistakes: [
@@ -3604,8 +3945,8 @@
         'Using the fund for things that are not emergencies.',
         'Pulling from retirement savings to cover a surprise bill.'
       ],
-      sources: ['cfpb-emergency-fund', 'ready-effak', 'ready-money'],
-      checked: '2026-11-21'
+      sources: ['cfpb-emergency-fund', 'ready-effak', 'ready-money', 'pf-cash-reserve', 'usu-saving-plan', 'lds-fin-emergency'],
+      checked: '2026-11-26'
     },
 
     'money-three': {
@@ -3615,7 +3956,9 @@
           'Keep the automatic transfer going after you reach one month.',
           'When your pay goes up, raise the transfer.',
           'If your pay drops, lower it, but try not to stop.',
-          'Set your next goal each time you reach one.'
+          'Set your next goal each time you reach one.',
+          'Most experts cited by Extension\'s Financial Security for All put the full goal at 3 to 6 months of living expenses. Three months is the low end.',
+          'Utah State University Extension says to plan for six months without work if you lose a job.'
         ] },
         { head: 'Keep it safe and easy to reach', items: [
           'You want this money safe, easy to get, and hard to spend on other things.',
@@ -3632,7 +3975,8 @@
         { head: 'After you use it', items: [
           'Using it is fine. That is the point.',
           'Start refilling it once things settle.',
-          'Look back at what happened, and adjust your goal if it was not enough.'
+          'Look back at what happened, and adjust your goal if it was not enough.',
+          'The Church of Jesus Christ\'s finance pages say not to feel guilty using it, for living costs or an insurance deductible. Refill it as fast as you can.'
         ] }
       ],
       mistakes: [
@@ -3640,8 +3984,8 @@
         'Leaving savings in a payment app that is not insured.',
         'Letting insurance lapse, so one big loss wipes out the savings.'
       ],
-      sources: ['cfpb-emergency-fund', 'fdic-deposit-ins', 'ready-money', 'ready-effak', 'ftc-prepare-scams'],
-      checked: '2026-11-21'
+      sources: ['cfpb-emergency-fund', 'fdic-deposit-ins', 'ready-money', 'ready-effak', 'ftc-prepare-scams', 'pf-cash-reserve', 'usu-saving-plan', 'lds-fin-crisis'],
+      checked: '2026-11-26'
     },
 
     'med-cpr-video': {
@@ -3650,17 +3994,26 @@
         { head: 'When to use it', items: [
           'Use it when a teen or adult suddenly collapses.',
           'For babies and children, someone who drowned, a drug overdose, or a person who collapsed from breathing trouble, the Heart Association still recommends CPR with breaths.',
-          'A full CPR class teaches the breaths. The Heart Association calls Hands-Only CPR a first step toward one.'
+          'A full CPR class teaches the breaths. The Heart Association calls Hands-Only CPR a first step toward one.',
+          'Mayo Clinic adds: if you are not trained in breaths, or not sure of your skills, Hands-Only CPR is still far better than doing nothing, for anyone but a newborn.'
         ] },
         { head: 'The two steps, in this order', items: [
           'Call 911.',
           'Push hard and fast in the center of the chest.',
-          'Place one hand on top of the other, the way the video shows.'
+          'Place one hand on top of the other, the way the video shows.',
+          'Mayo Clinic adds: lay the person on their back on a firm surface. Heel of the hand on the center of the chest, elbows straight, shoulders right over your hands.',
+          'Push down at least 2 inches but not more than 2.4 inches, and let the chest spring back after each push.'
         ] },
         { head: 'The pace', items: [
           'Push 100 to 120 times a minute.',
           'Pick a song you know with that beat and push to it. People keep the right pace better that way.',
           'The Heart Association keeps a list of songs at that pace on its site.'
+        ] },
+        { head: 'Alone, or with help', items: [
+          'If someone is with you, one person calls 911 and gets an AED, if one is near. The other starts pushing.',
+          'Alone with a phone? Call 911 first and put it on speaker. The dispatcher can talk you through CPR.',
+          'If you get an AED, turn it on. It tells you what to do.',
+          'Keep pushing until the person moves or responders take over, Mayo Clinic says.'
         ] },
         { head: 'Learn it as a house', items: [
           'Watch the video together. It is free.',
@@ -3678,8 +4031,8 @@
         'Pushing too slowly. Use the song.',
         'Using Hands-Only CPR on a baby or child, when breaths are recommended too.'
       ],
-      sources: ['aha-hocpr-facts', 'aha-hocpr-news'],
-      checked: '2026-11-21'
+      sources: ['aha-hocpr-facts', 'aha-hocpr-news', 'mayo-cpr'],
+      checked: '2026-11-26'
     },
 
     'med-heat-cold': {
@@ -3691,14 +4044,16 @@
           'Call 911 and stay with the person.',
           'Move them to shade or a cool spot. Take off outer clothing.',
           'Cool them fast: a cold water or ice bath if you can, or wet the skin and soak the clothes with cool water. Fan the air around them.',
-          'Put cold, wet cloths or ice on the head, neck, armpits and groin.'
+          'Put cold, wet cloths or ice on the head, neck, armpits and groin.',
+          'If the person is awake, offer cool water or a sports drink with no alcohol or caffeine. If they pass out and show no breathing, coughing or movement, start CPR, Mayo Clinic says.'
         ] },
         { head: 'Heat exhaustion', items: [
           'Signs: headache, nausea, dizziness, weakness, irritability, thirst, heavy sweating, passing less urine.',
           'Get them out of the heat. Take off extra clothing, shoes and socks too.',
           'Cool them with cold packs, or have them wash the head, face and neck with cold water.',
           'Give frequent sips of cool water.',
-          'Get them to a clinic or emergency room to be checked. Call 911 if no care is available.'
+          'Get them to a clinic or emergency room to be checked. Call 911 if no care is available.',
+          'Mayo Clinic says to get help right away if the person becomes confused, passes out or cannot drink.'
         ] },
         { head: 'Hypothermia', items: [
           'It can happen above 40°F when a person is wet from rain, sweat or cold water.',
@@ -3718,6 +4073,15 @@
           'Never rub it. Never warm it with a heating pad, heat lamp, stove, fireplace or radiator. Numb skin burns easily.',
           'Have a health care provider check it.'
         ] },
+        { head: 'More on the cold, from Mayo Clinic and NOLS', items: [
+          'If you cannot get indoors, block the wind and put a blanket or pad under the person. The cold ground pulls heat away.',
+          'Do not rewarm too fast with a heat lamp or hot bath. Do not warm or rub the arms and legs. That strains the heart and lungs.',
+          'A hot water bottle or hot pack goes against the chest or near the armpits, wrapped in a towel or clothing, never on bare skin.',
+          'Shivering may stop as the body gets colder. That is a worse sign, not a better one.',
+          'NOLS teaches that warm drinks and high-calorie food help, if the person is awake and can swallow. The body needs fuel to make heat.',
+          'NOLS also warns that a cold person often says they are just tired, fumbles with zippers and buckles, and plays down how cold they are.',
+          'Frostbite: if a thawed spot could freeze again, do not thaw it yet. Once it can stay warm, Mayo Clinic says to soak it in warm water for about 30 minutes.'
+        ] },
         { head: 'Who is most at risk', items: [
           'Cold: older adults without enough food, clothing or heat, and babies sleeping in cold rooms.',
           'Cold: people outdoors for long periods, like hikers and hunters, and people who drink alcohol or use drugs.',
@@ -3727,10 +4091,11 @@
       mistakes: [
         'Waiting to see if heat stroke passes. Call 911 at once.',
         'Rubbing frostbitten skin, or warming it by the stove.',
-        'Thinking it is too warm for hypothermia. Wet and 40°F is enough.'
+        'Thinking it is too warm for hypothermia. Wet and 40°F is enough.',
+        'Rubbing or heating the arms and legs of someone with hypothermia.'
       ],
-      sources: ['cdc-heat-ill', 'cdc-heat', 'cdc-hypo', 'cdc-frostbite'],
-      checked: '2026-11-21'
+      sources: ['cdc-heat-ill', 'cdc-heat', 'cdc-hypo', 'cdc-frostbite', 'mayo-heatstroke', 'mayo-hypothermia', 'mayo-frostbite', 'mayo-heatexh', 'nols-hypothermia'],
+      checked: '2026-11-26'
     },
 
     'med-wounds': {
@@ -3741,7 +4106,9 @@
           'Then cover it with a dry, sterile bandage or a clean dressing.',
           'Keep pressure and rubbing off it.',
           'Once it has cooled, a lotion with aloe can help. If the skin is broken, use an ointment so the dressing does not stick.',
-          'Make sure the person is up to date on the tetanus shot.'
+          'Make sure the person is up to date on the tetanus shot.',
+          'Mayo Clinic says about 10 minutes of cool, not cold, water, and to take off rings or anything tight before it swells.',
+          'Do not pop blisters. If one breaks, clean it gently with water and put on antibiotic ointment.'
         ] },
         { head: 'A big burn: call 911', items: [
           'Call 911 for a burn the size of a palm or bigger, a deep burn, one from chemicals or electricity, or if the person breathed smoke.',
@@ -3757,14 +4124,17 @@
           'Wash the cut well with mild soap and water. Even a cut that looks clean gets washed.',
           'Press directly on it to stop the bleeding.',
           'Put on antibiotic ointment and a bandage that will not stick.',
-          'Leave anything stuck deep in the wound where it is, and get care.'
+          'Leave anything stuck deep in the wound where it is, and get care.',
+          'Mayo Clinic says to rinse the wound under running water and wash around it with soap, keeping soap out of the wound itself. Skip hydrogen peroxide and iodine, which irritate it.',
+          'Change the bandage at least once a day, or when it gets wet or dirty.'
         ] },
         { head: 'When a cut needs more', items: [
           'Call 911 if the bleeding is severe, or does not stop after 10 minutes of pressure.',
           'Call 911 if the person cannot feel the area, or it does not work right.',
           'See a provider right away if it is deeper than a quarter inch, on the face, or down to the bone. It may need stitches.',
           'Also for a bite, a fishhook, a rusty object, stepping on a nail, or a last tetanus shot over 10 years ago.',
-          'Signs of infection: warmth, redness, throbbing, fever, swelling, a red streak, or pus.'
+          'Signs of infection: warmth, redness, throbbing, fever, swelling, a red streak, or pus.',
+          'Mayo Clinic is stricter on tetanus: get a shot for a deep or dirty wound if the last one was more than 5 years ago.'
         ] },
         { head: 'A sprain', items: [
           'Ice it right away, wrapped in cloth. Never put ice right on the skin.',
@@ -3774,6 +4144,12 @@
           'Do not give aspirin to children.',
           'Go to the hospital or call 911 if you think a bone is broken, the joint looks out of place, or you heard a pop and cannot use it.',
           'See a provider if the swelling has not started to go down in 2 days.'
+        ] },
+        { head: 'More from Mayo Clinic', items: [
+          'Get emergency help for a burn larger than 3 inches across, one that wraps around an arm or leg, or one on the face, hands, feet, groin or a major joint.',
+          'Before a big burn swells, gently take off jewelry, belts and tight clothing near it. Leave clothing that is stuck to the skin.',
+          'Sprain: ice it for 15 to 20 minutes at a time, 4 to 8 times a day, for the first 48 hours. Never more than 20 minutes at once.',
+          'See a provider if a sprain is no better after 2 or 3 days.'
         ] }
       ],
       mistakes: [
@@ -3782,8 +4158,8 @@
         'Wrapping a sprain so tight it cuts off the blood.',
         'Skipping the wash on a cut that looks clean.'
       ],
-      sources: ['nih-burns', 'nih-cuts', 'nih-sprains'],
-      checked: '2026-11-21'
+      sources: ['nih-burns', 'nih-cuts', 'nih-sprains', 'mayo-burns', 'mayo-cuts', 'mayo-sprain'],
+      checked: '2026-11-26'
     },
 
     'med-hygiene': {
@@ -3794,26 +4170,31 @@
           'Lather the backs of your hands, between the fingers and under the nails.',
           'Scrub for at least 20 seconds.',
           'Rinse well in clean water.',
-          'Dry with a clean towel or let them air-dry.'
+          'Dry with a clean towel or let them air-dry.',
+          'Scrub your wrists too. Mayo Clinic says plain soap works as well as antibacterial soap.'
         ] },
         { head: 'With no running water', items: [
           'Make a hand-washing station from a large water jug.',
           'Use the cleanest water you have. If local officials or your doctor say to take extra care, use water that was boiled or disinfected.',
           'Water but no soap: rub your hands together under the water and dry them. It rinses off some germs.',
-          'No soap and no water: use hand sanitizer with at least 60% alcohol.'
+          'No soap and no water: use hand sanitizer with at least 60% alcohol.',
+          'Hesperian Health Guides shows a tippy tap: a soda bottle with a small hole near the bottom and a short straw pushed in. Loosen the cap and a thin stream runs out, so you wash with very little water.',
+          'The CDC says water alone rinses off some germs. Hesperian says water alone is not enough, and with no soap, to scrub with clean sand or ash.'
         ] },
         { head: 'Using sanitizer right', items: [
           'Put enough in one palm to cover both hands.',
           'Rub every surface until dry, about 20 seconds. Do not wipe it off first.',
           'It does not work well on dirty or greasy hands, and it does not remove chemicals. Wash those off.',
-          'Watch young children so they do not swallow it.'
+          'Watch young children so they do not swallow it.',
+          'Mayo Clinic says to keep sanitizer out of children\'s reach between uses. Swallowing it can cause alcohol poisoning.'
         ] },
         { head: 'Key times to wash', items: [
           'Before, during and after making food, and before eating.',
           'After the toilet, and after changing diapers.',
           'Before and after caring for someone sick with vomiting or diarrhea.',
           'Before and after treating a cut or wound.',
-          'After touching garbage, animals or pet food, or blowing your nose.'
+          'After touching garbage, animals or pet food, or blowing your nose.',
+          'NOLS, which teaches long trips in the wild, notes that stomach illness blamed on bad water is often spread by hands instead. Wash before every meal.'
         ] },
         { head: 'Teeth, bathing and wounds', items: [
           'Brush teeth only with clean water. Ask local officials whether the tap water is safe.',
@@ -3821,6 +4202,11 @@
           'Never bathe in water that may hold sewage, chemicals or flood water.',
           'Keep cuts clean with soap and clean water, and covered with a waterproof bandage. Stay out of flood water with an open wound.',
           'Get care if a wound turns red, swells or oozes.'
+        ] },
+        { head: 'Help kids do it', items: [
+          'Wash your hands with them, so they see how. Mayo Clinic gives these tips.',
+          'Have them hum the "Happy Birthday" song twice, so they do not rush.',
+          'Keep a step stool by the sink or wash station for children who cannot reach.'
         ] }
       ],
       mistakes: [
@@ -3828,8 +4214,8 @@
         'Brushing teeth with water you would not drink.',
         'Wading in flood water with an open cut.'
       ],
-      sources: ['cdc-hygiene', 'cdc-handwash', 'cdc-sanitizer', 'cdc-hands-faq'],
-      checked: '2026-11-21'
+      sources: ['cdc-hygiene', 'cdc-handwash', 'cdc-sanitizer', 'cdc-hands-faq', 'mayo-handwashing', 'hesperian-germs', 'nols-handwashing'],
+      checked: '2026-11-26'
     },
 
     'home-toilet': {
@@ -3866,7 +4252,8 @@
           'Do not put them in the regular trash unless local officials say so. You may need to store them until the sewer is fixed.',
           'When the pee bucket is about a quarter full, add a little water and pour it on the ground. Use a new spot each time.',
           'If you must bury waste, pick a spot away from where people live and work, at least 100 feet from any water, and mark it.',
-          'Clean the buckets with disinfectant when you are done with them.'
+          'Clean the buckets with disinfectant when you are done with them.',
+          'To cut down on flies, hang a fly trap near the toilet. Hesperian Health Guides shows one made from a jar or bottle with a paper cone in its mouth and sweet bait under it.'
         ] },
         { head: 'Kids, older adults and others', items: [
           'A child who uses a potty chair can keep using it. Empty it into the family buckets.',
@@ -3879,7 +4266,8 @@
           'The CDC says to put a hand-washing station at every toilet of any kind.',
           'A jug with a spigot, soap, a towel and a bucket underneath is enough. Extension suggests a second one by the kitchen.',
           'Wash with soap and water after every use, or use sanitizer with at least 60% alcohol.',
-          'Wash after every diaper change, too.'
+          'Wash after every diaper change, too.',
+          'No jug with a spigot? Hesperian shows how to make a tippy tap from a soda bottle and a straw. See the step on staying clean without running water.'
         ] }
       ],
       mistakes: [
@@ -3888,7 +4276,7 @@
         'Storing full bags with regular garbage, or near food and water.',
         'Forgetting a way to wash hands next to the toilet.'
       ],
-      sources: ['ready-kit', 'fema-supplies', 'fema-is909-handouts', 'cdc-sanitation', 'cdc-hygiene', 'osu-sanitation', 'epa-septic-flood', 'fema-cert-manual'],
+      sources: ['ready-kit', 'fema-supplies', 'fema-is909-handouts', 'cdc-sanitation', 'cdc-hygiene', 'osu-sanitation', 'epa-septic-flood', 'fema-cert-manual', 'hesperian-germs'],
       checked: '2026-11-26'
     },
 
@@ -3905,7 +4293,9 @@
           'Use the times in the USDA Complete Guide to Home Canning or on the National Center\'s site. Never guess.',
           'Times depend on the food, how it is packed and the jar size.',
           'At 1,000 feet or higher, use the time or pressure for your elevation. Your county Extension office can tell you your elevation.',
-          'Not recommended: open-kettle canning, or processing jars in the oven, microwave or dishwasher. Canning powders do not preserve food.'
+          'Not recommended: open-kettle canning, or processing jars in the oven, microwave or dishwasher. Canning powders do not preserve food.',
+          'Food made for a hot pack goes into the canner hot. Utah State University Extension says letting it cool in the jars first can leave it under-processed.',
+          'In a tested salsa you may use fewer vegetables, or swap one kind of pepper for another, but never add more. Extra vegetables lower the acid.'
         ] },
         { head: 'Boiling-water canner, step by step', items: [
           'Rack in the bottom and the canner about half full. Preheat the water to 140°F for raw-packed food, 180°F for hot-packed.',
@@ -3942,8 +4332,8 @@
         'Skipping the elevation adjustment.',
         'Tasting a jar to see if it has spoiled.'
       ],
-      sources: ['usda-preserve', 'nchfp-safe', 'nchfp-canners', 'nchfp-store', 'nchfp-spoiled', 'nchfp-notrec'],
-      checked: '2026-11-21'
+      sources: ['usda-preserve', 'nchfp-safe', 'nchfp-canners', 'nchfp-store', 'nchfp-spoiled', 'nchfp-notrec', 'usu-canmistakes'],
+      checked: '2026-11-26'
     },
 
     'skill-fire': {
@@ -3954,7 +4344,9 @@
           'Do not build one on dry, windy days.',
           'Have plenty of water, a bucket and a shovel at hand.',
           'Gather tinder (small twigs, dry leaves, grass and needles), kindling (sticks under 1 inch around) and larger wood.',
-          'Use dead wood from the ground. Never cut trees or branches.'
+          'Use dead wood from the ground. Never cut trees or branches.',
+          'Backwoods Home: the smaller and drier the fuel, the easier it lights. Dead wood caught up off the ground, in brush, is drier than wood lying on it.',
+          'In wet weather, shave a dry stick into curls left attached, called a fuzz stick, or split a dead piece to reach the dry wood inside.'
         ] },
         { head: 'Pick and clear the spot', items: [
           'Open, level ground, out of the wind.',
@@ -3968,7 +4360,9 @@
           'Light it with a match or lighter. Never use gas or other flammable liquids.',
           'Blow gently at the base, then add kindling, then bigger wood.',
           'Keep it small. A bed of coals gives plenty of heat.',
-          'Never burn trash, aerosol cans, batteries, glass or plastic.'
+          'Never burn trash, aerosol cans, batteries, glass or plastic.',
+          'Add damp wood one or two pieces at a time to a fire that is already burning well. It needs the heat to dry out.',
+          'Softwoods catch fast. Hardwoods like oak and hickory are slower to start but burn longer and leave good coals.'
         ] },
         { head: 'While it burns', items: [
           'Never leave it, even for a minute. A small breeze can spread it.',
@@ -3981,6 +4375,11 @@
           'Add more water and stir again. Move the rocks; embers hide under them.',
           'Short on water: mix in dirt or sand and keep stirring until it is all cool. Do not just bury the coals; they can smolder and break out.',
           'Feel it with the back of your hand. If it is too hot to touch, it is too hot to leave.'
+        ] },
+        { head: 'Carry more than one way to light it', items: [
+          'Backwoods Home suggests two or three kinds of fire starters, kept in different pockets or packs.',
+          'Strike-anywhere matches in a waterproof case, a lighter, and a spark rod that works when wet.',
+          'Practice in rain or snow before you need it, where fires are allowed.'
         ] }
       ],
       mistakes: [
@@ -3988,8 +4387,8 @@
         'Burying the coals instead of drowning them.',
         'Walking away from a fire that is still warm.'
       ],
-      sources: ['fs-campfire', 'fs-fire-safety', 'fs-inyo-campfire', 'smokey-campfire'],
-      checked: '2026-11-21'
+      sources: ['fs-campfire', 'fs-fire-safety', 'fs-inyo-campfire', 'smokey-campfire', 'bwh-fire-weather', 'bwh-firebuilding'],
+      checked: '2026-11-26'
     },
 
     'skill-ten': {
@@ -4005,7 +4404,8 @@
           'Extra clothing: a layer for the worst weather you could meet. A rain shell, jacket, hat and gloves.',
           'Bright clothing makes you easier for searchers to see.',
           'Sun protection: sunglasses, sunscreen and a hat, or long sleeves and pants.',
-          'Emergency shelter: a tent, tarp, bivy sack or space blanket. All are light.'
+          'Emergency shelter: a tent, tarp, bivy sack or space blanket. All are light.',
+          'A simple shelter kit from Backwoods Home: a rain poncho, a space blanket, cord and a knife.'
         ] },
         { head: 'Fire, first aid and repair', items: [
           'Fire: matches, waterproof if you can, or a lighter, plus fire starters. Fire is heat, cooking and an emergency signal.',
@@ -4016,12 +4416,15 @@
           'An extra day of food that needs no cooking: trail mix, nuts, granola bars.',
           'Water, and a way to treat more.',
           'Drink often, before you feel thirsty, most of all in hot weather.',
-          'Know where water is along your route before you go.'
+          'Know where water is along your route before you go.',
+          'NOLS says to carry enough extra food and gear for an unplanned night or two out.'
         ] },
         { head: 'In the vehicle', items: [
           'Ready.gov says to keep a kit in the car in case you are stranded.',
           'In winter, the Forest Service adds tire chains, an ice scraper, an extra blanket and food.',
-          'Tell someone where you are going and when you will be back.'
+          'Tell someone where you are going and when you will be back.',
+          'The Red Cross winter car kit adds: rain gear, dry clothes, mittens, socks and wool hats; plastic bags for a toilet; high-energy snacks; and water.',
+          'Keep the phone charged, and travel in daylight with someone else when you can.'
         ] }
       ],
       mistakes: [
@@ -4029,8 +4432,8 @@
         'Letting the first aid supplies and batteries run past their dates.',
         'Leaving the pack at home for a short trip.'
       ],
-      sources: ['nps-10', 'ready-kit', 'fs-backcountry'],
-      checked: '2026-11-21'
+      sources: ['nps-10', 'ready-kit', 'fs-backcountry', 'redcross-winter', 'nols-lost', 'bwh-firebuilding'],
+      checked: '2026-11-26'
     },
 
     'skill-compass': {
@@ -4060,7 +4463,9 @@
           'Hold the compass with the travel arrow pointing straight away from you.',
           'Turn your whole body with it until the red needle sits over the orienting arrow.',
           'Pick a landmark on that line and walk to it. Repeat until you arrive.',
-          'Practice in a park you know before you need it.'
+          'Practice in a park you know before you need it.',
+          'NOLS says to have more than one navigator in the group, in case the only one gets sick or hurt.',
+          'If you are unsure, slow down and check the map and compass more often. Head back to the last place you were sure of.'
         ] }
       ],
       mistakes: [
@@ -4068,8 +4473,8 @@
         'Forgetting declination, or adding it when you should subtract.',
         'Reading the bearing backward: due east is 90, not 270.'
       ],
-      sources: ['usgs-mapcompass', 'usgs-bearing', 'usgs-declination', 'usgs-maps'],
-      checked: '2026-11-21'
+      sources: ['usgs-mapcompass', 'usgs-bearing', 'usgs-declination', 'usgs-maps', 'nols-lost'],
+      checked: '2026-11-26'
     },
 
     'skill-signal': {
@@ -4080,15 +4485,18 @@
           'Three whistle blasts, three flashes of a mirror or flashlight, or three puffs of smoke.',
           'Repeat it at regular intervals.',
           'A search party that hears it answers with two signals.',
-          'Use it only when you need help.'
+          'Use it only when you need help.',
+          'Trapped in a building after a quake, the Red Cross says to knock loudly on something solid three times every few minutes. Rescuers listen for it.'
         ] },
         { head: 'Whistle', items: [
           'If you are lost or separated, stay put and blow three blasts.',
-          'Give every child a whistle with one rule: if you are lost, stop and blow.'
+          'Give every child a whistle with one rule: if you are lost, stop and blow.',
+          'NOLS: if you get separated from your group, there is no shame in yelling. Carry a whistle for just that.'
         ] },
         { head: 'Mirror and light', items: [
           'Flash sunlight toward searchers with a signal mirror, foil or anything shiny.',
-          'At night, flash a flashlight or headlamp in threes.'
+          'At night, flash a flashlight or headlamp in threes.',
+          'Stuck in a vehicle in snow: a bright cloth, red if you can, on the antenna, the hood up once the snow stops, and the dome light on while the engine runs (Red Cross).'
         ] },
         { head: 'Be seen from the air', items: [
           'Lay brightly colored clothing out in a forest clearing.',
@@ -4106,8 +4514,8 @@
         'Signaling once and stopping. Repeat at regular intervals.',
         'Running the phone battery down before you need it.'
       ],
-      sources: ['fs-willamette-lost', 'fs-backcountry', 'nps-yose-safety', 'nps-olym-safety', 'nps-whsa-safety'],
-      checked: '2026-11-21'
+      sources: ['fs-willamette-lost', 'fs-backcountry', 'nps-yose-safety', 'nps-olym-safety', 'nps-whsa-safety', 'rc-earthquake', 'redcross-winter', 'nols-lost'],
+      checked: '2026-11-26'
     },
 
     'skill-lost': {
@@ -4118,20 +4526,25 @@
           'Tell them to call 911 if you are not back by a set time. Rangers do not track overdue hikers.',
           'Do not leave your plan on the windshield. Thieves look for it.',
           'Phones often get no signal in the backcountry. Do not count on one.',
-          'Stay on the trail and stay with your group.'
+          'Stay on the trail and stay with your group.',
+          'NOLS says to carry enough gear and extra food for an unplanned night or two out.'
         ] },
         { head: 'The moment you are lost', items: [
           'Stop. Stay calm and think it through.',
           'Try to fix where you are with the map, compass and landmarks.',
           'If you cannot find the trail, stay put. You will be found sooner.',
-          'Do not try to follow a creek or river out. Those are often the most dangerous routes.'
+          'Do not try to follow a creek or river out. Those are often the most dangerous routes.',
+          'NOLS: most lost people carry a wrong picture in their head of where they are. Stand still, take off the pack, get out the map, and think.',
+          'The Park Service says stay put if you cannot find the trail. NOLS adds: if you can safely retrace your steps to the last place you were sure of, do it, and mark the way with sticks or rocks.'
         ] },
         { head: 'While you wait', items: [
           'Turn to your 10 essentials.',
           'Stay warm and dry, and out of the wind.',
           'In rain, snow or fog, staying put is often safer than traveling.',
           'Signal: three whistle blasts, mirror flashes, bright clothing laid out in a clearing.',
-          'If you have a signal, call or text 911. Describe where you are and where you started.'
+          'If you have a signal, call or text 911. Describe where you are and where you started.',
+          'If dark comes while you are lost, stop, make camp and rest. Morning light often helps you get your bearings (NOLS).',
+          'A large search can take 24 hours or more to get going. Be ready to wait.'
         ] },
         { head: 'If someone else is hurt or missing', items: [
           'If someone in your party is hurt, send someone for help with a written note: the exact location, the person\'s age, height and weight, and what happened.',
@@ -4147,8 +4560,8 @@
         'Following a creek downhill.',
         'Telling no one where you went.'
       ],
-      sources: ['nps-yose-safety', 'nps-hale-safety', 'nps-olym-safety', 'nps-whsa-safety', 'fs-backcountry', 'fs-willamette-lost'],
-      checked: '2026-11-21'
+      sources: ['nps-yose-safety', 'nps-hale-safety', 'nps-olym-safety', 'nps-whsa-safety', 'fs-backcountry', 'fs-willamette-lost', 'nols-lost'],
+      checked: '2026-11-26'
     },
 
     'skill-night': {
@@ -4160,7 +4573,8 @@
           'Outside: a wind- and water-resistant shell.',
           'Skip cotton. It makes you colder when wet.',
           'Two pairs of socks; wool keeps feet warm even in wet boots. A hat and scarf that cover the ears.',
-          'Shed a layer when you get hot, so you do not soak it with sweat.'
+          'Shed a layer when you get hot, so you do not soak it with sweat.',
+          'In the sleeping bag, NOLS suggests clean, dry base layers rather than your puffy jacket. The bag warms you by holding your own heat.'
         ] },
         { head: 'Stay dry and out of the wind', items: [
           'Wet clothes lose about 90% of their warmth.',
@@ -4173,19 +4587,25 @@
           'Get out of the wind and rain first. A storm-proof tent is best; plastic sheeting and cord make a backup.',
           'Put something between you and the ground, like a small foam pad to sit on.',
           'Use a space blanket for warmth. Build a fire if it is safe and allowed.',
-          'Never use a flame or heater inside a tent.'
+          'Never use a flame or heater inside a tent.',
+          'A pad under you keeps the cold ground from pulling heat away. NOLS says a foam or insulated pad combined with an inflatable one works best; the thicker the pads, the warmer you sleep.',
+          'Choose a sleeping bag rated 10 to 20 degrees below the coldest night you expect.'
         ] },
         { head: 'Fuel', items: [
           'Eat and drink all day. Thirst and hunger bring fatigue and poor decisions.',
           'Carry trail food and keep nibbling in cold, wet weather.',
-          'Skip alcohol and smoking before time in the cold.'
+          'Skip alcohol and smoking before time in the cold.',
+          'Eat a high-calorie snack right before bed. NOLS says your body burns it for heat through the night.',
+          'Get warm before you get in the bag, with a little exercise, but do not work up a sweat.'
         ] },
         { head: 'Know when to stop', items: [
           'Persistent or violent shivering means hypothermia is close.',
           'Other signs: slurred speech, memory lapses, fumbling hands, stumbling, drowsiness.',
           'The person may say they are fine. Believe the signs.',
           'Get them out of the wind, off with wet clothes, into dry clothes and a warm sleeping bag. Warm drinks if they are awake.',
-          'Below 95°F is an emergency. Get medical help as soon as you can.'
+          'Below 95°F is an emergency. Get medical help as soon as you can.',
+          'Mayo Clinic: move the person gently, and lay them on a blanket off the cold ground. Warm the center of the body, like the neck, chest and groin, not the arms and legs.',
+          'Do not rub or heat the arms and legs, and no hot bath or heat lamp. Call 911. Begin CPR if they show no signs of life.'
         ] }
       ],
       mistakes: [
@@ -4194,8 +4614,8 @@
         'Pushing on until you are worn out before making camp.',
         'Sitting or sleeping right on cold ground.'
       ],
-      sources: ['fs-backcountry', 'fs-hypothermia', 'fs-willamette-winter', 'nps-olym-travel'],
-      checked: '2026-11-21'
+      sources: ['fs-backcountry', 'fs-hypothermia', 'fs-willamette-winter', 'nps-olym-travel', 'nols-sleep-warm', 'mayo-hypothermia'],
+      checked: '2026-11-26'
     },
 
     'skill-knots': {
@@ -4209,30 +4629,40 @@
         { head: 'Bowline', items: [
           'Makes a loop at the end of a rope that will not close up under strain.',
           'It unties easily, even after a heavy load.',
-          'Check: the free end must lie inside the loop when you finish.'
+          'Check: the free end must lie inside the loop when you finish.',
+          'Mother Earth News cautions that a bowline can slip in some slick synthetic ropes.'
         ] },
         { head: 'Clove hitch', items: [
           'Ties a line to something round, like a post or a rail.',
-          'Two wraps around the post, with the end tucked under the second wrap, as the pictures show.'
+          'Two wraps around the post, with the end tucked under the second wrap, as the pictures show.',
+          'It holds only while there is a load on both ends. Use it for temporary jobs (Mother Earth News).'
         ] },
         { head: 'Figure-eight and sheet bend', items: [
           'Figure-eight: a stopper on the end of a rope, so it cannot slip through a pulley or ring.',
           'Sheet bend: one of the best ways to join two ropes, even of different sizes.',
-          'Make the sheet bend\'s loop in the thicker rope.'
+          'Make the sheet bend\'s loop in the thicker rope.',
+          'The figure-eight is easier to untie than a plain overhand knot after a hard pull.',
+          'Snug a sheet bend up by hand.'
         ] },
         { head: 'Practice', items: [
           'Tie each one again and again until you can do it without the pictures.',
           'NOAA\'s game: five pieces of rope, five knots. First to tie all of them right wins.',
           'A good knot can be untied easily. Test each one after a hard pull.'
+        ] },
+        { head: 'Three more worth learning', items: [
+          'Trucker\'s hitch: NOLS often teaches it first, for pitching a tent. It works like a pulley, about 3 to 1, to cinch a load on a pack or a roof rack.',
+          'Timber hitch: wraps around a log or post to drag or lift it. More turns slip less (Mother Earth News).',
+          'Taut-line hitch: ties a tarp line to a stake and slides to tighten it.'
         ] }
       ],
       mistakes: [
         'Using a square (reef) knot to join two ropes. NOAA says never use it that way; a jerk on one end spills it.',
         'Finishing a bowline with the free end outside the loop.',
-        'Making the sheet bend\'s loop in the thinner rope.'
+        'Making the sheet bend\'s loop in the thinner rope.',
+        'Tying a granny knot by mistake. It looks like a square knot but slips and cannot take a load.'
       ],
-      sources: ['noaa-knots'],
-      checked: '2026-11-21'
+      sources: ['noaa-knots', 'nols-truckers-hitch', 'men-knots'],
+      checked: '2026-11-26'
     },
 
     'skill-hunted': {
@@ -4334,14 +4764,17 @@
           'Do not dig uphill of a well or creek, where waste could seep down to it.',
           'Skip low spots where rain collects.',
           'Pick a place with room for a simple screen or tarp for privacy.',
-          'Walk the yard now and pick the spot, so you are not guessing later.'
+          'Walk the yard now and pick the spot, so you are not guessing later.',
+          'Hesperian Health Guides says to make it private, and safe for women and children to use.'
         ] },
         { head: 'Dig and use it', items: [
           'The CDC describes a family pit about 1 foot wide, 1.6 feet long and 1.6 feet deep.',
           'A trench is another choice: narrow, with soil thrown over the waste every day.',
           'Dig a shallow ditch around it to steer rain away. The CDC lists this for trenches.',
           'Cover the waste with a layer of soil each day, so flies stay off it. Flies carry germs to food and water.',
-          'For one use on the trail, the Forest Service says a hole 6 to 8 inches deep.'
+          'For one use on the trail, the Forest Service says a hole 6 to 8 inches deep.',
+          'Hesperian digs a trench latrine downhill from water and as deep as you can, up to about 6 1/2 feet (2 meters). The CDC\'s family pit is smaller. Dig what your ground and time allow.',
+          'NOLS teaches to press each layer of soil down with a foot or shovel, and to fill the hole in once the waste is within 4 inches of the top.'
         ] },
         { head: 'Wash hands, then close it', items: [
           'The CDC says to put a hand-washing station at every toilet of any kind.',
@@ -4356,7 +4789,7 @@
         'Leaving waste uncovered, which draws flies.',
         'No hand-washing station by the latrine.'
       ],
-      sources: ['osu-sanitation', 'cdc-sanitation', 'usfs-human-waste', 'epa-septic-wells', 'fema-supplies', 'fema-cert-manual'],
+      sources: ['osu-sanitation', 'cdc-sanitation', 'usfs-human-waste', 'epa-septic-wells', 'fema-supplies', 'fema-cert-manual', 'hesperian-emerg-toilet', 'nols-waste'],
       checked: '2026-11-26'
     },
 
@@ -4367,13 +4800,16 @@
           'The CDC says to throw out trash as soon as you can, in a covered can or dumpster.',
           'Tie each bag shut before it goes in the can.',
           'Clean up trash and debris outside the house as soon as you can. Piles give rats a place to hide.',
-          'Check the can and its lid once a week. If water collects in it, empty it, so mosquitoes cannot breed.'
+          'Check the can and its lid once a week. If water collects in it, empty it, so mosquitoes cannot breed.',
+          'With no drain, strain dishwater and scatter it at least 200 feet from any well, creek or pond, as NOLS teaches. Put what the strainer catches in the trash.',
+          'Hesperian Health Guides suggests feeding leftover scraps to animals or putting them on a compost pile, so less rots in the can.'
         ] },
         { head: 'Spoiled food', items: [
           'The CDC says to throw out meat, fish, eggs, milk, cut fruit and leftovers after 4 hours in a fridge with no power.',
           'Throw out any food that touched floodwater.',
           'Never taste food to find out if it is safe. When in doubt, throw it out.',
-          'Bag spoiled food right away and keep it in the covered can. Rotting food draws rats.'
+          'Bag spoiled food right away and keep it in the covered can. Rotting food draws rats.',
+          'Flies gather at garbage. Hesperian shows a simple trap: a jar with a paper cone in its mouth and sweet bait under it. Hesperian says to hang traps near toilets and where food is made.'
         ] },
         { head: 'Sort it for pickup', items: [
           'The EPA asks homeowners to sort into six piles: household garbage, building debris, yard waste, hazardous waste, large appliances and electronics.',
@@ -4408,7 +4844,7 @@
         'Putting chemicals or batteries in the regular trash.',
         'Mixing bagged toilet waste with household garbage.'
       ],
-      sources: ['cdc-disaster-animals', 'cdc-food-after', 'epa-debris-sort', 'cdc-disaster-chemicals', 'epa-backyard-burning', 'cdc-dead-animals', 'osu-sanitation', 'cdc-mosquito-home'],
+      sources: ['cdc-disaster-animals', 'cdc-food-after', 'epa-debris-sort', 'cdc-disaster-chemicals', 'epa-backyard-burning', 'cdc-dead-animals', 'osu-sanitation', 'cdc-mosquito-home', 'nols-waste', 'hesperian-germs'],
       checked: '2026-11-26'
     },
 
@@ -4435,7 +4871,8 @@
           'Once a week, empty and scrub, turn over, cover or throw out anything that holds water: tires, buckets, toys, pots and trash cans.',
           'Cover stored water tightly. Use fine wire mesh on any container with no lid.',
           'Fix cracks in a septic tank and cover open vent pipes.',
-          'Keep window and door screens in good repair, and do not prop doors open.'
+          'Keep window and door screens in good repair, and do not prop doors open.',
+          'Once a week matters. Hesperian Health Guides says mosquito eggs take about 7 days to hatch, so emptying water every week breaks the cycle.'
         ] },
         { head: 'Prevent bites', items: [
           'Use an insect repellent registered by the EPA. Look for an EPA registration number on the label.',
@@ -4455,7 +4892,9 @@
           'Keep the person still and calm, with the bite below the heart.',
           'Try to remember the snake\'s color and shape.',
           'Wash the bite with warm soapy water and cover it with a clean, dry dressing.',
-          'Do not use a tourniquet, cut the wound, suck it, put ice on it, or give alcohol or caffeine.'
+          'Do not use a tourniquet, cut the wound, suck it, put ice on it, or give alcohol or caffeine.',
+          'Mayo Clinic adds: take off rings, watches and tight clothing before swelling starts, and mark the edge of any swelling with the time.',
+          'The CDC says to keep the bite below the heart. Mayo Clinic says at about heart level. Both say to keep the person and the limb still.'
         ] }
       ],
       mistakes: [
@@ -4464,7 +4903,7 @@
         'Reaching under debris without looking for snakes.',
         'Cutting or icing a snake bite instead of calling 911.'
       ],
-      sources: ['cdc-disaster-animals', 'cdc-disaster-rodents', 'cdc-rodents-home', 'cdc-mosquito-home', 'cdc-mosquito-bites'],
+      sources: ['cdc-disaster-animals', 'cdc-disaster-rodents', 'cdc-rodents-home', 'cdc-mosquito-home', 'cdc-mosquito-bites', 'hesperian-mosquito', 'mayo-snakebite'],
       checked: '2026-11-26'
     },
 
@@ -4483,7 +4922,8 @@
           'Open windows and doors first. Never use bleach in a closed space.',
           'Wear rubber gloves, boots and eye protection.',
           'Get medical care right away for a bad headache, blurred vision or trouble breathing after using bleach. For trouble breathing, call 911.',
-          'Keep bleach and every mix out of reach of children and pets. Label any mix you make.'
+          'Keep bleach and every mix out of reach of children and pets. Label any mix you make.',
+          'For flood cleanup, the American Red Cross adds long pants, work gloves and an N95 mask. Work with a partner and take frequent breaks.'
         ] },
         { head: 'The mixes', cols: ['Job', 'Bleach', 'Water', 'Leave it on'], rows: [
           ['Disinfect hard surfaces', '5 tablespoons (1/3 cup)', '1 gallon', 'At least 1 minute, kept wet'],
@@ -4507,7 +4947,8 @@
           'Wash your hands after you handle dirty laundry.',
           'Throw out soft things you cannot clean or dry fast, like mattresses, pillows and stuffed toys.',
           'Under a boil-water advisory, wash up with water boiled 1 minute, or with 8 drops of bleach per gallon of clear water, left to stand 30 minutes.',
-          'On a septic system during a flood, the CDC says to cut back on laundry and dishwashing.'
+          'On a septic system during a flood, the CDC says to cut back on laundry and dishwashing.',
+          'Dry everything you keep as fast as you can. The Red Cross says if a flooded home cannot be dried within 24 to 48 hours, assume mold is growing.'
         ] }
       ],
       mistakes: [
@@ -4516,7 +4957,7 @@
         'Using a mix made yesterday.',
         'Skipping the soap-and-water step before bleach.'
       ],
-      sources: ['cdc-bleach', 'cdc-clean-home', 'cdc-food-after', 'cdc-disaster-cleanup', 'cdc-bleach-flyer', 'cdc-disaster-animals', 'epa-septic-flood', 'cdc-septic-flood'],
+      sources: ['cdc-bleach', 'cdc-clean-home', 'cdc-food-after', 'cdc-disaster-cleanup', 'cdc-bleach-flyer', 'cdc-disaster-animals', 'epa-septic-flood', 'cdc-septic-flood', 'redcross-flood'],
       checked: '2026-11-26'
     },
 
@@ -4693,7 +5134,8 @@
           'Fruit is dry when it bends and no beads of moisture form when you press it. Vegetables are tough, brittle or crunchy.',
           'Pack dried fruit loosely in an airtight container for several days. If moisture forms inside, dry it more.',
           'Kill insect eggs on unpeeled or uncovered fruit: heat it at 160°F for 30 minutes, or freeze it at 0°F for 48 hours.',
-          'Store dried food in airtight containers in a dark place.'
+          'Store dried food in airtight containers in a dark place.',
+          'The bend test is for everyday use. For long-term storage, The Church of Jesus Christ of Latter-day Saints\' preparedness guide says dried fruit and vegetables should be dry enough inside and out to snap when bent.'
         ] },
         { head: 'Storing root crops cool', items: [
           'Potatoes, beets, turnips, rutabagas, carrots and parsnips can keep three to four months or longer in the right conditions.',
@@ -4711,7 +5153,7 @@
         'Storing bruised or cut produce with the good ones.',
         'Leaving drying fruit out overnight.'
       ],
-      sources: ['nchfp-sundry', 'usu-drymethods', 'psu-dry', 'purdue-storage', 'uconn-coldstore'],
+      sources: ['nchfp-sundry', 'usu-drymethods', 'psu-dry', 'purdue-storage', 'uconn-coldstore', 'church-longterm'],
       checked: '2026-11-26'
     },
 
@@ -4730,7 +5172,8 @@
           'Do not go in if you smell gas, if floodwater is still around the house, or if you see downed lines, downed trees, or cracks in the walls or foundation.',
           'If you have any doubt, have a building inspector or structural engineer check it before you enter.',
           'Never touch a fallen power line. Call the power company to report it.',
-          'Watch for animals, snakes most of all. Use a stick to poke through debris.'
+          'Watch for animals, snakes most of all. Use a stick to poke through debris.',
+          'LSU AgCenter adds signs of structure damage: cracks, a sagging roofline, leaning, and a shifted foundation. Watch for fire ants as well as snakes.'
         ] },
         { head: 'Gas and power', items: [
           'If you smell gas or think there is a leak: turn off the main gas valve, open the windows, and leave right away.',
@@ -4745,7 +5188,9 @@
           'If it flooded and stayed closed for several days, assume there is mold. It may also have sewage in it.',
           'Follow local word on whether tap water is safe. If you have a well and the area flooded, have the water tested before you use it.',
           'Until then, use bottled, boiled or treated water for drinking, cooking, dishes, brushing teeth, ice and baby formula.',
-          'Throw out food that touched flood water, and cold food that sat without power. When in doubt, throw it out.'
+          'Throw out food that touched flood water, and cold food that sat without power. When in doubt, throw it out.',
+          'LSU AgCenter: a flooded well is not safe to drink from until a lab test shows no coliform bacteria. Boiling or bleach does not remove chemicals that got in.',
+          'Throw out wooden cutting boards and spoons, plastic utensils, baby bottle nipples and pacifiers that touched floodwater.'
         ] },
         { head: 'Photos and insurance', items: [
           'Call your insurance company and start a claim as soon as you can.',
@@ -4761,7 +5206,9 @@
           'Use a battery carbon monoxide alarm any time something that burns fuel is running.',
           'Lift heavy things in teams of two. No more than 50 pounds per person.',
           'Rest when you need to, drink water, and do the most important jobs first.',
-          'If someone is hurt or has had an electric shock, call 911.'
+          'If someone is hurt or has had an electric shock, call 911.',
+          'A house built before 1978 may have lead paint or asbestos. Learn lead-safe work practices, or get a hazard check, before you tear out walls (LSU AgCenter).',
+          'Pump a flooded basement out in stages, about a third of the water each day (University of Minnesota Extension).'
         ] }
       ],
       mistakes: [
@@ -4770,7 +5217,7 @@
         'Cleaning up before taking photos, then having no proof for the claim.',
         'Running the generator in the garage with the door open.'
       ],
-      sources: ['cdc-return-home', 'cdc-flood-reenter', 'cdc-elec-hazards', 'ready-recovering', 'cdc-disaster-cleanup', 'fs-claim'],
+      sources: ['cdc-return-home', 'cdc-flood-reenter', 'cdc-elec-hazards', 'ready-recovering', 'cdc-disaster-cleanup', 'fs-claim', 'lsu-storm-cleanup', 'umn-flood-cleanup'],
       checked: '2026-11-26'
     },
 
@@ -4782,14 +5229,17 @@
           'If you could not dry it in that time, you probably have mold, even where you cannot see it: behind cabinets, under carpet, inside walls.',
           'Open doors and windows. Set fans in a window or door so they blow air out, not in.',
           'If the heating and cooling system flooded, have a pro with mold experience check and clean it before you turn it on.',
-          'Fix leaks in the roof, walls or pipes as soon as you can. Mold comes back if the water does.'
+          'Fix leaks in the roof, walls or pipes as soon as you can. Mold comes back if the water does.',
+          'Keep indoor humidity under 60 percent, ideally 30 to 50 (University of Georgia Extension, citing the EPA).',
+          'Wood can look dry and still be wet. LSU AgCenter says to wait until a moisture meter reads under 16 percent before you put insulation and drywall back, and never close up wood above 19 percent.'
         ] },
         { head: 'The size rule', items: [
           'Under about 10 square feet (a 3 by 3 foot patch): most of the time you can clean it yourself.',
           'More than 10 square feet, or a lot of water damage: follow the EPA guide for larger jobs, or hire a contractor with mold experience and check references.',
           'If sewage or other dirty water caused it, call a professional who cleans buildings hit by contaminated water.',
           'If it smells moldy but you cannot find it, think about a pro. Pulling off wallpaper or paneling can release a lot of spores.',
-          'You do not need a mold test. Whatever the kind, remove it.'
+          'You do not need a mold test. Whatever the kind, remove it.',
+          'LSU AgCenter notes that most homeowners policies do not pay for mold damage or cleanup. Read your own policy.'
         ] },
         { head: 'Protect yourself', items: [
           'Wear at least an N95 respirator approved by NIOSH. Fit it by the package directions. It seals best on a clean-shaven face.',
@@ -4797,7 +5247,8 @@
           'Wear goggles with no vent holes, long gloves to the middle of the forearm, boots, long sleeves and long pants.',
           'With bleach, use gloves made of natural rubber, neoprene, nitrile, polyurethane or PVC.',
           'Take a break about every hour, away from the mold, and drink water.',
-          'Throw the N95 away when it is damaged, dirty or harder to breathe through.'
+          'Throw the N95 away when it is damaged, dirty or harder to breathe through.',
+          'Seal the moldy area off with plastic, tape plastic over air grilles, and do not run the central air while you work (LSU AgCenter).'
         ] },
         { head: 'Who stays out', items: [
           'Children do not help with cleanup. Respirators are not made for children.',
@@ -4809,7 +5260,9 @@
           'Throw out what you cannot clean and dry quickly: mattresses, carpet and padding, rugs, upholstered furniture, pillows, foam items, books, paper, stuffed animals and baby toys.',
           'Tear out drywall and insulation that got wet with flood water or sewage.',
           'Moldy ceiling tiles and other soft, porous things may not come clean. Mold fills the tiny spaces.',
-          'Wash hard toys in 1 cup of bleach to 5 gallons of water and let them air-dry.'
+          'Wash hard toys in 1 cup of bleach to 5 gallons of water and let them air-dry.',
+          'Cut wall covering out above the water line, because water wicks up. University of Minnesota Extension says that can be a foot and a half or more.',
+          'Take out wet insulation even if the drywall looks dry.'
         ] },
         { head: 'Clean hard surfaces', items: [
           'Scrub mold off hard surfaces with hot water and detergent, then dry them completely.',
@@ -4817,7 +5270,8 @@
           'Never mix bleach with ammonia or any other cleaner. It makes a toxic gas.',
           'Use a wet mop or a vacuum with a HEPA filter. Do not dry-sweep.',
           'Do not paint or caulk over mold. Clean and dry it first.',
-          'It is done when the water problem is fixed, no mold or musty smell is left, and it stays that way when you check back.'
+          'It is done when the water problem is fixed, no mold or musty smell is left, and it stays that way when you check back.',
+          'Use a cleaner without phosphates; the residue feeds mold. Rinse, but skip the pressure washer, which drives water into materials (LSU AgCenter).'
         ] }
       ],
       mistakes: [
@@ -4826,7 +5280,7 @@
         'Mixing bleach with another cleaner.',
         'Letting the kids help with the cleanup.'
       ],
-      sources: ['epa-mold-brief', 'cdc-mold-about', 'cdc-disaster-cleanup', 'cdc-mold-lungs', 'cdc-return-home'],
+      sources: ['epa-mold-brief', 'cdc-mold-about', 'cdc-disaster-cleanup', 'cdc-mold-lungs', 'cdc-return-home', 'lsu-mold', 'lsu-storm-cleanup', 'uga-mold', 'umn-flood-cleanup'],
       checked: '2026-11-26'
     },
 
@@ -4898,7 +5352,8 @@
           'Make sure at least one knows how to use any lifesaving equipment and how to give medicine.',
           'Keep their names and numbers in a watertight container in the kit and on the phone.',
           'Make the plan with them and practice it together.',
-          'In hot weather, ask them to check in often.'
+          'In hot weather, ask them to check in often.',
+          'Arrange for more than one person to check on you, the Red Cross says, so there is a backup if the first cannot come.'
         ] },
         { head: 'Spares for aids and devices', items: [
           'Pack extra glasses, contacts, hearing aids and hearing aid batteries.',
@@ -4906,20 +5361,25 @@
           'Keep an extra battery for a power chair or other battery device, and keep it charged. If you cannot buy one, ask local agencies or charities for help.',
           'Keep a tire patch kit or sealant, a spare inner tube and a small pump for chair or scooter tires that can go flat.',
           'Keep a spare cane or walker, and an extra seat cushion if you use one.',
-          'Write down the style, model and serial number of each device, how to run it, and where it came from (Medicare, Medicaid or insurance).'
+          'Write down the style, model and serial number of each device, how to run it, and where it came from (Medicare, Medicaid or insurance).',
+          'Label each device and attach laminated instructions, so a helper can run it.'
         ] },
         { head: 'Communication', items: [
           'Carry a printed card, or keep a note on the phone, that tells responders how to talk with you. The Administration for Community Living offers a communication card and a medical information card.',
           'Deaf or hard of hearing: a weather radio with a text display and flashing alert, pen and paper, a battery lantern for signing or lip reading in the dark, and smoke alarms with a strobe or vibrating pad.',
           'Blind or low vision: label supplies in Braille or large print, and keep a list of them as an audio file or on a flash drive.',
           'Speech: plan for the device failing. Keep laminated cards with phrases or pictures.',
-          'Wear a medical alert tag or bracelet, and keep a list of medicines, doses and allergies.'
+          'Wear a medical alert tag or bracelet, and keep a list of medicines, doses and allergies.',
+          'A medical alert system often needs a working phone line. Keep a backup, like a charged cell phone.',
+          'Plan for someone to pass on warnings if you cannot use the TV or radio.'
         ] },
         { head: 'Service animals and treatment', items: [
           'Pack food, water, a collar with an ID tag and medical records for a service or support animal.',
           'All shelters take service animals. Many do not take pets, so plan another place for them.',
           'If you get dialysis or other regular treatment, know more than one place that can give it. Ask your clinic about its emergency plan and backup providers.',
-          'If a device needs power, see the step on medical devices that need power.'
+          'If a device needs power, see the step on medical devices that need power.',
+          'If your care attendant comes from an agency, ask what the agency does in an emergency. Not all shelters help with daily care, so bring the attendant if you go to one.',
+          'When you reach a shelter, check that it can meet your care needs. Red Cross shelters are accessible to people with disabilities.'
         ] },
         { head: 'Medical-needs lists', items: [
           'Many city and county emergency management offices keep a voluntary list of people who may need help in a disaster. Not every place has one.',
@@ -4933,7 +5393,8 @@
           'In an apartment building, ask the management to mark accessible exits and to arrange help to leave the building. In a high-rise, ask about an evacuation chair.',
           'Line up neighbors who can help you out of the building.',
           'Plan an accessible ride out of town. Ask local transit and your emergency management office what options exist.',
-          'Leave early. For someone with dementia, never leave them alone, and bring a pillow or blanket they can hold. At a shelter, pick a quiet corner away from the exits.'
+          'Leave early. For someone with dementia, never leave them alone, and bring a pillow or blanket they can hold. At a shelter, pick a quiet corner away from the exits.',
+          'Most basements are not wheelchair accessible, the Red Cross notes. Pick another tornado shelter, and plan how you will get there.'
         ] }
       ],
       mistakes: [
@@ -4941,7 +5402,7 @@
         'A spare chair battery that was never charged.',
         'Only one person who knows how the wheelchair or the oxygen works.'
       ],
-      sources: ['ready-disab', 'ready-older', 'cdc-disab-plan', 'acl-emergency', 'usfa-disab-fire', 'fema-ayr-basic'],
+      sources: ['ready-disab', 'ready-older', 'cdc-disab-plan', 'acl-emergency', 'usfa-disab-fire', 'fema-ayr-basic', 'redcross-disab', 'redcross-shelter'],
       checked: '2026-11-26'
     },
 
@@ -4954,7 +5415,8 @@
           'A farm map with access routes and water sources, and a checklist of halters, leads, first aid, feed and water.',
           'A plan to shelter in place, a plan to evacuate (transport, routes, destination) and a plan to find each other and the animals after.',
           'Post copies in the tack room or barn office, in the trailer, at the barn doors and in the house, so a neighbor or responder can follow it if you are not there.',
-          'Go over it and practice it at least once a year with everyone on the farm.'
+          'Go over it and practice it at least once a year with everyone on the farm.',
+          'Partner with other farms for trailers and places to go, Mississippi State Extension says, and talk through disease risks if herds must share space.'
         ] },
         { head: 'ID and proof of ownership', items: [
           'Give every animal some form of ID.',
@@ -4962,21 +5424,25 @@
           'Write a description: breed, color, markings and temperament.',
           'Quick ID: a livestock crayon or marker with your name and phone number, a neck band, tags, mane tags or painted numbers on the hooves. Lasting ID: a microchip, brand or tattoo.',
           'Put a tag on each halter with the animal\'s name, your name, your phone and a second number.',
-          'Keep Coggins tests, vet records, proof of rabies shots and the bill of sale or registration papers in a watertight bag with your other papers.'
+          'Keep Coggins tests, vet records, proof of rabies shots and the bill of sale or registration papers in a watertight bag with your other papers.',
+          'Spray paint or paint sticks give a quick mark after a storm, but they do not replace lasting ID.'
         ] },
         { head: 'Trailers and loading', items: [
           'Arrange trailers ahead. If you do not have enough room, keep a list of haulers or friends with trailers and have people on standby.',
           'Keep trailers and tow vehicles in good working order.',
           'Get the animals used to being gathered, penned and loaded. Practice until they load and unload calm.',
           'Line up experienced handlers and drivers.',
-          'Animals can spook in a disaster. Normal handling may not work as well, so practice now.'
+          'Animals can spook in a disaster. Normal handling may not work as well, so practice now.',
+          'Check trailers for safe floors, working lights and good tires, with spares.'
         ] },
         { head: 'Where to go', items: [
           'Arrange a place outside your area before you need it: a friend\'s farm, fairgrounds, stockyards, an Extension facility or a horse venue. Find more than one.',
           'Make sure the place has feed, water, vet care and handling gear.',
           'Map a main route and a second route.',
           'Your county Extension agent, animal control or emergency management office can tell you about local animal shelters.',
-          'Call the place before you leave to make sure it is still open and not hit by the disaster. Listen for special livestock evacuation routes.'
+          'Call the place before you leave to make sure it is still open and not hit by the disaster. Listen for special livestock evacuation routes.',
+          'For a hurricane, start moving livestock about 96 hours before landfall, MSU Extension says. Later, traffic can trap animals in trucks.',
+          'Do not go out to check on animals during the storm. Wait until it is safe; responders may not be able to reach you.'
         ] },
         { head: 'Feed and water for days', cols: ['When', 'Have on hand', 'Source'], rows: [
           ['Sheltering in place', '7 days of feed, water and fuel', 'California Dept. of Food and Agriculture'],
@@ -4990,7 +5456,8 @@
           'In a flood or tornado it is usually best not to shut them in the barn, since the roof can come down. In a flood, move them to higher ground.',
           'Tie down or put away troughs, buckets and loose gear that wind can throw, and fill every trough.',
           'If you leave them, put them in the spot you picked for that disaster, with hay and water for 48 to 72 hours.',
-          'Make sure every animal carries ID in case you have to turn them loose or claim them from a shelter.'
+          'Make sure every animal carries ID in case you have to turn them loose or claim them from a shelter.',
+          'If you cannot move cattle, turn them into large pastures on high ground, clear of debris and overhead power lines. Do not pen them in small areas or barns.'
         ] }
       ],
       mistakes: [
@@ -4999,7 +5466,7 @@
         'Counting on an automatic waterer when the power is out.',
         'Leaving a pile of grain for animals you leave behind.'
       ],
-      sources: ['ready-pets', 'fema-ayr-basic', 'cdfa-horse-evac', 'fdacs-horse-prep', 'nj-horse-during', 'uconn-equine', 'msstate-livestock'],
+      sources: ['ready-pets', 'fema-ayr-basic', 'cdfa-horse-evac', 'fdacs-horse-prep', 'nj-horse-during', 'uconn-equine', 'msstate-livestock', 'msstate-beef'],
       checked: '2026-11-26'
     },
 
@@ -5017,7 +5484,9 @@
           'The FEMA app lists open shelters near you during a disaster. It is free.',
           'Without the app, text SHELTER and your ZIP code to 43362 (for example: Shelter 01234). Standard text rates apply.',
           'Sign up for local emergency alerts and weather alerts. They give shelter locations as well as warnings.',
-          'Keep a battery radio and follow local instructions on where to go and which roads to take.'
+          'Keep a battery radio and follow local instructions on where to go and which roads to take.',
+          'The Red Cross shows its open shelters on a map on its website, and its free Emergency app lists shelters too.',
+          'Red Cross service sites may offer meals, first aid, help replacing lost prescriptions and glasses, and charging for phones and medical devices.'
         ] },
         { head: 'What to bring', items: [
           'Bring your emergency kit. Shelters often have water, food, medicine and toilets, but you should have your own supplies.',
@@ -5031,7 +5500,9 @@
           'Alcohol and weapons are not allowed in emergency shelters. Smoking is limited.',
           'All shelters take service animals. Most public shelters do not take pets, so plan another place for them.',
           'Shelter life is crowded and hard. Work with the shelter managers and the people helping them.',
-          'Stay until local officials say it is safe to leave.'
+          'Stay until local officials say it is safe to leave.',
+          'Red Cross shelters are free and open to anyone in need. You do not need ID, just your name and where you lived. Tell staff about any needs for equipment, food, culture or religion.',
+          'The Red Cross says its shelters try to take household pets, sometimes housed in a separate place nearby. Ready.gov says most public shelters do not, so keep another plan for them.'
         ] },
         { head: 'Friends, family and hotels', items: [
           'Ask now if you can stay, and what they can and cannot take, such as pets.',
@@ -5052,7 +5523,7 @@
         'Showing up at a shelter with a pet and no other plan.',
         'Only one place to go, in the same direction as the storm.'
       ],
-      sources: ['ready-shelter', 'ready-evacuation', 'fema-app', 'ready-kit', 'fema-ayr-basic'],
+      sources: ['ready-shelter', 'ready-evacuation', 'fema-app', 'ready-kit', 'fema-ayr-basic', 'redcross-shelter', 'redcross-hurricane'],
       checked: '2026-11-26'
     },
 
@@ -5074,7 +5545,8 @@
           'Blankets or sleeping bags, and extra warm, dry clothes.',
           'High-calorie food, a water container, and a small can with waterproof matches to melt snow for water.',
           'A tow rope and a bright cloth to tie on the antenna if you are stuck.',
-          'Extra windshield washer fluid of the winter kind, with de-icer.'
+          'Extra windshield washer fluid of the winter kind, with de-icer.',
+          'The Red Cross adds newspapers for warmth, plastic bags for sanitation, and an insulated bottle of warm broth.'
         ] },
         { head: 'Check the tires', items: [
           'Fill each tire to the pressure on the label on the driver\'s door frame, or in the owner\'s manual.',
@@ -5104,7 +5576,8 @@
           'If you are stuck in snow, stay in the car. Run the engine about 10 minutes an hour for heat, with a window open a crack.',
           'Keep the exhaust pipe clear of snow, so carbon monoxide does not build up inside.',
           'Turn on the dome light at night, tie a bright cloth to the antenna, and raise the hood when the snow stops.',
-          'If a power line falls on the car, stay inside until help comes. If you are in danger, call 911.'
+          'If a power line falls on the car, stay inside until help comes. If you are in danger, call 911.',
+          'If you are stuck, stay with the car unless help is in sight within 100 yards. Move your arms and legs now and then, take turns sleeping, and huddle together for warmth.'
         ] }
       ],
       mistakes: [
@@ -5113,7 +5586,7 @@
         'Walking away from a stuck car in blowing snow.',
         'Driving into water on the road because it looks shallow.'
       ],
-      sources: ['ready-car', 'nhtsa-winter', 'nhtsa-summer', 'nws-winter-before', 'nws-winter-during'],
+      sources: ['ready-car', 'nhtsa-winter', 'nhtsa-summer', 'nws-winter-before', 'nws-winter-during', 'redcross-winter'],
       checked: '2026-11-26'
     },
 
@@ -5134,7 +5607,8 @@
           'Use a bathroom or kitchen fan only for short times. It can pull smoke in from the rest of the house.',
           'If the central air pulls in outside air, set it to recirculate or close the outdoor intake.',
           'Close the outdoor air damper on a window air conditioner. If you cannot close it, do not use that unit.',
-          'Keep cool with fans or air conditioning. If you cannot stay cool, or smoke keeps getting in, go somewhere else: family out of the smoke, or a public cleaner-air shelter.'
+          'Keep cool with fans or air conditioning. If you cannot stay cool, or smoke keeps getting in, go somewhere else: family out of the smoke, or a public cleaner-air shelter.',
+          'Turn off a swamp cooler. Like a window unit, it pulls in outside air (University of Nevada, Reno Extension).'
         ] },
         { head: 'Filter the air', items: [
           'A portable air cleaner with a HEPA or other pleated filter works best. Pick one whose smoke CADR is at least two-thirds of the room\'s floor area in square feet. A 150-square-foot room needs a smoke CADR of at least 100.',
@@ -5142,7 +5616,8 @@
           'Skip ionizers, electrostatic and UV air cleaners for smoke. They may not remove it and can make ozone.',
           'Run it all the time on the highest setting, with space around it so air flows freely.',
           'If you have central air, put in a MERV 13 or higher filter if the system can take it, and set the fan to On instead of Auto.',
-          'Buy it before fire season and keep spare filters. Change them when they look dirty or start to smell of smoke.'
+          'Buy it before fire season and keep spare filters. Change them when they look dirty or start to smell of smoke.',
+          'Oregon State University Extension says portable air cleaners with good filters may cut indoor particles by as much as 45 percent during smoke.'
         ] },
         { head: 'A box-fan filter if you cannot get an air cleaner', items: [
           'The EPA says a do-it-yourself air cleaner is a stand-in for when a portable air cleaner is not available or affordable.',
@@ -5178,7 +5653,7 @@
         'Running an old box fan all night while everyone sleeps.',
         'Frying dinner or lighting candles in the house while it is smoky.'
       ],
-      sources: ['epa-cleanroom', 'airnow-aqi', 'epa-wf-iaq', 'epa-filtration', 'epa-diy-cleaner', 'epa-smoke-masks', 'cdc-wf-kids', 'airnow-smokeready'],
+      sources: ['epa-cleanroom', 'airnow-aqi', 'epa-wf-iaq', 'epa-filtration', 'epa-diy-cleaner', 'epa-smoke-masks', 'cdc-wf-kids', 'airnow-smokeready', 'osu-smoke', 'unr-smoke'],
       checked: '2026-11-26'
     },
 
@@ -5416,20 +5891,25 @@
           'Keep vet records, brand inspection records, and ear tag, shearing or docking records.',
           'Keep the inventory records you use for taxes, property tax records, and bank or loan papers.',
           'Keep trucking or livestock hauling records, and any private insurance papers.',
-          'Records made at the time count. Write the counts down as they change.'
+          'Records made at the time count. Write the counts down as they change.',
+          'University of Georgia Extension: write down the hay on hand, with the number of bales, the type, the quality and the bale size.'
         ] },
         { head: 'Proof after a loss', items: [
           'Take photos, with the date, of the animals that died.',
           'Keep rendering truck receipts or certificates, and vet records.',
           'Keep any FEMA or National Guard records, and any third-party certification.',
           'If you sell injured animals at a reduced price, keep the sales receipt from an independent auction or sale barn, or the processing plant receipt.',
-          'For feed or water losses, keep the feed and water receipts.'
+          'For feed or water losses, keep the feed and water receipts.',
+          'Photograph damaged hay where it sits, with time stamps, and write a signed statement of the count, type and size.',
+          'Mark on a map where floodwater reached and when it went down, and keep a log of lost grazing days.'
         ] },
         { head: 'Report the loss', items: [
           'Report losses to your local Farm Service Agency office, and to your crop insurance provider if you have crop coverage.',
           'Deadlines differ by program. The crop ones are short: crop insurance wants a call within 72 hours of finding damage and a written follow-up within 15 days. Noninsured crop coverage wants notice within 15 days.',
           'For LIP and ELAP you file a notice of loss and an application for payment, with proof of your herd count, the losses and the event that caused them.',
-          'Go in early. The office can tell you the forms and the current dates.'
+          'Go in early. The office can tell you the forms and the current dates.',
+          'A UGA Extension circular says a notice of crop loss goes to the FSA office within 30 days. Some limits above are shorter. Go by the shortest one that fits you.',
+          'Get flood-damaged hay out of the barn right away. Wet hay can heat up and catch fire on its own.'
         ] },
         { head: 'Find your local office', items: [
           'Use the Service Center Locator on farmers.gov. Pick your state and county.',
@@ -5450,7 +5930,7 @@
         'Waiting to report because the deadline seems far off.',
         'Assuming one program covers every kind of loss.'
       ],
-      sources: ['fsa-lip', 'fsa-elap', 'fsa-lfp', 'fsa-ecp', 'fsa-emloan', 'usda-lip-docs', 'fg-flood', 'fg-servicecenter', 'fg-disaster'],
+      sources: ['fsa-lip', 'fsa-elap', 'fsa-lfp', 'fsa-ecp', 'fsa-emloan', 'usda-lip-docs', 'fg-flood', 'fg-servicecenter', 'fg-disaster', 'uga-livestock-losses'],
       checked: '2026-11-26'
     }
   };

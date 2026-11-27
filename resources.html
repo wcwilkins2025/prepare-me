@@ -6,7 +6,7 @@
 <title>Resources</title>
 <meta name="description" content="Every free source behind Prepare Me: Ready.gov, the American Red Cross, FEMA, the CDC, the USDA, ARRL and more.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="site.css?v=20261126b">
+<link rel="stylesheet" href="site.css?v=20261126c">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#9a4f1f">
@@ -16,7 +16,7 @@
   <div class="wrap">
     <nav class="nav" id="nav" aria-label="Pages"></nav>
     <h1>Resources</h1>
-    <p class="lede">Every source behind the steps. Free, public and from people who do this for a living. No stores.</p>
+    <p class="lede">Every source behind the steps. Free, public and from people who do this for a living: government agencies, Extension, nonprofits, medical groups and respected preppers. No stores.</p>
   </div>
 </header>
 <main class="wrap" id="main">
@@ -27,6 +27,10 @@
   <section>
     <h2>By area</h2>
     <div class="grid2" id="byArea"></div>
+  </section>
+  <section>
+    <h2>Books worth owning</h2>
+    <div class="card"><p class="muted" style="margin-top:0">They work with no power and no signal. Look for them at your library or any bookseller.</p><ul id="books" style="padding-left:20px;margin:0"></ul></div>
   </section>
   <section>
     <h2>By disaster</h2>
@@ -43,12 +47,12 @@
 </main>
 <footer><div class="wrap" id="foot"></div></footer>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
-<script src="config.js?v=20261126b"></script>
-<script src="data/links.js?v=20261126b"></script>
-<script src="data/tasks.js?v=20261126b"></script>
-<script src="js/engine.js?v=20261126b"></script>
-<script src="js/store.js?v=20261126b"></script>
-<script src="js/site.js?v=20261126b"></script>
+<script src="config.js?v=20261126c"></script>
+<script src="data/links.js?v=20261126c"></script>
+<script src="data/tasks.js?v=20261126c"></script>
+<script src="js/engine.js?v=20261126c"></script>
+<script src="js/store.js?v=20261126c"></script>
+<script src="js/site.js?v=20261126c"></script>
 <script>
 (function () {
   'use strict';
@@ -61,6 +65,7 @@
     RD.TASKS.forEach(function (t) { if (t.area === a.id) t.links.forEach(function (k) { if (keys.indexOf(k) < 0 && RD.LINKS[k].by !== 'Free tool') keys.push(k); }); });
     $('byArea').appendChild(el('div', { class: 'card' }, [el('h3', null, a.name), el('ul', { style: 'padding-left:20px;margin:0' }, keys.map(UI.link))]));
   });
+  RD.BOOKS.forEach(function (b) { $('books').appendChild(el('li', null, [el('b', null, b.title), ', ' + b.by + '. ' + b.about])); });
   RD.HAZARDS.forEach(function (h) {
     var l = RD.LINKS[h.link];
     $('byHz').appendChild(el('li', null, [h.name + ': ', el('a', { href: l.url, target: '_blank', rel: 'noopener' }, l.title), ' ', el('small', { class: 'muted' }, l.by)]));
